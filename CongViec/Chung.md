@@ -4,6 +4,6 @@ Ngày 4/3/2023:
     
     2. Thiết kế giao diện (Fontend): giao diện admin 
     
-    ![2](https://user-images.githubusercontent.com/101319796/229453883-0796467e-5ee1-43d9-9cc9-0b39fff061da.png)
+    <img width="696" alt="image" src="https://user-images.githubusercontent.com/101319796/229454303-c5062710-89e4-48ce-91d4-aae42611aec6.png">
     
     3. tiếp tục tìm hiểu về php MVC trên mạng
