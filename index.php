@@ -1,5 +1,3 @@
 <?php
-    use Controllers\SanPhamController;
+    include_once"Views/Layout/body.php";
 
-    $controller = new SanPhamController();  
-    $controller->DanhSach();  

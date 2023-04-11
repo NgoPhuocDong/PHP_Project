@@ -10,7 +10,6 @@ class SanPhamController {
 
      public function DanhSach()    
      {
-        $sanpham  = SanPham::DanhSach();
         include 'Views/SanPham/DanhSach.php';
      }   
       
