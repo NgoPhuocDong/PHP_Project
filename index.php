@@ -9,3 +9,6 @@
     include "./Controllers/$nameController.php";
     $controller = new $nameController();
     $controller->$action();
+
+    
+?>
