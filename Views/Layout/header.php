@@ -59,9 +59,9 @@
 		    			<i class="fa fa-th-large" aria-hidden="true" style="color:white;"></i>
 		    			Sản phẩm</a>
 		    			<ul id="collapse1" class="collapse text-white-50" data-bs-parent="#accordion">
-							<li><a href="#">Sản phẩm</a></li>
-						    <li><a href="#">Danh mục</a></li>
-						    <li><a href="#">Thống kê</a></li>
+							<a href="../SanPham/DanhSach"><li class="text-secondary">Sản phẩm</li></a>
+						    <a href="../LoaiSanPham/DanhSach"><li class="text-secondary">Danh mục</li></a>
+						    <a href="#"><li class="text-secondary">Thống kê</li></a>
 						</ul>
 		    		</li>
 

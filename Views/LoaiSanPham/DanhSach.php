@@ -39,20 +39,13 @@
     <table class="table table-condensed table-bordered">
         <tr style="background-color: whitesmoke; color: black; " class="col-6 align-self-center">
             <th>STT</th>
-            <th>
-                Tên sản phẩm
-            </th>
+            <th>Tên loại sản phẩm</th>
             <th></th>
         </tr> 
             <tr>
                 <td>1</td>
                 <td>
                     MacBook
-                </td>
-                <td>
-                    <a href="#">
-                        <img src="Data/usernro.png" style="height: 50px; width: 50px; " />
-                    </a>
                 </td>
                 <td>
                     <a href="../LoaiSanPham/CapNhat?id='#'">Cập nhật</a> | 
