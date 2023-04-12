@@ -3,13 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>layout</title>
+	<!-- <title>Admin</title> -->
+	<link rel="stylesheet" type="text/css" href="../Assets/fonts/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../Assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="../Assets/css/bootstrap.min.css">
 
-	<link rel="stylesheet" type="text/css" href="Assets\fonts\font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="Assets\CSS\style.css">
-	<link rel="stylesheet" type="text/css" href="Assets\CSS\bootstrap.min.css">
-
-    <script src="Assets\Scripts\bootstrap.bundle.min.js"></script>
+    <script src="../Assets/scripts/bootstrap.bundle.min.js"></script>
 
 </head>
 <body class="bg-light col-md-12">
@@ -60,9 +59,9 @@
 		    			<i class="fa fa-th-large" aria-hidden="true" style="color:white;"></i>
 		    			Sản phẩm</a>
 		    			<ul id="collapse1" class="collapse text-white-50" data-bs-parent="#accordion">
-							<li>Sản phẩm</li>
-						    <li>Danh mục</li>
-						    <li>Thống kê</li>
+							<li><a href="#">Sản phẩm</a></li>
+						    <li><a href="#">Danh mục</a></li>
+						    <li><a href="#">Thống kê</a></li>
 						</ul>
 		    		</li>
 
@@ -89,3 +88,4 @@
 		    		</li>
 		    	</ul>
 		    </div>
+			<div class="col-md-10">
