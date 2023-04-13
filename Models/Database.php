@@ -77,10 +77,10 @@ class Database{
     //     return $data;
     // }
     // //hàm thêm dữ liệu
-    // public function insert($tenloaisanpham){
-    //     $sql = "INSERT INTO loaisanpham(ID,TenLoaiSanPham) VALUES (null,'$tenloaisanpham')";
-    //     return $this->execute($sql);
-    // }
+    public function insert($tenloaisanpham){
+        $sql = "INSERT INTO loaisanpham(ID,TenLoaiSanPham) VALUES (null,'$tenloaisanpham')";
+        return $this->execute($sql);
+    }
     // //hàm sữa dữ liệu
     // public function update($table,$values,$id){
     //     $sql = "UPDATE $table SET $values() WHERE id = '$id'";
