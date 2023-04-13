@@ -1,9 +1,8 @@
 <?php
-//include_once("Models/LoaiSanPham.php");
+include_once("Models/LoaiSanPham.php");
 
 class LoaiSanPhamController{
     private $model;
-
     public function __construct(){
         $this->model = new LoaiSanPham();
     }
@@ -24,7 +23,7 @@ class LoaiSanPhamController{
         if (isset($_POST['submit'])) {
             $result = $this->model->ThemMoi($_POST['tenloaisanpham']);
             if ($result) {
-                header('Location: ./LoaiSanPham/DanhSach.php');
+                header('Location: ./DanhSach');
             }
         }
         include 'Views/LoaiSanPham/ThemMoi.php';
