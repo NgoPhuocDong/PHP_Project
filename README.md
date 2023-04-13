@@ -1,4 +1,27 @@
-# PHP_Project
-ấn vào <> Code , chọn Open with GitHub Desktop, tải về
 
-![image](https://user-images.githubusercontent.com/101319796/229017811-5f5d2a0e-3e13-49c0-a8f5-61c73cde30b1.png)
+Ngày 4/3/2023: 
+
+    1. Import file quanlymaytinh(trên zalo) vào phpMyAdmin
+    
+    2. Thiết kế giao diện (Fontend): giao diện admin 
+
+    3.Làm trên nhánh develop
+    
+    4. tiếp tục tìm hiểu về php MVC trên mạng
+
+
+2.link tham khảo: https://youtube.com/playlist?list=PLWTu87GngvNwRxrFZ_wbxfvHHed14H5RC
+ 
+|-- demo_mvc
+    |-- assets
+        |-- fonts
+        |-- images
+        |-- javascripts
+        |-- stylesheets
+    |-- controllers
+    |-- models
+    |-- views
+        |-- layouts
+            |-- application.php
+    |-- index.php
+

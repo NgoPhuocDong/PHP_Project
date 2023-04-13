@@ -1,0 +1,7 @@
+ul li{
+    list-style: none;
+}
+.col-md-2 .border-bottom{
+    margin-left: 10px;
+    height: 60px;
+}
