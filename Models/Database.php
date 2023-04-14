@@ -16,14 +16,6 @@ class Database{
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
     }
-    // public function connect(){
-    //     $this->conn = mysqli_connect($this->host,$this->username,$this->password,$this->database);
-    //     //kiểm tra đã kết nối thành công chưa
-    //     if (mysqli_connect_error())
-    //     {
-    //         echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    //     }
-    // }
     
     //lấy dữ liệu
     public function select($sql)
@@ -41,7 +33,8 @@ class Database{
     // thêm sửa xóa
     public function execute($sql)
     {
-        $result = $this->conn->query($sql);
+        //$result = $this->conn->query($sql);
+        $result = mysqli_query($this->conn,$sql);
         if ($result) {
             return true;
         } else {
@@ -77,12 +70,12 @@ class Database{
     //     return $data;
     // }
     // //hàm thêm dữ liệu
-    // public function insert($tenloaisanpham){
-    //     $sql = "INSERT INTO loaisanpham(ID,TenLoaiSanPham) VALUES (null,'$tenloaisanpham')";
+    // public function insert($table,$value=[]){
+    //     $sql = "INSERT INTO $table VALUES ($value)";
     //     return $this->execute($sql);
     // }
-    // //hàm sữa dữ liệu
-    // public function update($table,$values,$id){
+    //hàm sữa dữ liệu
+    // public function update($table,$values=[],$id){
     //     $sql = "UPDATE $table SET $values() WHERE id = '$id'";
     //     return $this->execute($sql);
     // }
@@ -90,4 +83,10 @@ class Database{
     //     $sql = "DELETE FROM thanhvien WHERE id = '$id'";
     //     return $this->execute($sql);
     // }
+    public function find($table,$id)
+    {
+        $sql = "SELECT * FROM $table WHERE id = '$id'";
+        $result = $this->select($sql);
+        return $result;
+    }
 }

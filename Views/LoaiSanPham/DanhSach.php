@@ -41,17 +41,22 @@
             <th>STT</th>
             <th>Tên loại sản phẩm</th>
             <th></th>
-        </tr> 
+        </tr>
+        <?php 
+        if(!empty($result)):
+            $i = 0;
+            foreach ($result as $row) : extract($row);$i++; ?> 
             <tr>
-                <td>1</td>
+                <td><?= $i ?></td>
                 <td>
-                    MacBook
+                    <?= $row['TenLoaiSanPham'] ?>
                 </td>
                 <td>
-                    <a href="../LoaiSanPham/CapNhat?id='#'">Cập nhật</a> | 
+                    <a href="../LoaiSanPham/CapNhat?id=<?=$row['ID']?>">Cập nhật</a> | 
                     <a href="../LoaiSanPham/DanhSach?id='#'">Xóa</a>
                 </td>
             </tr>
+            <?php endforeach; endif; ?>
     </table>
 </div>
 
