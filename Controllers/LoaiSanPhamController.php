@@ -67,7 +67,6 @@ class LoaiSanPhamController{
                 header('Location: ./DanhSach');
             }
         }
-        include 'Views/LoaiSanPham/DanhSach.php';
     }
     
 }

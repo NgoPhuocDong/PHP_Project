@@ -53,7 +53,8 @@
                 </td>
                 <td>
                     <a href="../LoaiSanPham/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
-                    <a href="../LoaiSanPham/DanhSach&id=<?=$row['ID']?>">Xóa</a>
+                    <a href="../LoaiSanPham/Xoa&id=<?=$row['ID']?>">Xóa</a>
+                    <button onclick=""></button>
                 </td>
             </tr>
             <?php endforeach; endif; ?>
