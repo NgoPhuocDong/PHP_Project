@@ -7,8 +7,19 @@
 	<link rel="stylesheet" type="text/css" href="../Assets/fonts/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../Assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="../Assets/css/bootstrap.min.css">
+<<<<<<< HEAD
 
     <script src="../Assets/scripts/bootstrap.bundle.min.js"></script>
+=======
+	<script src="../Assets/scripts/bootstrap.bundle.min.js"></script>
+
+	<!-- Dùng cho file index -->
+	<link rel="stylesheet" type="text/css" href="Assets/fonts/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="Assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="Assets/css/bootstrap.min.css">
+	<script src="Assets/scripts/bootstrap.bundle.min.js"></script>
+    
+>>>>>>> develop
 
 </head>
 <body class="bg-light col-md-12">
@@ -70,8 +81,13 @@
 		    			<i class="fa fa-cart-plus" aria-hidden="true" style="color:white;"></i>
 		    			Nhập Hàng</a>
 		    			<ul id="collapse2" class="collapse text-white-50" data-bs-parent="#accordion">
+<<<<<<< HEAD
 							<li>Đơn hàng mua</li>
 						    <li>Nhà cung cấp</li>
+=======
+							<a href="../DonHangMua/DanhSach"><li>Đơn hàng mua</li></a>
+						    <a href="../NhaCungCap/DanhSach"><li>Nhà cung cấp</li></a>
+>>>>>>> develop
 						    <li>Thống kê</li>
 						</ul>
 		    		</li>
@@ -81,8 +97,13 @@
 		    			<i class="fa fa-shopping-bag" aria-hidden="true" style="color: white;"></i>
 		    			Bán Hàng</a>
 		    			<ul id="collapse3" class="collapse text-white-50" data-bs-parent="#accordion">
+<<<<<<< HEAD
 							<li>Hóa đơn</li>
 							<li>Khách hàng</li>
+=======
+							<a href="../DonHangBan/DanhSach"><li>Đơn hàng bán</li></a>
+							<a href="../KhachHang/DanhSach"><li>Khách hàng</li></a>
+>>>>>>> develop
 						    <li>Thống kê</li>
 						</ul>
 		    		</li>

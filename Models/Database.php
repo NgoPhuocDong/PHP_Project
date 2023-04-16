@@ -16,6 +16,7 @@ class Database{
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
     }
+<<<<<<< HEAD
     // public function connect(){
     //     $this->conn = mysqli_connect($this->host,$this->username,$this->password,$this->database);
     //     //kiểm tra đã kết nối thành công chưa
@@ -24,6 +25,8 @@ class Database{
     //         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     //     }
     // }
+=======
+>>>>>>> develop
     
     //lấy dữ liệu
     public function select($sql)
@@ -38,17 +41,58 @@ class Database{
         }
     }
 
+<<<<<<< HEAD
     // thêm sửa xóa
     public function execute($sql)
     {
         $result = $this->conn->query($sql);
+=======
+    // hàm truy vấn: thêm sửa xóa
+    public function execute($sql)
+    {
+        //$result = $this->conn->query($sql);
+        $result = mysqli_query($this->conn,$sql);
+>>>>>>> develop
         if ($result) {
             return true;
         } else {
             return false;
         }
     }
+<<<<<<< HEAD
     // //hàm truy vấn
+=======
+
+    public function delete($table,$id){
+        $sql = "DELETE FROM $table WHERE id = '$id'";
+        $result = $this->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function find($table,$id)
+    {
+        $sql = "SELECT * FROM $table WHERE ID = '$id'";
+        $result = $this->select($sql);
+        return $result;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+// //hàm truy vấn
+>>>>>>> develop
     // public function execute1($sql){
     //     $this->result = mysqli_query($this->conn,$sql);
     //     //$this->result = $this->conn->query($sql);
@@ -77,6 +121,7 @@ class Database{
     //     return $data;
     // }
     // //hàm thêm dữ liệu
+<<<<<<< HEAD
     public function insert($tenloaisanpham){
         $sql = "INSERT INTO loaisanpham(ID,TenLoaiSanPham) VALUES (null,'$tenloaisanpham')";
         return $this->execute($sql);
@@ -91,3 +136,14 @@ class Database{
     //     return $this->execute($sql);
     // }
 }
+=======
+    // public function insert($table,$value=[]){
+    //     $sql = "INSERT INTO $table VALUES ($value)";
+    //     return $this->execute($sql);
+    // }
+    //hàm sữa dữ liệu
+    // public function update($table,$values=[],$id){
+    //     $sql = "UPDATE $table SET $values() WHERE id = '$id'";
+    //     return $this->execute($sql);
+    // }
+>>>>>>> develop
