@@ -46,7 +46,7 @@ class LoaiSanPhamController{
         include 'Views/LoaiSanPham/CapNhat.php';
         return $dataUpdate;
     }
-
+    //hàm xóa
     public function Xoa(){
         if (isset($_GET['id'])){
             $id = $_GET['id'];
