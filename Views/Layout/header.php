@@ -7,8 +7,14 @@
 	<link rel="stylesheet" type="text/css" href="../Assets/fonts/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="../Assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="../Assets/css/bootstrap.min.css">
+	<script src="../Assets/scripts/bootstrap.bundle.min.js"></script>
 
-    <script src="../Assets/scripts/bootstrap.bundle.min.js"></script>
+	<!-- Dùng cho file index -->
+	<link rel="stylesheet" type="text/css" href="Assets/fonts/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="Assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="Assets/css/bootstrap.min.css">
+	<script src="Assets/scripts/bootstrap.bundle.min.js"></script>
+    
 
 </head>
 <body class="bg-light col-md-12">

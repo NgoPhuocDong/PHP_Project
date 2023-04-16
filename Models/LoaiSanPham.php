@@ -1,7 +1,5 @@
 <?php
 class LoaiSanPham{
-    private $tenloaisanpham;
-    private $id;
 
     private $db;
 
@@ -28,6 +26,16 @@ class LoaiSanPham{
     public function CapNhat($id,$tenloaisanpham)
     {
         $sql = "UPDATE loaisanpham SET tenloaisanpham = '$tenloaisanpham' WHERE id = '$id'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function Xoa($id)
+    {
+        $sql = "DELETE FROM loaisanpham WHERE id = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;

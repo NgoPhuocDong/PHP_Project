@@ -13,14 +13,15 @@
         Cập nhật
     </span>
     <hr>
-
+    <?php foreach ($dataUpdate as $row) : extract($row); ?>
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
         <label class="h6">Tên loại sản phẩm</label>
-        <input type="text" value=""name="tenloaisanpham" class="form-control"><br>
+        <input type="text" value="<?= $row['TenLoaiSanPham']?>"name="tenloaisanpham" class="form-control"><br>
 
         <hr>
         <input type="submit" value="Update" name="submit" class="btn btn-primary">
     </form>
+    <?php endforeach;?>
 </div>
 <?php
     include "./Views/Layout/footer.php";

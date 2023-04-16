@@ -30,7 +30,7 @@ class Database{
         }
     }
 
-    // thêm sửa xóa
+    // hàm truy vấn: thêm sửa xóa
     public function execute($sql)
     {
         //$result = $this->conn->query($sql);
@@ -41,7 +41,36 @@ class Database{
             return false;
         }
     }
-    // //hàm truy vấn
+
+    public function delete($table,$id){
+        $sql = "DELETE FROM $table WHERE id = '$id'";
+        $result = $this->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function find($table,$id)
+    {
+        $sql = "SELECT * FROM $table WHERE ID = '$id'";
+        $result = $this->select($sql);
+        return $result;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+// //hàm truy vấn
     // public function execute1($sql){
     //     $this->result = mysqli_query($this->conn,$sql);
     //     //$this->result = $this->conn->query($sql);
@@ -79,14 +108,3 @@ class Database{
     //     $sql = "UPDATE $table SET $values() WHERE id = '$id'";
     //     return $this->execute($sql);
     // }
-    // public function delete($id){
-    //     $sql = "DELETE FROM thanhvien WHERE id = '$id'";
-    //     return $this->execute($sql);
-    // }
-    public function find($table,$id)
-    {
-        $sql = "SELECT * FROM $table WHERE id = '$id'";
-        $result = $this->select($sql);
-        return $result;
-    }
-}

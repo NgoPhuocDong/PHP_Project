@@ -52,8 +52,8 @@
                     <?= $row['TenLoaiSanPham'] ?>
                 </td>
                 <td>
-                    <a href="../LoaiSanPham/CapNhat?id=<?=$row['ID']?>">Cập nhật</a> | 
-                    <a href="../LoaiSanPham/DanhSach?id='#'">Xóa</a>
+                    <a href="../LoaiSanPham/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
+                    <a href="../LoaiSanPham/DanhSach&id=<?=$row['ID']?>">Xóa</a>
                 </td>
             </tr>
             <?php endforeach; endif; ?>
