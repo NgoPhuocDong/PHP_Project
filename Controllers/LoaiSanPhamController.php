@@ -47,18 +47,6 @@ class LoaiSanPhamController{
         return $dataUpdate;
     }
 
-    // public function Xoa(){
-    //     if (isset($_GET['id'])) {
-    //         $id = $_GET['id'];
-    //         $table = 'loaisanpham';
-    //     //gọi method Xoa bên Models
-    //     $delete  = $this->model->Xoa($id);
-    //     if ($delete) {
-    //         header('Location: ./DanhSach');
-    //     }
-    //     include 'Views/LoaiSanPham/DanhSach.php';
-    //     }
-    // }
     public function Xoa(){
         if (isset($_GET['id'])){
             $id = $_GET['id'];

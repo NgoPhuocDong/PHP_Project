@@ -76,8 +76,8 @@
 		    			<i class="fa fa-cart-plus" aria-hidden="true" style="color:white;"></i>
 		    			Nhập Hàng</a>
 		    			<ul id="collapse2" class="collapse text-white-50" data-bs-parent="#accordion">
-							<li>Đơn hàng mua</li>
-						    <li>Nhà cung cấp</li>
+							<a href="../DonHangMua/DanhSach"><li>Đơn hàng mua</li></a>
+						    <a href="../NhaCungCap/DanhSach"><li>Nhà cung cấp</li></a>
 						    <li>Thống kê</li>
 						</ul>
 		    		</li>
@@ -87,8 +87,8 @@
 		    			<i class="fa fa-shopping-bag" aria-hidden="true" style="color: white;"></i>
 		    			Bán Hàng</a>
 		    			<ul id="collapse3" class="collapse text-white-50" data-bs-parent="#accordion">
-							<li>Hóa đơn</li>
-							<li>Khách hàng</li>
+							<a href="../DonHangBan/DanhSach"><li>Đơn hàng bán</li></a>
+							<a href="../KhachHang/DanhSach"><li>Khách hàng</li></a>
 						    <li>Thống kê</li>
 						</ul>
 		    		</li>
