@@ -43,65 +43,30 @@ class KhachHangController{
                     header('Location: ./DanhSach');
                 }
             }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'khachhang';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhatGioiTinh($id,$_POST['gioitinh']);
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
             }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'khachhang';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhatNgaySinh($id,$_POST['ngaysinh']);
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
             }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'khachhang';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhatSoDienThoai($id,$_POST['sodienthoai']);
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
             }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'khachhang';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhatEmail($id,$_POST['email']);
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
             }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'khachhang';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhatDiaChi($id,$_POST['diachi']);
                 if ($update) {
