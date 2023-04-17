@@ -42,52 +42,24 @@ class DonHangBanController{
                     header('Location: ./DanhSach');
                 }
             }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'donhangban';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhatIdKhachHang($id,$_POST['idkhachhang']);
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
             }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'donhangban';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhatTrangThai($id,$_POST['idtrangthai']);
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
             }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'donhangban';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhatNgayLap($id,$_POST['ngaylap']);
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
             }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'donhangban';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhatTongTien($id,$_POST['tongtien']);
                 if ($update) {
