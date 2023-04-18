@@ -7,7 +7,10 @@ class ChiTietDonHangBan{
     }   
     public function GetData($id)
     {
-        $sql = "SELECT * FROM chitietdonhangban WHERE idDonHangBan = '$id'";
+        $sql = "SELECT ct.idDonHangBan,sp.TenSanPham,ct.SoLuong,DonGiaApDung,ThanhTien
+        FROM chitietdonhangban as ct,sanpham as sp
+        WHERE ct.idSanPham = sp.ID
+        AND idDonHangBan = '$id'";
         $result = $this->db->select($sql);
         return $result;
     }

@@ -20,9 +20,9 @@
 
         <label class="h6">Giới tính</label>
         <select class="form-select" name="gioitinh">
-            <option><?= $row['GioiTinh']?></option>
-            <option>0 (nữ)</option>
-            <option>1 (nam)</option>
+            <option value="<?= $row['GioiTinh']?>"></option>
+            <option value="Nam">Nam</option>
+            <option value="Nữ">Nữ</option>
         </select>
 
         <label class="h6">Ngày sinh</label>

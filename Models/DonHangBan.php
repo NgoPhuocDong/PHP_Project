@@ -7,13 +7,22 @@ class DonHangBan{
     }
     public function GetData()
     {
-        $sql = "SELECT * FROM donhangban";
+        $sql = "SELECT dh.ID,kh.TenKhachHang,NgayLap,idNhanVienLap,TongTien,TenTrangThai
+        FROM donhangban as dh,khachhang as kh,trangthaiban as tt, nhanvien as nv
+        WHERE dh.IdKhachHang = kh.ID
+        AND dh.IdTrangThai = tt.ID
+        AND dh.IdNhanVienLap = nv.ID";
         $result = $this->db->select($sql);
         return $result;
     }
     public function GetDataID($id)
     {
-        $sql = "SELECT * FROM donhangban WHERE ID = '$id' ";
+        $sql = "SELECT dh.ID,kh.TenKhachHang,NgayLap,idNhanVienLap,TongTien,TenTrangThai
+        FROM donhangban as dh,khachhang as kh,trangthaiban as tt, nhanvien as nv
+        WHERE dh.IdKhachHang = kh.ID
+        AND dh.IdTrangThai = tt.ID
+        AND dh.IdNhanVienLap = nv.ID
+        AND dh.ID = '$id' ";
         $result = $this->db->select($sql);
         return $result;
     }

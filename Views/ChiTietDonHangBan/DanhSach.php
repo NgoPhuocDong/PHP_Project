@@ -17,7 +17,7 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-8">
-                    <input type="text" name="" class="form-control" placeholder="tìm chi tiết đơn hàng bán" >
+                        <input type="text" name="" class="form-control" placeholder="tìm chi tiết đơn hàng bán" >
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
                         <button class="btn btn-primary">Xem</button>
@@ -38,16 +38,31 @@
 </div>
 
 <div class="col-md-12 mt-3">
-    <!-- <?php foreach ($result as $row) : extract($row); ?>
-        <div>
-            <p>Id đơn hàng bán: <?= $row['ID']?></p><br>
-            <p>Id nhân viên : <?= $row['idNhanVienLap']?></p><br>
-        </div>
-    <?php endforeach;?> -->
+    <?php foreach ($resultDonHang as $row) : extract($row); ?>
+    <table>
+        <tr>
+            <th>Ngày lập:</th>
+            <td><?= $row['NgayLap']?></td>
+        </tr>
+        <tr>
+            <th>Mã đơn hàng:</th>
+            <td><?= $row['ID']?></td>
+        </tr>
+        <tr>
+            <th>khách hàng:</th>
+            <td><?= $row['TenKhachHang']?></td>
+        </tr>
+        <tr>
+            <th>Tổng tiền:</th>
+            <td><?= $row['TongTien']?></td>
+        </tr>
+    </table>
+    <br>
+    <?php endforeach;?>
     <table class="table table-condensed table-bordered">
         <tr style="background-color: whitesmoke; color: black; " class="col-6 align-self-center">
             <th>STT</th>
-            <th>Id sản phẩm</th>
+            <th>Tên sản phẩm</th>
             <th>Số lượng</th>
             <th>Đơn giá áp dụng</th>
             <th>Thành tiền</th>
@@ -59,7 +74,7 @@
             <tr>
                 <td><?= $i ?></td>
                 <td>
-                    <?= $row['idSanPham'] ?>
+                    <?= $row['TenSanPham'] ?>
                 </td>
                 <td>
                     <?= $row['SoLuong'] ?>
@@ -71,8 +86,8 @@
                     <?= $row['ThanhTien'] ?>
                 </td>
                 <td>
-                    <a href="../ChiTietDonHangBan/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
-                    <a href="../ChiTietDonHangBan/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
+                    <a href="../ChiTietDonHangBan/CapNhat&id=<?=$row['idDonHangBan']?>">Cập nhật</a> | 
+                    <a href="../ChiTietDonHangBan/Xoa&id=<?=$row['idDonHangBan']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
                 </td>
             </tr>
             <?php endforeach; endif; ?>

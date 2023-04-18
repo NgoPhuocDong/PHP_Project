@@ -16,7 +16,7 @@
     <?php foreach ($dataUpdate as $row) : extract($row); ?>
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
         <label class="h6">Id đơn hàng bán</label>
-        <input type="text" value="<?= $row['idDonHangBan']?>"name="iddonhangban" class="form-control"><br>
+        <input type="hidden" value="<?= $row['idDonHangBan']?>"name="iddonhangban" class="form-control"><?= $row['idDonHangBan']?><br>
 
         <label class="h6">Id sản phẩm</label>
         <input type="text" value="<?= $row['idSanPham']?>"name="idsanpham" class="form-control"><br>

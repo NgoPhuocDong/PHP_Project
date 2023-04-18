@@ -5,6 +5,9 @@ class KhachHang{
     public function __construct(){
         $this->db = new Database();
     }
+    public function KhachHang(){
+        
+    }
     public function GetData()
     {
         $sql = "SELECT * FROM khachhang";
@@ -15,6 +18,16 @@ class KhachHang{
     {
         $sql = "INSERT INTO khachhang (TenKhachHang,GioiTinh,NgaySinh,SoDienThoai,Email,DiaChi)
                 VALUES ('$tenkhachhang', '$gioitinh', '$ngaysinh', '$sodienthoai', '$email', '$diachi')";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function CapNhat($id,$tenkhachhang)
+    {
+        $sql = "UPDATE khachhang SET tenkhachhang = '$tenkhachhang' WHERE id = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
