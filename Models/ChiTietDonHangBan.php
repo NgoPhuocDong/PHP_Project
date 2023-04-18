@@ -1,11 +1,9 @@
 <?php
 class ChiTietDonHangBan{
     private $db;
-    private $donhang;
 
     public function __construct(){
         $this->db = new Database();
-        $this->donhang = new DonHangBan();
     }   
     public function GetData($id)
     {
