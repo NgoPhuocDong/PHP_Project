@@ -28,7 +28,9 @@
                 <div style="float: right;">
                     <button class="btn btn-danger">Import</button>
                     <button class="btn btn-success">Export</button>
-                    <a href="../ChiTietDonHangBan/ThemMoi" class="btn btn-primary">Thêm mới</a>
+                    <?php foreach ($resultDonHang as $row) : extract($row); ?>
+                    <a href="../ChiTietDonHangBan/ThemMoi&id=<?= $row['ID']?>" class="btn btn-primary">Thêm mới</a>
+                    <?php endforeach;?>
                 </div>
             </div>
         </div>
@@ -36,10 +38,15 @@
 </div>
 
 <div class="col-md-12 mt-3">
+    <!-- <?php foreach ($result as $row) : extract($row); ?>
+        <div>
+            <p>Id đơn hàng bán: <?= $row['ID']?></p><br>
+            <p>Id nhân viên : <?= $row['idNhanVienLap']?></p><br>
+        </div>
+    <?php endforeach;?> -->
     <table class="table table-condensed table-bordered">
         <tr style="background-color: whitesmoke; color: black; " class="col-6 align-self-center">
             <th>STT</th>
-            <th>Id đơn hàng bán</th>
             <th>Id sản phẩm</th>
             <th>Số lượng</th>
             <th>Đơn giá áp dụng</th>
@@ -51,9 +58,6 @@
             foreach ($result as $row) : extract($row);$i++; ?> 
             <tr>
                 <td><?= $i ?></td>
-                <td>
-                    <?= $row['idDonHangBan'] ?>
-                </td>
                 <td>
                     <?= $row['idSanPham'] ?>
                 </td>

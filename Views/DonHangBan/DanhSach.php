@@ -67,7 +67,7 @@
                     <?= $row['TongTien'] ?>
                 </td>
                 <td>
-                    <a href="../ChiTietDonHangBan/DanhSach&id=<?=$row['ID']?>">Chi tiết</a> | 
+                    <a href="../ChiTietDonHangBan/ChiTiet&id=<?=$row['ID']?>">Chi tiết</a> | 
                     <a href="../DonHangBan/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
                     <a href="../DonHangBan/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
                 </td>

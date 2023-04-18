@@ -12,8 +12,15 @@ class DonHangBanController{
     
     public function DanhSach()
     {
-        //gọi method getuser
-        $result  = $this->model->GetData();
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            //gọi method GetDataID mở Models DonHangBan.php
+            $result  = $this->model->GetDataID($id);
+        }
+        else{
+            //gọi method GetData mở Models DonHangBan.php
+            $result  = $this->model->GetData();
+        }
         //gọi và show dữ liệu ra view
         include 'Views/DonHangBan/DanhSach.php';
         return $result;

@@ -11,6 +11,12 @@ class DonHangBan{
         $result = $this->db->select($sql);
         return $result;
     }
+    public function GetDataID($id)
+    {
+        $sql = "SELECT * FROM donhangban WHERE ID = '$id' ";
+        $result = $this->db->select($sql);
+        return $result;
+    }
     public function ThemMoi($idnhanvienlap, $idkhachhang, $idtrangthai, $ngaylap, $tongtien)
     {
         $sql = "INSERT INTO donhangban (idNhanVienLap,idKhachHang,idTrangThai,NgayLap,TongTien)
