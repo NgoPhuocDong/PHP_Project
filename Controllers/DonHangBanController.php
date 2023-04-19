@@ -44,31 +44,11 @@ class DonHangBanController{
             $dataUpdate = $this->db->find($table,$id);
             
             if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatIdNhanVienLap($id,$_POST['idnhanvienlap']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatIdKhachHang($id,$_POST['idkhachhang']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatTrangThai($id,$_POST['idtrangthai']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatNgayLap($id,$_POST['ngaylap']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatTongTien($id,$_POST['tongtien']);
+                $update = $this->model->CapNhat($id,$_POST['idnhanvienlap'],
+                                                    $_POST['idkhachhang'],
+                                                    $_POST['idtrangthai'],
+                                                    $_POST['ngaylap'],
+                                                    $_POST['tongtien']);
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
