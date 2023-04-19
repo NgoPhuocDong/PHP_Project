@@ -42,6 +42,7 @@ class ChiTietDonHangBan{
             return false;
         }
     }
+<<<<<<< HEAD
     // public function CapNhatIdSanPham($id,$idsanpham)
     // {
     //     $sql = "UPDATE chitietdonhangban SET idsanpham = '$idsanpham' WHERE id = '$id'";
@@ -82,6 +83,8 @@ class ChiTietDonHangBan{
     //         return false;
     //     }
     // }
+=======
+>>>>>>> b9a5b071a9a9be682e62fbcd71dfb42f9a841cc4
     public function Xoa($id)
     {
         $sql = "DELETE FROM chitietdonhangban WHERE id = '$id'";
