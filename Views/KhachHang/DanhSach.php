@@ -4,7 +4,7 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Chi Tiết Đơn hàng bán</span>
+    <span class="h3 m-2">Trang khách hàng</span>
     <span>
         Danh sách
     </span>
@@ -14,15 +14,15 @@
 <div class="">
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-4">
-                <div class="row">
+        <div class="col-md-4">
+                <form method="get" class="row">
                     <div class="col-md-8">
-                    <input type="text" name="" class="form-control" placeholder="tìm chi tiết đơn hàng bán" >
+                        <input type="text" name="id" class="form-control" placeholder="nhập id khách hàng">
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
-                        <button class="btn btn-primary">Xem</button>
+                        <button class="btn btn-primary" >Xem</button>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="col-md-8">
                 <div style="float: right;">

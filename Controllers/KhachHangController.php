@@ -12,8 +12,18 @@ class KhachHangController{
     
     public function DanhSach()
     {
-        //gọi method getuser
-        $result  = $this->model->GetData();
+        if(isset($_GET['id'])) {
+            $id = $_GET['id'];
+            //gọi method TimKiem bên Models
+            $result  = $this->model->TimKiem($id);
+            if($_GET['id']==null){
+                header('Location: ./DanhSach');
+            }
+        }
+        else{
+            //gọi method DanhSach bên Models
+            $result  = $this->model->GetDaTa();
+        }
         //gọi và show dữ liệu ra view
         include 'Views/KhachHang/DanhSach.php';
         return $result;

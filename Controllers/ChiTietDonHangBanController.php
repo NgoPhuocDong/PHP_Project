@@ -35,59 +35,12 @@ class ChiTietDonHangBanController{
         include 'Views/ChiTietDonHangBan/DanhSach.php';
         return $result and $resultDonHang;
     }
-
-    // public function CapNhat(){
-    //     if (isset($_GET['id'])) {
-    //         $id = $_GET['id'];
-    //         $table = 'chitietdonhangban';
-    //         //lấy dữ liệu cần cập nhật
-    //         $dataUpdate = $this->db->find($table,$id);
-            
-    //         if (isset($_POST['submit'])) {
-    //             $update = $this->model->CapNhat($id,$_POST['iddonhangban'],
-    //                                                 $_POST['idsanpham'],
-    //                                                 $_POST['soluong'],
-    //                                                 $_POST['dongiaapdung'],
-    //                                                 $_POST['thanhtien']);
-    //             if ($update) {
-    //                 header('Location: ./DanhSach');
-    //             }
-    //         }
-    //         if (isset($_POST['submit'])) {
-    //             $update = $this->model->CapNhatIdSanPham($id,$_POST['idsanpham']);
-    //             if ($update) {
-    //                 header('Location: ./DanhSach');
-    //             }
-    //         }
-    //         if (isset($_POST['submit'])) {
-    //             $update = $this->model->CapNhatSoLuong($id,$_POST['soluong']);
-    //             if ($update) {
-    //                 header('Location: ./DanhSach');
-    //             }
-    //         }
-    //         if (isset($_POST['submit'])) {
-    //             $update = $this->model->CapNhatDonGiaApDung($id,$_POST['dongiaapdung']);
-    //             if ($update) {
-    //                 header('Location: ./DanhSach');
-    //             }
-    //         }
-    //         if (isset($_POST['submit'])) {
-    //             $update = $this->model->CapNhatThanhTien($id,$_POST['thanhtien']);
-    //             if ($update) {
-    //                 header('Location: ./DanhSach');
-    //             }
-    //         }
-    //     }
-    //     include 'Views/ChiTietDonHangBan/CapNhat.php';
-    //     return $dataUpdate;
-    // }
     public function CapNhat(){
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $table = 'chitietdonhangban';
             //lấy dữ liệu cần cập nhật
             $dataUpdate = $this->db->find($table,$id);
-            
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhat($id,$_POST['iddonhangban'],
                                                     $_POST['idsanpham'],
@@ -98,12 +51,10 @@ class ChiTietDonHangBanController{
                     header("Location: ./DanhSach&id=$_POST[iddonhangban]");
                 }
             }
-            
         }
         include 'Views/ChiTietDonHangBan/CapNhat.php';
         return $dataUpdate;
     }
-
     public function Xoa(){
         if (isset($_GET['act'])){
             $id = $_GET['act'];

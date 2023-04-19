@@ -40,10 +40,10 @@ class DonHangBan{
     public function CapNhat($id,$idnhanvienlap,$idkhachhang,$idtrangthai,$ngaylap,$tongtien)
     {
         $sql = "UPDATE donhangban SET 
-        idnhanvienlap = '$idnhanvienlap'
-        idkhachhang = '$idkhachhang'
-        idtrangthai = '$idtrangthai'
-        ngaylap = '$ngaylap'
+        idnhanvienlap = '$idnhanvienlap',
+        idkhachhang = '$idkhachhang',
+        idtrangthai = '$idtrangthai',
+        ngaylap = '$ngaylap',
         tongtien = '$tongtien'
         WHERE id = '$id'";
         $result = $this->db->execute($sql);
