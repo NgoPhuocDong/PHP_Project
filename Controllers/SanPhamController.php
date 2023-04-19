@@ -26,7 +26,7 @@ class SanPhamController{
             $file_name = $_FILES['hinhanh']['name'];
             $file_tmp = $_FILES['hinhanh']['tmp_name'];
           
-            move_uploaded_file($file_tmp,"Assets/HinhAnhSanPham/".$file_name);
+            move_uploaded_file($file_tmp,"Assets/data/".$file_name);
 
             $create = $this->model->ThemMoi($_POST['idloaisanpham'], $_POST['tensanpham'], $_POST['gia']
             ,$_POST['mota'],$_POST['soluong'],$_POST['ngaysanxuat'],$file_name);

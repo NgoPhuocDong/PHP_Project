@@ -15,14 +15,14 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-4">
-                <div class="row">
+                <form class="row">
                     <div class="col-md-8">
-                    <input type="text" name="" class="form-control" placeholder="tìm đơn hàng bán" >
+                    <input type="text" name="id" class="form-control" placeholder="tìm đơn hàng bán" >
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
                         <button class="btn btn-primary">Xem</button>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="col-md-8">
                 <div style="float: right;">

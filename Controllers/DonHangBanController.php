@@ -16,6 +16,9 @@ class DonHangBanController{
             $id = $_GET['id'];
             //gọi method GetDataID mở Models DonHangBan.php
             $result  = $this->model->GetDataID($id);
+            if($_GET['id']==null){
+                header('Location: ./DanhSach');
+            }
         }
         else{
             //gọi method GetData mở Models DonHangBan.php
