@@ -17,10 +17,10 @@
             <div class="col-md-4">
                 <form class="row">
                     <div class="col-md-8">
-                    <input type="text" name="id" class="form-control" placeholder="tìm đơn hàng bán" >
+                    <input type="text" name="id" class="form-control" placeholder="Nhập mã đơn hàng" >
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
-                        <button class="btn btn-primary">Xem</button>
+                        <button class="btn btn-primary">Tìm</button>
                     </div>
                 </form>
             </div>
