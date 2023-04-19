@@ -2,8 +2,13 @@
 class Database{
     private $host="localhost";
     private $username="root";
+<<<<<<< HEAD
     private $password="";
     //private $password="12345678";
+=======
+    //private $password="";
+    private $password="";
+>>>>>>> 9d02d268fbbd38d787a2860d30b570c32c5d0779
     private $database="quanlymaytinh";
     private $conn;
     private $result;
