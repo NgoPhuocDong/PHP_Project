@@ -105,12 +105,13 @@ class ChiTietDonHangBanController{
     }
 
     public function Xoa(){
-        if (isset($_GET['id'])){
-            $id = $_GET['id'];
+        if (isset($_GET['act'])){
+            $id = $_GET['act'];
             $delete = $this->model->Xoa($id);
             if ($delete) {
-                header('Location: ./DanhSach');
+                return $this->DanhSach();
             }
         }
+        include 'Views/ChiTietDonHangBan/DanhSach.php';
     }
 }

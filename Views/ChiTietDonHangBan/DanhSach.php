@@ -87,7 +87,7 @@
                 </td>
                 <td>
                     <a href="../ChiTietDonHangBan/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
-                    <a href="../ChiTietDonHangBan/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
+                    <a href="../ChiTietDonHangBan/Xoa&id=<?=$row['idDonHangBan']?>&act=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
                 </td>
             </tr>
             <?php endforeach; endif; ?>
