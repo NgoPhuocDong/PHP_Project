@@ -4,7 +4,7 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Sản phẩm</span>
+    <span class="h3 m-2">Chi Tiết Sản Phẩm</span>
     <span>
         Danh sách
     </span>
@@ -17,10 +17,10 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-8">
-                    <input type="text" name="" class="form-control" placeholder="tìm sản phẩm" >
+                    <input type="text" name="search" class="form-control" placeholder="Tìm sản phẩm" >
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
-                        <button class="btn btn-primary">Xem</button>
+                    <input type="submit" value="Xem" name="submit" class="btn btn-primary">
                     </div>
                 </div>
             </div>
@@ -39,53 +39,45 @@
     <table class="table table-condensed table-bordered">
         <tr style="background-color: whitesmoke; color: black; " class="col-6 align-self-center">
             <th>STT</th>
-            <th>
-                Tên sản phẩm
-            </th>
-            <th>
-                Giá
-            </th>
-            
-            <th>
-                Ngày sản xuất
-            </th>
-            <th>
-                Loại sản phẩm
-            </th>
-            <th>
-                Số lượng
-            </th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Mô tả</th>
+            <th>Số lượng</th>
+            <th>Ngày sản xuất</th>
             <th>Hình ảnh</th>
-            <th></th>
-        </tr> 
+        </tr>
+        <?php 
+        if(!empty($result)):
+            $i = 0;
+            foreach ($result as $row) : extract($row);$i++; ?> 
             <tr>
-                <td>1</td>
+                <td><?= $i ?></td>
+
                 <td>
-                    May Tinh
-                </td>
-                <td>
-                    000000
+                    <?= $row['TenSanPham'] ?>
                 </td>
                 
                 <td>
-                    1/1
+                    <?= $row['Gia'] ?>
                 </td>
                 <td>
-                    maytinh
+                    <?= $row['MoTa'] ?>
                 </td>
                 <td>
-                    1
+                    <?= $row['SoLuong'] ?>
                 </td>
                 <td>
-                    <a href="#">
-                        <img src="Data/usernro.png" style="height: 50px; width: 50px; " />
-                    </a>
+                    <?= $row['NgaySanXuat'] ?>
                 </td>
                 <td>
-                    <a href="../SanPham/CapNhat?id='#'">Cập nhật</a> | 
-                    <a href="../SanPham/DanhSach?id='#'">Xóa</a>
+                <img src="../Assets/HinhAnhSanPham/<?= $row['HinhAnh'] ?>" alt="img" height="50px" width="50px" >
+                </td>
+                <td>
+                    <a href="../SanPham/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
+                    <a href="../SanPham/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
                 </td>
             </tr>
+            <?php endforeach; endif; ?>
     </table>
 </div>
 
