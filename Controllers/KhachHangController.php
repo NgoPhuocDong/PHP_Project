@@ -38,41 +38,46 @@ class KhachHangController{
             $dataUpdate = $this->db->find($table,$id);
             
             if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatTenKhachHang($id,$_POST['tenkhachhang']);
+                $update = $this->model->CapNhat($id,$_POST['tenkhachhang'],
+                                                    $_POST['gioitinh'],
+                                                    $_POST['ngaysinh'],
+                                                    $_POST['sodienthoai'],
+                                                    $_POST['email'],
+                                                    $_POST['diachi']);
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
             }
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatGioiTinh($id,$_POST['gioitinh']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatNgaySinh($id,$_POST['ngaysinh']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatSoDienThoai($id,$_POST['sodienthoai']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatEmail($id,$_POST['email']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatDiaChi($id,$_POST['diachi']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
+            // if (isset($_POST['submit'])) {
+            //     $update = $this->model->CapNhatGioiTinh($id,$_POST['gioitinh']);
+            //     if ($update) {
+            //         header('Location: ./DanhSach');
+            //     }
+            // }
+            // if (isset($_POST['submit'])) {
+            //     $update = $this->model->CapNhatNgaySinh($id,$_POST['ngaysinh']);
+            //     if ($update) {
+            //         header('Location: ./DanhSach');
+            //     }
+            // }
+            // if (isset($_POST['submit'])) {
+            //     $update = $this->model->CapNhatSoDienThoai($id,$_POST['sodienthoai']);
+            //     if ($update) {
+            //         header('Location: ./DanhSach');
+            //     }
+            // }
+            // if (isset($_POST['submit'])) {
+            //     $update = $this->model->CapNhatEmail($id,$_POST['email']);
+            //     if ($update) {
+            //         header('Location: ./DanhSach');
+            //     }
+            // }
+            // if (isset($_POST['submit'])) {
+            //     $update = $this->model->CapNhatDiaChi($id,$_POST['diachi']);
+            //     if ($update) {
+            //         header('Location: ./DanhSach');
+            //     }
+            // }
         }
         include 'Views/KhachHang/CapNhat.php';
         return $dataUpdate;

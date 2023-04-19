@@ -25,9 +25,16 @@ class KhachHang{
             return false;
         }
     }
-    public function CapNhat($id,$tenkhachhang)
+    public function CapNhat($id,$tenkhachhang,$gioitinh,$ngaysinh,$sodienthoai,$email,$diachi)
     {
-        $sql = "UPDATE khachhang SET tenkhachhang = '$tenkhachhang' WHERE id = '$id'";
+        $sql = "UPDATE khachhang SET
+        tenkhachhang = '$tenkhachhang',
+        gioitinh = '$gioitinh',
+        ngaysinh = '$ngaysinh',
+        sodienthoai = '$sodienthoai',
+        email = '$email',
+        diachi = '$diachi'
+        WHERE id = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
