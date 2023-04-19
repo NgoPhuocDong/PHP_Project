@@ -59,6 +59,12 @@ class Database{
         $result = $this->select($sql);
         return $result;
     }
+    public function QueryColumn($columns,$table,$id)
+    {
+        $sql = "SELECT $columns FROM $table WHERE ID = '$id'";
+        $result = $this->select($sql);
+        return $result;
+    }
 
 }
 

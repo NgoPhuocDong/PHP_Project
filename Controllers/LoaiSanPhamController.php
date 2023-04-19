@@ -12,8 +12,18 @@ class LoaiSanPhamController{
     
     public function DanhSach()
     {
-        //gọi method getdata bên Models
-        $result  = $this->model->GetData();
+        if(isset($_GET['tenloaisanpham'])) {
+            $tenloaisanpham = $_GET['tenloaisanpham'];
+            //gọi method TimKiem bên Models
+            $result  = $this->model->TimKiem($tenloaisanpham);
+            if($_GET['tenloaisanpham']==null){
+                header('Location: ./DanhSach');
+            }
+        }
+        else{
+            //gọi method DanhSach bên Models
+            $result  = $this->model->DanhSach();
+        }
         //gọi và show dữ liệu ra view
         include 'Views/LoaiSanPham/DanhSach.php';
         return $result;

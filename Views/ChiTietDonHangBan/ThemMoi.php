@@ -4,9 +4,9 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Chi Tiết Đơn hàng bán</span>
+    <span class="h3 m-2">Chi Tiết Đơn hàng bán</span> 
     <span>
-        <a href="../ChiTietDonHangBan/DanhSach" style="text-decoration: none; color: #000000;" >Danh sách</a>
+        <a href="../ChiTietDonHangBan/ChiTiet&id=1" style="text-decoration: none; color: #000000;" >Danh sách</a>
     </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
     <span>
@@ -16,7 +16,7 @@
 
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
         <label class="h6">Id đơn hàng bán</label>
-        <input type="text" value=""name="iddonhangban" class="form-control"><br>
+        <input type="hidden" value="<?=$_GET['id']?>"name="iddonhangban" class="form-control"><?=$_GET['id']?><br>
         <label class="h6">Id sản phẩm</label>
         <input type="text" value=""name="idsanpham" class="form-control"><br>
         <label class="h6">Số lượng</label>

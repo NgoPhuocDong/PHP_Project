@@ -6,9 +6,16 @@ class LoaiSanPham{
     public function __construct(){
         $this->db = new Database();
     }
-    public function GetData()
+    public function DanhSach()
     {
         $sql = "SELECT * FROM loaisanpham";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    public function TimKiem($tenloaisanpham)
+    {
+        $sql = "SELECT * FROM loaisanpham
+        WHERE TenLoaiSanPham = '$tenloaisanpham'";
         $result = $this->db->select($sql);
         return $result;
     }

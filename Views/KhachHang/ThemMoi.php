@@ -19,8 +19,9 @@
         <input type="text" value=""name="tenkhachhang" class="form-control"><br>
         <label class="h6">Giới tính</label>
             <select class="form-select" name="gioitinh">
-                <option>0 (nữ)</option>
-                <option>1 (nam)</option>
+                <option value=""></option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
             </select>
         <br>
         <label class="h6">Ngày sinh</label>

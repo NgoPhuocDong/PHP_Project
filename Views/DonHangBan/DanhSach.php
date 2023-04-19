@@ -39,11 +39,12 @@
     <table class="table table-condensed table-bordered">
         <tr style="background-color: whitesmoke; color: black; " class="col-6 align-self-center">
             <th>STT</th>
-            <th>Id nhân viên lập</th>
-            <th>Id khách hàng</th>
-            <th>Id trạng thái</th>
+            <th>Mã hóa đơn</th>
+            <th>Tên Khách hàng</th>
             <th>Ngày lập</th>
             <th>Tổng tiền</th>
+            <th>Người lập phiếu</th>
+            <th>trạng thái</th>
         </tr>
         <?php 
         if(!empty($result)):
@@ -51,20 +52,21 @@
             foreach ($result as $row) : extract($row);$i++; ?> 
             <tr>
                 <td><?= $i ?></td>
+                <td><?= $row['ID'] ?></td>
                 <td>
-                    <?= $row['idNhanVienLap'] ?>
-                </td>
-                <td>
-                    <?= $row['idKhachHang'] ?>
-                </td>
-                <td>
-                    <?= $row['idTrangThai'] ?>
+                    <?= $row['TenKhachHang'] ?>
                 </td>
                 <td>
                     <?= $row['NgayLap'] ?>
                 </td>
                 <td>
                     <?= $row['TongTien'] ?>
+                </td>
+                <td>
+                    <?= $row['idNhanVienLap'] ?>
+                </td>
+                <td>
+                    <?= $row['TenTrangThai'] ?>
                 </td>
                 <td>
                     <a href="../ChiTietDonHangBan/DanhSach&id=<?=$row['ID']?>">Chi tiết</a> | 
