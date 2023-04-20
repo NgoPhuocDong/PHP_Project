@@ -1,142 +1,91 @@
 <?php
 include_once("Models/SanPham.php");
+include_once("Models/LoaiSanPham.php");
 
 class SanPhamController{
     private $model;
+    private $loaisanpham;
     private $db;
     
     public function __construct(){
         $this->model = new SanPham();
+        $this->loaisanpham = new LoaiSanPham();
+
         $this->db = new Database();
     }
     
     public function DanhSach()
     {
-        //gọi method getuser
-        $result  = $this->model->GetData();
+        if(isset($_GET['tensanpham'])) {
+            $tensanpham = $_GET['tensanpham'];
+            //gọi method TimKiem bên Models
+            $result  = $this->model->TimKiem($tensanpham);
+            if($_GET['tensanpham']==null){
+                header('Location: ./DanhSach');
+            }
+        }
+        
+        else{
+            //gọi method DanhSach bên Models
+            $result  = $this->model->DanhSach();
+        }
+    
         //gọi và show dữ liệu ra view
         include 'Views/SanPham/DanhSach.php';
         return $result;
+    
     }
 
     public function ThemMoi(){
+        $result = $this->loaisanpham->DanhSach();
         if (isset($_POST['submit'])) {
-            
 
             $file_name = $_FILES['hinhanh']['name'];
             $file_tmp = $_FILES['hinhanh']['tmp_name'];
           
             move_uploaded_file($file_tmp,"Assets/HinhAnhSanPham/".$file_name);
 
-            $create = $this->model->ThemMoi($_POST['idloaisanpham'], $_POST['tensanpham'], $_POST['gia']
+            $create = $this->model->ThemMoi($_POST['tenloaisanpham'], $_POST['tensanpham'], $_POST['gia']
             ,$_POST['mota'],$_POST['soluong'],$_POST['ngaysanxuat'],$file_name);
             if ($create) {
                 header('Location: ./DanhSach');
             }
+            
         }
-        include 'Views/SanPham/ThemMoi.php';
+        require_once('Views/SanPham/ThemMoi.php');
+        return $result;
+       
     }
 
     public function CapNhat(){
-
+        $result = $this->loaisanpham->DanhSach();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $table = 'sanpham';
             //lấy dữ liệu cần cập nhật
             $dataUpdate = $this->db->find($table,$id);
-            
+            $result = $this->loaisanpham->DanhSach();
             if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatIdLoaiSanPham($id,$_POST['idloaisanpham']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'sanpham';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatTenSanPham($id,$_POST['tensanpham']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'sanpham';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatGia($id,$_POST['gia']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'sanpham';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatMoTa($id,$_POST['mota']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'sanpham';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatSoLuong($id,$_POST['soluong']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'sanpham';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
-            if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhatNgaySanXuat($id,$_POST['ngaysanxuat']);
-                if ($update) {
-                    header('Location: ./DanhSach');
-                }
-            }
-        }
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $table = 'sanpham';
-            //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            
-            if (isset($_POST['submit'])) {
-            $file_name = $_FILES['hinhanh']['name'];
+                $file_name = $_FILES['hinhanh']['name'];
             $file_tmp = $_FILES['hinhanh']['tmp_name'];
           
             move_uploaded_file($file_tmp,"Assets/HinhAnhSanPham/".$file_name);
-
-            $update = $this->model->CapNhatHinhAnh($id,$_FILES['hinhanh']['name']);
-            if ($update) {
-                header('Location: ./DanhSach');
+                $update = $this->model->CapNhat(
+                $id,$_POST['tenloaisanpham'], 
+                $_POST['tensanpham'], 
+                $_POST['gia'],
+                $_POST['mota'],
+                $_POST['soluong'],
+                $_POST['ngaysanxuat'],
+                $file_name);
+                if ($update) {
+                    header('Location: ./DanhSach');
                 }
             }
+            
         }
         include 'Views/SanPham/CapNhat.php';
-        return $dataUpdate;
+        return array($result,$dataUpdate);
     }
     public function Xoa(){
         if (isset($_GET['id'])){
@@ -147,5 +96,18 @@ class SanPhamController{
             }
         }
     }
-
 }
+
+    // public function TimKiem(){
+    //    // Lấy từ khóa tìm kiếm từ người dùng
+    // $search = isset($_GET['search']) ? $_GET['search'] : '';
+
+    // // Gọi model để lấy dữ liệu sản phẩm
+    // $products = ProductModel::searchProducts($search);
+
+    // // Gọi view để hiển thị dữ liệu sản phẩm lên màn hình
+    // include 'views/search.php';
+    // }
+
+
+
