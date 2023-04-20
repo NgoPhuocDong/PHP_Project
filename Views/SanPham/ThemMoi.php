@@ -6,7 +6,7 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Thêm Sản Phẩm</span>
     <span>
-        <a href="../SanPham/DanhSach" style="text-decoration: none; color: #000000;" >Danh sách</a>
+        <a href="../SanPham/ThemMoi" style="text-decoration: none; color: #000000;" >Danh sách</a>
     </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
     <span>
@@ -15,11 +15,19 @@
     <hr>
 
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
-
+        <label class="h6">Tên loại sản phẩm</label> <br>
+        <select class="form-select" name="tenloaisanpham">
+        <?php 
+        if(!empty($result)):
+            foreach ($result as $row) : extract($row);$i++; ?> 
+            <option value="<?php echo $row['TenLoaiSanPham']; ?>"><?php echo $row['TenLoaiSanPham']; ?></option>
+            <?php endforeach; endif; ?>
+    </select> <br>
         <label class="h6">Tên sản phẩm</label>
         <input type="text" name="tensanpham" class="form-control">
+
         
-        <label class="h6">Giá</label>
+        <label class="h6">Giá</label> <br>
         <input type="text" name="gia" class="form-control"><br>
 
         <label class="h6">Mô tả</label> <br>

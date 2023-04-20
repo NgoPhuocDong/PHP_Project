@@ -15,6 +15,14 @@
     <hr>
     <?php foreach ($dataUpdate as $row) : extract($row); ?>
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
+    <label class="h6">Tên loại sản phẩm</label>
+    <select class="form-select" name="tenloaisanpham">
+        <?php 
+        if(!empty($result)):
+            foreach ($result as $option) : extract($row);$i++; ?> 
+            <option value="<?php echo $option['TenLoaiSanPham']; ?>"><?php echo $option['TenLoaiSanPham']; ?></option>
+            <?php endforeach; endif; ?>
+    </select> <br>
 
         <label class="h6">Tên sản phẩm</label>
         <input type="text" value="<?= $row['TenSanPham']?>"name="tensanpham" class="form-control"><br>
