@@ -1,12 +1,15 @@
 <?php
 include_once("Models/SanPham.php");
+include_once("Models/LoaiSanPham.php");
 
 class SanPhamController{
     private $model;
     private $db;
+    private $loaisanpham;
     
     public function __construct(){
         $this->model = new SanPham();
+        $this->loaisanpham = new LoaiSanPham();
         $this->db = new Database();
     }
     
@@ -20,9 +23,9 @@ class SanPhamController{
     }
 
     public function ThemMoi(){
+        $result  = $this->loaisanpham->DanhSach();
         if (isset($_POST['submit'])) {
             
-
             $file_name = $_FILES['hinhanh']['name'];
             $file_tmp = $_FILES['hinhanh']['tmp_name'];
           
@@ -35,6 +38,7 @@ class SanPhamController{
             }
         }
         include 'Views/SanPham/ThemMoi.php';
+        return $result;
     }
 
     public function CapNhat(){
