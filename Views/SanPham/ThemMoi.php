@@ -16,11 +16,11 @@
 
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
         <label class="h6">Tên loại sản phẩm</label> <br>
-        <select class="form-select" name="tenloaisanpham">
+        <select class="form-select" name="IDloaisanpham">
         <?php 
         if(!empty($result)):
             foreach ($result as $row) : extract($row);$i++; ?> 
-            <option value="<?php echo $row['TenLoaiSanPham']; ?>"><?php echo $row['TenLoaiSanPham']; ?></option>
+            <option value="<?php echo $row['ID']; ?>"><?php echo $row['TenLoaiSanPham']; ?></option>
             <?php endforeach; endif; ?>
     </select> <br>
         <label class="h6">Tên sản phẩm</label>
@@ -35,7 +35,7 @@
 
         <label class="h6">Mô tả</label> <br>
         <textarea rows="9" cols="70" name="mota"></textarea> <br>
-        
+
         <label class="h6">Ngày sản xuất</label>
         <input type="date" name="ngaysanxuat" class="form-control"><br>
 

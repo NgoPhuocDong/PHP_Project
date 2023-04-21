@@ -55,11 +55,16 @@
             foreach ($result as $row) : extract($row);$i++; ?> 
             <tr>
                 <td><?= $i ?></td>
-
                 <td>
-                    <?= $row['TenLoaiSanPham'] ?>
-                </td>
-            
+            <?php 
+            if(!empty($loaisanpham)):
+            foreach ($loaisanpham as $lsp) :?> 
+                
+                    <?= $lsp['TenLoaiSanPham'] ?>
+                
+            <?php endforeach; endif;?>
+            </td>
+
                 <td>
                     <?= $row['TenSanPham'] ?>
                 </td>
