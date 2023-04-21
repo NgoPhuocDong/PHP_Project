@@ -65,9 +65,9 @@
 		    			<i class="fa fa-th-large" aria-hidden="true" style="color:white;"></i>
 		    			Sản phẩm</a>
 		    			<ul id="collapse1" class="collapse text-white-50" data-bs-parent="#accordion">
-							<a href="../SanPham/DanhSach"><li class="text-secondary">Sản phẩm</li></a>
-						    <a href="../LoaiSanPham/DanhSach"><li class="text-secondary">Danh mục</li></a>
-						    <a href="#"><li class="text-secondary">Thống kê</li></a>
+							<a href="../SanPham/DanhSach"><li>Sản phẩm</li></a>
+						    <a href="../LoaiSanPham/DanhSach"><li>Danh mục</li></a>
+						    <a href="#"><li>Thống kê</li></a>
 						</ul>
 		    		</li>
 
@@ -105,3 +105,15 @@
 		    	</ul>
 		    </div>
 			<div class="col-md-10">
+			
+			<style>
+				.collapse > a{
+					text-decoration: none;
+				}
+				.collapse > a > li{
+					color: #ffffff;
+				}
+				.collapse > a > li:hover{
+					color: gray;
+				}
+			</style>
