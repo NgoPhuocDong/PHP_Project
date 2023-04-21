@@ -1,20 +1,29 @@
 <?php
+
 class SanPham{
     private $db;
+    private $conn;
 
     public function __construct(){
         $this->db = new Database();
     }
-    public function GetData()
+    public function DanhSach()
     {
         $sql = "SELECT * FROM sanpham";
         $result = $this->db->select($sql);
         return $result;
     }
-    public function ThemMoi($idLoaiSanPham, $tensanpham, $gia, $mota, $soluong, $ngaysanxuat, $hinhanh)
+    public function TimKiem($sanpham)
     {
-        $sql = "INSERT INTO sanpham(idLoaiSanPham, TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh) 
-        VALUES ('$idLoaiSanPham', '$tensanpham', '$gia', '$mota', '$soluong', '$ngaysanxuat', '$hinhanh')";
+        $sql = "SELECT * FROM sanpham
+        WHERE TenSanPham = '$sanpham'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    public function ThemMoi($tenloaisanpham, $tensanpham, $gia, $mota, $soluong, $ngaysanxuat, $hinhanh)
+    {
+        $sql = "INSERT INTO sanpham(TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh) 
+        VALUES ('$tenloaisanpham','$tensanpham', '$gia', '$mota', '$soluong', '$ngaysanxuat', '$hinhanh')";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -23,69 +32,17 @@ class SanPham{
         }
     }
 
-    public function CapNhatIdLoaiSanPham($id,$idLoaiSanPham)
+    public function CapNhat($id,$tenloaisanpham,$tensanpham, $gia, $mota, $soluong, $ngaysanxuat, $hinhanh)
     {
-        $sql = "UPDATE sanpham SET idLoaiSanPham = '$idLoaiSanPham' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatTenSanPham($id,$tensanpham)
-    {
-        $sql = "UPDATE sanpham SET TenSanPham = '$tensanpham' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatGia($id,$gia)
-    {
-        $sql = "UPDATE sanpham SET Gia = '$gia' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatMoTa($id,$mota)
-    {
-        $sql = "UPDATE sanpham SET MoTa = '$mota' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatSoLuong($id,$soluong)
-    {
-        $sql = "UPDATE sanpham SET SoLuong = '$soluong' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatNgaySanXuat($id,$ngaysanxuat)
-    {
-        $sql = "UPDATE sanpham SET NgaySanXuat = '$ngaysanxuat' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatHinhAnh($id,$hinhanh)
-    {
-        $sql = "UPDATE sanpham SET HinhAnh = '$hinhanh' WHERE id = '$id'";
+        $sql = "UPDATE sanpham SET
+        TenLoaiSanPham = '$tenloaisanpham',
+        TenSanPham = '$tensanpham',
+        Gia = '$gia',
+        MoTa = '$mota',
+        SoLuong = '$soluong',
+        NgaySanXuat = '$ngaysanxuat',
+        HinhAnh = '$hinhanh'
+        WHERE ID = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -104,5 +61,24 @@ class SanPham{
             return false;
         }
     }
+
    
-}
+        
+ 
+
+
+    }
+    // public function TimKiem()
+    // {
+    //     $search = mysqli_real_escape_string($conn, $_POST['search']);
+    //     $sql = "SELECT * FROM sanpham WHERE TenSanPham LIKE '%$search%'";
+    //     $result = $this->db->execute($sql);
+    //     if ($result) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+   
+
