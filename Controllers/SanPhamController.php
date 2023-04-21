@@ -1,6 +1,6 @@
 <?php
 include_once("Models/SanPham.php");
-include_once("Models/LoaiSanPham.php");
+include_once("Models/LoaiSanPham.php");//
 
 class SanPhamController{
     private $model;
@@ -10,7 +10,6 @@ class SanPhamController{
     public function __construct(){
         $this->model = new SanPham();
         $this->loaisanpham = new LoaiSanPham();
-
         $this->db = new Database();
     }
     
@@ -35,7 +34,6 @@ class SanPhamController{
         return $result;
     
     }
-
     public function ThemMoi(){
         $result = $this->loaisanpham->DanhSach();
         if (isset($_POST['submit'])) {
@@ -43,10 +41,14 @@ class SanPhamController{
             $file_name = $_FILES['hinhanh']['name'];
             $file_tmp = $_FILES['hinhanh']['tmp_name'];
           
-            move_uploaded_file($file_tmp,"Assets/HinhAnhSanPham/".$file_name);
+            move_uploaded_file($file_tmp,"Assets/data/".$file_name);
 
-            $create = $this->model->ThemMoi($_POST['tenloaisanpham'], $_POST['tensanpham'], $_POST['gia']
-            ,$_POST['mota'],$_POST['soluong'],$_POST['ngaysanxuat'],$file_name);
+            $create = $this->model->ThemMoi($_POST['idloaisanpham'],
+                                            $_POST['tensanpham'],
+                                            $_POST['gia'],
+                                            $_POST['mota'],
+                                            $_POST['soluong'],
+                                            $_POST['ngaysanxuat'],$file_name);
             if ($create) {
                 header('Location: ./DanhSach');
             }
@@ -58,30 +60,28 @@ class SanPhamController{
     }
 
     public function CapNhat(){
+        $result  = $this->loaisanpham->DanhSach();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $table = 'sanpham';
             //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            $result = $this->loaisanpham->DanhSach();
+            $dataUpdate = $this->model->find($id);
             if (isset($_POST['submit'])) {
                 $file_name = $_FILES['hinhanh']['name'];
-            $file_tmp = $_FILES['hinhanh']['tmp_name'];
-          
-            move_uploaded_file($file_tmp,"Assets/HinhAnhSanPham/".$file_name);
-                $update = $this->model->CapNhat(
-                $id,$_POST['tenloaisanpham'], 
-                $_POST['tensanpham'], 
-                $_POST['gia'],
-                $_POST['mota'],
-                $_POST['soluong'],
-                $_POST['ngaysanxuat'],
-                $file_name);
+                $file_tmp = $_FILES['hinhanh']['tmp_name'];
+                move_uploaded_file($file_tmp,"Assets/data/".$file_name);
+                $update = $this->model->CapNhat($id,$_POST['idloaisanpham'],
+                                                    $_POST['tensanpham'],
+                                                    $_POST['gia'],
+                                                    $_POST['mota'],
+                                                    $_POST['soluong'],
+                                                    $_POST['ngaysanxuat'],
+                                                    $_FILES['hinhanh']['name']);
+
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
-            }
-            
+            }            
         }
         include 'Views/SanPham/CapNhat.php';
         return array($result,$dataUpdate);

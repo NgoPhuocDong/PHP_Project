@@ -9,7 +9,18 @@ class SanPham{
     }
     public function DanhSach()
     {
-        $sql = "SELECT * FROM sanpham";
+        $sql = "SELECT sp.ID,sp.idLoaiSanPham,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
+        FROM sanpham as sp,loaisanpham as lsp
+        WHERE sp.idLoaiSanPham = lsp.ID";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    public function find($id)
+    {
+        $sql = "SELECT sp.ID,sp.idLoaiSanPham,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
+        FROM sanpham as sp,loaisanpham as lsp
+        WHERE sp.idLoaiSanPham = lsp.ID
+        AND sp.ID = '$id'";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -20,10 +31,10 @@ class SanPham{
         $result = $this->db->select($sql);
         return $result;
     }
-    public function ThemMoi($tenloaisanpham, $tensanpham, $gia, $mota, $soluong, $ngaysanxuat, $hinhanh)
+    public function ThemMoi($idloaisanpham, $tensanpham, $gia, $mota, $soluong, $ngaysanxuat, $hinhanh)
     {
-        $sql = "INSERT INTO sanpham(TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh) 
-        VALUES ('$tenloaisanpham','$tensanpham', '$gia', '$mota', '$soluong', '$ngaysanxuat', '$hinhanh')";
+        $sql = "INSERT INTO sanpham(idLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh) 
+        VALUES ('$idloaisanpham','$tensanpham', '$gia', '$mota', '$soluong', '$ngaysanxuat', '$hinhanh')";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -32,10 +43,10 @@ class SanPham{
         }
     }
 
-    public function CapNhat($id,$tenloaisanpham,$tensanpham, $gia, $mota, $soluong, $ngaysanxuat, $hinhanh)
+    public function CapNhat($id,$idLoaiSanPham,$tensanpham,$gia,$mota,$soluong,$ngaysanxuat,$hinhanh)
     {
         $sql = "UPDATE sanpham SET
-        TenLoaiSanPham = '$tenloaisanpham',
+        idLoaiSanPham = '$idLoaiSanPham',
         TenSanPham = '$tensanpham',
         Gia = '$gia',
         MoTa = '$mota',
@@ -61,11 +72,6 @@ class SanPham{
             return false;
         }
     }
-
-   
-        
- 
-
 
     }
     // public function TimKiem()
