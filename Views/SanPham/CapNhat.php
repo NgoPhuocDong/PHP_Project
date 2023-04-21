@@ -23,8 +23,17 @@
         <input type="text" value="<?= $row['Gia']?>"name="gia" class="form-control"><br>
 
         <label class="h6">Mô tả</label> <br>
-        <textarea rows="9" cols="70" name="mota"> Nhập mô tả...</textarea><br>
+        <textarea rows="9" cols="70" name="mota" placeholder="Nhập mô tả..."></textarea><br>
 
+        <label class="h6">Loại sản phẩm</label>
+
+        <select name="idloaisanpham" class="form-control">
+            <?php if(!empty($result))
+                foreach ($result as $row2) : extract($row2)?> 
+                    <option value="<?= $row2['ID'] ?>"><?= $row2['TenLoaiSanPham']?></option>
+            <?php endforeach;?>
+        </select>
+        
         <label class="h6">Số lượng</label>
         <input type="text" value="<?= $row['SoLuong']?>"name="soluong" class="form-control"><br>
 

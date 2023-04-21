@@ -65,7 +65,7 @@
                     <?= $row['MoTa'] ?>
                 </td>
                 <td>
-                    <?= $row['idLoaiSanPham'] ?>
+                    <?= $row['TenLoaiSanPham'] ?>
                 </td>
                 <td>
                     <?= $row['SoLuong'] ?>
@@ -74,7 +74,7 @@
                     <?= $row['NgaySanXuat'] ?>
                 </td>
                 <td>
-                <img src="../Assets/HinhAnhSanPham/<?= $row['HinhAnh'] ?>" alt="img" height="50px" width="50px" >
+                <img src="../Assets/data/<?= $row['HinhAnh'] ?>" alt="img" height="50px" width="50px" >
                 </td>
                 <td>
                     <a href="../SanPham/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
