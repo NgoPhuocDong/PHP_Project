@@ -45,6 +45,7 @@
             <th>Tên sản phẩm</th>
             <th>Giá</th>
             <th>Mô tả</th>
+            <th>Loại sản phẩm</th>
             <th>Số lượng</th>
             <th>Ngày sản xuất</th>
             <th>Hình ảnh</th>
@@ -69,6 +70,9 @@
                 </td>
                 <td>
                     <?= $row['MoTa'] ?>
+                </td>
+                <td>
+                    <?= $row['idLoaiSanPham'] ?>
                 </td>
                 <td>
                     <?= $row['SoLuong'] ?>

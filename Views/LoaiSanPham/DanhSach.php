@@ -15,16 +15,14 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-4">
-                <div class="row">
-                    <form method="get">
-                        <div class="col-md-8">
-                            <input type="text" name="tenloaisanpham" class="form-control" placeholder="tìm loại sản phẩm" >
-                        </div>
-                        <div class="col-md-4" style="padding:0;margin-left:-7px;">
-                            <button class="btn btn-primary" >Xem</button>
-                        </div>
-                    </form>
-                </div>
+                <form method="get" class="row">
+                    <div class="col-md-8">
+                        <input type="text" name="tenloaisanpham" class="form-control" placeholder="tìm loại sản phẩm" >
+                    </div>
+                    <div class="col-md-4" style="padding:0;margin-left:-7px;">
+                        <button class="btn btn-primary" >Xem</button>
+                    </div>
+                </form>
             </div>
             <div class="col-md-8">
                 <div style="float: right;">

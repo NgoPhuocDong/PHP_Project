@@ -58,7 +58,6 @@ class SanPhamController{
     }
 
     public function CapNhat(){
-        $result = $this->loaisanpham->DanhSach();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $table = 'sanpham';

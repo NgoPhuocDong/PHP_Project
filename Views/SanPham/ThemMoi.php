@@ -9,7 +9,7 @@
         <a href="../SanPham/ThemMoi" style="text-decoration: none; color: #000000;" >Danh sách</a>
     </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
+    <span style="color: blue;">
         Thêm mới
     </span>
     <hr>
@@ -30,11 +30,20 @@
         <label class="h6">Giá</label> <br>
         <input type="text" name="gia" class="form-control"><br>
 
-        <label class="h6">Mô tả</label> <br>
-        <textarea rows="9" cols="70" name="mota">Nhập mô tả...</textarea> <br>
-
         <label class="h6">Số lượng</label>
         <input type="text" name="soluong" class="form-control"><br>
+
+        <label class="h6">Mô tả</label> <br>
+        <textarea rows="9" cols="70" name="mota"></textarea> <br>
+
+        <label class="h6">Loại sản phẩm</label>
+
+        <select name="idloaisanpham" class="form-control">
+        <?php if(!empty($result))
+            foreach ($result as $row) : extract($row);$i++; ?> 
+                <option value="<?= $row['ID'] ?>"><?= $row['TenLoaiSanPham']?></option>
+                <?php endforeach;?>
+        </select>
 
         <label class="h6">Ngày sản xuất</label>
         <input type="date" name="ngaysanxuat" class="form-control"><br>
@@ -47,6 +56,10 @@
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">
     </form>
 </div>
+<script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+<script>
+        CKEDITOR.replace('mota');
+</script>
 <?php
     include "./Views/Layout/footer.php";
 ?>

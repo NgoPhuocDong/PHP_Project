@@ -14,6 +14,13 @@ class KhachHang{
         $result = $this->db->select($sql);
         return $result;
     }
+    public function TimKiem($id)
+    {
+        $sql = "SELECT * FROM khachhang
+        WHERE ID = '$id'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
     public function ThemMoi($tenkhachhang, $gioitinh, $ngaysinh, $sodienthoai, $email, $diachi)
     {
         $sql = "INSERT INTO khachhang (TenKhachHang,GioiTinh,NgaySinh,SoDienThoai,Email,DiaChi)
