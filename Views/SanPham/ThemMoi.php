@@ -15,17 +15,17 @@
     <hr>
 
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
-        <label class="h6">Tên loại sản phẩm</label> <br>
-        <select class="form-select" name="IDloaisanpham">
-        <?php 
-        if(!empty($result)):
-            foreach ($result as $row) : extract($row);$i++; ?> 
-            <option value="<?php echo $row['ID']; ?>"><?php echo $row['TenLoaiSanPham']; ?></option>
-            <?php endforeach; endif; ?>
-    </select> <br>
         <label class="h6">Tên sản phẩm</label>
         <input type="text" name="tensanpham" class="form-control">
 
+        <label class="h6">Loại sản phẩm</label> <br>
+        <select class="form-select" name="idloaisanpham">
+            <?php 
+                if(!empty($result)):
+                foreach ($result as $row) : extract($row)?> 
+                    <option value="<?php echo $row['ID']; ?>"><?php echo $row['TenLoaiSanPham']; ?></option>
+            <?php endforeach; endif; ?>
+        </select> <br>
         
         <label class="h6">Giá</label> <br>
         <input type="text" name="gia" class="form-control"><br>
