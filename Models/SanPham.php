@@ -1,22 +1,40 @@
 <?php
+
 class SanPham{
     private $db;
+    private $conn;
 
     public function __construct(){
         $this->db = new Database();
     }
-    public function GetData()
+    public function DanhSach()
     {
-        $sql = "SELECT sp.ID,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
+        $sql = "SELECT sp.ID,sp.idLoaiSanPham,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
         FROM sanpham as sp,loaisanpham as lsp
         WHERE sp.idLoaiSanPham = lsp.ID";
         $result = $this->db->select($sql);
         return $result;
     }
-    public function ThemMoi($idLoaiSanPham, $tensanpham, $gia, $mota, $soluong, $ngaysanxuat, $hinhanh)
+    public function find($id)
     {
-        $sql = "INSERT INTO sanpham(idLoaiSanPham, TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh) 
-        VALUES ('$idLoaiSanPham', '$tensanpham', '$gia', '$mota', '$soluong', '$ngaysanxuat', '$hinhanh')";
+        $sql = "SELECT sp.ID,sp.idLoaiSanPham,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
+        FROM sanpham as sp,loaisanpham as lsp
+        WHERE sp.idLoaiSanPham = lsp.ID
+        AND sp.ID = '$id'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    public function TimKiem($sanpham)
+    {
+        $sql = "SELECT * FROM sanpham
+        WHERE TenSanPham = '$sanpham'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    public function ThemMoi($idloaisanpham, $tensanpham, $gia, $mota, $soluong, $ngaysanxuat, $hinhanh)
+    {
+        $sql = "INSERT INTO sanpham(idLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh) 
+        VALUES ('$idloaisanpham','$tensanpham', '$gia', '$mota', '$soluong', '$ngaysanxuat', '$hinhanh')";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -35,7 +53,7 @@ class SanPham{
         SoLuong = '$soluong',
         NgaySanXuat = '$ngaysanxuat',
         HinhAnh = '$hinhanh'
-        WHERE id = '$id'";
+        WHERE ID = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -54,5 +72,19 @@ class SanPham{
             return false;
         }
     }
+
+    }
+    // public function TimKiem()
+    // {
+    //     $search = mysqli_real_escape_string($conn, $_POST['search']);
+    //     $sql = "SELECT * FROM sanpham WHERE TenSanPham LIKE '%$search%'";
+    //     $result = $this->db->execute($sql);
+    //     if ($result) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
    
-}
+

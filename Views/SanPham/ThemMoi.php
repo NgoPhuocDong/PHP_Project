@@ -6,7 +6,7 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Thêm Sản Phẩm</span>
     <span>
-        <a href="../SanPham/DanhSach" style="text-decoration: none; color: #000000;" >Danh sách</a>
+        <a href="../SanPham/ThemMoi" style="text-decoration: none; color: #000000;" >Danh sách</a>
     </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
     <span style="color: blue;">
@@ -15,11 +15,19 @@
     <hr>
 
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
-
+        <label class="h6">Tên loại sản phẩm</label> <br>
+        <select class="form-select" name="IDloaisanpham">
+        <?php 
+        if(!empty($result)):
+            foreach ($result as $row) : extract($row);$i++; ?> 
+            <option value="<?php echo $row['ID']; ?>"><?php echo $row['TenLoaiSanPham']; ?></option>
+            <?php endforeach; endif; ?>
+    </select> <br>
         <label class="h6">Tên sản phẩm</label>
         <input type="text" name="tensanpham" class="form-control">
+
         
-        <label class="h6">Giá</label>
+        <label class="h6">Giá</label> <br>
         <input type="text" name="gia" class="form-control"><br>
 
         <label class="h6">Số lượng</label>
@@ -27,15 +35,6 @@
 
         <label class="h6">Mô tả</label> <br>
         <textarea rows="9" cols="70" name="mota"></textarea> <br>
-
-        <label class="h6">Loại sản phẩm</label>
-
-        <select name="idloaisanpham" class="form-control">
-        <?php if(!empty($result))
-            foreach ($result as $row) : extract($row);$i++; ?> 
-                <option value="<?= $row['ID'] ?>"><?= $row['TenLoaiSanPham']?></option>
-                <?php endforeach;?>
-        </select>
 
         <label class="h6">Ngày sản xuất</label>
         <input type="date" name="ngaysanxuat" class="form-control"><br>

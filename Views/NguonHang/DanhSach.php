@@ -1,10 +1,10 @@
 <?php
     include "./Views/Layout/header.php";
-    echo "<title>Danh sách sản phẩm</title>";
+    echo "<title>Danh sách đơn hàng mua</title>";
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Chi Tiết Sản Phẩm</span>
+    <span class="h3 m-2">Chi Tiết Đơn hàng mua</span>
     <span>
         Danh sách
     </span>
@@ -16,21 +16,19 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="row">
-                <form method="get">
                     <div class="col-md-8">
-                    <input type="text" name="tensanpham" class="form-control" placeholder="Tìm sản phẩm" >
+                    <input type="text" name="" class="form-control" placeholder="tìm chi tiết đơn hàng mua" >
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
-                    <input type="submit" value="Xem" name="submit" class="btn btn-primary">
+                        <button class="btn btn-primary">Xem</button>
                     </div>
-                </form>
                 </div>
             </div>
             <div class="col-md-8">
                 <div style="float: right;">
                     <button class="btn btn-danger">Import</button>
                     <button class="btn btn-success">Export</button>
-                    <a href="../SanPham/ThemMoi" class="btn btn-primary">Thêm mới</a>
+                    <a href="../NguonHang/ThemMoi" class="btn btn-primary">Thêm mới</a>
                 </div>
             </div>
         </div>
@@ -41,13 +39,12 @@
     <table class="table table-condensed table-bordered">
         <tr style="background-color: whitesmoke; color: black; " class="col-6 align-self-center">
             <th>STT</th>
-            <th>Tên loại sản phẩm</th>
-            <th>Tên sản phẩm</th>
-            <th>Giá</th>
-            <th>Mô tả</th>
-            <th>Số lượng</th>
-            <th>Ngày sản xuất</th>
-            <th>Hình ảnh</th>
+            <th>Tên nguồn hàng</th>
+            <th>Số điện thoại</th>
+            <th>Email</th>
+            <th>Địa chỉ</th>
+            <th>Ngày tạo</th>
+            <th>Người đại diện</th>
         </tr>
         <?php 
         if(!empty($result)):
@@ -56,40 +53,26 @@
             <tr>
                 <td><?= $i ?></td>
                 <td>
-            <?php 
-            if(!empty($loaisanpham)):
-            foreach ($loaisanpham as $lsp) :?> 
-                
-                    <?= $lsp['TenLoaiSanPham'] ?>
-                
-            <?php endforeach; endif;?>
-            </td>
-
-                <td>
-                    <?= $row['TenSanPham'] ?>
-                </td>
-            
-                <td>
-                    <?= $row['Gia'] ?>
+                    <?= $row['TenNguonHang'] ?>
                 </td>
                 <td>
-                    <?= $row['MoTa'] ?>
+                    <?= $row['SoDienThoai'] ?>
                 </td>
                 <td>
-                    <?= $row['TenLoaiSanPham'] ?>
+                    <?= $row['Email'] ?>
                 </td>
                 <td>
-                    <?= $row['SoLuong'] ?>
+                    <?= $row['DiaChi'] ?>
                 </td>
                 <td>
-                    <?= $row['NgaySanXuat'] ?>
+                    <?= $row['NgayTao'] ?>
                 </td>
                 <td>
-                <img src="../Assets/data/<?= $row['HinhAnh'] ?>" alt="img" height="50px" width="50px" >
+                    <?= $row['NguoiDaiDien'] ?>
                 </td>
                 <td>
-                    <a href="../SanPham/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
-                    <a href="../SanPham/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
+                    <a href="../NguonHang/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
+                    <a href="../NguonHang/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
                 </td>
             </tr>
             <?php endforeach; endif; ?>
