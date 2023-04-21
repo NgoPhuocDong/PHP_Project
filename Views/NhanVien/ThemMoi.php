@@ -16,10 +16,9 @@
 
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
         <label class="h6">Tên nhân viên</label>
-        <input type="text" value=""name="tenkhachhang" class="form-control"><br>
+        <input type="text" value=""name="tennhanvien" class="form-control"><br>
         <label class="h6">Giới tính</label>
             <select class="form-select" name="gioitinh">
-                <option value=""></option>
                 <option value="Nam">Nam</option>
                 <option value="Nữ">Nữ</option>
             </select>
