@@ -19,7 +19,7 @@
         <input type="text" value=""name="idnhanvienlap" class="form-control"><br>
         <label class="h6">Id nguồn hàng</label>
         <input type="text" value=""name="idnguonhang" class="form-control"><br>
-        <label class="h6">Id trạng thái bán</label>
+        <label class="h6">Id trạng thái</label>
         <input type="text" value=""name="idtrangthai" class="form-control"><br>
         <label class="h6">Ngày lập</label>
         <input type="date" value=""name="ngaylap" class="form-control"><br>

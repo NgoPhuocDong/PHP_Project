@@ -77,7 +77,7 @@
 		    			Nhập Hàng</a>
 		    			<ul id="collapse2" class="collapse text-white-50" data-bs-parent="#accordion">
 							<a href="../DonHangMua/DanhSach"><li>Đơn hàng mua</li></a>
-						    <a href="../NhaCungCap/DanhSach"><li>Nhà cung cấp</li></a>
+						    <a href="../NguonHang/DanhSach"><li>Nhà cung cấp</li></a>
 						    <li>Thống kê</li>
 						</ul>
 		    		</li>

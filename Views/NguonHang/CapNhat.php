@@ -22,7 +22,7 @@
         <label class="h6">Email</label>
         <input type="text" value="<?= $row['Email']?>"name="email" class="form-control"><br>
         <label class="h6">Địa chỉ</label>
-        <input type="email" value="<?= $row['DiaChi']?>"name="diachi" class="form-control"><br>
+        <input type="text" value="<?= $row['DiaChi']?>"name="diachi" class="form-control"><br>
         <label class="h6">Ngày tạo</label>
         <input type="date" value="<?= $row['NgayTao']?>"name="ngaytao" class="form-control"><br>
         <label class="h6">Người đại diện</label>
