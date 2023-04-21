@@ -35,16 +35,7 @@
 
         <label class="h6">Mô tả</label> <br>
         <textarea rows="9" cols="70" name="mota"></textarea> <br>
-
-        <label class="h6">Loại sản phẩm</label>
-
-        <select name="idloaisanpham" class="form-control">
-        <?php if(!empty($result))
-            foreach ($result as $row) : extract($row);$i++; ?> 
-                <option value="<?= $row['ID'] ?>"><?= $row['TenLoaiSanPham']?></option>
-                <?php endforeach;?>
-        </select>
-
+        
         <label class="h6">Ngày sản xuất</label>
         <input type="date" name="ngaysanxuat" class="form-control"><br>
 
