@@ -34,7 +34,7 @@
         <input type="text" name="soluong" class="form-control"><br>
 
         <label class="h6">Mô tả</label> <br>
-        <textarea rows="9" cols="70" name="mota"></textarea> <br>
+        <textarea rows="9" cols="70" name="mota" placeholder="Nhập mô tả..."></textarea> <br>
 
         <label class="h6">Ngày sản xuất</label>
         <input type="date" name="ngaysanxuat" class="form-control"><br>
