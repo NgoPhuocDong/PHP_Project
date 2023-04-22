@@ -15,8 +15,7 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-4">
-                <div class="row">
-                <form method="get">
+                <form method="get" class="row">
                     <div class="col-md-8">
                     <input type="text" name="tensanpham" class="form-control" placeholder="Tìm sản phẩm" >
                     </div>
@@ -24,7 +23,6 @@
                     <input type="submit" value="Xem" name="submit" class="btn btn-primary">
                     </div>
                 </form>
-                </div>
             </div>
             <div class="col-md-8">
                 <div style="float: right;">
@@ -41,8 +39,8 @@
     <table class="table table-condensed table-bordered">
         <tr style="background-color: whitesmoke; color: black; " class="col-6 align-self-center">
             <th>STT</th>
-            <th>Tên loại sản phẩm</th>
             <th>Tên sản phẩm</th>
+            <th>Loại sản phẩm</th>
             <th>Giá</th>
             <th>Mô tả</th>
             <th>Số lượng</th>
@@ -55,29 +53,23 @@
             foreach ($result as $row) : extract($row);$i++; ?> 
             <tr>
                 <td><?= $i ?></td>
-                <td>
-            <?php 
-            if(!empty($loaisanpham)):
-            foreach ($loaisanpham as $lsp) :?> 
                 
-                    <?= $lsp['TenLoaiSanPham'] ?>
-                
-            <?php endforeach; endif;?>
-            </td>
-
                 <td>
                     <?= $row['TenSanPham'] ?>
+                </td>
+
+                <td>
+                    <?= $row['TenLoaiSanPham'] ?>
                 </td>
             
                 <td>
                     <?= $row['Gia'] ?>
                 </td>
+
                 <td>
                     <?= $row['MoTa'] ?>
                 </td>
-                <td>
-                    <?= $row['TenLoaiSanPham'] ?>
-                </td>
+                
                 <td>
                     <?= $row['SoLuong'] ?>
                 </td>

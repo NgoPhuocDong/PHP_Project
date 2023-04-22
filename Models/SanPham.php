@@ -15,6 +15,10 @@ class SanPham{
         $result = $this->db->select($sql);
         return $result;
     }
+    public function ChiTiet()
+    {
+        # code...
+    }
     public function find($id)
     {
         $sql = "SELECT sp.ID,sp.idLoaiSanPham,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
