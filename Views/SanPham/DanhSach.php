@@ -4,7 +4,7 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Chi Tiết Sản Phẩm</span>
+    <span class="h3 m-2">Sản Phẩm</span>
     <span>
         Danh sách
     </span>

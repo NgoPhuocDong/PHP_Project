@@ -11,13 +11,13 @@ class SanPham{
     {
         $sql = "SELECT sp.ID,sp.idLoaiSanPham,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
         FROM sanpham as sp,loaisanpham as lsp
-        WHERE sp.idLoaiSanPham = lsp.ID";
+        WHERE sp.idLoaiSanPham = lsp.ID"; 
         $result = $this->db->select($sql);
         return $result;
     }
     public function ChiTiet()
     {
-        # code...
+        
     }
     public function find($id)
     {
