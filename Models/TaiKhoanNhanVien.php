@@ -7,15 +7,15 @@ class TaiKhoanNhanVien{
     }
     public function DanhSach()
     {
-        $sql = "SELECT tknv.ID,nv.TenNhanVien ,TenDangNhap,MatKhau, TrangThai, AnhDaiDien
+        $sql = "SELECT tknv.idNhanVien,nv.TenNhanVien ,TenDangNhap,MatKhau, TrangThai, AnhDaiDien
         FROM taikhoannhanvien as tknv,nhanvien as nv
-        WHERE tknv.ID = nv.ID";
+        WHERE tknv.idNhanVien = nv.ID";
         $result = $this->db->select($sql);
         return $result;
     }
     public function find($id)
     {
-        $sql = "SELECT tknv.ID,TenDangNhap,MatKhau, TrangThai, AnhDaiDien
+        $sql = "SELECT tknv.idNhanVien,TenDangNhap,MatKhau, TrangThai, AnhDaiDien
         FROM taikhoannhanvien as tknv,nhanvien as nv
         WHERE tknv.ID = nv.ID
         AND tknv.ID = '$id'";
@@ -24,7 +24,7 @@ class TaiKhoanNhanVien{
     }
     public function TimKiem($tennhanvien)
     {
-        $sql = "SELECT tknv.TenDangNhap,nv.TenNhanVien ,tknv.ID, MatKhau, TrangThai, AnhDaiDien
+        $sql = "SELECT tknv.TenDangNhap,nv.TenNhanVien ,tknv.idNhanVien, MatKhau, TrangThai, AnhDaiDien
         FROM taikhoannhanvien as tknv, nhanvien as nv
         WHERE nv.TenNhanVien = '$tennhanvien'
         AND tknv.ID = nv.ID";
@@ -42,7 +42,7 @@ class TaiKhoanNhanVien{
     }
     public function ThemMoi( $tendangnhap,$idnhanvien, $matkhau, $trangthai, $anhdaidien)
     {
-        $sql = "INSERT INTO taikhoannhanvien (TenDangNhap,ID,MatKhau,TrangThai,AnhDaiDien)
+        $sql = "INSERT INTO taikhoannhanvien (TenDangNhap,idNhanVien,MatKhau,TrangThai,AnhDaiDien)
                 VALUES ('$tendangnhap','$idnhanvien', '$matkhau', '$trangthai', '$anhdaidien')";
         $result = $this->db->execute($sql);
         if ($result) {
@@ -58,7 +58,7 @@ class TaiKhoanNhanVien{
         MatKhau = '$matkhau',
         TrangThai = '$trangthai',
         AnhDaiDien = '$anhdaidien'
-        WHERE ID = '$id'";
+        WHERE tknv.idNhanVien = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;

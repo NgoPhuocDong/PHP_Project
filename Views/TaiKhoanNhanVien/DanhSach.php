@@ -71,8 +71,8 @@
                 <img src="../Assets/AvatarNhanVien/<?= $row['AnhDaiDien'] ?>" alt="img" height="50px" width="50px" >
                 </td>
                 <td>
-                    <a href="../TaiKhoanNhanVien/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
-                    <a href="../TaiKhoanNhanVien/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
+                    <a href="../TaiKhoanNhanVien/CapNhat&id=<?=$row['idNhanVien']?>">Cập nhật</a> | 
+                    <a href="../TaiKhoanNhanVien/Xoa&id=<?=$row['idNhanVien']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
                 </td>
             </tr>
             <?php endforeach; endif; ?>
