@@ -12,19 +12,17 @@
 </div>
 <hr>
 <div class="">
-    <div class="col-md-12">
+<div class="col-md-12">
         <div class="row">
-            <div class="col-md-4">
-                <div class="row">
-                    <form method="get">
+        <div class="col-md-4">
+                <form method="get" class="row">
                     <div class="col-md-8">
-                    <input type="text" name="tennhanvien" class="form-control" placeholder="Tìm nhân viên" >
+                        <input type="text" name="tennhanvien" class="form-control" placeholder="Nhập tên nhân viên cần tìm">
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
-                        <button class="btn btn-primary">Xem</button>
+                        <button class="btn btn-primary" >Xem</button>
                     </div>
-                    </form>
-                </div>
+                </form>
             </div>
             <div class="col-md-8">
                 <div style="float: right;">
@@ -47,6 +45,7 @@
             <th>Số điện thoại</th>
             <th>Email</th>
             <th>Địa chỉ</th>
+            <th>Action</th>
         </tr>
         <?php 
         if(!empty($result)):
