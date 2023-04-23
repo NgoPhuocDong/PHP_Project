@@ -5,23 +5,21 @@
 
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Nhân viên</span>
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
     <span>
-        <a href="../TaiKhoanNhanVien/DanhSach">Cập nhật</a>
+      <a href="../TaiKhoanNhanVien/DanhSach"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Danh Sách</a>
     </span>
     
     <hr>
     <?php foreach ($dataUpdate as $row) : extract($row); ?>
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
 
-    <label class="h6">Chọn nhân viên muốn cung cấp tài khoản</label> <br>
-        <select class="form-select" name="idnhanvien">
+    <label class="h6">Bạn đang cập nhật tài khoản cho nhân viên :</label> <br>
         <?php foreach ($result as $nv) : extract($nv); ?>
-            <option value="<?php echo $nv['ID']; ?>"><?php echo $nv['TenNhanVien']; ?></option>
+            <input type="text" value="<?php echo $nv['TenNhanVien']; ?>" class="form-control" readonly> <br>
             <?php endforeach; ?>
-    </select> <br>
 
-        <label class="h6">Tên đăng nhập</label>
+
+        <label class="h6">Tên đăng nhập</label> <br>
         <input type="text" value="<?php echo $row['TenDangNhap']; ?>"name="tendangnhap" class="form-control"><br>
 
 

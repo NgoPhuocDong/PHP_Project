@@ -6,11 +6,7 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Thêm Tài khoản nhân viên</span>
     <span>
-        <a href="../TaiKhoanNhanVien/DanhSach" style="text-decoration: none; color: #000000;" >Danh sách</a>
-    </span>
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
-        Thêm mới
+      <a href="../TaiKhoanNhanVien/DanhSach"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Danh Sách</a>
     </span>
     <hr>
 
