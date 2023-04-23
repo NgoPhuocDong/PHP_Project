@@ -59,4 +59,5 @@ class ChiTietDonHangBan{
         $thanhTien = null;
         return $thanhTien = $soluong * $dongiaapdung;
     }
+    
 }

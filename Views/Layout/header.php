@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="../Assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="../Assets/css/bootstrap.min.css">
 	<script src="../Assets/scripts/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 	<!-- Dùng cho file index -->
 	<link rel="stylesheet" type="text/css" href="Assets/fonts/font-awesome.min.css">
