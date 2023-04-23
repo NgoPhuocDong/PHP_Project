@@ -26,7 +26,7 @@ class TaiKhoanNhanVien{
     {
         $sql = "SELECT tknv.TenDangNhap,nv.TenNhanVien ,tknv.idNhanVien, MatKhau, TrangThai, AnhDaiDien
         FROM taikhoannhanvien as tknv, nhanvien as nv
-        WHERE nv.TenNhanVien = '$tennhanvien'
+        WHERE nv.TenNhanVien LIKE '%$tennhanvien%'
         AND tknv.idNhanVien = nv.ID";
         $result = $this->db->select($sql);
         return $result;
