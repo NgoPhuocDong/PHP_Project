@@ -17,8 +17,8 @@ class TaiKhoanNhanVien{
     {
         $sql = "SELECT tknv.idNhanVien,TenDangNhap,MatKhau, TrangThai, AnhDaiDien
         FROM taikhoannhanvien as tknv,nhanvien as nv
-        WHERE tknv.ID = nv.ID
-        AND tknv.ID = '$id'";
+        WHERE tknv.idNhanVien = nv.ID
+        AND tknv.idNhanVien = '$id'";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -27,7 +27,7 @@ class TaiKhoanNhanVien{
         $sql = "SELECT tknv.TenDangNhap,nv.TenNhanVien ,tknv.idNhanVien, MatKhau, TrangThai, AnhDaiDien
         FROM taikhoannhanvien as tknv, nhanvien as nv
         WHERE nv.TenNhanVien = '$tennhanvien'
-        AND tknv.ID = nv.ID";
+        AND tknv.idNhanVien = nv.ID";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -51,14 +51,14 @@ class TaiKhoanNhanVien{
             return false;
         }
     }
-    public function CapNhat($id, $tendangnhap, $matkhau, $trangthai, $anhdaidien)
+    public function CapNhat($idnhanvien, $tendangnhap, $matkhau, $trangthai, $anhdaidien)
     {
         $sql = "UPDATE taikhoannhanvien SET
         TenDangNhap = '$tendangnhap',
         MatKhau = '$matkhau',
         TrangThai = '$trangthai',
         AnhDaiDien = '$anhdaidien'
-        WHERE tknv.idNhanVien = '$id'";
+        WHERE tknv.idNhanVien = '$idnhanvien'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -69,7 +69,7 @@ class TaiKhoanNhanVien{
     
     public function Xoa($idnhanvien)
     {
-        $sql = "DELETE FROM taikhoannhanvien WHERE ID = '$idnhanvien'";
+        $sql = "DELETE FROM taikhoannhanvien WHERE idNhanVien = '$idnhanvien'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
