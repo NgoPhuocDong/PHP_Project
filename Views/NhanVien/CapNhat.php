@@ -4,13 +4,9 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Nhân viên</span>
+    <span class="h3 m-2"> Cập nhật thông tin nhân viên</span>
     <span>
-        <a href="../NhanVien/DanhSach">Danh sách</a>
-    </span>
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
-        Cập nhật
+        <a href="../NhanVien/DanhSach" ><i class="fa fa-angle-double-left" aria-hidden="true"></i>Danh sách</a>
     </span>
     <hr>
     <?php foreach ($dataUpdate as $row) : extract($row); ?>

@@ -12,8 +12,9 @@
 </div>
 <hr>
 <div class="">
-    <div class="col-md-12">
+<div class="col-md-12">
         <div class="row">
+<<<<<<< HEAD
             <div class="col-md-4">
                 <form method="get" class="row">
                     <div class="col-md-8">
@@ -21,6 +22,15 @@
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
                         <button class="btn btn-primary">Tìm</button>
+=======
+        <div class="col-md-4">
+                <form method="get" class="row">
+                    <div class="col-md-8">
+                        <input type="text" name="tennhanvien" class="form-control" placeholder="Nhập tên nhân viên cần tìm">
+                    </div>
+                    <div class="col-md-4" style="padding:0;margin-left:-7px;">
+                        <button class="btn btn-primary" >Xem</button>
+>>>>>>> 5e1f2fc04b8b5bef398f2499557617087d04c198
                     </div>
                 </form>
             </div>
@@ -45,6 +55,7 @@
             <th>Số điện thoại</th>
             <th>Email</th>
             <th>Địa chỉ</th>
+            <th>Action</th>
         </tr>
         <?php 
         if(!empty($result)):
