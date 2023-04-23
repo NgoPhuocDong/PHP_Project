@@ -4,7 +4,7 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Chi Tiết Đơn hàng bán</span>
+    <span class="h3 m-2">Trang khách hàng</span>
     <span>
         <a href="../KhachHang/DanhSach" style="text-decoration: none; color: #000000;" >Danh sách</a>
     </span>
