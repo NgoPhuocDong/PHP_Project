@@ -5,19 +5,19 @@ class DonHangBan{
     public function __construct(){
         $this->db = new Database();
     }
-    public function GetData()
+    public function DanhSach()
     {
-        $sql = "SELECT dh.ID,kh.TenKhachHang,NgayLap,idNhanVienLap,TongTien,TenTrangThai
-        FROM donhangban as dh,khachhang as kh,trangthaiban as tt, nhanvien as nv
-        WHERE dh.IdKhachHang = kh.ID
-        AND dh.IdTrangThai = tt.ID
-        AND dh.IdNhanVienLap = nv.ID";
+        $sql = "SELECT dh.ID, kh.TenKhachHang, dh.NgayLap, nv.TenNhanVien, dh.TongTien, tt.TenTrangThai
+        FROM donhangban AS dh
+        INNER JOIN khachhang AS kh ON dh.IdKhachHang = kh.ID
+        INNER JOIN trangthaiban AS tt ON dh.IdTrangThai = tt.ID
+        INNER JOIN nhanvien AS nv ON dh.IdNhanVienLap = nv.ID";
         $result = $this->db->select($sql);
         return $result;
     }
-    public function GetDataID($id)
+    public function ChiTiet($id)
     {
-        $sql = "SELECT dh.ID,kh.TenKhachHang,NgayLap,idNhanVienLap,TongTien,TenTrangThai
+        $sql = "SELECT dh.ID,kh.TenKhachHang,NgayLap,nv.TenNhanVien,TongTien,TenTrangThai
         FROM donhangban as dh,khachhang as kh,trangthaiban as tt, nhanvien as nv
         WHERE dh.IdKhachHang = kh.ID
         AND dh.IdTrangThai = tt.ID

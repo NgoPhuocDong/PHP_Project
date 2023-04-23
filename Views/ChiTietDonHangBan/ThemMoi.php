@@ -6,7 +6,7 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Chi Tiết Đơn hàng bán</span> 
     <span>
-        <a href="../ChiTietDonHangBan/ChiTiet&id=1" style="text-decoration: none; color: #000000;" >Danh sách</a>
+        <a href="../ChiTietDonHangBan/DanhSach&id=<?= $_GET['id']?>">Danh sách</a>
     </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
     <span>
@@ -23,8 +23,8 @@
         <input type="text" value=""name="soluong" class="form-control"><br>
         <label class="h6">Đơn giá áp dụng</label>
         <input type="text" value=""name="dongiaapdung" class="form-control"><br>
-        <label class="h6">Thành tiền</label>
-        <input type="text" value=""name="thanhtien" class="form-control"><br>
+        <!-- <label class="h6">Thành tiền</label>
+        <input type="text" value=""name="thanhtien" class="form-control"><br> -->
 
         <hr>
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">

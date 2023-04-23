@@ -5,7 +5,7 @@ class ChiTietDonHangBan{
     public function __construct(){
         $this->db = new Database();
     }   
-    public function GetData($id)
+    public function DanhSach($id)
     {
         $sql = "SELECT ct.ID,ct.idDonHangBan,sp.TenSanPham,ct.SoLuong,DonGiaApDung,ThanhTien
         FROM chitietdonhangban as ct,sanpham as sp
@@ -15,8 +15,9 @@ class ChiTietDonHangBan{
         return $result;
     }
     
-    public function ThemMoi($iddonhangban,$idsanpham, $soluong, $dongiaapdung, $thanhtien)
+    public function ThemMoi($iddonhangban,$idsanpham, $soluong, $dongiaapdung)
     {
+        $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
         $sql = "INSERT INTO chitietdonhangban (idDonHangBan,idSanPham,SoLuong,DonGiaApDung,ThanhTien)
                 VALUES ($iddonhangban,'$idsanpham', '$soluong', '$dongiaapdung', '$thanhtien')";
         $result = $this->db->execute($sql);
@@ -52,5 +53,10 @@ class ChiTietDonHangBan{
         } else {
             return false;
         }
+    }
+    public function ThanhTien($soluong,$dongiaapdung)
+    {
+        $thanhTien = null;
+        return $thanhTien = $soluong * $dongiaapdung;
     }
 }

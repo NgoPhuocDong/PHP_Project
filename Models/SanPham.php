@@ -15,11 +15,8 @@ class SanPham{
         $result = $this->db->select($sql);
         return $result;
     }
-    public function ChiTiet()
-    {
-        
-    }
-    public function find($id)
+    
+    public function ChiTiet($id)
     {
         $sql = "SELECT sp.ID,sp.idLoaiSanPham,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
         FROM sanpham as sp,loaisanpham as lsp
@@ -28,10 +25,12 @@ class SanPham{
         $result = $this->db->select($sql);
         return $result;
     }
-    public function TimKiem($sanpham)
+    public function TimKiem($tensanpham)
     {
-        $sql = "SELECT * FROM sanpham
-        WHERE TenSanPham = '$sanpham'";
+        $sql = "SELECT sp.ID,sp.idLoaiSanPham,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
+        FROM sanpham as sp,loaisanpham as lsp
+        WHERE sp.idLoaiSanPham = lsp.ID 
+        AND TenSanPham LIKE '%$tensanpham%'";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -46,8 +45,7 @@ class SanPham{
             return false;
         }
     }
-
-    public function CapNhat($id,$idLoaiSanPham,$tensanpham,$gia,$mota,$soluong,$ngaysanxuat,$hinhanh)
+    public function CapNhat($id,$idLoaiSanPham,$tensanpham,$gia,$mota,$soluong,$ngaysanxuat)
     {
         $sql = "UPDATE sanpham SET
         idLoaiSanPham = '$idLoaiSanPham',
@@ -55,7 +53,19 @@ class SanPham{
         Gia = '$gia',
         MoTa = '$mota',
         SoLuong = '$soluong',
-        NgaySanXuat = '$ngaysanxuat',
+        NgaySanXuat = '$ngaysanxuat'
+        WHERE ID = '$id'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function CapNhatHinhAnh($id,$hinhanh)
+    {
+        $sql = "UPDATE sanpham SET
         HinhAnh = '$hinhanh'
         WHERE ID = '$id'";
         $result = $this->db->execute($sql);

@@ -39,8 +39,9 @@
         <label class="h6">Ngày sản xuất</label>
         <input type="date" value="<?= $row['NgaySanXuat']?>"name="ngaysanxuat" class="form-control"><br>
 
-        <label class="h6">Hình ảnh</label> <br>
-        <input type="file" id="file-upload" name="hinhanh" >
+        <!-- cập nhật hình ảnh bằng cách ấn vào hình ảnh ở phần danh sách -->
+        <!-- <label class="h6">Hình ảnh</label> <br>
+        <input type="file" id="file-upload" name="hinhanh" > -->
         <hr>
         <input type="submit" value="Update" name="submit" class="btn btn-primary">
     </form>

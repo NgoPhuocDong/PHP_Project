@@ -15,14 +15,14 @@ class DonHangBanController{
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             //gọi method GetDataID mở Models DonHangBan.php
-            $result  = $this->model->GetDataID($id);
+            $result  = $this->model->ChiTiet($id);
             if($_GET['id']==null){
                 header('Location: ./DanhSach');
             }
         }
         else{
             //gọi method GetData mở Models DonHangBan.php
-            $result  = $this->model->GetData();
+            $result  = $this->model->DanhSach();
         }
         //gọi và show dữ liệu ra view
         include 'Views/DonHangBan/DanhSach.php';

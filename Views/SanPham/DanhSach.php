@@ -17,10 +17,10 @@
             <div class="col-md-4">
                 <form method="get" class="row">
                     <div class="col-md-8">
-                    <input type="text" name="tensanpham" class="form-control" placeholder="Tìm sản phẩm" >
+                        <input type="text" name="tensanpham" class="form-control" placeholder="Nhập tên sản phẩm..." >
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
-                    <input type="submit" value="Xem" name="submit" class="btn btn-primary">
+                        <button class="btn btn-primary" >Tìm</button>
                     </div>
                 </form>
             </div>
@@ -42,9 +42,7 @@
             <th>Tên sản phẩm</th>
             <th>Loại sản phẩm</th>
             <th>Giá</th>
-            <th>Mô tả</th>
             <th>Số lượng</th>
-            <th>Ngày sản xuất</th>
             <th>Hình ảnh</th>
         </tr>
         <?php 
@@ -65,21 +63,19 @@
                 <td>
                     <?= $row['Gia'] ?>
                 </td>
-
-                <td>
-                    <?= $row['MoTa'] ?>
-                </td>
                 
                 <td>
                     <?= $row['SoLuong'] ?>
                 </td>
+                
                 <td>
-                    <?= $row['NgaySanXuat'] ?>
+                    <a href="../SanPham/CapNhatHinhAnh&id=<?=$row['ID']?>">
+                        <img src="../Assets/data/HinhAnhSanPham/<?= $row['HinhAnh'] ?>" alt="TAP" height="50px" width="50px" >
+                    </a>
                 </td>
+
                 <td>
-                <img src="../Assets/data/<?= $row['HinhAnh'] ?>" alt="img" height="50px" width="50px" >
-                </td>
-                <td>
+                    <a href="../SanPham/ChiTiet&id=<?=$row['ID']?>">Chi tiết</a> | 
                     <a href="../SanPham/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
                     <a href="../SanPham/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
                 </td>

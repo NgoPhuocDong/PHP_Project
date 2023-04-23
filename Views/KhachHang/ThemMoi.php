@@ -4,12 +4,12 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Chi Tiết Đơn hàng bán</span>
+    <span class="h3 m-2">Khách hàng</span>
     <span>
-        <a href="../KhachHang/DanhSach" style="text-decoration: none; color: #000000;" >Danh sách</a>
+        <a href="../KhachHang/DanhSach" >Danh sách</a>
     </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
+    <span class="text-primary">
         Thêm mới
     </span>
     <hr>

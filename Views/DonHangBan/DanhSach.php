@@ -63,7 +63,7 @@
                     <?= $row['TongTien'] ?>
                 </td>
                 <td>
-                    <?= $row['idNhanVienLap'] ?>
+                    <?= $row['TenNhanVien'] ?>
                 </td>
                 <td>
                     <?= $row['TenTrangThai'] ?>

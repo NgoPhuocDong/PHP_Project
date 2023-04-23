@@ -15,10 +15,24 @@
 
 </div>
 <hr>
-<div class="">
-    
+<div class="row">
+<?php foreach ($detail as $row){?> 
+    <div class="col-md-4">
+        <div class="card">
+            <img src="../Assets/data/HinhAnhSanPham/<?= $row['HinhAnh'] ?>" alt="Hình ảnh không tồn tại">
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h5><?=$row['TenSanPham']?></h5><br>
+        <h6 class="text-primary"><?=$row['Gia']?> đ</h6><br>
+        <h6>Mô tả: </h6>
+        <div class="card">
+            <?=$row['MoTa']?>
+        </div>
+    </div>
+<?php }?>
 </div>
-
+    
 <?php
     include "./Views/Layout/footer.php";
 ?>

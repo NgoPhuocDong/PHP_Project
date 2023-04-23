@@ -14,7 +14,7 @@ class NhanVien{
     public function TimKiem($tennhanvien)
     {
         $sql = "SELECT * FROM nhanvien
-        WHERE TenNhanVien = '$tennhanvien'";
+        WHERE TenNhanVien LIKE '%$tennhanvien%'";
         $result = $this->db->select($sql);
         return $result;
     }

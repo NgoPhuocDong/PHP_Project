@@ -6,14 +6,14 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Chi tiết đơn hàng bán</span>
     <span>
-        <a href="../ChiTietDonHangBan/DanhSach">Danh sách</a>
+    <?php foreach ($dataUpdate as $row) : extract($row); ?>
+        <a href="../ChiTietDonHangBan/DanhSach&id=<?= $row['idDonHangBan']?>">Danh sách</a>
     </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
     <span>
         Cập nhật
     </span>
     <hr>
-    <?php foreach ($dataUpdate as $row) : extract($row); ?>
         <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
             <label class="h6">Id đơn hàng bán</label>
             <input type="text" value="<?= $row['idDonHangBan']?>"name="iddonhangban" class="form-control"><br>

@@ -18,7 +18,7 @@
 
 </head>
 <body class="bg-light col-md-12">
-	<nav class="navbar navbar-expand-sm bg-white col-md-12">
+	<nav class="navbar navbar-expand-sm bg-white col-md-12 fixed-top">
 		<div class="container-fluid">
 			<h4><a class="nav-link" href="#">Logo</a></h4>
 			<ul class="navbar-nav">
@@ -50,9 +50,10 @@
 			</ul>
 		</div>
 	</nav>
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding-top: 56px;">
     	<div class="row">
-    		<div class="col-md-2 bg-dark navbar-nav" id="accordion" data-bs-spy="scroll" style="height: 500px;">
+			<div class="col-md-2"></div>
+    		<div class="col-md-2 bg-dark navbar-nav position-fixed" id="accordion" data-bs-spy="scroll" style="height: 1550px;">
 		    	<div class="navbar border-bottom text-white-50">
 		    		<span class="">
 		    			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThXxkVUHWG0N3-vMhcIbCU9eS-6TqNFvcQ4aB0Yzk&s" class="rounded-circle" alt="" width="40" height="40">
@@ -107,13 +108,13 @@
 			<div class="col-md-10">
 			
 			<style>
-				.collapse > a{
+				a{
 					text-decoration: none;
 				}
-				.collapse > a > li{
-					color: #ffffff;
+				a > li{
+					color: gray;
 				}
 				.collapse > a > li:hover{
-					color: gray;
+					color: #007bff;
 				}
 			</style>
