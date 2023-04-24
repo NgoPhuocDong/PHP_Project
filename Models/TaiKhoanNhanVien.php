@@ -58,7 +58,7 @@ class TaiKhoanNhanVien{
         MatKhau = '$matkhau',
         TrangThai = '$trangthai',
         AnhDaiDien = '$anhdaidien'
-        WHERE tknv.idNhanVien = '$idnhanvien'";
+        WHERE idNhanVien = '$idnhanvien'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
