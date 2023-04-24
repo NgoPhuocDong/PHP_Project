@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
     //gọi hàm kết nối sql(connect) từ class Database trong Models
     include "./Models/loginAdmin.php";
     include "./Models/Database.php";
