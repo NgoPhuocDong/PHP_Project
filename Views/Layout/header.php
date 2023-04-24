@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="../Assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="../Assets/css/bootstrap.min.css">
 	<script src="../Assets/scripts/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 	<!-- Dùng cho file index -->
 	<link rel="stylesheet" type="text/css" href="Assets/fonts/font-awesome.min.css">
@@ -17,8 +18,15 @@
     
 
 </head>
+<style>
+.logout:hover {
+    background-color: rgb(186, 182, 182);
+	transition: background-color .3s ease-in-out;
+	border-radius: 5px;
+}
+</style>
 <body class="bg-light col-md-12">
-	<nav class="navbar navbar-expand-sm bg-white col-md-12">
+	<nav class="navbar navbar-expand-sm bg-white col-md-12 fixed-top">
 		<div class="container-fluid">
 			<h4><a class="nav-link" href="#">Logo</a></h4>
 			<ul class="navbar-nav">
@@ -42,21 +50,25 @@
 					<i class="fa fa-cog" aria-hidden="true"></i>
 					Settings</a>
 				</li>
-				<li class="nav-item" style="float: right;">
-					<a href="#" class="nav-link active">
+				<li class="nav-item logout" style="float: right;">
+					<a href="../Home/Logout" class="nav-link active">
 					<i class="fa fa-sign-in" aria-hidden="true"></i>
-					Login</a>
+					Logout</a>
 				</li>
 			</ul>
 		</div>
 	</nav>
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding-top: 56px;">
     	<div class="row">
-    		<div class="col-md-2 bg-dark navbar-nav" id="accordion" data-bs-spy="scroll" style="height: 500px;">
+			<div class="col-md-2"></div>
+    		<div class="col-md-2 bg-dark navbar-nav position-fixed" id="accordion" data-bs-spy="scroll" style="height: 1550px;">
 		    	<div class="navbar border-bottom text-white-50">
 		    		<span class="">
 		    			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThXxkVUHWG0N3-vMhcIbCU9eS-6TqNFvcQ4aB0Yzk&s" class="rounded-circle" alt="" width="40" height="40">
-		    		User Name
+						<?php
+							if (isset($_SESSION['dangnhap']))
+							echo $_SESSION['dangnhap'];
+						?>
 		    		</span>
 		    	</div>
 		    	<ul class="nav nav-stacked active">
@@ -107,13 +119,13 @@
 			<div class="col-md-10">
 			
 			<style>
-				.collapse > a{
+				a{
 					text-decoration: none;
 				}
-				.collapse > a > li{
-					color: #ffffff;
+				a > li{
+					color: gray;
 				}
 				.collapse > a > li:hover{
-					color: gray;
+					color: #007bff;
 				}
 			</style>

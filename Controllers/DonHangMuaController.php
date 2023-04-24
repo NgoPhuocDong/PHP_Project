@@ -13,7 +13,7 @@ class DonHangMuaController{
     public function DanhSach()
     {
         //gọi method getuser
-        $result  = $this->model->GetData();
+        $result  = $this->model->DanhSach();
         //gọi và show dữ liệu ra view
         include 'Views/DonHangMua/DanhSach.php';
         return $result;

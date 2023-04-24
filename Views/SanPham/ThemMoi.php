@@ -4,12 +4,12 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Thêm Sản Phẩm</span>
+    <span class="h3 m-2">Sản Phẩm</span>
     <span>
-        <a href="../SanPham/ThemMoi" style="text-decoration: none; color: #000000;" >Danh sách</a>
+        <a href="../SanPham/DanhSach">Danh sách</a>
     </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span style="color: blue;">
+    <span>
         Thêm mới
     </span>
     <hr>
@@ -34,7 +34,7 @@
         <input type="text" name="soluong" class="form-control"><br>
 
         <label class="h6">Mô tả</label> <br>
-        <textarea rows="9" cols="70" name="mota"></textarea> <br>
+        <textarea rows="9" cols="70" name="mota" placeholder="Nhập mô tả..."></textarea> <br>
 
         <label class="h6">Ngày sản xuất</label>
         <input type="date" name="ngaysanxuat" class="form-control"><br>

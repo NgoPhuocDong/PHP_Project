@@ -11,10 +11,19 @@ class NhanVien{
         $result = $this->db->select($sql);
         return $result;
     }
+    public function find($id)
+    {
+        $sql = "SELECT nv.ID,TenNhanVien,GioiTinh,NgaySinh,SoDienThoai, Email, DiaChi
+        FROM nhanvien as nv,taikhoannhanvien as tknv
+        WHERE nv.ID = tknv.idNhanVien
+        AND nv.ID = '$id'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
     public function TimKiem($tennhanvien)
     {
         $sql = "SELECT * FROM nhanvien
-        WHERE TenNhanVien = '$tennhanvien'";
+        WHERE TenNhanVien LIKE '%$tennhanvien%'";
         $result = $this->db->select($sql);
         return $result;
     }

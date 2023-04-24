@@ -7,14 +7,27 @@ class TaiKhoanNhanVien{
     }
     public function DanhSach()
     {
-        $sql = "SELECT * FROM taikhoannhanvien";
+        $sql = "SELECT tknv.idNhanVien,nv.TenNhanVien ,TenDangNhap,MatKhau, TrangThai, AnhDaiDien
+        FROM taikhoannhanvien as tknv,nhanvien as nv
+        WHERE tknv.idNhanVien = nv.ID";
         $result = $this->db->select($sql);
         return $result;
     }
-    public function TimKiem($tendangnhap)
+    public function find($id)
     {
-        $sql = "SELECT * FROM taikhoannhanvien
-        WHERE TenDangNhap = '$tendangnhap'";
+        $sql = "SELECT tknv.idNhanVien,TenDangNhap,MatKhau, TrangThai, AnhDaiDien
+        FROM taikhoannhanvien as tknv,nhanvien as nv
+        WHERE tknv.idNhanVien = nv.ID
+        AND tknv.idNhanVien = '$id'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    public function TimKiem($tennhanvien)
+    {
+        $sql = "SELECT tknv.TenDangNhap,nv.TenNhanVien ,tknv.idNhanVien, MatKhau, TrangThai, AnhDaiDien
+        FROM taikhoannhanvien as tknv, nhanvien as nv
+        WHERE nv.TenNhanVien LIKE '%$tennhanvien%'
+        AND tknv.idNhanVien = nv.ID";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -27,10 +40,10 @@ class TaiKhoanNhanVien{
         $result = $this->db->select($sql);
         return $result;
     }
-    public function ThemMoi($idnhanvien, $tendangnhap, $matkhau, $trangthai, $anhdaidien)
+    public function ThemMoi( $tendangnhap,$idnhanvien, $matkhau, $trangthai, $anhdaidien)
     {
-        $sql = "INSERT INTO taikhoannhanvien (UserID,TenDangNhap,MatKhau,TrangThai,AnhDaiDien)
-                VALUES ('$idnhanvien','$tendangnhap', '$matkhau', '$trangthai', '$anhdaidien')";
+        $sql = "INSERT INTO taikhoannhanvien (TenDangNhap,idNhanVien,MatKhau,TrangThai,AnhDaiDien)
+                VALUES ('$tendangnhap','$idnhanvien', '$matkhau', '$trangthai', '$anhdaidien')";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -38,15 +51,14 @@ class TaiKhoanNhanVien{
             return false;
         }
     }
-    public function CapNhat($id,$idnhanvien,$tendangnhap, $matkhau, $trangthai, $anhdaidien)
+    public function CapNhat($idnhanvien, $tendangnhap, $matkhau, $trangthai, $anhdaidien)
     {
         $sql = "UPDATE taikhoannhanvien SET
-        UserID = $idnhanvien,
         TenDangNhap = '$tendangnhap',
         MatKhau = '$matkhau',
         TrangThai = '$trangthai',
         AnhDaiDien = '$anhdaidien'
-        WHERE ID = '$id'";
+        WHERE tknv.idNhanVien = '$idnhanvien'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -57,7 +69,7 @@ class TaiKhoanNhanVien{
     
     public function Xoa($idnhanvien)
     {
-        $sql = "DELETE FROM taikhoannhanvien WHERE ID = '$idnhanvien'";
+        $sql = "DELETE FROM taikhoannhanvien WHERE idNhanVien = '$idnhanvien'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;

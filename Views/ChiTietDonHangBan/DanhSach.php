@@ -4,9 +4,12 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Chi Tiết Đơn hàng bán</span>
+    <span class="h3 m-2">Đơn hàng bán</span>
+        <a href="../DonHangBan/DanhSach">Danh sách</a>
+    </span>
+    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
     <span>
-        Danh sách
+        Chi tiết
     </span>
 
 </div>
@@ -17,10 +20,10 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-8">
-                        <input type="text" name="" class="form-control" placeholder="tìm chi tiết đơn hàng bán" >
+                        <input type="text" name="" class="form-control" placeholder="Nhập sản phẩm..." >
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
-                        <button class="btn btn-primary">Xem</button>
+                        <button class="btn btn-primary">Tìm</button>
                     </div>
                 </div>
             </div>

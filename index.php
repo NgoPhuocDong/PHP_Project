@@ -1,5 +1,7 @@
 <?php
+    session_start();
     //gọi hàm kết nối sql(connect) từ class Database trong Models
+    include "./Models/loginAdmin.php";
     include "./Models/Database.php";
     $db =  new Database();
    

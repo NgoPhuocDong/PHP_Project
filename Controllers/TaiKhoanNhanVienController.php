@@ -15,11 +15,11 @@ class TaiKhoanNhanVienController{
     
     public function DanhSach()
     {
-        if(isset($_GET['tendangnhap'])) {
-            $tendangnhap = $_GET['tendangnhap'];
+        if(isset($_GET['tennhanvien'])) {
+            $tennhanvien = $_GET['tennhanvien'];
             //gọi method TimKiem bên Models
-            $result  = $this->model->TimKiem($tendangnhap);
-            if($_GET['tendangnhap']==null){
+            $result  = $this->model->TimKiem($tennhanvien);
+            if($_GET['tennhanvien']==null){
                 header('Location: ./DanhSach');
             }
         }
@@ -40,8 +40,8 @@ class TaiKhoanNhanVienController{
             $file_name = $_FILES['anhdaidien']['name'];
             $file_tmp = $_FILES['anhdaidien']['tmp_name'];
             move_uploaded_file($file_tmp,"Assets/AvatarNhanVien/".$file_name);
-
-            $create = $this->model->ThemMoi($_POST['idnhanvien'],$_POST['tendangnhap'], $_POST['matkhau']
+ 
+            $create = $this->model->ThemMoi($_POST['tendangnhap'],$_POST['idnhanvien'], $_POST['matkhau']
             ,$_POST['trangthai'],$file_name);
             if ($create) {
                 header('Location: ./DanhSach');
@@ -57,15 +57,14 @@ class TaiKhoanNhanVienController{
             $id = $_GET['id'];
             $table = 'taikhoannhanvien';
             //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
-            $result = $this->tennhanvien->DanhSach();
+            $dataUpdate = $this->model->find($id);
+            $result = $this->tennhanvien->find($id);
             if (isset($_POST['submit'])) {
                 $file_name = $_FILES['anhdaidien']['name'];
                 $file_tmp = $_FILES['anhdaidien']['tmp_name'];
                 move_uploaded_file($file_tmp,"Assets/AvatarNhanVien/".$file_name);
                 $update = $this->model->CapNhat(
-                $id,$_POST['idnhanvien'],
-                $_POST['tendangnhap'],
+                $id, $_POST['tendangnhap'],
                 $_POST['matkhau'],
                 $_POST['trangthai'],
                 $file_name);

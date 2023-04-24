@@ -4,7 +4,7 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Trang khách hàng</span>
+    <span class="h3 m-2">Khách hàng</span>
     <span>
         Danh sách
     </span>

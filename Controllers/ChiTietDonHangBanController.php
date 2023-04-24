@@ -1,25 +1,30 @@
 <?php
 include_once("Models/ChiTietDonHangBan.php");
 include_once("Models/DonHangBan.php");
+include_once("Models/SanPham.php");
 class ChiTietDonHangBanController{
     private $model;
     private $donhangban;
+    private $sanpham;
     private $db;
     
     public function __construct(){
         $this->model = new ChiTietDonHangBan();
         $this->db = new Database();
         $this->donhangban = new DonHangBan();
+        $this->sanpham = new SanPham();
     }
 
     public function ThemMoi(){
+        $result = $this->sanpham->DanhSach();
         if (isset($_POST['submit'])) {
-            $create = $this->model->ThemMoi($_POST['iddonhangban'],$_POST['idsanpham'],  $_POST['soluong'],$_POST['dongiaapdung'],$_POST['thanhtien']);
+            $create = $this->model->ThemMoi($_POST['iddonhangban'],$_POST['idsanpham'],  $_POST['soluong'],$_POST['dongiaapdung']);
             if ($create) {
                 header("Location: ./DanhSach&id=$_POST[iddonhangban]");
             }
         }
         include 'Views/ChiTietDonHangBan/ThemMoi.php';
+        return array($result);
     }
 
     public function DanhSach(){
@@ -27,20 +32,20 @@ class ChiTietDonHangBanController{
             $id = $_GET['id'];
             $table = 'donhangban';
             //lấy dữ liệu từ ChiTietDonHangBan
-            $result = $this->model->GetDaTa($id);
-            $resultDonHang = $this->donhangban->GetDaTaID($id);
+            $result = $this->model->DanhSach($id);
+            $resultDonHang = $this->donhangban->ChiTiet($id);
             //Truy vấn dữ liệu từ DonHangBan
             //$resultDonHang = $this->db->find($table,$id);
         }
         include 'Views/ChiTietDonHangBan/DanhSach.php';
-        return $result and $resultDonHang;
+        return array($result, $resultDonHang);
     }
     public function CapNhat(){
+        $listProduct = $this->sanpham->DanhSach();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $table = 'chitietdonhangban';
             //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
+            $dataUpdate = $this->model->find($id);
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhat($id,$_POST['iddonhangban'],
                                                     $_POST['idsanpham'],
@@ -53,7 +58,7 @@ class ChiTietDonHangBanController{
             }
         }
         include 'Views/ChiTietDonHangBan/CapNhat.php';
-        return $dataUpdate;
+        return array($dataUpdate,$listProduct);
     }
     public function Xoa(){
         if (isset($_GET['act'])){
@@ -64,5 +69,8 @@ class ChiTietDonHangBanController{
             }
         }
         include 'Views/ChiTietDonHangBan/DanhSach.php';
+    }
+    public function DonGiaApDung(){
+        $m = "sakfkks";
     }
 }

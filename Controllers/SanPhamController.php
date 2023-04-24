@@ -34,6 +34,15 @@ class SanPhamController{
         return $result;
     
     }
+    public function ChiTiet(){
+        
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $detail = $this->model->ChiTiet($id);
+        }
+        require_once('Views/SanPham/ChiTiet.php');
+        return $detail;
+    }
     public function ThemMoi(){
         $result = $this->loaisanpham->DanhSach();
         if (isset($_POST['submit'])) {
@@ -58,25 +67,22 @@ class SanPhamController{
         return $result;
        
     }
-
+    
+    
     public function CapNhat(){
         $result  = $this->loaisanpham->DanhSach();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $table = 'sanpham';
             //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->model->find($id);
+            $dataUpdate = $this->model->ChiTiet($id);
             if (isset($_POST['submit'])) {
-                $file_name = $_FILES['hinhanh']['name'];
-                $file_tmp = $_FILES['hinhanh']['tmp_name'];
-                move_uploaded_file($file_tmp,"Assets/data/".$file_name);
+
                 $update = $this->model->CapNhat($id,$_POST['idloaisanpham'],
                                                     $_POST['tensanpham'],
                                                     $_POST['gia'],
                                                     $_POST['mota'],
                                                     $_POST['soluong'],
-                                                    $_POST['ngaysanxuat'],
-                                                    $_FILES['hinhanh']['name']);
+                                                    $_POST['ngaysanxuat']);
 
                 if ($update) {
                     header('Location: ./DanhSach');
@@ -86,6 +92,26 @@ class SanPhamController{
         include 'Views/SanPham/CapNhat.php';
         return array($result,$dataUpdate);
     }
+    
+    public function CapNhatHinhAnh(){
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            //lấy dữ liệu cần cập nhật
+            $dataUpdate = $this->model->ChiTiet($id);
+            if (isset($_POST['submit'])) {
+                $file_name = $_FILES['hinhanh']['name'];
+                $file_tmp = $_FILES['hinhanh']['tmp_name'];
+                move_uploaded_file($file_tmp,"Assets/data/HinhAnhSanPham/".$file_name);
+                $update = $this->model->CapNhatHinhAnh($id,$_FILES['hinhanh']['name']);
+                if ($update) {
+                    header('Location: ./DanhSach');
+                }
+            }            
+        }
+        include 'Views/SanPham/CapNhatHinhAnh.php';
+        return array($dataUpdate);
+    }
+
     public function Xoa(){
         if (isset($_GET['id'])){
             $id = $_GET['id'];

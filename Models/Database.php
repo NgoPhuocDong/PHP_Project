@@ -4,7 +4,7 @@ class Database{
     private $username="root";
     private $password="";
     private $database="quanlymaytinh";
-    private $conn;
+    public $conn;
     private $result;
 
     //hàm kết nối
@@ -58,59 +58,11 @@ class Database{
         $result = $this->select($sql);
         return $result;
     }
-    public function QueryColumn($columns,$table,$id)
-    {
-        $sql = "SELECT $columns FROM $table WHERE ID = '$id'";
+
+    public function findEmail($table,$email){
+        $sql = "SELECT * FROM $table where email = '$email'";
         $result = $this->select($sql);
         return $result;
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-// //hàm truy vấn
-    // public function execute1($sql){
-    //     $this->result = mysqli_query($this->conn,$sql);
-    //     //$this->result = $this->conn->query($sql);
-    //     return $this->result;
-    // }
-    // //hàm lấy dữ liệu
-    // public function getData(){
-    //     if($this->result){
-    //         $data = mysqli_fetch_array($this->result);
-    //     }
-    //     else{
-    //         $data = 0;
-    //     }
-    //     return $data;
-    // }
-    // //hàm lấy toàn bộ dữ liệu (Danh sách)
-    // public function getAllData(){
-    //     if(!$this->result){
-    //         $data = 0;
-    //     }
-    //     else{
-    //         while($datas = $this->getData()){
-    //             $data[] = $datas;
-    //         }  
-    //     }
-    //     return $data;
-    // }
-    // //hàm thêm dữ liệu
-    // public function insert($table,$value=[]){
-    //     $sql = "INSERT INTO $table VALUES ($value)";
-    //     return $this->execute($sql);
-    // }
-    //hàm sữa dữ liệu
-    // public function update($table,$values=[],$id){
-    //     $sql = "UPDATE $table SET $values() WHERE id = '$id'";
-    //     return $this->execute($sql);
-    // }

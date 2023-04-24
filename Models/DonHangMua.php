@@ -5,7 +5,7 @@ class DonHangMua{
     public function __construct(){
         $this->db = new Database();
     }
-    public function GetData()
+    public function DanhSach()
     {
         $sql = "SELECT * FROM donhangmua";
         $result = $this->db->select($sql);

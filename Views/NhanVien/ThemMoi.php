@@ -4,14 +4,11 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Chi Tiết nhân viên</span>
+    <span class="h3 m-2">Thêm nhân viên</span>
     <span>
-        <a href="../NhanVien/DanhSach" style="text-decoration: none; color: #000000;" >Danh sách</a>
+        <a href="../NhanVien/DanhSach" ><i class="fa fa-angle-double-left" aria-hidden="true"></i>Danh sách</a>
     </span>
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
-        Thêm mới
-    </span>
+    
     <hr>
 
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">

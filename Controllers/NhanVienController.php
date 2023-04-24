@@ -45,7 +45,7 @@ class NhanVienController{
             $id = $_GET['id'];
             $table = 'nhanvien';
             //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
+            $dataUpdate = $this->model->find($id);
             
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhat(
