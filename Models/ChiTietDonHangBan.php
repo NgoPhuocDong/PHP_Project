@@ -32,6 +32,7 @@ class ChiTietDonHangBan{
         if ($result) {
             return true;
         } else {
+            
             return false;
         }
     }
