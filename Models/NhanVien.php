@@ -15,7 +15,7 @@ class NhanVien{
     {
         $sql = "SELECT nv.ID,TenNhanVien,GioiTinh,NgaySinh,SoDienThoai, Email, DiaChi
         FROM nhanvien as nv,taikhoannhanvien as tknv
-        WHERE nv.ID = tknv.ID
+        WHERE nv.ID = tknv.idNhanVien
         AND nv.ID = '$id'";
         $result = $this->db->select($sql);
         return $result;
