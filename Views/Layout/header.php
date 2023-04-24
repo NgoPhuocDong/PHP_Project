@@ -18,6 +18,13 @@
     
 
 </head>
+<style>
+.logout:hover {
+    background-color: rgb(186, 182, 182);
+	transition: background-color .3s ease-in-out;
+	border-radius: 5px;
+}
+</style>
 <body class="bg-light col-md-12">
 	<nav class="navbar navbar-expand-sm bg-white col-md-12 fixed-top">
 		<div class="container-fluid">
@@ -43,10 +50,10 @@
 					<i class="fa fa-cog" aria-hidden="true"></i>
 					Settings</a>
 				</li>
-				<li class="nav-item" style="float: right;">
-					<a href="#" class="nav-link active">
+				<li class="nav-item logout" style="float: right;">
+					<a href="../Home/Logout" class="nav-link active">
 					<i class="fa fa-sign-in" aria-hidden="true"></i>
-					Login</a>
+					Logout</a>
 				</li>
 			</ul>
 		</div>
@@ -58,7 +65,10 @@
 		    	<div class="navbar border-bottom text-white-50">
 		    		<span class="">
 		    			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThXxkVUHWG0N3-vMhcIbCU9eS-6TqNFvcQ4aB0Yzk&s" class="rounded-circle" alt="" width="40" height="40">
-		    		User Name
+						<?php
+							if (isset($_SESSION['dangnhap']))
+							echo $_SESSION['dangnhap'];
+						?>
 		    		</span>
 		    	</div>
 		    	<ul class="nav nav-stacked active">

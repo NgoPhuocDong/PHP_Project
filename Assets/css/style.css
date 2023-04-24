@@ -8,3 +8,7 @@ ul li{
 .collapse > a{
     text-decoration: none;
 }
+
+.test1:hover{
+    background-color: rgb(186, 182, 182);
+}

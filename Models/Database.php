@@ -4,7 +4,7 @@ class Database{
     private $username="root";
     private $password="";
     private $database="quanlymaytinh";
-    private $conn;
+    public $conn;
     private $result;
 
     //hàm kết nối
@@ -55,6 +55,12 @@ class Database{
     public function find($table,$id)
     {
         $sql = "SELECT * FROM $table WHERE ID = '$id'";
+        $result = $this->select($sql);
+        return $result;
+    }
+
+    public function findEmail($table,$email){
+        $sql = "SELECT * FROM $table where email = '$email'";
         $result = $this->select($sql);
         return $result;
     }
