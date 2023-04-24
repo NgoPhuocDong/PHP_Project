@@ -33,8 +33,7 @@
         <input type="text" value=""name="soluong" class="form-control"><br>
         
         <label class="h6">Đơn giá áp dụng</label>
-        
-            <input type="text"  id="dongiaapdung" value="" name="dongiaapdung" class="form-control"><br>
+        <input type="text"  id="dongiaapdung" value="" name="dongiaapdung" class="form-control"><br>
         
         <!-- <label class="h6">Thành tiền</label>
         <input type="text" value=""name="thanhtien" class="form-control"><br> -->

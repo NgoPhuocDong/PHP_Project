@@ -14,7 +14,15 @@ class ChiTietDonHangBan{
         $result = $this->db->select($sql);
         return $result;
     }
-    
+    public function find($id)
+    {
+        $sql = "SELECT ct.ID,ct.idDonHangBan,ct.idSanPham,sp.TenSanPham,ct.SoLuong,DonGiaApDung,ThanhTien
+        FROM chitietdonhangban as ct,sanpham as sp
+        WHERE ct.idSanPham = sp.ID
+        AND ct.ID = '$id'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
     public function ThemMoi($iddonhangban,$idsanpham, $soluong, $dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
@@ -27,8 +35,9 @@ class ChiTietDonHangBan{
             return false;
         }
     }
-    public function CapNhat($id,$iddonhangban,$idsanpham,$soluong,$dongiaapdung,$thanhtien)
+    public function CapNhat($id,$iddonhangban,$idsanpham,$soluong,$dongiaapdung)
     {
+        $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
         $sql = "UPDATE chitietdonhangban SET
         idsanpham = '$idsanpham',
         soluong = '$soluong',

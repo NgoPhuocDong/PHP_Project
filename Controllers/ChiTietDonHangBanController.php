@@ -41,11 +41,11 @@ class ChiTietDonHangBanController{
         return array($result, $resultDonHang);
     }
     public function CapNhat(){
+        $listProduct = $this->sanpham->DanhSach();
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $table = 'chitietdonhangban';
             //lấy dữ liệu cần cập nhật
-            $dataUpdate = $this->db->find($table,$id);
+            $dataUpdate = $this->model->find($id);
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhat($id,$_POST['iddonhangban'],
                                                     $_POST['idsanpham'],
@@ -58,7 +58,7 @@ class ChiTietDonHangBanController{
             }
         }
         include 'Views/ChiTietDonHangBan/CapNhat.php';
-        return $dataUpdate;
+        return array($dataUpdate,$listProduct);
     }
     public function Xoa(){
         if (isset($_GET['act'])){
