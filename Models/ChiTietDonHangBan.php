@@ -7,18 +7,18 @@ class ChiTietDonHangBan{
     }   
     public function DanhSach($id)
     {
-        $sql = "SELECT ct.ID,ct.idDonHangBan,sp.TenSanPham,ct.SoLuong,DonGiaApDung,ThanhTien
-        FROM chitietdonhangban as ct,sanpham as sp
-        WHERE ct.idSanPham = sp.ID
-        AND idDonHangBan = '$id'";
+        $sql = "SELECT ct.ID, ct.idDonHangBan, sp.TenSanPham, ct.SoLuong, ct.DonGiaApDung, ct.ThanhTien
+        FROM chitietdonhangban ct
+        JOIN sanpham sp ON ct.idSanPham = sp.ID
+        WHERE ct.idDonHangBan = '$id'";
         $result = $this->db->select($sql);
         return $result;
     }
     public function find($id)
     {
-        $sql = "SELECT ct.ID,ct.idDonHangBan,ct.idSanPham,sp.TenSanPham,ct.SoLuong,DonGiaApDung,ThanhTien
-        FROM chitietdonhangban as ct,sanpham as sp
-        WHERE ct.idSanPham = sp.ID
+        $sql = "SELECT ct.ID, ct.idDonHangBan, ct.idSanPham, sp.TenSanPham, ct.SoLuong, ct.DonGiaApDung, ct.ThanhTien
+        FROM chitietdonhangban ct
+        JOIN sanpham sp ON ct.idSanPham = sp.ID
         AND ct.ID = '$id'";
         $result = $this->db->select($sql);
         return $result;
