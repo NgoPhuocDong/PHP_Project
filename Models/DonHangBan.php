@@ -26,8 +26,9 @@ class DonHangBan{
         $result = $this->db->select($sql);
         return $result;
     }
+   
     public function ThemMoi($idnhanvienlap, $idkhachhang, $idtrangthai, $ngaylap, $tongtien)
-    {
+    {   
         $sql = "INSERT INTO donhangban (idNhanVienLap,idKhachHang,idTrangThai,NgayLap,TongTien)
                 VALUES ('$idnhanvienlap', '$idkhachhang', '$idtrangthai', '$ngaylap', '$tongtien')";
         $result = $this->db->execute($sql);
@@ -37,6 +38,7 @@ class DonHangBan{
             return false;
         }
     }
+    
     public function CapNhat($id,$idnhanvienlap,$idkhachhang,$idtrangthai,$ngaylap,$tongtien)
     {
         $sql = "UPDATE donhangban SET 
@@ -63,4 +65,5 @@ class DonHangBan{
             return false;
         }
     }
+    
 }

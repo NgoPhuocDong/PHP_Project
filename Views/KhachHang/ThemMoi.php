@@ -4,11 +4,7 @@
 ?>
 
 <div class="col-md-12 mt-2">
-<<<<<<< HEAD
-    <span class="h3 m-2">Trang khách hàng</span>
-=======
     <span class="h3 m-2">Khách hàng</span>
->>>>>>> 534ab2c6c452e352950adc36ce7a518db4ae113c
     <span>
         <a href="../KhachHang/DanhSach" >Danh sách</a>
     </span>

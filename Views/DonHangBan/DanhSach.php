@@ -57,10 +57,10 @@
                     <?= $row['TenKhachHang'] ?>
                 </td>
                 <td>
-                    <?= $row['NgayLap'] ?>
+                    <?= date('d-m-Y',strtotime($row['NgayLap'])) ?>
                 </td>
                 <td>
-                    <?= $row['TongTien'] ?>
+                    <?= number_format($row['TongTien'],0,'.', '.') ?>
                 </td>
                 <td>
                     <?= $row['TenNhanVien'] ?>

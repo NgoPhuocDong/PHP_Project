@@ -29,7 +29,7 @@
         
         <label class="h6">Giá</label> <br>
         <input type="text" name="gia" class="form-control"><br>
-
+        
         <label class="h6">Số lượng</label>
         <input type="text" name="soluong" class="form-control"><br>
 

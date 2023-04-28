@@ -59,7 +59,7 @@
                     <?= $row['GioiTinh'] ?>
                 </td>
                 <td>
-                    <?= $row['NgaySinh'] ?>
+                    <?= date('d-m-Y',strtotime($row['NgaySinh'])) ?>
                 </td>
                 <td>
                     <?= $row['SoDienThoai'] ?>

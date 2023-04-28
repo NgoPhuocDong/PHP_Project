@@ -28,7 +28,7 @@
         </select>
 
         <label class="h6">Giá</label>
-        <input type="text" value="<?= $row['Gia']?>"name="gia" class="form-control"><br>
+        <input type="text" value="<?= number_format($row['Gia'],0,'.', '.')?>"name="gia" class="form-control"><br>
 
         <label class="h6">Mô tả</label> <br>
         <textarea rows="9" cols="70" name="mota" placeholder="Nhập mô tả..."><?= $row['MoTa']?></textarea><br>

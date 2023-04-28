@@ -45,7 +45,7 @@
     <table>
         <tr>
             <th>Ngày lập:</th>
-            <td><?= $row['NgayLap']?></td>
+            <td><?= date('d-m-Y',strtotime($row['NgayLap']))?></td>
         </tr>
         <tr>
             <th>Mã đơn hàng:</th>
@@ -57,7 +57,7 @@
         </tr>
         <tr>
             <th>Tổng tiền:</th>
-            <td><?= $row['TongTien']?></td>
+            <td><?= number_format($row['TongTien'],0,'.', '.')?></td>
         </tr>
     </table>
     <br>
@@ -83,10 +83,10 @@
                     <?= $row['SoLuong'] ?>
                 </td>
                 <td>
-                    <?= $row['DonGiaApDung'] ?>
+                    <?= number_format($row['DonGiaApDung'],0,'.', '.') ?>
                 </td>
                 <td>
-                    <?= $row['ThanhTien'] ?>
+                    <?= number_format($row['ThanhTien'],0,'.', '.') ?>
                 </td>
                 <td>
                     <a href="../ChiTietDonHangBan/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 

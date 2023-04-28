@@ -37,7 +37,7 @@
         
         <!-- <label class="h6">Thành tiền</label>
         <input type="text" value=""name="thanhtien" class="form-control"><br> -->
-        <hr>
+        <hr>  
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">
     </form>
 </div>

@@ -29,7 +29,7 @@
 
     
         <label class="h6">Tổng tiền</label>
-        <input type="text" value="<?= $row['TongTien']?>"name="tongtien" class="form-control"><br>
+        <input type="text" value="<?= number_format($row['TongTien'],0,'.', '.')?>"name="tongtien" class="form-control"><br>
 
         <hr>
         <input type="submit" value="Update" name="submit" class="btn btn-primary">

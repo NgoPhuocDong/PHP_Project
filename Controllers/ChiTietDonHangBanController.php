@@ -62,15 +62,13 @@ class ChiTietDonHangBanController{
     }
     public function Xoa(){
         if (isset($_GET['act'])){
+            $iddonhangban = $_GET['id'];
             $id = $_GET['act'];
-            $delete = $this->model->Xoa($id);
+            $delete = $this->model->Xoa($id,$iddonhangban);
             if ($delete) {
                 return $this->DanhSach();
             }
         }
         include 'Views/ChiTietDonHangBan/DanhSach.php';
-    }
-    public function DonGiaApDung(){
-        $m = "sakfkks";
     }
 }

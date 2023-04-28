@@ -61,7 +61,7 @@
                 </td>
             
                 <td>
-                    <?= $row['Gia'] ?>
+                    <?= number_format($row['Gia'],0,'.', '.')?>
                 </td>
                 
                 <td>

@@ -165,7 +165,7 @@ input[type="text"], input[type="password"] {
             <div class="input-field">
                 <input type="password" id="password" name="password" placeholder="Password...">
                 <label for="password">Mật khẩu</label>
-                <i class="fa-solid fa-eye show_hide" onclick="togglePassword()" ></i>
+                <i class="fa fa-eye show_hide text-light" onclick="togglePassword()"></i>
             </div>
            <p style="text-align: center;">
             <span>

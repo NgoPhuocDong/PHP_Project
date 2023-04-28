@@ -1,4 +1,5 @@
 <?php
+
 class ChiTietDonHangBan{
     private $db;
 
@@ -23,6 +24,7 @@ class ChiTietDonHangBan{
         $result = $this->db->select($sql);
         return $result;
     }
+
     public function ThemMoi($iddonhangban,$idsanpham, $soluong, $dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
@@ -30,15 +32,31 @@ class ChiTietDonHangBan{
                 VALUES ($iddonhangban,'$idsanpham', '$soluong', '$dongiaapdung', '$thanhtien')";
         $result = $this->db->execute($sql);
         if ($result) {
+            $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
             return true;
         } else {
             
             return false;
         }
     }
+    public function CapNhatTongTien($iddonhangban)
+    {
+        $sql = "UPDATE donhangban
+        SET TongTien = (SELECT SUM(soluong * dongiaapdung) 
+                         FROM ChiTietDonHangBan 
+                         WHERE idDonHangBan = '$iddonhangban') 
+        WHERE ID = '$iddonhangban'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function CapNhat($id,$iddonhangban,$idsanpham,$soluong,$dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
+        //$capnhattongtien = $this->CapNhatTongTien($iddonhangban);
         $sql = "UPDATE chitietdonhangban SET
         idsanpham = '$idsanpham',
         soluong = '$soluong',
@@ -48,17 +66,19 @@ class ChiTietDonHangBan{
         WHERE ID = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
+            $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
             return true;
         } else {
             return false;
         }
     }
     
-    public function Xoa($id)
+    public function Xoa($id,$iddonhangban)
     {
         $sql = "DELETE FROM chitietdonhangban WHERE id = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
+            $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
             return true;
         } else {
             return false;
@@ -69,5 +89,5 @@ class ChiTietDonHangBan{
         $thanhTien = null;
         return $thanhTien = $soluong * $dongiaapdung;
     }
-    
+
 }
