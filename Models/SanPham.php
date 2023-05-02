@@ -34,6 +34,7 @@ class SanPham{
         $result = $this->db->select($sql);
         return $result;
     }
+    
     public function ThemMoi($idloaisanpham, $tensanpham, $gia, $mota, $soluong, $ngaysanxuat, $hinhanh)
     {
         $sql = "INSERT INTO sanpham(idLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh) 

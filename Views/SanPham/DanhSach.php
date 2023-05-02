@@ -1,6 +1,6 @@
 <?php
     include "./Views/Layout/header.php";
-    echo "<title>Danh sách sản phẩm</title>";
+    echo"<title>Danh sách sản phẩm</title>";
 ?>
 
 <div class="col-md-12 mt-2">
@@ -26,8 +26,8 @@
             </div>
             <div class="col-md-8">
                 <div style="float: right;">
-                    <button class="btn btn-danger">Import</button>
-                    <button class="btn btn-success">Export</button>
+                    <button class="btn btn-danger" id="open-modal">Import</button>
+                    <button class="btn btn-success" onclick="ExportXLSX('Danh sách sản phẩm')">Export</button>
                     <a href="../SanPham/ThemMoi" class="btn btn-primary">Thêm mới</a>
                 </div>
             </div>
@@ -36,7 +36,7 @@
 </div>
 
 <div class="col-md-12 mt-3">
-    <table class="table table-condensed table-bordered">
+    <table class="table table-condensed table-bordered" id="TableToExport">
         <tr style="background-color: whitesmoke; color: black; " class="col-6 align-self-center">
             <th>STT</th>
             <th>Tên sản phẩm</th>
@@ -70,7 +70,7 @@
                 
                 <td>
                     <a href="../SanPham/CapNhatHinhAnh&id=<?=$row['ID']?>">
-                        <img src="../Assets/data/HinhAnhSanPham/<?= $row['HinhAnh'] ?>" alt="TAP" height="50px" width="50px" >
+                        <img src="../Assets/data/HinhAnhSanPham/<?= $row['HinhAnh'] ?>" alt="TAP" height="50px" width="50px">
                     </a>
                 </td>
 
@@ -87,3 +87,4 @@
 <?php
     include "./Views/Layout/footer.php";
 ?>
+
