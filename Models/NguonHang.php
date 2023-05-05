@@ -5,9 +5,19 @@ class NguonHang{
     public function __construct(){
         $this->db = new Database();
     }
+    public function NguonHang(){
+        
+    }
     public function GetData()
     {
         $sql = "SELECT * FROM nguonhang";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    public function TimKiem($id)
+    {
+        $sql = "SELECT * FROM nguonhang
+        WHERE ID = '$id'";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -22,59 +32,16 @@ class NguonHang{
             return false;
         }
     }
-    public function CapNhatTenNguonHang($id,$tennguonhang)
+    public function CapNhat($id,$tennguonhang, $sodienthoai, $email, $diachi, $ngaytao, $nguoidaidien)
     {
-        $sql = "UPDATE nguonhang SET tennguonhang = '$tennguonhang' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatSoDienThoai($id,$sodienthoai)
-    {
-        $sql = "UPDATE nguonhang SET sodienthoai = '$sodienthoai' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatEmail($id,$email)
-    {
-        $sql = "UPDATE nguonhang SET email = '$email' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatDiaChi($id,$diachi)
-    {
-        $sql = "UPDATE nguonhang SET diachi = '$diachi' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatNgayTao($id,$ngaytao)
-    {
-        $sql = "UPDATE nguonhang SET ngaytao = '$ngaytao' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatNguoiDaiDien($id,$nguoidaidien)
-    {
-        $sql = "UPDATE nguonhang SET nguoidaidien = '$nguoidaidien' WHERE id = '$id'";
+        $sql = "UPDATE nguonhang SET
+        tennguonhang = '$tennguonhang',
+        sodienthoai = '$sodienthoai',
+        email = '$email',
+        diachi = '$diachi'
+        ngaytao = '$ngaytao',
+        nguoidaidien = '$nguoidaidien',
+        WHERE id = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;

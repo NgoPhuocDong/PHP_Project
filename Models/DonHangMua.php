@@ -7,12 +7,28 @@ class DonHangMua{
     }
     public function DanhSach()
     {
-        $sql = "SELECT * FROM donhangmua";
+        $sql = "SELECT dh.ID, kh.TenNguonHang, dh.NgayLap, nv.TenNhanVien, dh.TongTien, tt.TenTrangThai
+        FROM donhangmua AS dh
+        INNER JOIN nguonhang AS kh ON dh.IdNguonHang = kh.ID
+        INNER JOIN trangthaimua AS tt ON dh.IdTrangThai = tt.ID
+        INNER JOIN nhanvien AS nv ON dh.IdNhanVienLap = nv.ID";
         $result = $this->db->select($sql);
         return $result;
     }
-    public function ThemMoi($idnhanvienlap, $idnguonhang, $idtrangthai, $ngaylap, $tongtien)
+    public function ChiTiet($id)
     {
+        $sql = "SELECT dh.ID,kh.TenNguonHang,NgayLap,nv.TenNhanVien,TongTien,TenTrangThai
+        FROM donhangmua as dh,nguonhang as kh,trangthaimua as tt, nhanvien as nv
+        WHERE dh.IdNguonHang = kh.ID
+        AND dh.IdTrangThai = tt.ID
+        AND dh.IdNhanVienLap = nv.ID
+        AND dh.ID = '$id' ";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+   
+    public function ThemMoi($idnhanvienlap, $idnguonhang, $idtrangthai, $ngaylap, $tongtien)
+    {   
         $sql = "INSERT INTO donhangmua (idNhanVienLap,idNguonHang,idTrangThai,NgayLap,TongTien)
                 VALUES ('$idnhanvienlap', '$idnguonhang', '$idtrangthai', '$ngaylap', '$tongtien')";
         $result = $this->db->execute($sql);
@@ -22,49 +38,16 @@ class DonHangMua{
             return false;
         }
     }
-    public function CapNhatIdNhanVienLap($id,$idnhanvienlap)
+    
+    public function CapNhat($id,$idnhanvienlap,$idnguonhang,$idtrangthai,$ngaylap,$tongtien)
     {
-        $sql = "UPDATE donhangmua SET idnhanvienlap = '$idnhanvienlap' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatIdNguonHang($id,$idnguonhang)
-    {
-        $sql = "UPDATE donhangmua SET idnguonhang = '$idnguonhang' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatTrangThai($id,$idtrangthai)
-    {
-        $sql = "UPDATE donhangmua SET idtrangthai = '$idtrangthai' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatNgayLap($id,$ngaylap)
-    {
-        $sql = "UPDATE donhangmua SET ngaylap = '$ngaylap' WHERE id = '$id'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public function CapNhatTongTien($id,$tongtien)
-    {
-        $sql = "UPDATE donhangmua SET tongtien = '$tongtien' WHERE id = '$id'";
+        $sql = "UPDATE donhangmua SET 
+        idnhanvienlap = '$idnhanvienlap',
+        idnguonhang = '$idnguonhang',
+        idtrangthai = '$idtrangthai',
+        ngaylap = '$ngaylap',
+        tongtien = '$tongtien'
+        WHERE id = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -82,4 +65,5 @@ class DonHangMua{
             return false;
         }
     }
+    
 }

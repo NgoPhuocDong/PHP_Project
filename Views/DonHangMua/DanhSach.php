@@ -15,14 +15,14 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-4">
-                <div class="row">
+                <form class="row">
                     <div class="col-md-8">
-                    <input type="text" name="" class="form-control" placeholder="tìm đơn hàng mua" >
+                    <input type="text" name="id" class="form-control" placeholder="Nhập mã đơn hàng" >
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
-                        <button class="btn btn-primary">Xem</button>
+                        <button class="btn btn-primary">Tìm</button>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="col-md-8">
                 <div style="float: right;">
@@ -39,11 +39,12 @@
     <table class="table table-condensed table-bordered">
         <tr style="background-color: whitesmoke; color: black; " class="col-6 align-self-center">
             <th>STT</th>
-            <th>Id nhân viên lập</th>
-            <th>Id khách hàng</th>
-            <th>Id trạng thái</th>
+            <th>Mã hóa đơn</th>
+            <th>Tên Nguồn Hàng</th>
             <th>Ngày lập</th>
             <th>Tổng tiền</th>
+            <th>Người lập phiếu</th>
+            <th>trạng thái</th>
         </tr>
         <?php 
         if(!empty($result)):
@@ -51,20 +52,21 @@
             foreach ($result as $row) : extract($row);$i++; ?> 
             <tr>
                 <td><?= $i ?></td>
+                <td><?= $row['ID'] ?></td>
                 <td>
-                    <?= $row['idNhanVienLap'] ?>
+                    <?= $row['TenNguonHang'] ?>
                 </td>
                 <td>
-                    <?= $row['idNguonHang'] ?>
+                    <?= date('d-m-Y',strtotime($row['NgayLap'])) ?>
                 </td>
                 <td>
-                    <?= $row['idTrangThai'] ?>
+                    <?= number_format($row['TongTien'],0,'.', '.') ?>
                 </td>
                 <td>
-                    <?= $row['NgayLap'] ?>
+                    <?= $row['TenNhanVien'] ?>
                 </td>
                 <td>
-                    <?= $row['TongTien'] ?>
+                    <?= $row['TenTrangThai'] ?>
                 </td>
                 <td>
                     <a href="../ChiTietDonHangMua/DanhSach&id=<?=$row['ID']?>">Chi tiết</a> | 
