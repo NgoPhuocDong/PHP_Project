@@ -83,14 +83,14 @@ class TaiKhoanNhanVien{
             return false;
         }
     }
-    public function CapNhat($idnhanvien, $tendangnhap, $matkhau, $trangthai, $anhdaidien)
+    public function CapNhat($id, $tendangnhap, $matkhau, $trangthai, $anhdaidien)
     {
         $sql = "UPDATE taikhoannhanvien as tknv SET
         TenDangNhap = '$tendangnhap',
         MatKhau = '$matkhau',
         TrangThai = '$trangthai',
         AnhDaiDien = '$anhdaidien'
-        WHERE tknv.IDNhanVien = '$idnhanvien'";
+        WHERE idNhanVien = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
