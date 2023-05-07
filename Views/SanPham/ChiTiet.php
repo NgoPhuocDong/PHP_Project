@@ -24,7 +24,7 @@
     </div>
     <div class="col-md-8">
         <h5><?=$row['TenSanPham']?></h5><br>
-        <h6 class="text-primary"><?=$row['Gia']?> đ</h6><br>
+        <h6 class="text-primary"><?=number_format($row['Gia'],0,'.', '.')?> đ</h6><br>
         <h6>Mô tả: </h6>
         <div class="card">
             <?=$row['MoTa']?>

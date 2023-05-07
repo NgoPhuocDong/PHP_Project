@@ -6,10 +6,11 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Khách hàng</span>
     <span>
-        <a href="../KhachHang/DanhSach">Danh sách</a>
-    </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
+        <a class="title-non_active" href="../KhachHang/DanhSach">Danh sách</a>
+    </span>
+    <span class="title-active">
+    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Cập nhật
     </span>
     <hr>

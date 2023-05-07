@@ -12,8 +12,13 @@ class LoaiSanPhamController{
     
     public function DanhSach()
     {
+        $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
+        $current =!empty($_GET['page']) ? $_GET['page'] : 1; // trang hien tai
+        $offset = ($current - 1) * $item;
         if(isset($_GET['tenloaisanpham'])) {
             $tenloaisanpham = $_GET['tenloaisanpham'];
+            $tongsp = $this->model->TongLoaiSanPhamTim($tenloaisanpham);
+            $totalPage = ceil($tongsp / $item);
             //gọi method TimKiem bên Models
             $result  = $this->model->TimKiem($tenloaisanpham);
             if($_GET['tenloaisanpham']==null){
@@ -21,8 +26,10 @@ class LoaiSanPhamController{
             }
         }
         else{
+            $tongsp = $this->model->TongLoaiSanPham();
+            $totalPage = ceil($tongsp / $item);
             //gọi method DanhSach bên Models
-            $result  = $this->model->DanhSach();
+            $result  = $this->model->DanhSach($item,$offset);
         }
         //gọi và show dữ liệu ra view
         include 'Views/LoaiSanPham/DanhSach.php';

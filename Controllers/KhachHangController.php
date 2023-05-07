@@ -12,17 +12,23 @@ class KhachHangController{
     
     public function DanhSach()
     {
+        $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 6;
+        $current =!empty($_GET['page']) ? $_GET['page'] : 1; // trang hien tai
+        $offset = ($current - 1) * $item;
         if(isset($_GET['id'])) {
             $id = $_GET['id'];
             //gọi method TimKiem bên Models
+            $totalPage = 0;
             $result  = $this->model->TimKiem($id);
             if($_GET['id']==null){
                 header('Location: ./DanhSach');
             }
         }
         else{
+            $tongsp = $this->model->TongKhachHang();
+            $totalPage = ceil($tongsp / $item);
             //gọi method DanhSach bên Models
-            $result  = $this->model->GetDaTa();
+            $result  = $this->model->GetData($item,$offset);
         }
         //gọi và show dữ liệu ra view
         include 'Views/KhachHang/DanhSach.php';
@@ -58,36 +64,6 @@ class KhachHangController{
                     header('Location: ./DanhSach');
                 }
             }
-            // if (isset($_POST['submit'])) {
-            //     $update = $this->model->CapNhatGioiTinh($id,$_POST['gioitinh']);
-            //     if ($update) {
-            //         header('Location: ./DanhSach');
-            //     }
-            // }
-            // if (isset($_POST['submit'])) {
-            //     $update = $this->model->CapNhatNgaySinh($id,$_POST['ngaysinh']);
-            //     if ($update) {
-            //         header('Location: ./DanhSach');
-            //     }
-            // }
-            // if (isset($_POST['submit'])) {
-            //     $update = $this->model->CapNhatSoDienThoai($id,$_POST['sodienthoai']);
-            //     if ($update) {
-            //         header('Location: ./DanhSach');
-            //     }
-            // }
-            // if (isset($_POST['submit'])) {
-            //     $update = $this->model->CapNhatEmail($id,$_POST['email']);
-            //     if ($update) {
-            //         header('Location: ./DanhSach');
-            //     }
-            // }
-            // if (isset($_POST['submit'])) {
-            //     $update = $this->model->CapNhatDiaChi($id,$_POST['diachi']);
-            //     if ($update) {
-            //         header('Location: ./DanhSach');
-            //     }
-            // }
         }
         include 'Views/KhachHang/CapNhat.php';
         return $dataUpdate;

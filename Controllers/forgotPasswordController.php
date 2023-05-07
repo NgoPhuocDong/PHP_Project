@@ -26,15 +26,13 @@ class forgotPasswordController{
     }
 
     public function Update(){  
-        $email = $_SESSION['email'];    
-        $table = 'taikhoanadmin';
+        $email = $_SESSION['email'];        
         //lấy dữ liệu cần cập nhật
-        $dataUpdate = $this->db->findEmail($table,$email);
         
         $update = $this->model->CapNhatMatKhau($email, $_POST['newPassword']);
         if ($update) {
             header('Location: ./changePw');
-        }
+        }  
     }
 
     public function forgotPassword() {

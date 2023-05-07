@@ -6,10 +6,11 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Chi Tiết Đơn hàng bán</span> 
     <span>
-        <a href="../ChiTietDonHangBan/DanhSach&id=<?= $_GET['id']?>">Danh sách</a>
-    </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
+        <a class="title-non_active" href="../ChiTietDonHangBan/DanhSach&id=<?= $_GET['id']?>">Danh sách</a>
+    </span>
+    <span class="title-active">
+    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Thêm mới
     </span>
     <hr>
@@ -37,7 +38,7 @@
         
         <!-- <label class="h6">Thành tiền</label>
         <input type="text" value=""name="thanhtien" class="form-control"><br> -->
-        <hr>
+        <hr>  
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">
     </form>
 </div>

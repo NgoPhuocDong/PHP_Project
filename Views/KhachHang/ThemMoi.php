@@ -4,16 +4,13 @@
 ?>
 
 <div class="col-md-12 mt-2">
-<<<<<<< HEAD
-    <span class="h3 m-2">Trang khách hàng</span>
-=======
     <span class="h3 m-2">Khách hàng</span>
->>>>>>> 534ab2c6c452e352950adc36ce7a518db4ae113c
     <span>
-        <a href="../KhachHang/DanhSach" >Danh sách</a>
-    </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span class="text-primary">
+        <a class="title-non_active" href="../KhachHang/DanhSach" >Danh sách</a>
+    </span>
+    <span class="text-primary title-active">
+    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Thêm mới
     </span>
     <hr>

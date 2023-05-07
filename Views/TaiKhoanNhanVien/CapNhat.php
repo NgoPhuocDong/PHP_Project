@@ -4,9 +4,14 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Nhân viên</span>
+    <span class="h3 m-2">Tài khoản nhân viên</span>
     <span>
-      <a href="../TaiKhoanNhanVien/DanhSach"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Danh Sách</a>
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <a class="title-non_active" href="../TaiKhoanNhanVien/DanhSach">Danh sách</a>
+    </span>
+    <span class="title-active">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        Cập nhật
     </span>
     
     <hr>
@@ -28,8 +33,8 @@
 
         <label class="h6">Trạng thái</label><br>
         <select class="form-select" name="trangthai"> <br>
-            <option value="Active">Active</option>
-            <option value="Non-Active">Non-Active</option>
+            <option value="1">Active</option>
+            <option value="0">Non-Active</option>
         </select>
 
         <label class="h6">Ảnh đại diện</label> <br>

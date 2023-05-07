@@ -6,11 +6,12 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Chi tiết đơn hàng bán</span>
     <span>
-    <?php foreach ($dataUpdate as $row) : extract($row); ?>
-        <a href="../ChiTietDonHangBan/DanhSach&id=<?= $row['idDonHangBan']?>">Danh sách</a>
-    </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
+    <?php foreach ($dataUpdate as $row) : extract($row); ?>
+        <a class="title-non_active" href="../ChiTietDonHangBan/DanhSach&id=<?= $row['idDonHangBan']?>">Danh sách</a>
+    </span>
+    <span class="title-active">
+    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Cập nhật
     </span>
     <hr>

@@ -165,7 +165,7 @@ input[type="text"], input[type="password"] {
             <div class="input-field">
                 <input type="password" id="password" name="password" placeholder="Password...">
                 <label for="password">Mật khẩu</label>
-                <i class="fa-solid fa-eye show_hide" onclick="togglePassword()" ></i>
+                <i class="fa fa-eye show_hide text-light" onclick="togglePassword()"></i>
             </div>
            <p style="text-align: center;">
             <span>
@@ -194,10 +194,16 @@ input[type="text"], input[type="password"] {
     echo "
     <script>
 		function togglePassword() {
+            var iElement = document.querySelector('i');
 			var passwordInput = document.getElementById('password');
 			if (passwordInput.type === 'password') {
+                iElement.classList.remove('fa-eye');
+                iElement.classList.add('fa-eye-slash');
+                
 				passwordInput.type = 'text';
 			} else {
+                iElement.classList.remove('fa-eye-slash');
+                iElement.classList.add('fa-eye');
 				passwordInput.type = 'password';
 			}
 		}

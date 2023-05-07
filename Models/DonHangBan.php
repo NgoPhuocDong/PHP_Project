@@ -5,16 +5,25 @@ class DonHangBan{
     public function __construct(){
         $this->db = new Database();
     }
-    public function DanhSach()
+    public function DanhSach($item,$offset)
     {
         $sql = "SELECT dh.ID, kh.TenKhachHang, dh.NgayLap, nv.TenNhanVien, dh.TongTien, tt.TenTrangThai
         FROM donhangban AS dh
         INNER JOIN khachhang AS kh ON dh.IdKhachHang = kh.ID
         INNER JOIN trangthaiban AS tt ON dh.IdTrangThai = tt.ID
-        INNER JOIN nhanvien AS nv ON dh.IdNhanVienLap = nv.ID";
+        INNER JOIN nhanvien AS nv ON dh.IdNhanVienLap = nv.ID 
+        LIMIT ".$item." OFFSET ".$offset;
         $result = $this->db->select($sql);
         return $result;
     }
+    
+    public function TongDonHangBan() {
+        $sql = "SELECT * FROM donhangban";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
+        return $result;
+    }
+
     public function ChiTiet($id)
     {
         $sql = "SELECT dh.ID,kh.TenKhachHang,NgayLap,nv.TenNhanVien,TongTien,TenTrangThai

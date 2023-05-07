@@ -1,11 +1,22 @@
 <?php
-    include "./Views/Layout/header.php";
-    echo "<title>Danh sách nhân viên</title>";
+   include "./Views/Layout/header.php";
+   include("Controllers/KiemTraQuyen.php");
+   echo "<title>Danh sách sản phẩm</title>";
 ?>
-
+<style>
+    
+    .return {
+        text-align: right;
+        margin: 10px 20px 0 0;
+        display: block;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Nhân viên</span>
-    <span>
+    <span class="title-active">
+    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Danh sách
     </span>
 
@@ -14,31 +25,24 @@
 <div class="">
 <div class="col-md-12">
         <div class="row">
-<<<<<<< HEAD
             <div class="col-md-4">
                 <form method="get" class="row">
                     <div class="col-md-8">
-                        <input type="text" name="tennhanvien" class="form-control" placeholder="Nhập tên nhân viên..." >
+                        <input type="text" name="tennhanvien" class="form-control" placeholder="Nhập ID nhân viên..." >
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
                         <button class="btn btn-primary">Tìm</button>
-=======
-        <div class="col-md-4">
-                <form method="get" class="row">
-                    <div class="col-md-8">
-                        <input type="text" name="tennhanvien" class="form-control" placeholder="Nhập tên nhân viên cần tìm">
-                    </div>
-                    <div class="col-md-4" style="padding:0;margin-left:-7px;">
-                        <button class="btn btn-primary" >Xem</button>
->>>>>>> 5e1f2fc04b8b5bef398f2499557617087d04c198
                     </div>
                 </form>
             </div>
+        
             <div class="col-md-8">
                 <div style="float: right;">
                     <button class="btn btn-danger">Import</button>
                     <button class="btn btn-success">Export</button>
+                    <?php if(check('../NhanVien/ThemMoi')) {  ?>
                     <a href="../NhanVien/ThemMoi" class="btn btn-primary">Thêm mới</a>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -58,8 +62,11 @@
             <th>Action</th>
         </tr>
         <?php 
-        if(!empty($result)):
-            $i = 0;
+          $i = 0;
+          if(!empty($result)):
+              if (isset($_GET['page']) && $_GET['page'] == $current || isset($_GET['tennhanvien'])) {
+                  $i = ($current * $item) - $item;
+          } 
             foreach ($result as $row) : extract($row);$i++; ?> 
             <tr>
                 <td><?= $i ?></td>
@@ -67,7 +74,11 @@
                     <?= $row['TenNhanVien'] ?>
                 </td>
                 <td>
-                    <?= $row['GioiTinh'] ?>
+                    <?php if($row['GioiTinh'] == 0) {
+                        echo "Nữ"; 
+                    } else {
+                        echo "Nam";
+                    } ?>
                 </td>
                 <td>
                     <?= $row['NgaySinh'] ?>
@@ -82,14 +93,25 @@
                     <?= $row['DiaChi'] ?>
                 </td>
                 <td>
+                    <?php if(check('../NhanVien/CapNhat&id='.$row['ID'])) { ?>
                     <a href="../NhanVien/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
+                    <?php } ?>
+
+                    <?php if(check('../NhanVien/Xoa&id='.$row['ID'])) { ?>
                     <a href="../NhanVien/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
+                    <?php } ?>
                 </td>
             </tr>
             <?php endforeach; endif; ?>
     </table>
 </div>
-
+<?php
+        include("Views/NhanVien/PhanTrang.php");
+    ?>
+        <?php if(isset($_GET['tennhanvien'])) {?>
+        <a class="return" href="../NhanVien/DanhSach">Quay lại danh sách sản phẩm</a>
+        <?php }?>
+    
 <?php
     include "./Views/Layout/footer.php";
 ?>

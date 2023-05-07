@@ -6,10 +6,12 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Đơn hàng mua</span>
     <span>
-        <a href="../DonHangMua/DanhSach" style="text-decoration: none; color: #000000;" >Danh sách</a>
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <a class="title-non_active" href="../DonHangMua/DanhSach">Danh sách</a>
     </span>
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
+    
+    <span class="title-active">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Thêm mới
     </span>
     <hr>

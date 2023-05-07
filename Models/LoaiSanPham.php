@@ -6,16 +6,29 @@ class LoaiSanPham{
     public function __construct(){
         $this->db = new Database();
     }
-    public function DanhSach()
+    public function DanhSach($item,$offset)
     {
-        $sql = "SELECT * FROM loaisanpham";
+        $sql = "SELECT * FROM loaisanpham LIMIT ".$item." OFFSET ".$offset;
         $result = $this->db->select($sql);
+        return $result;
+    }
+    public function TongLoaiSanPham() {
+        $sql = "SELECT * FROM loaisanpham";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
+        return $result;
+    }
+
+    public function TongLoaiSanPhamTim($tenloaisanpham) {
+        $sql = "SELECT * FROM loaisanpham WHERE tenloaisanpham LIKE '%$tenloaisanpham%'";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
         return $result;
     }
     public function TimKiem($tenloaisanpham)
     {
         $sql = "SELECT * FROM loaisanpham
-        WHERE TenLoaiSanPham = '$tenloaisanpham'";
+        WHERE TenLoaiSanPham LIKE '%$tenloaisanpham%'";
         $result = $this->db->select($sql);
         return $result;
     }

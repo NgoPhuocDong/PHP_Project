@@ -1,19 +1,27 @@
 <?php
+
 class ChiTietDonHangBan{
     private $db;
 
     public function __construct(){
         $this->db = new Database();
     }   
-    public function DanhSach($id)
+    public function DanhSach($id,$item,$offset)
     {
         $sql = "SELECT ct.ID, ct.idDonHangBan, sp.TenSanPham, ct.SoLuong, ct.DonGiaApDung, ct.ThanhTien
         FROM chitietdonhangban ct
         JOIN sanpham sp ON ct.idSanPham = sp.ID
-        WHERE ct.idDonHangBan = '$id'";
+        WHERE ct.idDonHangBan = '$id' LIMIT ".$item." OFFSET ".$offset;
         $result = $this->db->select($sql);
         return $result;
     }
+    public function TongChiTietDHB() {
+        $sql = "SELECT * FROM chitietdonhangban";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
+        return $result;
+    }
+
     public function find($id)
     {
         $sql = "SELECT ct.ID, ct.idDonHangBan, ct.idSanPham, sp.TenSanPham, ct.SoLuong, ct.DonGiaApDung, ct.ThanhTien
@@ -23,6 +31,7 @@ class ChiTietDonHangBan{
         $result = $this->db->select($sql);
         return $result;
     }
+
     public function ThemMoi($iddonhangban,$idsanpham, $soluong, $dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
@@ -30,15 +39,31 @@ class ChiTietDonHangBan{
                 VALUES ($iddonhangban,'$idsanpham', '$soluong', '$dongiaapdung', '$thanhtien')";
         $result = $this->db->execute($sql);
         if ($result) {
+            $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
             return true;
         } else {
             
             return false;
         }
     }
+    public function CapNhatTongTien($iddonhangban)
+    {
+        $sql = "UPDATE donhangban
+        SET TongTien = (SELECT SUM(soluong * dongiaapdung) 
+                         FROM ChiTietDonHangBan 
+                         WHERE idDonHangBan = '$iddonhangban') 
+        WHERE ID = '$iddonhangban'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function CapNhat($id,$iddonhangban,$idsanpham,$soluong,$dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
+        //$capnhattongtien = $this->CapNhatTongTien($iddonhangban);
         $sql = "UPDATE chitietdonhangban SET
         idsanpham = '$idsanpham',
         soluong = '$soluong',
@@ -48,17 +73,19 @@ class ChiTietDonHangBan{
         WHERE ID = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
+            $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
             return true;
         } else {
             return false;
         }
     }
     
-    public function Xoa($id)
+    public function Xoa($id,$iddonhangban)
     {
         $sql = "DELETE FROM chitietdonhangban WHERE id = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
+            $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
             return true;
         } else {
             return false;
@@ -69,5 +96,5 @@ class ChiTietDonHangBan{
         $thanhTien = null;
         return $thanhTien = $soluong * $dongiaapdung;
     }
-    
+
 }

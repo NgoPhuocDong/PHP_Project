@@ -5,8 +5,8 @@
         $adminPassword = $_POST['password'];
         $login_check = $class->loginAdmin($adminUsername, $adminPassword,'phucn1435');
         if(isset($_POST['remember']) && $_POST['remember']) {
-            setcookie("user", $adminUsername, time()+(86400*7));
-            setcookie("pass", $adminPassword, time()+(86400*7));
+            setcookie("user", $encoded_username, time()+(86400*7), '/', '', false, true);
+            setcookie("pass", $encoded_password, time()+(86400*7), '/', '', false, true);
         }
     }
 

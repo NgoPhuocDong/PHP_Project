@@ -4,12 +4,13 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Chi Tiết Đơn hàng mua</span>
+    <span class="h3 m-2">Nguồn hàng</span>
     <span>
-        <a href="../NguonHang/DanhSach" style="text-decoration: none; color: #000000;" >Danh sách</a>
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <a class="title-non_active" href="../NguonHang/DanhSach" style="text-decoration: none; color: #000000;" >Danh sách</a>
     </span>
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
+    <span class="title-active">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Thêm mới
     </span>
     <hr>

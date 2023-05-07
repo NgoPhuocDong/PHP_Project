@@ -2,13 +2,22 @@
     include "./Views/Layout/header.php";
     echo "<title>Danh sách đơn hàng bán</title>";
 ?>
-
+<style>
+    .return {
+        text-align: right;
+        margin: 10px 20px 0 0;
+        display: block;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Đơn hàng bán</span>
-        <a href="../DonHangBan/DanhSach">Danh sách</a>
-    </span>
     <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
+        <a class="title-non_active" href="../DonHangBan/DanhSach">Danh sách</a>
+    </span>
+    <span class="title-active">
+    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Chi tiết
     </span>
 
@@ -45,7 +54,7 @@
     <table>
         <tr>
             <th>Ngày lập:</th>
-            <td><?= $row['NgayLap']?></td>
+            <td><?= date('d-m-Y',strtotime($row['NgayLap']))?></td>
         </tr>
         <tr>
             <th>Mã đơn hàng:</th>
@@ -57,7 +66,7 @@
         </tr>
         <tr>
             <th>Tổng tiền:</th>
-            <td><?= $row['TongTien']?></td>
+            <td><?= number_format($row['TongTien'],0,'.', '.')?></td>
         </tr>
     </table>
     <br>
@@ -69,6 +78,7 @@
             <th>Số lượng</th>
             <th>Đơn giá áp dụng</th>
             <th>Thành tiền</th>
+            <th>Action</th>
         </tr>
         <?php 
         if(!empty($result)):
@@ -83,10 +93,10 @@
                     <?= $row['SoLuong'] ?>
                 </td>
                 <td>
-                    <?= $row['DonGiaApDung'] ?>
+                    <?= number_format($row['DonGiaApDung'],0,'.', '.') ?>
                 </td>
                 <td>
-                    <?= $row['ThanhTien'] ?>
+                    <?= number_format($row['ThanhTien'],0,'.', '.') ?>
                 </td>
                 <td>
                     <a href="../ChiTietDonHangBan/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
@@ -96,7 +106,13 @@
             <?php endforeach; endif; ?>
     </table>
 </div>
-
+<?php
+        include("Views/ChiTietDonHangBan/PhanTrang.php");
+    ?>
+        <?php if(isset($_GET['id'])) {?>
+        <a class="return" href="../DonHangBan/DanhSach">Quay lại danh sách đơn hàng bán</a>
+        <?php }?>
+    
 <?php
     include "./Views/Layout/footer.php";
 ?>
