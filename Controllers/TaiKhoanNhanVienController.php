@@ -47,7 +47,7 @@ class TaiKhoanNhanVienController{
     
 
     public function ThemMoi(){
-        $result = $this->tennhanvien->DanhSach();
+        $result = $this->tennhanvien->DanhSach($this->tennhanvien->TongNhanVien(),0);
         if (isset($_POST['submit'])) {
             $file_name = $_FILES['anhdaidien']['name'];
             $file_tmp = $_FILES['anhdaidien']['tmp_name'];
