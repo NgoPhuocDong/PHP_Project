@@ -51,7 +51,7 @@ class SanPhamController{
     }
 
     public function ThemMoi(){
-        $result = $this->loaisanpham->DanhSach();
+        $result = $this->loaisanpham->DanhSach($this->loaisanpham->TongLoaiSanPham(),0);
         if (isset($_POST['submit'])) {
 
             $file_name = $_FILES['hinhanh']['name'];
