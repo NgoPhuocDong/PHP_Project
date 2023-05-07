@@ -77,7 +77,7 @@ class SanPhamController{
     
     
     public function CapNhat(){
-        $result  = $this->loaisanpham->DanhSach();
+        $result  = $this->loaisanpham->DanhSach($this->loaisanpham->TongLoaiSanPham(),0);
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             //lấy dữ liệu cần cập nhật
