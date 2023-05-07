@@ -5,35 +5,67 @@ class TaiKhoanNhanVien{
     public function __construct(){
         $this->db = new Database();
     }
-    public function DanhSach()
+    public function DanhSach($item,$offset)
     {
-        $sql = "SELECT tknv.idNhanVien,nv.TenNhanVien ,TenDangNhap,MatKhau, TrangThai, AnhDaiDien
-        FROM taikhoannhanvien as tknv,nhanvien as nv
-        WHERE tknv.idNhanVien = nv.ID";
+        $sql = "SELECT *
+        FROM taikhoannhanvien as tknv,nhanvien as nv WHERE tknv.IDNhanVien = nv.ID
+        LIMIT ".$item." OFFSET ".$offset;
         $result = $this->db->select($sql);
         return $result;
     }
+
+    public function DanhSach1()
+    {
+         $sql = "SELECT * FROM taikhoannhanvien as tknv,nhanvien as nv
+        WHERE tknv.IDNhanVien = nv.ID";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    // public function DanhSach()
+    // {
+    //     $sql = "SELECT *
+    //     FROM taikhoannhanvien as tk,nhanvien as nv
+    //     WHERE tk.IDNhanVien = nv.ID"; 
+    //     $result = $this->db->select($sql);
+    //     return $result;
+    // }
+    
+    public function TongTaiKhoan() {
+        $sql = "SELECT * FROM taikhoannhanvien";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
+        return $result;
+    }
+
     public function find($id)
     {
-        $sql = "SELECT tknv.idNhanVien,TenDangNhap,MatKhau, TrangThai, AnhDaiDien
+        $sql = "SELECT tknv.IDNhanVien,TenDangNhap,MatKhau, TrangThai, AnhDaiDien
         FROM taikhoannhanvien as tknv,nhanvien as nv
-        WHERE tknv.idNhanVien = nv.ID
-        AND tknv.idNhanVien = '$id'";
+        WHERE tknv.IDNhanVien = nv.ID
+        AND tknv.IDNhanVien = '$id'";
         $result = $this->db->select($sql);
         return $result;
     }
-    public function TimKiem($tennhanvien)
+    // public function TimKiem($tennhanvien)
+    // {
+    //     $sql = "SELECT tknv.TenDangNhap,nv.TenNhanVien ,tknv.IDNhanVien, MatKhau, TrangThai, AnhDaiDien
+    //     FROM taikhoannhanvien as tknv, nhanvien as nv
+    //     WHERE nv.TenNhanVien LIKE '%$tennhanvien%'
+    //     AND tknv.idNhanVien = nv.ID";
+    //     $result = $this->db->select($sql);
+    //     return $result;
+    // }
+    public function TimKiem($id)
     {
-        $sql = "SELECT tknv.TenDangNhap,nv.TenNhanVien ,tknv.idNhanVien, MatKhau, TrangThai, AnhDaiDien
+        $sql = "SELECT tknv.TenDangNhap,nv.TenNhanVien ,tknv.IDNhanVien, MatKhau, TrangThai, AnhDaiDien
         FROM taikhoannhanvien as tknv, nhanvien as nv
-        WHERE nv.TenNhanVien LIKE '%$tennhanvien%'
+        WHERE tknv.idNhanVien = $id
         AND tknv.idNhanVien = nv.ID";
         $result = $this->db->select($sql);
         return $result;
     }
-    public function TaiKhoanNhanVien(){
-        
-    }
+   
     public function GetData()
     {
         $sql = "SELECT * FROM taikhoannhanvien";
@@ -53,12 +85,12 @@ class TaiKhoanNhanVien{
     }
     public function CapNhat($idnhanvien, $tendangnhap, $matkhau, $trangthai, $anhdaidien)
     {
-        $sql = "UPDATE taikhoannhanvien SET
+        $sql = "UPDATE taikhoannhanvien as tknv SET
         TenDangNhap = '$tendangnhap',
         MatKhau = '$matkhau',
         TrangThai = '$trangthai',
         AnhDaiDien = '$anhdaidien'
-        WHERE idNhanVien = '$idnhanvien'";
+        WHERE tknv.IDNhanVien = '$idnhanvien'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -77,4 +109,5 @@ class TaiKhoanNhanVien{
             return false;
         }
     }
+
 }

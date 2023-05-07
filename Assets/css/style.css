@@ -3,8 +3,73 @@ ul li{
 }
 .col-md-2 .border-bottom{
     margin-left: 10px;
-    height: 60px;
+    height: auto;
+    padding: 20px 0;
 }
+
 .collapse > a{
     text-decoration: none;
 }
+
+.title-active {
+    display: inline-block; 
+    font-size: 15px; 
+    color: blue; 
+    font-weight: bold;
+}
+
+.title-non_active{
+    color: black;
+} 
+
+
+
+/* ------------------------------------PHÂN TRANG------------------------------------- */
+.paging-link {
+    border: 1px solid black; /* tạo viền đen bao quanh thẻ a */
+    padding:3px 15px; /* thêm khoảng cách giữa nội dung và viền */
+    display: inline-block; /* chuyển thẻ a thành khối để có thể sử dụng thuộc tính width và height */
+    /* width: 100px; đặt chiều rộng cho thẻ a */
+    /* height: 50px; đặt chiều cao cho thẻ a */
+    text-align: center; /* căn giữa nội dung của thẻ a */
+    text-decoration: none; /* loại bỏ gạch chân mặc định */
+    color: black; /* đặt màu chữ cho thẻ a */
+    border-radius: 5px;
+    margin-left: 8px;
+  }
+  
+  .paging-link-select{
+      border: 1px solid black; /* tạo viền đen bao quanh thẻ a */
+    padding:3px 15px; /* thêm khoảng cách giữa nội dung và viền */
+    display: inline-block; /* chuyển thẻ a thành khối để có thể sử dụng thuộc tính width và height */
+    /* width: 100px; đặt chiều rộng cho thẻ a */
+    /* height: 50px; đặt chiều cao cho thẻ a */
+    text-align: center; /* căn giữa nội dung của thẻ a */
+    text-decoration: none; /* loại bỏ gạch chân mặc định */
+    color: black; /* đặt màu chữ cho thẻ a */
+    border-radius: 5px;
+    margin-left: 8px;
+    background: black;
+    color: white;
+  }
+  
+  .paging-link:hover{
+      background: #232121;
+      color: white;
+      transition: all .2s ease-in-out;
+  }
+  
+  .container{
+      width: 100%;
+      position: absolute;
+      text-align: center;
+      margin: 20px 0 0 -65px;
+  }
+  
+  .paging-link-first {
+      margin-right: 50px;
+  }
+  
+  .paging-link-last {
+      margin-left: 50px;
+  }

@@ -6,13 +6,19 @@ class ChiTietDonHangMua{
     public function __construct(){
         $this->db = new Database();
     }   
-    public function DanhSach($id)
+    public function DanhSach($id,$item,$offset)
     {
         $sql = "SELECT ct.ID, ct.idDonHangMua, sp.TenSanPham, ct.SoLuong, ct.DonGiaApDung, ct.ThanhTien
         FROM chitietdonhangmua ct
         JOIN sanpham sp ON ct.idSanPham = sp.ID
-        WHERE ct.idDonHangMua = '$id'";
+        WHERE ct.idDonHangMua = '$id' LIMIT ".$item." OFFSET ".$offset;
         $result = $this->db->select($sql);
+        return $result;
+    }
+    public function TongChiTietDHM() {
+        $sql = "SELECT * FROM chitietdonhangmua";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
         return $result;
     }
     public function find($id)

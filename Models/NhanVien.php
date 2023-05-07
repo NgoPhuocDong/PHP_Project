@@ -5,10 +5,23 @@ class NhanVien{
     public function __construct(){
         $this->db = new Database();
     }
-    public function DanhSach()
+    public function DanhSach($item,$offset)
     {
-        $sql = "SELECT * FROM nhanvien";
+        $sql = "SELECT * FROM nhanvien LIMIT ".$item." OFFSET ".$offset;
         $result = $this->db->select($sql);
+        return $result;
+    }
+    public function TongNhanVien() {
+        $sql = "SELECT * FROM nhanvien";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
+        return $result;
+    }
+
+    public function TongNhanVienTim($tennhanvien) {
+        $sql = "SELECT * FROM nhanvien WHERE tennhanvien LIKE '%$tennhanvien%'";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
         return $result;
     }
     public function find($id)
@@ -20,10 +33,17 @@ class NhanVien{
         $result = $this->db->select($sql);
         return $result;
     }
+    // public function TimKiem($tennhanvien)
+    // {
+    //     $sql = "SELECT * FROM nhanvien
+    //     WHERE TenNhanVien LIKE '%$tennhanvien%'";
+    //     $result = $this->db->select($sql);
+    //     return $result;
+    // }
     public function TimKiem($tennhanvien)
     {
         $sql = "SELECT * FROM nhanvien
-        WHERE TenNhanVien LIKE '%$tennhanvien%'";
+        WHERE ID = '$tennhanvien'";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -50,12 +70,12 @@ class NhanVien{
     public function CapNhat($id,$tennhanvien,$gioitinh,$ngaysinh,$sodienthoai,$email,$diachi)
     {
         $sql = "UPDATE nhanvien SET
-        tennhanvien = '$tennhanvien',
-        gioitinh = '$gioitinh',
-        ngaysinh = '$ngaysinh',
-        sodienthoai = '$sodienthoai',
-        email = '$email',
-        diachi = '$diachi'
+        TenNhanVien = '$tennhanvien',
+        GioiTinh = '$gioitinh',
+        NgaySinh = '$ngaysinh',
+        SoDienThoai = '$sodienthoai',
+        Email = '$email',
+        DiaChi = '$diachi'
         WHERE id = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
@@ -64,69 +84,10 @@ class NhanVien{
             return false;
         }
     }
-    // public function CapNhatTenKhachHang($id,$tenkhachhang)
-    // {
-    //     $sql = "UPDATE khachhang SET tenkhachhang = '$tenkhachhang' WHERE id = '$id'";
-    //     $result = $this->db->execute($sql);
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    // public function CapNhatGioiTinh($id,$gioitinh)
-    // {
-    //     $sql = "UPDATE khachhang SET gioitinh = '$gioitinh' WHERE id = '$id'";
-    //     $result = $this->db->execute($sql);
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    // public function CapNhatNgaySinh($id,$ngaysinh)
-    // {
-    //     $sql = "UPDATE khachhang SET ngaysinh = '$ngaysinh' WHERE id = '$id'";
-    //     $result = $this->db->execute($sql);
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    // public function CapNhatSoDienThoai($id,$sodienthoai)
-    // {
-    //     $sql = "UPDATE khachhang SET sodienthoai = '$sodienthoai' WHERE id = '$id'";
-    //     $result = $this->db->execute($sql);
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    // public function CapNhatEmail($id,$email)
-    // {
-    //     $sql = "UPDATE khachhang SET email = '$email' WHERE id = '$id'";
-    //     $result = $this->db->execute($sql);
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    // public function CapNhatDiaChi($id,$diachi)
-    // {
-    //     $sql = "UPDATE khachhang SET diachi = '$diachi' WHERE id = '$id'";
-    //     $result = $this->db->execute($sql);
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+  
     public function Xoa($id)
     {
-        $sql = "DELETE FROM nhanvien WHERE id = '$id'";
+        $sql = "DELETE FROM nhanvien WHERE ID = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;

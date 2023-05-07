@@ -8,8 +8,10 @@ class changePassword{
 
     public function CapNhatMatKhau($email,$password)
     {
-        $test = md5($password);
-        $sql = "UPDATE taikhoanadmin SET password = '$test' WHERE email = '$email'";
+        $sql = "UPDATE taikhoannhanvien as tk
+        JOIN nhanvien as nv ON tk.IDNhanVien = nv.ID
+        SET tk.MatKhau = '$test'
+        WHERE nv.Email = '$email'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -18,5 +20,19 @@ class changePassword{
         }
     }
 
+    public function CapNhatMatKhau1($username,$password)
+    {
+        // $test = md5($password);
+        $test = $password;
+        $sql = "UPDATE taikhoannhanvien as tknv SET
+        MatKhau = '$password'
+        WHERE tknv.TenDangNhap = '$username' ";       
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
    
 }

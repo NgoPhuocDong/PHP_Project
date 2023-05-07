@@ -2,13 +2,23 @@
     include "./Views/Layout/header.php";
     echo "<title>Danh sách đơn hàng mua</title>";
 ?>
-
+<style>
+      .return {
+        text-align: right;
+        margin: 10px 20px 0 0;
+        display: block;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
+</style>
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Đơn hàng mua</span>
-        <a href="../DonHangMua/DanhSach">Danh sách</a>
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <a class="title-non_active" href="../DonHangMua/DanhSach">Danh sách</a>
     </span>
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
+    <span class="title-active">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Chi tiết
     </span>
 
@@ -69,6 +79,7 @@
             <th>Số lượng</th>
             <th>Đơn giá áp dụng</th>
             <th>Thành tiền</th>
+            <th>Action</th>
         </tr>
         <?php 
         if(!empty($result)):
@@ -96,7 +107,12 @@
             <?php endforeach; endif; ?>
     </table>
 </div>
-
+<?php
+        include("Views/ChiTietDonHangMua/PhanTrang.php");
+    ?>
+        <?php if(isset($_GET['id'])) {?>
+        <a class="return" href="../DonHangMua/DanhSach">Quay lại danh sách đơn hàng mua</a>
+        <?php }?>
 <?php
     include "./Views/Layout/footer.php";
 ?>

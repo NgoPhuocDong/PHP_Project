@@ -194,10 +194,16 @@ input[type="text"], input[type="password"] {
     echo "
     <script>
 		function togglePassword() {
+            var iElement = document.querySelector('i');
 			var passwordInput = document.getElementById('password');
 			if (passwordInput.type === 'password') {
+                iElement.classList.remove('fa-eye');
+                iElement.classList.add('fa-eye-slash');
+                
 				passwordInput.type = 'text';
 			} else {
+                iElement.classList.remove('fa-eye-slash');
+                iElement.classList.add('fa-eye');
 				passwordInput.type = 'password';
 			}
 		}

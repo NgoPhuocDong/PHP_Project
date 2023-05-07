@@ -12,8 +12,13 @@ class NguonHangController{
     
     public function DanhSach()
     {
+        $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 6;
+        $current =!empty($_GET['page']) ? $_GET['page'] : 1; // trang hien tai
+        $offset = ($current - 1) * $item;
         if(isset($_GET['id'])) {
             $id = $_GET['id'];
+            $tongsp = $this->model->TongNguonHangTim($id);
+            $totalPage = ceil($tongsp / $item);
             //gọi method TimKiem bên Models
             $result  = $this->model->TimKiem($id);
             if($_GET['id']==null){
@@ -21,8 +26,10 @@ class NguonHangController{
             }
         }
         else{
+            $tongsp = $this->model->TongNguonHang();
+            $totalPage = ceil($tongsp / $item);
             //gọi method DanhSach bên Models
-            $result  = $this->model->GetDaTa();
+            $result  = $this->model->GetDaTa($item,$offset);
         }
         //gọi và show dữ liệu ra view
         include 'Views/NguonHang/DanhSach.php';
@@ -31,8 +38,8 @@ class NguonHangController{
 
     public function ThemMoi(){
         if (isset($_POST['submit'])) {
-            $create = $this->model->ThemMoi($_POST['tennguonhang'], $_POST['gioitinh']
-            ,$_POST['ngaysinh'],$_POST['sodienthoai'],$_POST['email'],$_POST['diachi']);
+            $create = $this->model->ThemMoi($_POST['tennguonhang'], $_POST['sodienthoai']
+            ,$_POST['email'],$_POST['diachi'],$_POST['ngaytao'],$_POST['nguoidaidien']);
             if ($create) {
                 header('Location: ./DanhSach');
             }
@@ -49,45 +56,15 @@ class NguonHangController{
             
             if (isset($_POST['submit'])) {
                 $update = $this->model->CapNhat($id,$_POST['tennguonhang'],
-                                                    $_POST['gioitinh'],
-                                                    $_POST['ngaysinh'],
                                                     $_POST['sodienthoai'],
                                                     $_POST['email'],
-                                                    $_POST['diachi']);
+                                                    $_POST['diachi'],
+                                                    $_POST['ngaytao'],
+                                                    $_POST['nguoidaidien']);
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
             }
-            // if (isset($_POST['submit'])) {
-            //     $update = $this->model->CapNhatGioiTinh($id,$_POST['gioitinh']);
-            //     if ($update) {
-            //         header('Location: ./DanhSach');
-            //     }
-            // }
-            // if (isset($_POST['submit'])) {
-            //     $update = $this->model->CapNhatNgaySinh($id,$_POST['ngaysinh']);
-            //     if ($update) {
-            //         header('Location: ./DanhSach');
-            //     }
-            // }
-            // if (isset($_POST['submit'])) {
-            //     $update = $this->model->CapNhatSoDienThoai($id,$_POST['sodienthoai']);
-            //     if ($update) {
-            //         header('Location: ./DanhSach');
-            //     }
-            // }
-            // if (isset($_POST['submit'])) {
-            //     $update = $this->model->CapNhatEmail($id,$_POST['email']);
-            //     if ($update) {
-            //         header('Location: ./DanhSach');
-            //     }
-            // }
-            // if (isset($_POST['submit'])) {
-            //     $update = $this->model->CapNhatDiaChi($id,$_POST['diachi']);
-            //     if ($update) {
-            //         header('Location: ./DanhSach');
-            //     }
-            // }
         }
         include 'Views/NguonHang/CapNhat.php';
         return $dataUpdate;

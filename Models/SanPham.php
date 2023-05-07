@@ -7,12 +7,27 @@ class SanPham{
     public function __construct(){
         $this->db = new Database();
     }
-    public function DanhSach()
+    public function DanhSach($item,$offset)
     {
         $sql = "SELECT sp.ID,sp.idLoaiSanPham,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
         FROM sanpham as sp,loaisanpham as lsp
-        WHERE sp.idLoaiSanPham = lsp.ID"; 
+        WHERE sp.idLoaiSanPham = lsp.ID LIMIT ".$item." OFFSET ".$offset;
         $result = $this->db->select($sql);
+        return $result;
+    }
+
+    
+    public function TongSanPham() {
+        $sql = "SELECT * FROM sanpham";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
+        return $result;
+    }
+
+    public function TongSanPhamTim($tensanpham) {
+        $sql = "SELECT * FROM sanpham WHERE tensanpham LIKE '%$tensanpham%'";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
         return $result;
     }
     
@@ -31,10 +46,10 @@ class SanPham{
         FROM sanpham as sp,loaisanpham as lsp
         WHERE sp.idLoaiSanPham = lsp.ID 
         AND TenSanPham LIKE '%$tensanpham%'";
+       
         $result = $this->db->select($sql);
         return $result;
     }
-    
     public function ThemMoi($idloaisanpham, $tensanpham, $gia, $mota, $soluong, $ngaysanxuat, $hinhanh)
     {
         $sql = "INSERT INTO sanpham(idLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh) 
@@ -79,7 +94,7 @@ class SanPham{
 
     public function Xoa($id)
     {
-        $sql = "DELETE FROM sanpham WHERE id = '$id'";
+        $sql = "DELETE FROM sanpham WHERE ID = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -88,18 +103,7 @@ class SanPham{
         }
     }
 
-    }
-    // public function TimKiem()
-    // {
-    //     $search = mysqli_real_escape_string($conn, $_POST['search']);
-    //     $sql = "SELECT * FROM sanpham WHERE TenSanPham LIKE '%$search%'";
-    //     $result = $this->db->execute($sql);
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-
+}
+   
    
 

@@ -6,10 +6,12 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Đơn hàng mua</span>
     <span>
-        <a href="../DonHangMua/DanhSach">Danh sách</a>
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <a class="title-non_active" href="../DonHangMua/DanhSach">Danh sách</a>
     </span>
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
+   
+    <span class="title-active">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Cập nhật
     </span>
     <hr>
@@ -29,7 +31,7 @@
 
     
         <label class="h6">Tổng tiền</label>
-        <input type="text" value="<?= number_format($row['TongTien'],0,'.', '.')?>"name="tongtien" class="form-control"><br>
+        <input type="text" value="<?= $row['TongTien']?>"name="tongtien" class="form-control"><br>
 
         <hr>
         <input type="submit" value="Update" name="submit" class="btn btn-primary">

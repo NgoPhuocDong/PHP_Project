@@ -1,14 +1,24 @@
 <?php
     include "./Views/Layout/header.php";
     echo "<title>Danh sách đơn hàng bán</title>";
+    include("Controllers/KiemTraQuyen.php");
 ?>
-
+<style>
+    
+    .return {
+        text-align: right;
+        margin: 10px 20px 0 0;
+        display: block;
+        font-weight: bold;
+        font-size: 18px;
+    }
+</style>
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Đơn hàng bán</span>
-    <span>
+    <span class="title-active">
+    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Danh sách
     </span>
-
 </div>
 <hr>
 <div class="">
@@ -28,7 +38,9 @@
                 <div style="float: right;">
                     <button class="btn btn-danger">Import</button>
                     <button class="btn btn-success">Export</button>
+                    <?php if(check('../DonHangBan/ThemMoi')) { ?>
                     <a href="../DonHangBan/ThemMoi" class="btn btn-primary">Thêm mới</a>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -45,10 +57,14 @@
             <th>Tổng tiền</th>
             <th>Người lập phiếu</th>
             <th>trạng thái</th>
+            <th>Action</th>
         </tr>
         <?php 
+        $i = 0;
         if(!empty($result)):
-            $i = 0;
+            if (isset($_GET['page']) && $_GET['page'] == $current || isset($_GET['id'])) {
+                $i = ($current * $item) - $item;
+        } 
             foreach ($result as $row) : extract($row);$i++; ?> 
             <tr>
                 <td><?= $i ?></td>
@@ -57,10 +73,10 @@
                     <?= $row['TenKhachHang'] ?>
                 </td>
                 <td>
-                    <?= date('d-m-Y',strtotime($row['NgayLap'])) ?>
+                    <?= $row['NgayLap'] ?>
                 </td>
                 <td>
-                    <?= number_format($row['TongTien'],0,'.', '.') ?>
+                    <?= $row['TongTien'] ?>
                 </td>
                 <td>
                     <?= $row['TenNhanVien'] ?>
@@ -70,13 +86,25 @@
                 </td>
                 <td>
                     <a href="../ChiTietDonHangBan/DanhSach&id=<?=$row['ID']?>">Chi tiết</a> | 
+                    <?php if(check('../DonHangBan/CapNhat&id='.$row['ID'])) { ?>
                     <a href="../DonHangBan/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
+                    <?php } ?>
+
+                    <?php if(check('../DonHangBan/Xoa&id='.$row['ID'])) { ?>
                     <a href="../DonHangBan/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
+                    <?php } ?>
                 </td>
             </tr>
             <?php endforeach; endif; ?>
     </table>
 </div>
+<?php
+        include("Views/DonHangBan/PhanTrang.php");
+    ?>
+        <?php if(isset($_GET['id'])) {?>
+        <a class="return" href="../DonHangBan/DanhSach">Quay lại danh sách đơn hàng bán</a>
+        <?php }?>
+    
 
 <?php
     include "./Views/Layout/footer.php";

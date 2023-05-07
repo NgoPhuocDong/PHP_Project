@@ -5,13 +5,23 @@ class NguonHang{
     public function __construct(){
         $this->db = new Database();
     }
-    public function NguonHang(){
-        
-    }
-    public function GetData()
+    public function GetData($item,$offset)
     {
-        $sql = "SELECT * FROM nguonhang";
+        $sql = "SELECT * FROM nguonhang LIMIT ".$item." OFFSET ".$offset;
         $result = $this->db->select($sql);
+        return $result;
+    }
+    public function TongNguonHang() {
+        $sql = "SELECT * FROM nguonhang";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
+        return $result;
+    }
+
+    public function TongNguonHangTim($tennguonhang) {
+        $sql = "SELECT * FROM nguonhang WHERE TenNguonHang LIKE '%$tennguonhang%'";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
         return $result;
     }
     public function TimKiem($id)
@@ -35,12 +45,12 @@ class NguonHang{
     public function CapNhat($id,$tennguonhang, $sodienthoai, $email, $diachi, $ngaytao, $nguoidaidien)
     {
         $sql = "UPDATE nguonhang SET
-        tennguonhang = '$tennguonhang',
-        sodienthoai = '$sodienthoai',
-        email = '$email',
-        diachi = '$diachi'
-        ngaytao = '$ngaytao',
-        nguoidaidien = '$nguoidaidien',
+        TenNguonHang = '$tennguonhang',
+        SoDienThoai = '$sodienthoai',
+        Email = '$email',
+        DiaChi = '$diachi',
+        NgayTao = '$ngaytao',
+        NguoiDaiDien = '$nguoidaidien'
         WHERE id = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {

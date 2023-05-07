@@ -4,9 +4,14 @@
 ?>
 
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2"> Cập nhật thông tin nhân viên</span>
+    <span class="h3 m-2">Nhân viên</span>
     <span>
-        <a href="../NhanVien/DanhSach" ><i class="fa fa-angle-double-left" aria-hidden="true"></i>Danh sách</a>
+    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <a class="title-non_active"href="../NhanVien/DanhSach" >Danh sách</a>
+    </span>
+    <span class="title-active">
+    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+    Cập nhật
     </span>
     <hr>
     <?php foreach ($dataUpdate as $row) : extract($row); ?>
@@ -16,8 +21,8 @@
 
         <label class="h6">Giới tính</label>
         <select class="form-select" name="gioitinh">
-            <option value="Nam">Nam</option>
-            <option value="Nữ">Nữ</option>
+            <option value="1">Nam</option>
+            <option value="0">Nữ</option>
         </select>
 
         <label class="h6">Ngày sinh</label>

@@ -16,7 +16,7 @@ class ChiTietDonHangBanController{
     }
 
     public function ThemMoi(){
-        $result = $this->sanpham->DanhSach();
+        $result = $this->sanpham->DanhSach($this->sanpham->TongSanPham(),0);
         if (isset($_POST['submit'])) {
             $create = $this->model->ThemMoi($_POST['iddonhangban'],$_POST['idsanpham'],  $_POST['soluong'],$_POST['dongiaapdung']);
             if ($create) {
@@ -28,11 +28,16 @@ class ChiTietDonHangBanController{
     }
 
     public function DanhSach(){
+        $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
+        $current = !empty($_GET['page']) ? $_GET['page'] : 1; // trang hien tai
+        $offset = ($current - 1) * $item;
+        $tongsp = $this->model->TongChiTietDHB();
+        $totalPage = ceil($tongsp / $item);
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $table = 'donhangban';
             //lấy dữ liệu từ ChiTietDonHangBan
-            $result = $this->model->DanhSach($id);
+            $result = $this->model->DanhSach($id,$item,$offset);
             $resultDonHang = $this->donhangban->ChiTiet($id);
             //Truy vấn dữ liệu từ DonHangBan
             //$resultDonHang = $this->db->find($table,$id);
@@ -41,7 +46,7 @@ class ChiTietDonHangBanController{
         return array($result, $resultDonHang);
     }
     public function CapNhat(){
-        $listProduct = $this->sanpham->DanhSach();
+        $listProduct = $this->sanpham->DanhSach($this->sanpham->TongSanPham(),0);
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             //lấy dữ liệu cần cập nhật

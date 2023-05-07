@@ -6,10 +6,11 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Nguồn hàng</span>
     <span>
-        <a href="../NguonHang/DanhSach" >Danh sách</a>
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <a class="title-non_active" href="../NguonHang/DanhSach" style="text-decoration: none; color: #000000;" >Danh sách</a>
     </span>
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span class="text-primary">
+    <span class="title-active">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Thêm mới
     </span>
     <hr>
@@ -27,7 +28,6 @@
         <input type="date" value=""name="ngaytao" class="form-control"><br>
         <label class="h6">Người đại diện</label>
         <input type="text" value=""name="nguoidaidien" class="form-control"><br>
-
         <hr>
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">
     </form>

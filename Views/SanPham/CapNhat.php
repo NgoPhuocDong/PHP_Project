@@ -6,10 +6,11 @@
 <div class="col-md-12 mt-2">
     <span class="h3 m-2">Sản Phẩm</span>
     <span>
-        <a href="../SanPham/DanhSach">Danh sách</a>
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <a class="title-non_active" href="../SanPham/DanhSach">Danh sách</a>
     </span>
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <span>
+    <span class="title-active">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         Cập nhật
     </span>
     <hr>
@@ -28,7 +29,7 @@
         </select>
 
         <label class="h6">Giá</label>
-        <input type="text" value="<?= number_format($row['Gia'],0,'.', '.')?>"name="gia" class="form-control"><br>
+        <input type="text" value="<?= $row['Gia']?>"name="gia" class="form-control"><br>
 
         <label class="h6">Mô tả</label> <br>
         <textarea rows="9" cols="70" name="mota" placeholder="Nhập mô tả..."><?= $row['MoTa']?></textarea><br>

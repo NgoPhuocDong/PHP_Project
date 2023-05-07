@@ -15,25 +15,31 @@ class SanPhamController{
     
     public function DanhSach()
     {
+        $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 6;
+        $current =!empty($_GET['page']) ? $_GET['page'] : 1; // trang hien tai
+        $offset = ($current - 1) * $item;
         if(isset($_GET['tensanpham'])) {
             $tensanpham = $_GET['tensanpham'];
             //gọi method TimKiem bên Models
+            $tongsp = $this->model->TongSanPhamTim($tensanpham);
+            $totalPage = ceil($tongsp / $item);
             $result  = $this->model->TimKiem($tensanpham);
+            
             if($_GET['tensanpham']==null){
                 header('Location: ./DanhSach');
             }
         }
-        
         else{
+            $tongsp = $this->model->TongSanPham();
+            $totalPage = ceil($tongsp / $item);
             //gọi method DanhSach bên Models
-            $result  = $this->model->DanhSach();
+            $result  = $this->model->DanhSach($item,$offset);
         }
-    
         //gọi và show dữ liệu ra view
-        include 'Views/SanPham/DanhSach.php';
+        include("Views/SanPham/DanhSach.php");
         return $result;
-    
     }
+
     public function ChiTiet(){
         
         if (isset($_GET['id'])) {
@@ -43,6 +49,7 @@ class SanPhamController{
         require_once('Views/SanPham/ChiTiet.php');
         return $detail;
     }
+
     public function ThemMoi(){
         $result = $this->loaisanpham->DanhSach();
         if (isset($_POST['submit'])) {
@@ -122,17 +129,5 @@ class SanPhamController{
         }
     }
 }
-
-    // public function TimKiem(){
-    //    // Lấy từ khóa tìm kiếm từ người dùng
-    // $search = isset($_GET['search']) ? $_GET['search'] : '';
-
-    // // Gọi model để lấy dữ liệu sản phẩm
-    // $products = ProductModel::searchProducts($search);
-
-    // // Gọi view để hiển thị dữ liệu sản phẩm lên màn hình
-    // include 'views/search.php';
-    // }
-
 
 
