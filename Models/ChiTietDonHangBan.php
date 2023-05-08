@@ -32,20 +32,7 @@ class ChiTietDonHangBan{
         return $result;
     }
 
-    public function ThemMoi($iddonhangban,$idsanpham, $soluong, $dongiaapdung)
-    {
-        $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
-        $sql = "INSERT INTO chitietdonhangban (idDonHangBan,idSanPham,SoLuong,DonGiaApDung,ThanhTien)
-                VALUES ($iddonhangban,'$idsanpham', '$soluong', '$dongiaapdung', '$thanhtien')";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
-            return true;
-        } else {
-            
-            return false;
-        }
-    }
+    
     public function CapNhatTongTien($iddonhangban)
     {
         $sql = "UPDATE donhangban
@@ -57,6 +44,35 @@ class ChiTietDonHangBan{
         if ($result) {
             return true;
         } else {
+            return false;
+        }
+    }
+    public function CapNhatSoLuong($idsanpham)
+    {
+        $sql = "UPDATE sanpham
+        SET SoLuong = (SELECT SoLuong 
+                         FROM ChiTietDonHangBan
+                         WHERE idSanPham = '$idsanpham')";
+        
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function ThemMoi($iddonhangban,$idsanpham, $soluong, $dongiaapdung)
+    {
+        $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
+        $sql = "INSERT INTO chitietdonhangban (idDonHangBan,idSanPham,SoLuong,DonGiaApDung,ThanhTien)
+                VALUES ($iddonhangban,'$idsanpham', '$soluong', '$dongiaapdung', '$thanhtien')";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            //$capnhattongtien = $this->CapNhatTongTien($iddonhangban);
+            $capnhatsoluong = $this->CapNhatSoLuong($idsanpham);
+            return true;
+        } else {
+            
             return false;
         }
     }
@@ -74,6 +90,7 @@ class ChiTietDonHangBan{
         $result = $this->db->execute($sql);
         if ($result) {
             $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
+            // $capnhatsoluong = $this->CapNhatSoLuong($idsanpham);
             return true;
         } else {
             return false;
