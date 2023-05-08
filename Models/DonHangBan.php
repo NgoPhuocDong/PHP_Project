@@ -27,9 +27,12 @@ class DonHangBan{
 
     public function TongTienDonHangBan() {
         $sql = "SELECT SUM(TongTien) FROM donhangban";
-        $result = mysqli_query($this->db->conn, $sql);
-        $result = $result->num_rows;
-        return $result;
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function ChiTiet($id)

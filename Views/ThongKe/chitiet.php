@@ -20,18 +20,13 @@
     </div>
     <div class="card col-ml-25 bg-warning text-white">
         <h4 class="card-item">Doanh Thu</h4>
-        <h2><?=$tongtiendonhangban?></h2>
+        <h2><?= print_r($tongtiendonhangban)?></h2>
     </div>
     <div class="card col-ml-25 bg-success text-white">
         <h4 class="card-item">Lợi nhuận</h4>
         <h2><?=$tongsanpham?></h2>
     </div>
     <h2>Đồ thị</h2>
-    
-    <?php foreach($thongkedonhangban as $row) : extract($row) ?>
-    <?= $row['NgayLap']."," ?>
-    <?php endforeach;?>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <body>
 
@@ -63,7 +58,7 @@ new Chart("myChart", {
     legend: {display: false},
     title: {
       display: true,
-      text: "Thống kê đơn hàng bán"
+      text: "Thống kê doanh thu"
     }
   }
 });
