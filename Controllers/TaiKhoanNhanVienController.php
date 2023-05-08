@@ -9,6 +9,9 @@ class TaiKhoanNhanVienController{
     private $model;
     private $db;
     private $tennhanvien;
+    private $quyen;
+    private $loaiquyen;
+    private $phanquyen;
     
     public function __construct(){
         $this->model = new TaiKhoanNhanVien();
@@ -47,7 +50,7 @@ class TaiKhoanNhanVienController{
     
 
     public function ThemMoi(){
-        $result = $this->tennhanvien->DanhSach();
+        $result = $this->tennhanvien->DanhSach(100,0);
         if (isset($_POST['submit'])) {
             $file_name = $_FILES['anhdaidien']['name'];
             $file_tmp = $_FILES['anhdaidien']['tmp_name'];

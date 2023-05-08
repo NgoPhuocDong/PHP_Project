@@ -8,7 +8,7 @@
 	}
 
 	a.btn.btn-dark.dropdown-toggle {
-		width: 253px;
+		width: 220px;
 		position: relative;
 		margin-top: 15px;
 	}
@@ -76,7 +76,7 @@
 
 .bbb {
 	display: inline-block;
-	width: 180px;
+	width: 145px;
 	text-align: left;
 	margin-left: 5px;
 }
@@ -205,7 +205,7 @@
 				}
 
 				.collapse > a {
-					width: 265px;
+					width: 233px;
 					display: inline-block;
 					margin-left: -45px;
 				}

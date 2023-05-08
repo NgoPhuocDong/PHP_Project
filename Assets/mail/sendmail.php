@@ -27,8 +27,8 @@ try {
     //Recipients
     $mail->setFrom('th4796681@gmail.com', 'Mailer');
     $mail->addAddress($tomail, 'HP');     // Add a recipient
-    $mail->addAddress('phucn1435@gmail.com', 'HP');     // Add a recipient
-    $mail->addAddress('quoctai1412@gmail.com', 'HP');
+    //$mail->addAddress('phucn1435@gmail.com', 'HP');     // Add a recipient
+    //$mail->addAddress('quoctai1412@gmail.com', 'HP');
     // $mail->addReplyTo('info@example.com', 'Information');
     $mail->addCC('th4796681@gmail.com');
     // $mail->addBCC('bcc@example.com');
