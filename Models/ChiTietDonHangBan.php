@@ -68,8 +68,8 @@ class ChiTietDonHangBan{
                 VALUES ($iddonhangban,'$idsanpham', '$soluong', '$dongiaapdung', '$thanhtien')";
         $result = $this->db->execute($sql);
         if ($result) {
-            //$capnhattongtien = $this->CapNhatTongTien($iddonhangban);
-            $capnhatsoluong = $this->CapNhatSoLuong($idsanpham);
+            $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
+            //$capnhatsoluong = $this->CapNhatSoLuong($idsanpham);
             return true;
         } else {
             

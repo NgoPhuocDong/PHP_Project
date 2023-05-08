@@ -17,8 +17,9 @@ class ThongKeController{
         $tongsanpham= $this->sanpham->TongSanPham();
         $tongdonhangban = $this->donhangban->TongDonHangBan();
         $tongtiendonhangban = $this->donhangban->TongTienDonHangBan();
+        $thongkedonhangban = $this->donhangban->ThongKeDonHangBan();
         include 'Views/ThongKe/chitiet.php';
-        return array($tongsanpham,$tongdonhangban,$tongtiendonhangban);
+        return array($tongsanpham,$tongdonhangban,$tongtiendonhangban,$thongkedonhangban);
     }
 
 }
