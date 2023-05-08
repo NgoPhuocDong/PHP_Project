@@ -284,6 +284,15 @@ include("Controllers/KiemTraQuyen.php");
 							<?php } ?>
 						</ul>
 		    		</li>
+
+					<li data-bs-toggle="">
+						<?php if (check('../ThongKe/ChiTiet')) { ?>
+		    			<a href="../ThongKe/ChiTiet" class="btn btn-dark dropdown-toggle">
+		    			<span class="aaa"><i class="fa fa-bar-chart" aria-hidden="true" style="color: white;"></i></span>
+		    			<span class="bbb">Thống kê</span></a>
+						<?php } ?>	
+		    		</li>
+					
 		    	</ul>
 		    </div>
 			<div class="col-md-10">

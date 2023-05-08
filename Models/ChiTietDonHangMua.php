@@ -39,6 +39,7 @@ class ChiTietDonHangMua{
         $result = $this->db->execute($sql);
         if ($result) {
             $capnhattongtien = $this->CapNhatTongTien($iddonhangmua);
+            //$capnhatsoluong = $this->CapNhatSoLuong($idsanpham);
             return true;
         } else {
             
@@ -52,6 +53,20 @@ class ChiTietDonHangMua{
                          FROM ChiTietDonHangMua 
                          WHERE idDonHangMua = '$iddonhangmua') 
         WHERE ID = '$iddonhangmua'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function CapNhatSoLuong($idsanpham)
+    {
+        $sql = "UPDATE SanPham
+        SET SoLuong = SoLuong + (SELECT soluong 
+                         FROM ChiTietDonHangMua
+                         WHERE idSanPham = '$idsanpham') 
+        WHERE ID = '$idsanpham'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -73,6 +88,7 @@ class ChiTietDonHangMua{
         $result = $this->db->execute($sql);
         if ($result) {
             $capnhattongtien = $this->CapNhatTongTien($iddonhangmua);
+            // $capnhatsoluong = $this->CapNhatSoLuong($idsanpham);
             return true;
         } else {
             return false;
