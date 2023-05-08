@@ -24,6 +24,13 @@ class DonHangBan{
         return $result;
     }
 
+    public function TongTienDonHangBan() {
+        $sql = "SELECT SUM(TongTien) FROM donhangban";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
+        return $result;
+    }
+
     public function ChiTiet($id)
     {
         $sql = "SELECT dh.ID,kh.TenKhachHang,NgayLap,nv.TenNhanVien,TongTien,TenTrangThai

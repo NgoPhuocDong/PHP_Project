@@ -59,6 +59,22 @@ class ChiTietDonHangMua{
             return false;
         }
     }
+    public function CapNhatSoLuong($idsanpham)
+    {
+        $sql = "UPDATE SanPham
+        SET SoLuong += (SELECT SUM(soluong) 
+                         FROM ChiTietDonHangMua as ct, DonHangBan as dh
+                         WHERE ct.idSanPham = '$idsanpham'
+                         AND ct.idDonHangBan = dh.ID
+                         AND dh.idTrangThai = 3) 
+        WHERE ID = '$idsanpham'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function CapNhat($id,$iddonhangmua,$idsanpham,$soluong,$dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
@@ -73,6 +89,7 @@ class ChiTietDonHangMua{
         $result = $this->db->execute($sql);
         if ($result) {
             $capnhattongtien = $this->CapNhatTongTien($iddonhangmua);
+            $capnhatsoluong = $this->CapNhatSoLuong($idsanpham);
             return true;
         } else {
             return false;

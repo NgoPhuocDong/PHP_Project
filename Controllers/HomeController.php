@@ -42,5 +42,6 @@ class HomeController{
     public function showPw(){
         header("Location: ./pageShowPw");
     }
+    
 }
 ?>
