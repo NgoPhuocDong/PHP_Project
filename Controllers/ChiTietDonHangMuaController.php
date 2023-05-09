@@ -18,7 +18,10 @@ class ChiTietDonHangMuaController{
     public function ThemMoi(){
         $result = $this->sanpham->DanhSach($this->sanpham->TongSanPham(),0);
         if (isset($_POST['submit'])) {
-            $create = $this->model->ThemMoi($_POST['iddonhangmua'],$_POST['idsanpham'],  $_POST['soluong'],$_POST['dongiaapdung']);
+            $create = $this->model->ThemMoi($_POST['iddonhangmua'],
+                                            $_POST['idsanpham'],
+                                            $_POST['soluong'],
+                                            $_POST['dongiaapdung']);
             if ($create) {
                 header("Location: ./DanhSach&id=$_POST[iddonhangmua]");
             }
@@ -55,8 +58,8 @@ class ChiTietDonHangMuaController{
                 $update = $this->model->CapNhat($id,$_POST['iddonhangmua'],
                                                     $_POST['idsanpham'],
                                                     $_POST['soluong'],
-                                                    $_POST['dongiaapdung'],
-                                                    $_POST['thanhtien']);
+                                                    $_POST['dongiaapdung']);
+                                                    // $_POST['thanhtien']);
                 if ($update) {
                     header("Location: ./DanhSach&id=$_POST[iddonhangmua]");
                 }
