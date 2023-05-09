@@ -206,7 +206,7 @@ include("Controllers/KiemTraQuyen.php");
 						<?php } ?>
 		    			<ul id="collapse2" class="collapse text-white-50" data-bs-parent="#accordion">
 							<?php if (check('../DonHangMua/DanhSach')) {  ?>
-							<a href="../DonHangMua/DanhSach"><li style="margin: 10px 0 0 13px;"><span>Đơn hàng mua</span></li></a>
+							<a href="../DonHangMua/DanhSach"><li style="margin: 10px 0 0 13px;"><span>Đơn hàng nhập</span></li></a>
 							<?php } ?>
 							<?php if (check('../NguonHang/DanhSach')) {?>
 						    <a href="../NguonHang/DanhSach"><li style="margin: 10px 0 0 13px;"><span>Nhà cung cấp</span></li></a>

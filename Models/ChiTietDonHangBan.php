@@ -62,6 +62,21 @@ class ChiTietDonHangBan{
             return false;
         }
     }
+    public function SoLuongBanDau($id,$idsanpham)
+    {
+        $sql = "UPDATE SanPham
+        SET SoLuong = SoLuong + (SELECT soluong 
+                         FROM ChiTietDonHangBan
+                         WHERE idSanPham = '$idsanpham'
+                         AND ID =  '$id') 
+        WHERE ID = '$idsanpham'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function ThemMoi($iddonhangban,$idsanpham, $soluong, $dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
@@ -82,7 +97,7 @@ class ChiTietDonHangBan{
     public function CapNhat($id,$iddonhangban,$idsanpham,$soluong,$dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
-        //$capnhattongtien = $this->CapNhatTongTien($iddonhangban);
+        $soluongbandau = $this->SoLuongBanDau($id,$idsanpham);
         $sql = "UPDATE chitietdonhangban SET
         idsanpham = '$idsanpham',
         soluong = '$soluong',
@@ -93,7 +108,7 @@ class ChiTietDonHangBan{
         $result = $this->db->execute($sql);
         if ($result) {
             $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
-            // $capnhatsoluong = $this->CapNhatSoLuong($idsanpham);
+            $capnhatsoluong = $this->CapNhatSoLuong($id,$idsanpham);
             return true;
         } else {
             return false;

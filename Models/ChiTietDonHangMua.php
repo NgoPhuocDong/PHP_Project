@@ -43,7 +43,7 @@ class ChiTietDonHangMua{
 
         //$result = $this->db->execute($sql);
         $capnhattongtien = $this->CapNhatTongTien($iddonhangmua);
-        $capnhatsoluong = $this->CapNhatSoLuong($idsanpham);
+        $capnhatsoluong = $this->CapNhatSoLuong($id,$idsanpham);
         if ($result) {
             
             return array($capnhattongtien,$capnhatsoluong);
@@ -66,28 +66,13 @@ class ChiTietDonHangMua{
             return false;
         }
     }
-    //ĐỪNG XÓA HÀM NÀY !
-    // public function CapNhatSoLuong($id,$idsanpham)
-    // {
-    //     $sql = "UPDATE SanPham
-    //     SET SoLuong = SoLuong + (SELECT soluong 
-    //                      FROM ChiTietDonHangMua
-    //                      WHERE idSanPham = '$idsanpham'
-    //                      AND ID =  '$id') 
-    //     WHERE ID = '$idsanpham'";
-    //     $result = $this->db->execute($sql);
-    //     if ($result) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    public function CapNhatSoLuong($idsanpham)
+    public function CapNhatSoLuong($id,$idsanpham)
     {
         $sql = "UPDATE SanPham
-        SET SoLuong = (SELECT SUM(soluong) 
+        SET SoLuong = SoLuong + (SELECT soluong 
                          FROM ChiTietDonHangMua
-                         WHERE idSanPham = '$idsanpham') 
+                         WHERE idSanPham = '$idsanpham'
+                         AND ID =  '$id') 
         WHERE ID = '$idsanpham'";
         $result = $this->db->execute($sql);
         if ($result) {
@@ -96,10 +81,41 @@ class ChiTietDonHangMua{
             return false;
         }
     }
+    public function SoLuongBanDau($id,$idsanpham)
+    {
+        $sql = "UPDATE SanPham
+        SET SoLuong = SoLuong - (SELECT soluong 
+                         FROM ChiTietDonHangMua
+                         WHERE idSanPham = '$idsanpham'
+                         AND ID =  '$id') 
+        WHERE ID = '$idsanpham'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //ĐỪNG XÓA HÀM NÀY !
+    // public function CapNhatSoLuong($idsanpham)
+    // {
+    //     $sql = "UPDATE SanPham
+    //     SET SoLuong = (SELECT SUM(soluong) 
+    //                      FROM ChiTietDonHangMua
+    //                      WHERE idSanPham = '$idsanpham') 
+    //     WHERE ID = '$idsanpham'";
+    //     $result = $this->db->execute($sql);
+    //     if ($result) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
     
     public function CapNhat($id,$iddonhangmua,$idsanpham,$soluong,$dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
+        $soluongbandau = $this->SoLuongBanDau($id,$idsanpham);
         $sql = "UPDATE chitietdonhangmua SET
         idsanpham = '$idsanpham',
         soluong = '$soluong',
@@ -111,7 +127,7 @@ class ChiTietDonHangMua{
             
         if ($result) {
             $capnhattongtien = $this->CapNhatTongTien($iddonhangmua);
-            $capnhatsoluong = $this->CapNhatSoLuong($idsanpham);
+            $capnhatsoluong = $this->CapNhatSoLuong($id,$idsanpham);
             return true;
         } else {
             return false;
