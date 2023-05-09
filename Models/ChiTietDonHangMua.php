@@ -96,6 +96,7 @@ class ChiTietDonHangMua{
             return false;
         }
     }
+    
     public function CapNhat($id,$iddonhangmua,$idsanpham,$soluong,$dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
