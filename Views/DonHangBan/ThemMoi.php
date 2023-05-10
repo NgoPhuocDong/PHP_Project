@@ -25,9 +25,9 @@
                             <?= $item['TenNhanVien']?>
                         </option>
                 <?php endforeach;?>    
-            </select><br>
+        </select><br>
             <label class="h6">Tên khách hàng</label>
-        <select name="tenkhachhang" class="form-control">
+        <select name="idkhachhang" class="form-control">
                 <option value="<?= $row['idKhachHang']?>">
                 <?php if(!empty($ListKhachHang))
                     foreach ($ListKhachHang as $itemKH) : extract($itemKH)?>
@@ -36,16 +36,15 @@
                         </option>
                 <?php endforeach;?>    
             </select><br>
-        <input type="text" value=""name="idkhachhang" class="form-control"><br>
         <label class="h6">Id trạng thái bán</label>
         <input type="text" value=""name="idtrangthai" class="form-control"><br>
         <label class="h6">Ngày lập</label>
         <input type="date" value=""name="ngaylap" class="form-control"><br>
-        <label class="h6">Tổng tiền</label>
-        <input type="text" value="0"name="tongtien" class="form-control"><br>
-    <?php
+        <!-- <label class="h6">Tổng tiền</label> -->
+        <input disabled type="hidden" value="0"name="tongtien" class="form-control"><br>
+    <!-- <?php
         echo $alert ;
-    ?>
+    ?> -->
         <hr>
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">
     </form>

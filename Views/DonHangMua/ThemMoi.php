@@ -41,8 +41,8 @@
         <input type="text" value=""name="idtrangthai" class="form-control"><br>
         <label class="h6">Ngày lập</label>
         <input type="date" value=""name="ngaylap" class="form-control"><br>
-        <label class="h6">Tổng tiền</label>
-        <input type="text" value=""name="tongtien" class="form-control"><br>
+        <!-- <label class="h6">Tổng tiền</label> -->
+        <input type="hidden" value=""name="tongtien" class="form-control"><br>
         <?php
                 echo $alert ;
         ?>
