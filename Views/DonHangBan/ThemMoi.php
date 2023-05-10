@@ -25,8 +25,10 @@
         <label class="h6">Ngày lập</label>
         <input type="date" value=""name="ngaylap" class="form-control"><br>
         <label class="h6">Tổng tiền</label>
-        <input type="text" value=""name="tongtien" class="form-control"><br>
-
+        <input type="text" value="0"name="tongtien" class="form-control"><br>
+    <?php
+        echo $alert ;
+    ?>
         <hr>
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">
     </form>

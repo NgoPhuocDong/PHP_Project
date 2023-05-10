@@ -1,6 +1,6 @@
 <?php
     include "./Views/Layout/header.php";
-    echo "<title>Thêm mới đơn hàng bán</title>";
+    echo "<title>Thêm mới chi tiết đơn hàng bán</title>";
 ?>
 
 <div class="col-md-12 mt-2">
@@ -36,6 +36,9 @@
         <label class="h6">Đơn giá áp dụng</label>
         <input type="text"  id="dongiaapdung" value="" name="dongiaapdung" class="form-control"><br>
         
+        <?php
+            echo $alert ;
+        ?>
         <!-- <label class="h6">Thành tiền</label>
         <input type="text" value=""name="thanhtien" class="form-control"><br> -->
         <hr>  

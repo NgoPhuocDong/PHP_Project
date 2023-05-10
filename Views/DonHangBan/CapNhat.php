@@ -31,7 +31,9 @@
     
         <label class="h6">Tổng tiền</label>
         <input type="text" value="<?= $row['TongTien']?>"name="tongtien" class="form-control"><br>
-
+        <?php
+            echo $alert ;
+        ?>
         <hr>
         <input type="submit" value="Update" name="submit" class="btn btn-primary">
     </form>
