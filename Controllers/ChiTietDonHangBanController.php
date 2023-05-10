@@ -16,11 +16,18 @@ class ChiTietDonHangBanController{
     }
 
     public function ThemMoi(){
+        $alert ="";
         $result = $this->sanpham->DanhSach($this->sanpham->TongSanPham(),0);
         if (isset($_POST['submit'])) {
-            $create = $this->model->ThemMoi($_POST['iddonhangban'],$_POST['idsanpham'],  $_POST['soluong'],$_POST['dongiaapdung']);
-            if ($create) {
-                header("Location: ./DanhSach&id=$_POST[iddonhangban]");
+            if(empty($_POST['soluong'])){
+                $alert="<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống số lượng!</span>";
+            }else if(!is_numeric($_POST['soluong'])){
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>số lượng bắt buộc phải là số!</span>";
+            } else{
+                $create = $this->model->ThemMoi($_POST['iddonhangban'],$_POST['idsanpham'],  $_POST['soluong'],$_POST['dongiaapdung']);
+                if ($create) {
+                    header("Location: ./DanhSach&id=$_POST[iddonhangban]");
+                }
             }
         }
         include 'Views/ChiTietDonHangBan/ThemMoi.php';
@@ -46,19 +53,26 @@ class ChiTietDonHangBanController{
         return array($result, $resultDonHang);
     }
     public function CapNhat(){
+        $alert = "";
         $listProduct = $this->sanpham->DanhSach($this->sanpham->TongSanPham(),0);
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             //lấy dữ liệu cần cập nhật
             $dataUpdate = $this->model->find($id);
             if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhat($id,$_POST['iddonhangban'],
-                                                    $_POST['idsanpham'],
-                                                    $_POST['soluong'],
-                                                    $_POST['dongiaapdung'],
-                                                    $_POST['thanhtien']);
-                if ($update) {
-                    header("Location: ./DanhSach&id=$_POST[iddonhangban]");
+                if(empty($_POST['soluong'])){
+                    $alert="<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống số lượng!</span>";
+                }else if(!is_numeric($_POST['soluong'])){
+                    $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>số lượng bắt buộc phải là số!</span>";
+                } else{
+                    $update = $this->model->CapNhat($id,$_POST['iddonhangban'],
+                                                        $_POST['idsanpham'],
+                                                        $_POST['soluong'],
+                                                        $_POST['dongiaapdung'],
+                                                        $_POST['thanhtien']);
+                    if ($update) {
+                        header("Location: ./DanhSach&id=$_POST[iddonhangban]");
+                    }
                 }
             }
         }

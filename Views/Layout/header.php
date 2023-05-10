@@ -120,6 +120,14 @@ include("Controllers/KiemTraQuyen.php");
     color: #fff;
 	/* transition: all .10s linear; */
 }
+.navbar-nav > li >a{
+	transition: box-shadow .4s, color .3s;
+}
+.navbar-nav > li >a:hover{
+    color: #000000;
+    box-shadow: 0 2px #000000;
+}
+}
 </style>
 
 <body class="bg-light col-md-12">

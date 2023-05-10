@@ -1,13 +1,18 @@
 <?php
 include_once("Models/DonHangBan.php");
-
+include_once("Models/NhanVien.php");
+include_once("Models/KhachHang.php");
 class DonHangBanController{
     private $model;
     private $db;
-    
+    private $nguonhang;
+    private $nhanvienlap;
+    private $khachhang;
     public function __construct(){
         $this->model = new DonHangBan();
         $this->db = new Database();
+        $this->nhanvienlap = new NhanVien();
+        $this->khachhang = new KhachHang();
     }
     
     public function DanhSach()
@@ -39,16 +44,29 @@ class DonHangBanController{
     
 
     public function ThemMoi(){
+        $alert = "";
+        $ListNhanVien = $this->nhanvienlap->DanhSach(100,0);
+        $ListKhachHang = $this->khachhang->GetData(100,0);
         if (isset($_POST['submit'])) {
-            $create = $this->model->ThemMoi($_POST['idnhanvienlap'], $_POST['idkhachhang'],  $_POST['idtrangthai'],$_POST['ngaylap'],$_POST['tongtien']);
+            if(empty($_POST['idkhachhang']) || empty($_POST['idnhanvienlap'])){
+                $alert="<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống id nhân viên lập và khách hàng!</span>";
+            }else if(!is_numeric($_POST['idkhachhang']) || !is_numeric($_POST['idnhanvienlap'])){
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>id nhân viên và khách hàng bắt buộc phải là số!</span>";
+            }else{
+                $create = $this->model->ThemMoi($_POST['idnhanvienlap'], $_POST['idkhachhang'],  $_POST['idtrangthai'],$_POST['ngaylap'],$_POST['tongtien']);
             if ($create) {
                 header('Location: ./DanhSach');
             }
+            }
         }
         include 'Views/DonHangBan/ThemMoi.php';
+        return Array($ListNhanVien, $ListKhachHang);
     }
 
     public function CapNhat(){
+        $ListNhanVien = $this->nhanvienlap->DanhSach(100,0);
+        $ListKhachHang = $this->khachhang->GetData(100,0);
+        $alert = "";
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $table = 'donhangban';
@@ -56,7 +74,12 @@ class DonHangBanController{
             $dataUpdate = $this->db->find($table,$id);
             
             if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhat($id,$_POST['idnhanvienlap'],
+                if(empty($_POST['idkhachhang']) || empty($_POST['idnhanvienlap'])){
+                    $alert="<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống id nhân viên lập và khách hàng!</span>";
+                }else if(!is_numeric($_POST['idkhachhang']) || !is_numeric($_POST['idnhanvienlap'])){
+                    $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>id nhân viên và khách hàng không phải là số!</span>";
+                }else{
+                    $update = $this->model->CapNhat($id,$_POST['idnhanvienlap'],
                                                     $_POST['idkhachhang'],
                                                     $_POST['idtrangthai'],
                                                     $_POST['ngaylap'],
@@ -64,10 +87,12 @@ class DonHangBanController{
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
+                }
+                
             }
         }
         include 'Views/DonHangBan/CapNhat.php';
-        return $dataUpdate;
+        return Array($dataUpdate,$ListNhanVien,$ListKhachHang);
     }
 
     public function Xoa(){
