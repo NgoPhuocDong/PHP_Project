@@ -1,0 +1,212 @@
+.vertical-nav {
+  min-width: 17rem;
+  width: 17rem;
+  height: 100vh;
+  position: fixed;
+ 
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+}
+
+
+
+.page-content { 
+  transition: all 0.4s;
+}
+
+.product-name {
+  font-size: 25px;
+}
+/* for toggle behavior */
+
+
+
+#content.active {
+  width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -17rem;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #content {
+    width: 100%;
+    margin: 0;
+  }
+  #content.active {
+    margin-left: 17rem;
+    width: calc(100% - 17rem);
+  }
+  
+}
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSE
+* ==========================================
+*
+*/
+
+body {
+  background: #599fd9;
+  background: -webkit-linear-gradient(to right, #599fd9, #c2e59c);
+  background: linear-gradient(to right, #599fd9, #c2e59c);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+
+#category {
+  display: none;
+}
+.carousel-item img {
+  height: 566px;
+  width: 100%;
+}
+
+
+
+ 
+
+
+@media screen and (max-width: 768px) {
+  .product-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+
+
+
+/* #sidebar ul li a {
+  padding: 10px;
+ 
+  display: block;
+}
+
+#sidebar ul li a:hover {
+  text-decoration: none;
+}
+
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+a,
+a:hover,
+a:focus {
+    transition: all 0.3s;
+}
+
+a.article:hover {
+  background: #6d7fcc !important;
+  color: #fff !important;
+ 
+}
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+} */
+
+.glide__control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  color: transparent;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Khi hover vào nút */
+.glide__control:hover {
+  background-color: gray; /* Màu nền đậm hơn */
+  color: #fff; /* Màu chữ trắng */
+}
+
+.glide__control--left {
+  left: 0;
+  border-radius: 0 20px 20px 0;
+}
+
+.glide__control--right {
+  right: 0;
+  border-radius: 20px 0 0 20px;
+}
+
+.glide__view-all {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Định dạng cho nút xem tất cả sản phẩm */
+.glide__view-all-btn {
+  background-color: #333;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Khi hover vào nút */
+.glide__view-all-btn:hover {
+  background-color: #fff;
+  color: #333;
+}
+.bgproduct{
+  background-image: url(https://lh3.googleusercontent.com/vCgMx7AxHVMI7Nf8XhXnYtaF96F8Xq-uOorLiXS4Q986mvZ4Qg0OXTz9n34utNLtguQmU1WTKplnTZLaWn2KCqi9r6toQYo=w1232);
+  padding: 20px; /* thêm khoảng cách giữa slide container và slide */
+  background-size: cover; /* hiển thị hình ảnh theo tỷ lệ chiều rộng/chiều cao phù hợp với kích thước của vùng chứa */
+  background-repeat: no-repeat; /* không lặp lại hình ảnh */
+  background-position: center center; /* hiển thị hình ảnh ở giữa vùng chứa */
+}
+.bgbrand {
+  background-color: white;
+  padding: 20px;
+  background-size: cover ;
+  background-position: center center ;
+  border-radius: 10px;
+}
+
+.glide__slide img {
+  max-width: 100%; /* Đảm bảo chiều rộng của slide không vượt quá chiều rộng của vùng chứa slide */
+  max-height: 100%; /* Đảm bảo chiều cao của slide không vượt quá chiều cao của vùng chứa slide */
+}
+.brands .glide__slide img {
+  border-radius: 10px;
+  height: 150px;
+  width: 271px;
+  
+}
+.brandtitle {
+  text-align: center;
+  padding-top: 10px;
+}
+
+
+
+
+

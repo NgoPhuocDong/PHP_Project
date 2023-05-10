@@ -128,7 +128,7 @@ include("Controllers/KiemTraQuyen.php");
 			<h4><a class="nav-link" href="#">Logo</a></h4>
 			<ul class="navbar-nav">
 				<li style="margin-left: 90px;" class="nav-item">
-					<a class="nav-link" href="#">Home</a>
+					<a class="nav-link" href="../TrangChu/Index">Home</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="../TinTuc/DanhSach">News</a>

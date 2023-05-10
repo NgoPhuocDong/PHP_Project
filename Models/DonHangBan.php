@@ -25,9 +25,10 @@ class DonHangBan{
         return $result;
     }
 
-    public function TongTienDonHangBan() {
+    public function DoanhThuDonHangBan() {
         $sql = "SELECT SUM(TongTien) FROM donhangban";
-        $result = $this->db->execute($sql);
+        $result = mysqli_query($this->db->conn, $sql);
+        //$result = $this->db->execute($sql);
         if ($result) {
             return true;
         } else {
