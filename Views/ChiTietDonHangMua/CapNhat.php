@@ -31,7 +31,7 @@
             </select><br>
 
             <label class="h6">Số lượng</label>
-            <input type="text" value="<?= $row['SoLuong']?>"name="soluong" class="form-control"><br>
+            <input type="number" min="1" value="<?= $row['SoLuong']?>"name="soluong" class="form-control"><br>
 
             <label class="h6">Đơn giá áp dụng</label>
             <input type="text"  id="dongiaapdung" value="" name="dongiaapdung" class="form-control"><br>
