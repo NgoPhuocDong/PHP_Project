@@ -21,7 +21,7 @@ class TrangChuController{
     public function Index()
     {
         $loaisanpham = $this->loaisanpham->DanhSach(100,0);
-        $sanphamnoibat = $this->model->SanPhamNoiBat();
+        //$sanphamnoibat = $this->model->SanPhamNoiBat();
         $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 6;
         $current =!empty($_GET['page']) ? $_GET['page'] : 1; // trang hien tai
         $offset = ($current - 1) * $item;
