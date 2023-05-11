@@ -29,11 +29,15 @@
                     <div class="col-md-8">
                     <input type="text" name="id" class="form-control" placeholder="Nhập mã đơn hàng" >
                     </div>
-                    <div class="col-md-4" style="padding:0;margin-left:-7px;">
+                    <div class="col-md-2" style="padding:0;margin-left:-7px;">
                         <button class="btn btn-primary">Tìm</button>
+                    </div>
+                    <div class="col-md-2" style="padding:0;margin-left:-7px;">
+                   
                     </div>
                 </form>
             </div>
+
             <div class="col-md-8">
                 <div style="float: right;">
                     <button class="btn btn-danger">Import</button>
@@ -56,7 +60,7 @@
             <th>Ngày lập</th>
             <th>Tổng tiền</th>
             <th>Người lập phiếu</th>
-            <th>trạng thái</th>
+            <th>Trạng thái</th>
             <th>Action</th>
         </tr>
         <?php 
@@ -64,25 +68,61 @@
         if(!empty($result)):
             if (isset($_GET['page']) && $_GET['page'] == $current || isset($_GET['id'])) {
                 $i = ($current * $item) - $item;
-        } 
+            } 
+            $tong = 0;
             foreach ($result as $row) : extract($row);$i++; ?> 
-            <tr>
-                <td><?= $i ?></td>
+             <?php if($row['TongTien'] == 0 && $row['idTrangThai'] == 4) { ?>
+            <tr style="color: white; background: red;">
+                <td><?= $i;
+                $tong += $i;
+                $_SESSION['soluongdonhang'] = $tong; ?></td>
                 <td><?= $row['ID'] ?></td>
                 <td>
                     <?= $row['TenKhachHang'] ?>
                 </td>
                 <td>
-                    <?= $row['NgayLap'] ?>
+                <?= date('d-m-Y',strtotime($row['NgayLap']))?>
                 </td>
+                
                 <td>
                     <?= $row['TongTien'] ?>
                 </td>
                 <td>
                     <?= $row['TenNhanVien'] ?>
                 </td>
+                <td><?=$row['TenTrangThai']?></td>
                 <td>
-                    <?= $row['TenTrangThai'] ?>
+                    <a href="../ChiTietDonHangBan/DanhSach&id=<?=$row['ID']?>">Chi tiết</a> | 
+                    <?php if(check('../DonHangBan/CapNhat&id='.$row['ID'])) { ?>
+                    <a href="../DonHangBan/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
+                    <?php } ?>
+
+                    <?php if(check('../DonHangBan/Xoa&id='.$row['ID'])) { ?>
+                    <a href="../DonHangBan/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
+                    <?php } ?>
+                </td>
+                </tr>
+                <?php } else { ?>
+                <tr>
+                    <td><?= $i;
+                $tong += $i;
+                $_SESSION['soluongdonhang'] = $tong; ?></td>
+                <td><?= $row['ID'] ?></td>
+                <td>
+                    <?= $row['TenKhachHang'] ?>
+                </td>
+                <td>
+                <?= date('d-m-Y',strtotime($row['NgayLap']))?>
+                </td>
+                
+                <td>
+                    <?= $row['TongTien'] ?>
+                </td>
+                <td>
+                    <?= $row['TenNhanVien'] ?>
+                </td>
+                <td style="color: green; font-weight: bold;">
+                    <?=$row['TenTrangThai']?>
                 </td>
                 <td>
                     <a href="../ChiTietDonHangBan/DanhSach&id=<?=$row['ID']?>">Chi tiết</a> | 
@@ -94,8 +134,11 @@
                     <a href="../DonHangBan/Xoa&id=<?=$row['ID']?>" onclick="return confirm('Xác nhận xóa !');">Xóa</a>
                     <?php } ?>
                 </td>
+                <?php } ?>
             </tr>
             <?php endforeach; endif; ?>
+          
+            
     </table>
 </div>
 <?php
