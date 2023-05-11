@@ -24,6 +24,16 @@ class SanPham{
         return $result;
     }
 
+    public function SanPhamNoiBat() {
+        $sql = "SELECT * FROM sanpham as sp, trangthaisanpham as tt
+        WHERE sp.idTrangThai = tt.ID
+        AND tt.TenTrangThai = N'Nổi bật' ";
+        // AND tt.ID = 1 ";
+        $result = mysqli_query($this->db->conn, $sql);
+        $result = $result->num_rows;
+        return $result;
+    }
+
     public function TongSanPhamTim($tensanpham) {
         $sql = "SELECT * FROM sanpham WHERE tensanpham LIKE '%$tensanpham%'";
         $result = mysqli_query($this->db->conn, $sql);

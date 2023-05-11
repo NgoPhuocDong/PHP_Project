@@ -51,7 +51,7 @@ class SanPhamController{
     }
 
     public function ThemMoi(){
-        $result = $this->loaisanpham->DanhSach($this->loaisanpham->TongLoaiSanPham(),0);
+        $result = $this->loaisanpham->DanhSach(100,0);
         if (isset($_POST['submit'])) {
 
             $file_name = $_FILES['hinhanh']['name'];
@@ -77,7 +77,7 @@ class SanPhamController{
     
     
     public function CapNhat(){
-        $result  = $this->loaisanpham->DanhSach($this->loaisanpham->TongLoaiSanPham(),0);
+        $result  = $this->loaisanpham->DanhSach(100,0);
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             //lấy dữ liệu cần cập nhật

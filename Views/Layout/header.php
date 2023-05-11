@@ -132,6 +132,14 @@ include("Controllers/KiemTraQuyen.php");
     color: #fff;
 	/* transition: all .10s linear; */
 }
+.navbar-nav > li >a{
+	transition: box-shadow .4s, color .3s;
+}
+.navbar-nav > li >a:hover{
+    color: #000000;
+    box-shadow: 0 2px #000000;
+}
+}
 </style>
 
 <body class="bg-light col-md-12">
@@ -140,7 +148,7 @@ include("Controllers/KiemTraQuyen.php");
 			<h4><a class="nav-link" href="#">Logo</a></h4>
 			<ul class="navbar-nav">
 				<li style="margin-left: 90px;" class="nav-item">
-					<a class="nav-link" href="#">Home</a>
+					<a class="nav-link" href="../TrangChu/Index">Home</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="../TinTuc/DanhSach">News</a>
@@ -218,7 +226,7 @@ include("Controllers/KiemTraQuyen.php");
 						<?php } ?>
 		    			<ul id="collapse2" class="collapse text-white-50" data-bs-parent="#accordion">
 							<?php if (check('../DonHangMua/DanhSach')) {  ?>
-							<a href="../DonHangMua/DanhSach"><li style="margin: 10px 0 0 13px;"><span>Đơn hàng mua</span></li></a>
+							<a href="../DonHangMua/DanhSach"><li style="margin: 10px 0 0 13px;"><span>Đơn hàng nhập</span></li></a>
 							<?php } ?>
 							<?php if (check('../NguonHang/DanhSach')) {?>
 						    <a href="../NguonHang/DanhSach"><li style="margin: 10px 0 0 13px;"><span>Nhà cung cấp</span></li></a>
@@ -296,6 +304,15 @@ include("Controllers/KiemTraQuyen.php");
 							<?php } ?>
 						</ul>
 		    		</li>
+
+					<li data-bs-toggle="">
+						<?php if (check('../ThongKe/ChiTiet')) { ?>
+		    			<a href="../ThongKe/ChiTiet" class="btn btn-dark dropdown-toggle">
+		    			<span class="aaa"><i class="fa fa-bar-chart" aria-hidden="true" style="color: white;"></i></span>
+		    			<span class="bbb">Thống kê</span></a>
+						<?php } ?>	
+		    		</li>
+					
 		    	</ul>
 		    </div>
 			<div class="col-md-10">

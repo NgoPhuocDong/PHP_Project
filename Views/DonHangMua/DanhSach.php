@@ -14,7 +14,7 @@
     }
 </style>
 <div class="col-md-12 mt-2">
-    <span class="h3 m-2">Đơn hàng mua</span>
+    <span class="h3 m-2">Đơn hàng nhập</span>
     <span class="title-active">
         <i class="fa fa-angle-double-right" aria-hidden="true"></i>
         <a href="./DanhSach">Danh sách</a>
@@ -28,10 +28,10 @@
             <div class="col-md-4">
                 <form class="row">
                     <div class="col-md-8">
-                    <input type="text" name="id" class="form-control" placeholder="Nhập mã đơn hàng mua..." >
+                    <input type="text" name="id" class="form-control" placeholder="Nhập mã đơn hàng nhập..." >
                     </div>
                     <div class="col-md-4" style="padding:0;margin-left:-7px;">
-                        <button class="btn btn-primary">Xem</button>
+                        <button class="btn btn-primary">Tìm</button>
                     </div>
                 </form>
             </div>
