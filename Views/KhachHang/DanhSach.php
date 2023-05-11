@@ -88,6 +88,7 @@
                     <?= $row['DiaChi'] ?>
                 </td>
                 <td>
+                    <a href="../ChiTietDonHangBan/DanhSach&id=<?=$row['ID']?>">Đơn hàng</a> | 
                     <?php if(check('../KhachHang/CapNhat&id='.$row['ID'])) {  ?>
                     <a href="../KhachHang/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
                     <?php } ?>
