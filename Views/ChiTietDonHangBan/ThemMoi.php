@@ -36,11 +36,11 @@
         <label class="h6">Đơn giá áp dụng</label>
         <input type="text"  id="dongiaapdung" value="" name="dongiaapdung" class="form-control"><br>
         
-        <?php
-            echo $alert ;
-        ?>
         <!-- <label class="h6">Thành tiền</label>
         <input type="text" value=""name="thanhtien" class="form-control"><br> -->
+        <?php
+            echo $alert;
+        ?>
         <hr>  
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">
     </form>

@@ -22,13 +22,24 @@ class ChiTietDonHangBanController{
     public function ThemMoi(){
         $result = $this->sanpham->DanhSach($this->sanpham->TongSanPham(),0);
         
-        $total = 0;     
+        $total = 0;
+        $alert="";    
         if (isset($_POST['submit'])) {
-            $create = $this->model->ThemMoi($_POST['iddonhangban'],$_POST['idsanpham'],  $_POST['soluong'],$_POST['dongiaapdung']);
-                if($create) {
+            $soLuongKho = $this->model->getSoLuong($_POST['idsanpham']); // Lấy số lượng từ bảng sản phẩm
+    
+            if (empty($_POST['soluong'])) {
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống số lượng!</span>";
+            } elseif (!is_numeric($_POST['soluong'])) {
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Số lượng bắt buộc phải là số!</span>";
+            } elseif ($_POST['soluong'] > $soLuongKho) {
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Số lượng không đủ hàng trong kho!</span>";
+            } else {
+                $create = $this->model->ThemMoi($_POST['iddonhangban'], $_POST['idsanpham'], $_POST['soluong'], $_POST['dongiaapdung']);
+                if ($create) {
                     header("Location: ./DanhSach&id=$_POST[iddonhangban]");
                 }
             }
+        }
         include 'Views/ChiTietDonHangBan/ThemMoi.php';
         return array($result);
     }
