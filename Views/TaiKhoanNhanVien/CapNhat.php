@@ -25,7 +25,7 @@
 
 
         <label class="h6">Tên đăng nhập</label> <br>
-        <input type="text" value="<?php echo $row['TenDangNhap']; ?>"name="tendangnhap" class="form-control"><br>
+        <input disabled type="text" value="<?php echo $row['TenDangNhap']; ?>"name="tendangnhap" class="form-control"><br>
 
 
         <label class="h6">Mật khẩu</label> <br>
@@ -39,7 +39,9 @@
 
         <label class="h6">Ảnh đại diện</label> <br>
         <input type="file" id="file-upload" name="anhdaidien" >
-
+        <?php
+            echo $alert;
+        ?>
         <hr>
         <input type="submit" value="Update" name="submit" class="btn btn-primary">
     </form>

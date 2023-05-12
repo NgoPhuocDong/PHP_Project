@@ -38,6 +38,17 @@ class TaiKhoanNhanVien{
         return $result;
     }
 
+
+    public function TimKiemTheoTenDangNhap($tendangnhap)
+{
+    // Thực hiện truy vấn SQL để tìm kiếm nhân viên dựa trên tên đăng nhập
+    $query = "SELECT * FROM taikhoannhanvien WHERE TenDangNhap = '$tendangnhap'";
+    // Thay thế 'TenBang' bằng tên bảng thực tế chứa thông tin nhân viên trong cơ sở dữ liệu của bạn
+
+    // Tiếp tục xử lý truy vấn và trả về kết quả
+    $result = $this->db->select($query);
+    return $result;
+}
     public function find($id)
     {
         $sql = "SELECT tknv.IDNhanVien,TenDangNhap,MatKhau, TrangThai, AnhDaiDien
@@ -66,6 +77,7 @@ class TaiKhoanNhanVien{
         return $result;
     }
    
+    
     public function GetData()
     {
         $sql = "SELECT * FROM taikhoannhanvien";

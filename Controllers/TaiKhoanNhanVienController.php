@@ -50,32 +50,49 @@ class TaiKhoanNhanVienController{
     
 
     public function ThemMoi(){
+        $alert="";
         $result = $this->tennhanvien->DanhSach(100,0);
         if (isset($_POST['submit'])) {
-            $file_name = $_FILES['anhdaidien']['name'];
-            $file_tmp = $_FILES['anhdaidien']['tmp_name'];
-            move_uploaded_file($file_tmp,"Assets/AvatarNhanVien/".$file_name);
- 
-            $create = $this->model->ThemMoi($_POST['tendangnhap'],$_POST['idnhanvien'], $_POST['matkhau']
-            ,$_POST['trangthai'],$file_name);
-            if ($create) {
-                header('Location: ./DanhSach');
+            $tendangnhap = $_POST['tendangnhap'];
+
+        // Check if tendangnhap already exists in the database
+            $existingUser = $this->model->TimKiemTheoTenDangNhap($tendangnhap);
+            if(empty($_POST['tendangnhap']) || empty($_POST['matkhau'])){
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống ten dang nhap hoặc mật khẩu!</span>";
+            }else if($existingUser){
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>laixi!</span>";
             }
+            else{
+                $file_name = $_FILES['anhdaidien']['name'];
+                $file_tmp = $_FILES['anhdaidien']['tmp_name'];
+                move_uploaded_file($file_tmp,"Assets/AvatarNhanVien/".$file_name);
+     
+                $create = $this->model->ThemMoi($_POST['tendangnhap'],$_POST['idnhanvien'], $_POST['matkhau']
+                ,$_POST['trangthai'],$file_name);
+                if ($create) {
+                    header('Location: ./DanhSach');
+                }
+                
+            }
+            
         }
         include 'Views/TaiKhoanNhanVien/ThemMoi.php';
         return $result;
     }
 
     public function CapNhat(){
+        $alert="";
         if (isset($_GET['id'])) {
-
             $id = $_GET['id'];
             $table = 'taikhoannhanvien';
             //lấy dữ liệu cần cập nhật
             $dataUpdate = $this->model->find($id);
             $result = $this->tennhanvien->find($id);
             if (isset($_POST['submit'])) {
-                $file_name = $_FILES['anhdaidien']['name'];
+                if(empty($_POST['tendangnhap']) || empty($_POST['matkhau'])){
+                    $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống mật khẩu!</span>";
+                }else{
+                    $file_name = $_FILES['anhdaidien']['name'];
                 $file_tmp = $_FILES['anhdaidien']['tmp_name'];
                 move_uploaded_file($file_tmp,"Assets/AvatarNhanVien/".$file_name);
                 $update = $this->model->CapNhat(
@@ -85,6 +102,7 @@ class TaiKhoanNhanVienController{
                 $file_name);
                 if ($update) {
                     header('Location: ./DanhSach');
+                }
                 }
             }
             
