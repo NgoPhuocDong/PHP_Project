@@ -2,19 +2,22 @@
 include_once("Models/DonHangBan.php");
 include_once("Models/SanPham.php");
 include_once("Models/ChiTietDonHangBan.php");
-
+include_once("Models/KhachHang.php");
+include_once("Models/NhanVien.php");
 class DonHangBanController{
     private $model;
     private $db;
     private $sanpham;
     private $chitietdonhangban;
-    
+    private $khachhang;
+    private $nhanvienlap;
     public function __construct(){
         $this->model = new DonHangBan();
         $this->db = new Database();
         $this->sanpham = new SanPham();
         $this->chitietdonhangban = new ChiTietDonHangBan();
-
+        $this->khachhang = new KhachHang();
+        $this->nhanvienlap = new NhanVien();
     }
     
     
@@ -59,7 +62,8 @@ class DonHangBanController{
     }
 
     public function ThemMoi(){
-        $result = $this->model->DanhSachTrangThai();
+        $ListKhachHang = $this->khachhang->GetData(100,0);
+        $ListNhanVien = $this->nhanvienlap->DanhSach(100,0);
         if (isset($_POST['submit'])) {
             $create = $this->model->ThemMoi($_POST['idnhanvienlap'], $_POST['idkhachhang'], 5,$_POST['ngaylap'],$_POST['tongtien']);
             if ($create) {
@@ -68,10 +72,12 @@ class DonHangBanController{
             }
         }
         include 'Views/DonHangBan/ThemMoi.php';
-        return $result;
+        return Array($ListKhachHang,$ListNhanVien);
     }
 
     public function CapNhat(){
+        $ListKhachHang = $this->khachhang->GetData(100,0);
+        $ListNhanVien = $this->nhanvienlap->DanhSach(100,0);
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $table = 'donhangban';
@@ -90,7 +96,7 @@ class DonHangBanController{
             }
         }
         include 'Views/DonHangBan/CapNhat.php';
-        return $dataUpdate;
+        return Array($dataUpdate,$ListKhachHang,$ListNhanVien);
     }
 
     public function Xoa(){
