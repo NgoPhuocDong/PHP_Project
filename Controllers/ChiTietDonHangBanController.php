@@ -22,18 +22,11 @@ class ChiTietDonHangBanController{
     public function ThemMoi(){
         $result = $this->sanpham->DanhSach($this->sanpham->TongSanPham(),0);
         
-        $total = 0;
-        $alert="";    
+        $total = 0;   
         if (isset($_POST['submit'])) {
-            if (empty($_POST['soluong'])) {
-                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống số lượng!</span>";
-            } elseif (!is_numeric($_POST['soluong'])) {
-                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Số lượng bắt buộc phải là số!</span>";
-            } else {
                 $create = $this->model->ThemMoi($_POST['iddonhangban'], $_POST['idsanpham'], $_POST['soluong'], $_POST['dongiaapdung']);
                 if ($create) {
                     header("Location: ./DanhSach&id=$_POST[iddonhangban]");
-                }
             }
         }
         include 'Views/ChiTietDonHangBan/ThemMoi.php';
