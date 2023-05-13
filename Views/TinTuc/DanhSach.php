@@ -66,6 +66,7 @@
             <th>Loại tin tức</th>
             <th>Nội dung</th>
             <th>Ngày đăng tin</th>
+            <th>Hình ảnh</th>
             <th>Action</th>
         </tr>
         <?php 
@@ -94,6 +95,12 @@
                         echo date('Y-m-d H:i:s'); ?>
                 </td>
                 <td>
+                    <a href="../TinTuc/CapNhatHinhAnh&id=<?=$row['ID']?>">
+                        <img src="../Assets/data/HinhAnhTinTuc/<?= $row['HinhAnh'] ?>" alt="TAP" height="50px" width="50px" >
+                    </a>
+                </td>
+                <td>
+                <a href="../TinTuc/ChiTiet&id=<?=$row['ID']?>">Chi tiết</a> | 
                     <?php if(check('../TinTuc/CapNhat&id='.$row['ID'])) { ?>
                     <a href="../TinTuc/CapNhat&id=<?=$row['ID']?>">Cập nhật</a> | 
                     <?php } ?>
