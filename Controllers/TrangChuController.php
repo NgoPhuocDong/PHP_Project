@@ -164,6 +164,6 @@ class TrangChuController{
             $diachi = $_POST['diachi'];
             $create = $this->thanhtoan->ThemMoi($tenkhachhang, $sodienthoai, $email, $diachi);
         }
-        include 'Views/Home/ThanhToan.php';
+        include 'Views/ThanhToan/ThanhToan.php';
     }
  }
