@@ -1,7 +1,8 @@
 <?php
     include "./Views/HomeLayout/header.php";
-    echo "<title>Cửa hàng laptop</title>";
+  
 ?>
+
   <script>
   window.addEventListener('scroll', function() {
     var header = document.getElementById('main-header');
@@ -28,157 +29,54 @@ window.addEventListener('scroll', () => {
   }
 });
 
-$('.add-to-cart').click(function() {
-  var productId = $(this).data('product-id');
-  // Lấy đối tượng span theo id "cartItemCount"
-  var cartItemCountElement = document.getElementById("cartItemCount");
+var cartClass = {
+  Get: function() {
+    var sIDSP = [];
+    if(localStorage.getItem("cart") !== null ) {
+      sIDSP = localStorage.getItem("cart");
+    }else {
+      localStorage.setItem("cart","[]");
+      sIDSP = localStorage.getItem("cart");
+    }
+    var arr = JSON.parse(sIDSP);
+    return arr;
+  },
+  Set: function(arr) {
+    var jsonIDSP = JSON.stringify(arr);
+    localStorage.setItem("cart",jsonIDSP);
+  },
+  AddItem: function(id, name, image, price, quantity, total) {
+    var arr = cartClass.Get();
+    
+    var objIncIndex = arr.findIndex(obj => obj.ID == id);
+    if (objIncIndex !== -1) {
+      alert('Sản phẩm đã có trong giỏ hàng!');
+      return;
+    }
+    var newID = {
+      ID: id,
+      Name: name,
+      Image: image,
+      Price: price,
+      Quantity: quantity,
+      Total: total
+    }
+    
+    arr.push(newID);
+    //set lại
+    cartClass.Set(arr);
 
-  $.ajax({
-    url: 'add_to_cart.php',
-    method: 'POST',
-    data: { productId: productId },
-    success: function(response) {
-      // Xử lý phản hồi từ server sau khi thêm vào giỏ hàng
-      // ở đây bạn có thể thực hiện các tác vụ khác
-
-      // Cập nhật số lượng trong giỏ hàng
-      var cartItemCount = parseInt(response);
-      $('.cart .badge').text(cartItemCount);
-      // Cập nhật giá trị số lượng
-cartItemCountElement.textContent = cartItemCount;
-    },
-    error: function(xhr, status, error) {
-    console.error(error); // In ra thông báo lỗi trong console
+    alert('Đã thêm sản phẩm vào giỏ hàng !');
   }
-  });
-});
+}
+
 
 
 
 
   </script>
 
-	<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Danh mục sản phẩm
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Sản phẩm 1</a>
-          <a class="dropdown-item" href="#">Sản phẩm 2</a>
-          <a class="dropdown-item" href="#">Sản phẩm 3</a>
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Giao hàng toàn quốc</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Đổi trả trong 10 ngày</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-  Tạo nút để mở menu tree 
-<a href="#" class="btn btn-primary" id="btn-show-menu">Danh mục sản phẩm</a>
-
-Tạo menu tree danh mục sản phẩm 
-<div class="menu-tree" style="display: none;">
-  <ul class="list-group">
-    <li class="list-group-item"><a href="#">Điện thoại</a>
-      <ul>
-        <li><a href="#">Apple</a></li>
-        <li><a href="#">Samsung</a></li>
-        <li><a href="#">Xiaomi</a></li>
-      </ul>
-    </li>
-    <li class="list-group-item"><a href="#">Laptop</a>
-      <ul>
-        <li><a href="#">Dell</a></li>
-        <li><a href="#">Lenovo</a></li>
-        <li><a href="#">HP</a></li>
-      </ul>
-    </li>
-    <li class="list-group-item"><a href="#">Phụ kiện</a>
-      <ul>
-        <li><a href="#">Tai nghe</a></li>
-        <li><a href="#">Bao da ốp lưng</a></li>
-        <li><a href="#">Sạc dự phòng</a></li>
-      </ul>
-    </li>
-  </ul>
-</div> 
-
- Sử dụng jQuery để hiển thị menu tree khi bấm vào nút "Danh mục sản phẩm" 
-<script>
-  $(document).ready(function() {
-    $('#btn-show-menu').click(function(e) {
-      e.preventDefault();
-      $('.menu-tree').toggle();
-    });
-  });
-</script> -->
-
-
-  <!-- <div class="vertical-nav bg-white text-white list-unstyled" style="padding-top: 70px;" id="sidebar">
-    <div class="py-4 px-3 mb-4 bg-secondary text-white">
-      <div class="media d-flex align-items-center"><img src="images/270994004_3189225658067195_9134483633872402356_n.jpg" alt="..." width="65" class="mr-3 rounded-circle img-thumbnail shadow-sm">
-        <div class="media-body">
-          <h4 class="m-0">Tài Nguyễn</h4>
-          <p class="font-weight-light text-white mb-0">Web developer</p>
-        </div>
-      </div>
-    </div>
-    <ul class="nav flex-column bg-white mb-0 ">
-      <li class="nav-item">
-        <a href="#" class="nav-link text-dark font-italic bg-white">
-          <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-                  Tổng quan
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle bg-white font-italic text-dark"><i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-          Pages</a>
-        <ul  class="collapse" id="pageSubmenu">
-            <li>
-                <a href="#">Page 2</a>
-            </li>
-            <li>
-                <a href="#">Page 2</a>
-            </li>
-            <li>
-                <a href="#">Page 3</a>
-            </li>
-        </ul>
-    </li>
-    <li class="nav-item">
-      <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle bg-white font-italic text-dark"><i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
-        Đơn hàng </a>
-      <ul class="collapse" id="pageSubmenu">
-          <li>
-              <a href="#">Page 2</a>
-          </li>
-          <li>
-              <a href="#">Page 2</a>
-          </li>
-          <li>
-              <a href="#">Page 3</a>
-          </li>
-      </ul>
-  </li>
-      
-      
-  
-    </ul>
-  </div> -->
-
+	
  
   <!-- Page content holder -->
 <div class="page-content" id="content">
@@ -220,7 +118,7 @@ Tạo menu tree danh mục sản phẩm
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-		
+		<img src="/PHP_Project/Assets/data/Hinhanhsanpham/" alt="">
 
 
 	<!-- Sản phẩm nổi bật -->
@@ -229,11 +127,14 @@ Tạo menu tree danh mục sản phẩm
 		<div style=" height:3.5rem; width:auto; border-bottom: 1px solid rgba(255, 255, 255, 0.5); align-items:center;padding:0;">
 		<b style="font-size: 20px; color:white;">Laptop</b>
 	</div>
+
+
+
 	
 	<div class="glide product" style="padding-top:8px">
     <div class="glide__track" data-glide-el="track">
     <ul class="glide__slides">
-			
+    
     <?php
       if(!empty($result)):
         if (isset($_GET['page']) && $_GET['page'] == $current || isset($_GET['tensanpham'])) {
@@ -249,9 +150,10 @@ Tạo menu tree danh mục sản phẩm
               <b><small class="text-primary" style="font-weight: bold; font-size: 15px;" > <?= number_format($row['Gia'], 0, ',', '.') ?> VNĐ</small></b>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart">Thêm vào giỏ hàng</button>
-                  <a href="../TrangChu/ChiTietSanPham&id=<?=$row['ID']?>" class="btn btn-sm btn-outline-secondary">Xem chi tiết</a>
-                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button> -->
+              
+              <button type="submit" name="add-to-cart" id="addcart" class="btn btn-sm btn-outline-secondary add-to-cart" onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','/myproject/PHP_Project/Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['Gia'] ?>,1,' VNĐ')">Thêm vào giỏ hàng</button>
+            
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button>
                 </div>
               </div>
             </div>
@@ -278,6 +180,7 @@ Tạo menu tree danh mục sản phẩm
 </div>
 	</div>
 </section>
+
 
 
 
@@ -392,7 +295,7 @@ Tạo menu tree danh mục sản phẩm
               <b><small class="text-primary" style="font-weight: bold; font-size: 15px;" > <?= number_format($row['Gia'], 0, ',', '.') ?> VNĐ</small></b>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart">Thêm vào giỏ hàng</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart" onclick="cartClass.AddItem(<?= $row['ID'] ?>,1)">Thêm vào giỏ hàng</button>
                   <a href="../TrangChu/ChiTietSanPham&id=<?=$row['ID']?>" class="btn btn-sm btn-outline-secondary">Xem chi tiết</a>
                   <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button> -->
                 </div>
