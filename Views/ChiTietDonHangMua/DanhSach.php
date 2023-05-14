@@ -82,7 +82,7 @@
         <!-- <?php if(isset($_SESSION['thongbao'])) { ?>
         <span style="color: green;"><?php echo $_SESSION['thongbao'] ?></span>
     <?php } ?> -->
-    </form>
+    </form> 
     <br>
     <?php endforeach;?>
     <table class="table table-condensed table-bordered">
