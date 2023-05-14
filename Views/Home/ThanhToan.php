@@ -1,9 +1,12 @@
 <?php
     include("./Views/HomeLayout/header.php");
-    echo'<title>Thanh Toán</title>';
+
+    // Kiểm tra nếu có thông báo từ controller
+    $thongbao = $model->GetThongBao();
 ?>
 
-  
+<head>
+  <title>Thanh Toán</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -94,31 +97,38 @@
       background-color: #45a049;
     }
   </style>
-
-
+</head>
+<body>
   <div class="container">
-  <form action="" method="POST">
-    <div class="section">
-      <h3 class="section-title">Thông tin nhận hàng</h3>
-      <div class="form-group">
-        <label for="email">Tên khách hàng</label>
-        <input type="text" id="text" name="tenkhachhang" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="phone">Số điện thoại:</label>
-        <input type="tel" id="phone" name="sodienthoai" required>
-      </div>
-      <div class="form-group">
-        <label for="address">Địa chỉ:</label>
-        <textarea id="address" name="diachi" required></textarea>
-      </div>
-    </div>
-    <div class="">
-    <input type="submit" value="Submit" name="submit" class="btn btn-primary">
-    </div>
-    </form>
+    <form id="paymentForm" action="" method="POST">
+      <div class="section">
+        <h3 class="section-title">Thông tin nhận hàng</h3>
+        <div class="form-group">
+          <label for="email">Tên khách hàng</label>
+          <input type="text" id="text" name="tenkhachhang" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Số điện thoại:</label>
+          <input type="tel" id="phone" name="sodienthoai" required>
+</div>
+<div class="form-group">
+<label for="address">Địa chỉ:</label>
+<textarea id="address" name="diachi" required></textarea>
+</div>
+</div>
+<div class="">
+<input type="submit" value="Submit" name="submit" class="btn btn-primary">
+</div>
+</form>
+<?php if ($thongbao) : ?>
+  <div class="section">
+    <h3 class="section-title">Thông báo đặt hàng</h3>
+    <p><?php echo $thongbao; ?></p>
   </div>
+<?php endif; ?>
+</div>
+</body>
