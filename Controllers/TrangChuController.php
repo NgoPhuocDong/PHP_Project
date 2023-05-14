@@ -4,6 +4,7 @@ include_once("Models/LoaiSanPham.php");//
 include_once("Models/TaiKhoanKhachHang.php");//
 include_once("Models/loginKhachHang.php");//
 include_once("Models/KhachHang.php");//
+include_once("Models/ThanhToan.php");
 class TrangChuController{
     private $model;
     private $loaisanpham;
@@ -11,6 +12,7 @@ class TrangChuController{
     private $taikhoan;
     private $login;
     private $khachhang;
+    private $thanhtoan;
     
     public function __construct(){
         $this->login = new loginKhachHang();
@@ -19,6 +21,7 @@ class TrangChuController{
         $this->loaisanpham = new LoaiSanPham();
         $this->db = new Database();
         $this->taikhoan = new TaiKhoanKhachHang();
+        $this->thanhtoan = new ThanhToan();
     }
     
     public function DanhMuc(){
@@ -151,5 +154,16 @@ class TrangChuController{
     }
     public function GioHang(){
         include('Views/GioHang/giohang.php');
+    }
+    public function ThanhToan()
+    {
+        if (isset($_POST['submit'])) {
+            $tenkhachhang = $_POST['tenkhachhang'];
+            $sodienthoai = $_POST['sodienthoai'];
+            $email = $_POST['email'];
+            $diachi = $_POST['diachi'];
+            $create = $this->thanhtoan->ThemMoi($tenkhachhang, $sodienthoai, $email, $diachi);
+        }
+        include 'Views/Home/ThanhToan.php';
     }
  }

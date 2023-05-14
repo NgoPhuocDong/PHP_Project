@@ -34,7 +34,7 @@ include "./Views/HomeLayout/header.php";
       </tr>
       <tr>
         <td colspan="6" class="text-end">
-          <a class="btn btn-primary btn-checkout" href = '../ThanhToan/ThemMoi'>Tiến hành đặt hàng</a>
+          <a class="btn btn-primary" href="../TrangChu/ThanhToan">Tiến hành đặt hàng</a>
         </td>
       </tr>
     </tfoot>
@@ -281,11 +281,4 @@ include "./Views/HomeLayout/header.php";
 //   });
 // });
 });
-
-
-
-  </script> 
-
-
-</body>
-</html>
+</script> 
