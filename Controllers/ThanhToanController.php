@@ -12,7 +12,7 @@ class ThanhToanController{
         $this->khachhang = new KhachHang();
         $this->db = new Database();
     }
-        public function DanhSach()
+    public function DanhSach()
     {
         $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 6;
         $current =!empty($_GET['page']) ? $_GET['page'] : 1; // trang hien tai

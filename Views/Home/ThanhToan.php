@@ -1,8 +1,9 @@
 <?php
     include("./Views/HomeLayout/header.php");
+    echo'<title>Thanh Toán</title>';
 ?>
-<head>
-  <title>Thanh Toán</title>
+
+  
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -93,8 +94,8 @@
       background-color: #45a049;
     }
   </style>
-</head>
-<body>
+
+
   <div class="container">
   <form action="" method="POST">
     <div class="section">

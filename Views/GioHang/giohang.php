@@ -13,7 +13,7 @@ include "./Views/HomeLayout/header.php";
 <body>
 <div class="container bg-light mt-4">
   <h1>Giỏ hàng</h1>
-  <table class="table align-middle">
+  <table class="table align-middle text-center">
     <thead>
       <tr>
         <th scope="col">Xóa sản phẩm</th>
@@ -34,7 +34,7 @@ include "./Views/HomeLayout/header.php";
       </tr>
       <tr>
         <td colspan="6" class="text-end">
-          <button class="btn btn-primary btn-checkout">Tiến hành đặt hàng</button>
+          <a class="btn btn-primary btn-checkout" href = '../ThanhToan/ThemMoi'>Tiến hành đặt hàng</a>
         </td>
       </tr>
     </tfoot>
@@ -70,7 +70,7 @@ include "./Views/HomeLayout/header.php";
     row.appendChild(removeCell);
 
     var nameCell =document.createElement('td');
-    nameCell.className = 'product-name';
+    nameCell.className = 'lead';
     nameCell.textContent = product.Name;
     row.appendChild(nameCell);
 
@@ -94,7 +94,7 @@ include "./Views/HomeLayout/header.php";
       quantityCell.style.fontSize = '15px';
 
       var decreaseButton = document.createElement('button');
-      decreaseButton.className = 'rounded-start btn-outline-primary btn-decrease border-1';
+      decreaseButton.className = 'rounded-start btn-outline-primary border-end-0 border-1 ms-5 btn-decrease';
       decreaseButton.innerHTML = '<i class="fas fa-minus"></i>';
       
       quantityCell.appendChild(decreaseButton);
@@ -105,7 +105,7 @@ include "./Views/HomeLayout/header.php";
       quantityCell.appendChild(quantityElement);
 
       var increaseButton = document.createElement('button');
-      increaseButton.className = 'rounded-end btn-outline-primary btn-increase border-1';
+      increaseButton.className = 'rounded-end btn-outline-primary border-start-0 border-1 btn-increase';
       increaseButton.innerHTML = '<i class="fas fa-plus"></i>';
       quantityCell.appendChild(increaseButton);
 
@@ -258,9 +258,9 @@ include "./Views/HomeLayout/header.php";
 
 
 // Xử lý sự kiện khi nhấp vào nút thanh toán
-$('.btn-checkout').click(function() {
-// Thực hiện xử lý thanh toán tại đây
-window.location.href = '../ThanhToan/ThanhToan.php';
+// $('.btn-checkout').click(function() {
+// // Thực hiện xử lý thanh toán tại đây
+// window.location.href = '../ThanhToan/ThemMoi';
 
 // $('form').submit(function(event) {
 //     event.preventDefault();
@@ -279,7 +279,7 @@ window.location.href = '../ThanhToan/ThanhToan.php';
 //     updateCartTotal();
 //     updateLocalStorage();
 //   });
-});
+// });
 });
 
 
