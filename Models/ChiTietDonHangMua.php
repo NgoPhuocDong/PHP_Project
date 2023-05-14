@@ -43,7 +43,7 @@ class ChiTietDonHangMua{
 
         //$result = $this->db->execute($sql);
         $capnhattongtien = $this->CapNhatTongTien($iddonhangmua);
-        $capnhatsoluong = $this->CapNhatSoLuong($id,$idsanpham);
+        // $capnhatsoluong = $this->CapNhatSoLuong($id,$idsanpham);
         if ($result) {
             
             return array($capnhattongtien,$capnhatsoluong);
@@ -149,6 +149,39 @@ class ChiTietDonHangMua{
     {
         $thanhTien = null;
         return $thanhTien = $soluong * $dongiaapdung;
+    }
+
+    public function XoaHet($id) {
+        $sql = "DELETE FROM chitietdonhangmua WHERE idDonHangMua = '$id'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            // $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public function test($id){
+        $sql = " SELECT idSanPham, SUM(soluong) AS total_quantity
+        FROM chitietdonhangmua
+        WHERE idDonHangMua = '$id'
+        GROUP BY idSanPham";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    public function hihi1($idsanpham,$tongsoluong) {
+        $sql = "UPDATE sanpham
+        SET SoLuong = SoLuong + $tongsoluong
+        WHERE ID = '$idsanpham'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

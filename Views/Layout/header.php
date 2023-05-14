@@ -224,7 +224,7 @@ include("Controllers/KiemTraQuyen.php");
 						<?php if(check('../DonHangMua/DanhSach') || check('../NguonHang/DanhSach')) { ?>
 		    			<a href="#" class="btn btn-dark dropdown-toggle">
 		    			<span class="aaa"><i class="fa fa-cart-plus" aria-hidden="true" style="color:white;"></i></span>
-		    			<span class="bbb">Nhập Hàng</span></a>
+		    			<span class="bbb">Nhập Hàng<span class="ppp1"><?php if(isset($_SESSION['tongdonhangmua'])) echo $_SESSION['tongdonhangmua'];?></span></span></a>
 						<?php } ?>
 		    			<ul id="collapse2" class="collapse text-white-50" data-bs-parent="#accordion">
 							<?php if (check('../DonHangMua/DanhSach')) {  ?>
@@ -241,7 +241,7 @@ include("Controllers/KiemTraQuyen.php");
 						<?php if(check('../DonHangBan/DanhSach') || check('../KhachHang/DanhSach') || check('../NhanVien/DanhSach')) { ?>
 		    			<a href="#" class="btn btn-dark dropdown-toggle">
 		    			<span class="aaa"><i class="fa fa-shopping-bag" aria-hidden="true" style="color: white;"></i></span>
-		    			<span class="bbb">Bán Hàng<span class="ppp"><?php if(isset($_SESSION['tongdonhangban'])) echo $_SESSION['tongdonhangban'];?></span></span></a> 
+		    			<span class="bbb">Bán Hàng<span class="ppp"><?php if(isset($_SESSION['tongdonhangban'])) echo $_SESSION['tongdonhangban'];?></span></a> 
 						<?php } ?>
 		    			<ul id="collapse3" class="collapse text-white-50" data-bs-parent="#accordion">
 							<?php if (check('../DonHangBan/DanhSach')) { ?>

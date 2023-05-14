@@ -57,6 +57,11 @@
   padding: 4px 8px;
   border-radius: 50%;
 }
+img:hover {
+  transform: scale(1.05);
+  transition: transform .1s ease-in-out;
+}
+
 </style>
 
 <body>
@@ -76,11 +81,15 @@
     </button>
     <ul class="dropdown-menu">
       
-          <li><a class="dropdown-item" href="#">
+    <?php $result1 = ($this->loaisanpham->DanhSach1()); ?>
+        <?php for ($i = 0; $i < count($result1); $i++) { ?>
+          <li><a class="dropdown-item" href="./DanhSachSanPham&loaisp=<?=$result1[$i]['ID']?>">
             <div class="img">
-              <i class="fa fa-laptop" aria-hidden="true"></i>
+             <i class="fa fa-laptop" aria-hidden="true"><?=$result1[$i]['TenLoaiSanPham']?></i>
             </div>
           </a></li>
+          
+     <?php } ?>
     </ul>
 </div>
 		<div class="search-container" style="margin-left: 8px; margin-right: 20px;">

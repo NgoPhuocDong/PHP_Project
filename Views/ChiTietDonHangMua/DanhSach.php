@@ -70,6 +70,19 @@
             <td><?= number_format($row['TongTien'],0,'.', '.')?></td>
         </tr>
     </table>
+    <form action="" method="post">
+        <?php if($row['TongTien'] > 0) { ?>
+            <?php if($result10[0]['idTrangThai'] == 3) { ?>
+                <input type="submit" value="Xác nhận" name="button1"></input>
+            <?php }?>
+        <?php } ?>
+        <?php 
+                if($result10[0]['idTrangThai'] == 2) {
+                    echo '<input type="submit" value="Đã xác nhận" name="button2" disabled></input>';} ?>
+        <!-- <?php if(isset($_SESSION['thongbao'])) { ?>
+        <span style="color: green;"><?php echo $_SESSION['thongbao'] ?></span>
+    <?php } ?> -->
+    </form>
     <br>
     <?php endforeach;?>
     <table class="table table-condensed table-bordered">

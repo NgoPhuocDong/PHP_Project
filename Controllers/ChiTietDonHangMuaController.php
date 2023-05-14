@@ -40,11 +40,30 @@ class ChiTietDonHangMuaController{
             //lấy dữ liệu từ ChiTietDonHangMua
             $result = $this->model->DanhSach($id,$item,$offset);
             $resultDonHang = $this->donhangmua->ChiTiet($id);
+            $result11 = $this->model->test($id);
+            if(isset($_POST['button1'])) {
+                $this->donhangmua->CapNhatTrangThaiXacNhan($id);
+                // $this->model->XoaHet($id);
+                // $this->model->CapNhatTongTien1($id);
+                for ($i = 0; $i < count($result11); $i++) {
+                    $arr = [
+                        [$result11[$i]['idSanPham'] => $result11[$i]['total_quantity']],
+                    ];
+                    foreach ($arr as $subarray) {
+                        foreach ($subarray as $key => $value) {
+                            $this->model->hihi1($key,$value);
+                        }
+                    }
+                }  
+            }
+            $result10 = $this->donhangmua->idtrangthai($id);
+
+
             //Truy vấn dữ liệu từ DonHangMua
             //$resultDonHang = $this->db->find($table,$id);
         }
         include 'Views/ChiTietDonHangMua/DanhSach.php';
-        return array($result, $resultDonHang);
+        return array($result, $resultDonHang, $result10);
     }
     public function CapNhat(){
         $alert = "";
