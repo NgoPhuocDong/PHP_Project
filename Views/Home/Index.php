@@ -1,6 +1,6 @@
 <?php
     include "./Views/HomeLayout/header.php";
-    echo "<title>Update dơn hàng mua</title>";
+    echo "<title>Cửa hàng laptop</title>";
 ?>
   <script>
   window.addEventListener('scroll', function() {
@@ -245,12 +245,13 @@ Tạo menu tree danh mục sản phẩm
               <img src="../Assets/data/HinhAnhSanPham/<?= $row['HinhAnh'] ?>"  style="width:auto; height:auto;" alt="<?= $row['TenSanPham'] ?>">
             </div>
             <div class="card-body">
-              <h5 class="card-title" style="font-size: 14px; font-weight: normal; height: 54px;" ><?= $row['TenSanPham'] ?></h5>
+              <h5 class="card-title" style="font-size: 18px; font-weight: normal; height: 54px;" ><?= $row['TenSanPham'] ?></h5>
               <b><small class="text-primary" style="font-weight: bold; font-size: 15px;" > <?= number_format($row['Gia'], 0, ',', '.') ?> VNĐ</small></b>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart">Thêm vào giỏ hàng</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button>
+                  <a href="../TrangChu/ChiTietSanPham&id=<?=$row['ID']?>" class="btn btn-sm btn-outline-secondary">Xem chi tiết</a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button> -->
                 </div>
               </div>
             </div>
@@ -387,12 +388,13 @@ Tạo menu tree danh mục sản phẩm
               <img src="../Assets/data/HinhAnhSanPham/<?= $row['HinhAnh'] ?>"  style="width:90%; height:90%;" alt="<?= $row['TenSanPham'] ?>">
             </div>
             <div class="card-body">
-              <h5 class="card-title" style="font-size: 14px; font-weight: normal; height: 54px;" ><?= $row['TenSanPham'] ?></h5>
+              <h5 class="card-title" style="font-size: 18px; font-weight: normal; height: 54px;" ><?= $row['TenSanPham'] ?></h5>
               <b><small class="text-primary" style="font-weight: bold; font-size: 15px;" > <?= number_format($row['Gia'], 0, ',', '.') ?> VNĐ</small></b>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart">Thêm vào giỏ hàng</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button>
+                  <a href="../TrangChu/ChiTietSanPham&id=<?=$row['ID']?>" class="btn btn-sm btn-outline-secondary">Xem chi tiết</a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button> -->
                 </div>
               </div>
             </div>
@@ -412,7 +414,7 @@ Tạo menu tree danh mục sản phẩm
 				<div class="card shadow-sm">
 					<img src="https://phongvu.vn/cong-nghe/wp-content/uploads/2023/04/game-sinh-ton-Badlanders-300x300.jpg" class="card-img-top" alt="news1">
 					<div class="card-body">
-						<h5 class="card-title">Phá đảo Badlanders: Game sinh tồn mobile thế hệ mới do Viettel Media phát hành</h5>
+						<h5 class="card-title">Phá đảo Badlanders: Game sinh tồn thế hệ mới do Viettel Media phát hành</h5>
 						<p class="card-text"><?php echo substr("Trong làn sóng thoái trào của những tựa game bắn súng sinh tồn tại Việt Nam thì Badlanders lại nổi lên như một tựa game sinh tồn mobile",0,90) . "..." ?></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
