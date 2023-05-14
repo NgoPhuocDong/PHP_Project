@@ -128,6 +128,9 @@ class SanPhamController{
             }
         }
     }
+    public function InSanPham(){
+        include 'Views/SanPham/InSanPham.php';
+    }
 }
 
 

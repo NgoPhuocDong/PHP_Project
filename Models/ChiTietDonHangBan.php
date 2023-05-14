@@ -5,7 +5,6 @@ class ChiTietDonHangBan{
 
     public function __construct(){
         $this->db = new Database();
-        $this->sanpham = new SanPham();
     }   
     public function DanhSach($id,$item,$offset)
     {
@@ -48,21 +47,6 @@ class ChiTietDonHangBan{
         $sql = "SELECT * from khachhang as kh, donhangban as dh WHERE idKhachHang = kh.ID and dh.ID = $id";
         $result = $this->db->select($sql);
         return $result;
-    }
-
-    public function CapNhatTongTien($iddonhangban)
-    {
-        $sql = "UPDATE donhangban
-        SET TongTien = (SELECT SUM(soluong * dongiaapdung) 
-                         FROM ChiTietDonHangBan 
-                         WHERE idDonHangBan = '$iddonhangban') 
-        WHERE ID = '$iddonhangban'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public function CapNhatSoLuong($id,$idsanpham)

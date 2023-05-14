@@ -82,9 +82,8 @@ class DonHangBanController{
                 header('Location: ./DanhSach');
             }
             }
-        }
+        }}
         include 'Views/DonHangBan/ThemMoi.php';
-
         return Array($ListKhachHang,$ListNhanVien);
     }
 
@@ -129,5 +128,4 @@ class DonHangBanController{
             }
         }
     }
-}
 }
