@@ -82,9 +82,15 @@
                 <td>
                     <?= $row['TenNhanVien'] ?>
                 </td>
-                <td>
+                <?php if($row['idTrangThai'] == 2) { ?>
+                <td style="color: green;">
                     <?= $row['TenTrangThai'] ?>
                 </td>
+                <?php } elseif($row['idTrangThai'] == 3) { ?>
+                    <td style="color: gray;">
+                    <?= $row['TenTrangThai'] ?>
+                </td>
+                    <?php } ?>
                 <td>
                     <a href="../ChiTietDonHangMua/DanhSach&id=<?=$row['ID']?>">Chi tiết</a> | 
                     <?php if(check('../DonHangMua/CapNhat&id='.$row['ID'])) { ?>

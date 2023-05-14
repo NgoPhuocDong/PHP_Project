@@ -139,13 +139,15 @@ include("Controllers/KiemTraQuyen.php");
     color: #000000;
     box-shadow: 0 2px #000000;
 }
-}
+
 </style>
 
 <body class="bg-light col-md-12">
 	<nav class="navbar navbar-expand-sm bg-white col-md-12 fixed-top">
 		<div class="container-fluid">
-			<h4><a class="nav-link" href="#">Logo</a></h4>
+			<h4><a class="nav-link" href="../Home/TrangChu">
+				<img id="logo" src="https://shopfront-cdn.tekoapis.com/static/phongvu/logo-full.svg" loading="lazy" decoding="async" alt="phongvu" style="width: 100%; height: 35px;">
+			</a></h4>
 			<ul class="navbar-nav">
 				<li style="margin-left: 90px;" class="nav-item">
 					<a class="nav-link" href="../TrangChu/Index">Home</a>
@@ -230,7 +232,7 @@ include("Controllers/KiemTraQuyen.php");
 						<?php if(check('../DonHangMua/DanhSach') || check('../NguonHang/DanhSach')) { ?>
 		    			<a href="#" class="btn btn-dark dropdown-toggle">
 		    			<span class="aaa"><i class="fa fa-cart-plus" aria-hidden="true" style="color:white;"></i></span>
-		    			<span class="bbb">Nhập Hàng</span></a>
+		    			<span class="bbb">Nhập Hàng<span class="ppp1"><?php if(isset($_SESSION['tongdonhangmua'])) echo $_SESSION['tongdonhangmua'];?></span></span></a>
 						<?php } ?>
 		    			<ul id="collapse2" class="collapse text-white-50" data-bs-parent="#accordion">
 							<?php if (check('../DonHangMua/DanhSach')) {  ?>
@@ -247,7 +249,7 @@ include("Controllers/KiemTraQuyen.php");
 						<?php if(check('../DonHangBan/DanhSach') || check('../KhachHang/DanhSach') || check('../NhanVien/DanhSach')) { ?>
 		    			<a href="#" class="btn btn-dark dropdown-toggle">
 		    			<span class="aaa"><i class="fa fa-shopping-bag" aria-hidden="true" style="color: white;"></i></span>
-		    			<span class="bbb">Bán Hàng<span class="ppp"><?php if(isset($_SESSION['tongdonhangban'])) echo $_SESSION['tongdonhangban'];?></span></span></a> 
+		    			<span class="bbb">Bán Hàng<span class="ppp"><?php if(isset($_SESSION['tongdonhangban'])) echo $_SESSION['tongdonhangban'];?></span></a> 
 						<?php } ?>
 		    			<ul id="collapse3" class="collapse text-white-50" data-bs-parent="#accordion">
 							<?php if (check('../DonHangBan/DanhSach')) { ?>

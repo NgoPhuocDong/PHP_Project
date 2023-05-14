@@ -33,7 +33,11 @@ class DonHangMuaController{
         }
         else{
             $tongsp = $this->model->TongDonHangMua();
-            $totalPage = ceil($tongsp / $item);
+            if($tongsp > 0) {
+                $_SESSION['tongdonhangmua'] = $tongsp;
+            } else {
+                unset($_SESSION['tongdonhangmua']);
+            }            $totalPage = ceil($tongsp / $item);
             //gọi method GetData mở Models DonHangMua.php
             $result  = $this->model->DanhSach($item,$offset);
         }
@@ -41,6 +45,7 @@ class DonHangMuaController{
         include 'Views/DonHangMua/DanhSach.php';
         return $result;
     }
+    
     public function ThemMoi(){
         $alert = "";
         $ListNguonHang = $this->nguonhang->GetData(100,0);

@@ -32,9 +32,7 @@
                     <div class="col-md-2" style="padding:0;margin-left:-7px;">
                         <button class="btn btn-primary">Tìm</button>
                     </div>
-                    <div class="col-md-2" style="padding:0;margin-left:-7px;">
-                   
-                    </div>
+                    
                 </form>
             </div>
 
@@ -73,19 +71,16 @@
             foreach ($result as $row) : extract($row);$i++; ?> 
              <?php if($row['TongTien'] == 0 && $row['idTrangThai'] == 4) { ?>
             <tr style="color: white; background: red;">
-                <td><?= $i;
-                $tong += $i;
-                $_SESSION['soluongdonhang'] = $tong; ?></td>
+                <td><?= $i; ?></td>
                 <td><?= $row['ID'] ?></td>
                 <td>
-                    <?= $row['TenKhachHang'] ?>
-                </td>
+                <a style="color: white;" href="../KhachHang/DanhSach&id=<?=$row['idKhachHang']?>"><?= $row['TenKhachHang'] ?></a>                </td>
                 <td>
                 <?= date('d-m-Y',strtotime($row['NgayLap']))?>
                 </td>
                 
                 <td>
-                    <?= $row['TongTien'] ?>
+                <?=number_format($row['TongTien'],0,'.', '.'); ?>
                 </td>
                 <td>
                     <?= $row['TenNhanVien'] ?>
@@ -104,9 +99,7 @@
                 </tr>
                 <?php } else { ?>
                 <tr>
-                    <td><?= $i;
-                $tong += $i;
-                $_SESSION['soluongdonhang'] = $tong; ?></td>
+                    <td><?= $i; ?></td>
                 <td><?= $row['ID'] ?></td>
                 <td>
                     <?= $row['TenKhachHang'] ?>
@@ -116,8 +109,8 @@
                 </td>
                 
                 <td>
-                    <?= $row['TongTien'] ?>
-                </td>
+                <?= number_format($row['TongTien'],0,'.', '.') ?>
+                    </td>
                 <td>
                     <?= $row['TenNhanVien'] ?>
                 </td>
@@ -136,9 +129,7 @@
                 </td>
                 <?php } ?>
             </tr>
-            <?php endforeach; endif; ?>
-          
-            
+            <?php endforeach; endif; ?>      
     </table>
 </div>
 <?php
@@ -147,7 +138,7 @@
         <?php if(isset($_GET['id'])) {?>
         <a class="return" href="../DonHangBan/DanhSach">Quay lại danh sách đơn hàng bán</a>
         <?php }?>
-    
+        <?php unset($_SESSION['nn']) ?> 
 
 <?php
     include "./Views/Layout/footer.php";

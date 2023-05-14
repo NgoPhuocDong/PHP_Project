@@ -12,6 +12,13 @@ class LoaiSanPham{
         $result = $this->db->select($sql);
         return $result;
     }
+
+    public function DanhSach1()
+    {
+        $sql = "SELECT * FROM loaisanpham";
+        $result = $this->db->select($sql);
+        return $result;
+    }
     public function TongLoaiSanPham() {
         $sql = "SELECT * FROM loaisanpham";
         $result = mysqli_query($this->db->conn, $sql);
