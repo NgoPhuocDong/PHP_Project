@@ -35,12 +35,11 @@
 
             <label class="h6">Đơn giá áp dụng</label>
             <input type="text"  id="dongiaapdung" value="" name="dongiaapdung" class="form-control"><br>
+            <!-- <label class="h6">Thành tiền</label>
+            <input type="text" value="<?= $row['ThanhTien']?>"name="thanhtien" class="form-control"><br> -->
             <?php
                 echo $alert ;
             ?>
-
-            <!-- <label class="h6">Thành tiền</label>
-            <input type="text" value="<?= $row['ThanhTien']?>"name="thanhtien" class="form-control"><br> -->
             <hr>
             <input type="submit" value="Update" name="submit" class="btn btn-primary">
         </form>

@@ -20,11 +20,18 @@
     </div>
     <div class="card col-ml-25 bg-warning text-white">
         <h4 class="card-item">Doanh Thu</h4>
-        <h2><?= print_r($tongtiendonhangban)?></h2>
+        <?php $result = $this->donhangban->DoanhThuDonHangBan(); 
+        $result1= $this->donhangmua->DoanhThuDonHangMua();
+        ?>
+        <h2><?=$result[0]['SUM(TongTien)']?></h2>
     </div>
     <div class="card col-ml-25 bg-success text-white">
         <h4 class="card-item">Lợi nhuận</h4>
-        <h2><?=$tongsanpham?></h2>
+        <h2><?=$test = $result[0]['SUM(TongTien)'] - $result1[0]['SUM(TongTien)']; ?></h2>
+        <?php if ($test < 0) { echo "Chốt lỗ";
+        } else {
+          echo "Chốt lãi";
+        } ?> 
     </div>
     <h2>Đồ thị</h2>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -35,7 +42,7 @@
 <script>
 var xValues = [
   <?php foreach($thongkedonhangban as $row) : extract($row) ?>
-    <?= date('Y', strtotime($row['NgayLap']))."," ?>
+    <?= date('"d-m-Y"', strtotime($row['NgayLap']))."," ?>
     <?php endforeach;?>
 ];
 var yValues = [

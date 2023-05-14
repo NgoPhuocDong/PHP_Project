@@ -29,6 +29,9 @@
         
         <label class="h6">URL</label> <br>
         <input type="text" name="duongdan" class="form-control"><br>
+        <?php
+            echo $alert;
+        ?>
         <hr>
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">
     </form>

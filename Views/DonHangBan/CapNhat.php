@@ -16,12 +16,26 @@
     <hr>
     <?php foreach ($dataUpdate as $row) : extract($row); ?>
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
-        <label class="h6">Id nhân viên lập</label>
-        <input type="text" value="<?= $row['idNhanVienLap']?>"name="idnhanvienlap" class="form-control"><br>
-
-        <label class="h6">Id khách hàng</label>
-        <input type="text" value="<?= $row['idKhachHang']?>"name="idkhachhang" class="form-control"><br>
-
+    <label class="h6">Tên nhân viên lập</label>
+        <select name="idnhanvienlap" class="form-control">
+                <option value="<?= $row['idNhanVienLap']?>">
+                <?php if(!empty($ListNhanVien))
+                    foreach ($ListNhanVien as $item) : extract($item)?>
+                        <option value="<?= $item['ID']?>">
+                            <?= $item['TenNhanVien']?>
+                        </option>
+                <?php endforeach;?>    
+        </select><br>
+            <label class="h6">Tên khách hàng</label>
+        <select name="idkhachhang" class="form-control">
+                <option value="<?= $row['idKhachHang']?>">
+                <?php if(!empty($ListKhachHang))
+                    foreach ($ListKhachHang as $itemKH) : extract($itemKH)?>
+                        <option value="<?= $itemKH['ID']?>">
+                            <?= $itemKH['TenKhachHang']?>
+                        </option>
+                <?php endforeach;?>    
+            </select><br>
         <label class="h6">Id trạng thái</label>
         <input type="text" value="<?= $row['idTrangThai']?>"name="idtrangthai" class="form-control"><br>
 

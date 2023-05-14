@@ -30,7 +30,9 @@
 
         <label class="h6">URL</label>
         <input type="text" value="<?= $row['duongdan']?>"name="duongdan" class="form-control"><br>
-
+        <?php
+            echo $alert;
+        ?>
         <hr>
         <input type="submit" value="Update" name="submit" class="btn btn-primary">
     </form>

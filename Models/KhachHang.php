@@ -57,6 +57,7 @@ class KhachHang{
         }
     }
     
+    
     public function Xoa($id)
     {
         $sql = "DELETE FROM khachhang WHERE id = '$id'";

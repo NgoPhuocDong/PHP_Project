@@ -7,13 +7,13 @@ class DonHangBan{
     }
     public function DanhSach($item,$offset)
     {
-        $sql = "SELECT dh.ID, kh.TenKhachHang, dh.NgayLap, nv.TenNhanVien, dh.TongTien, tt.TenTrangThai
+        $sql = "SELECT dh.ID, dh.idTrangThai, dh.idKhachHang, kh.TenKhachHang, dh.NgayLap, nv.TenNhanVien, dh.TongTien, tt.TenTrangThai
         FROM donhangban AS dh
         INNER JOIN khachhang AS kh ON dh.IdKhachHang = kh.ID
         INNER JOIN trangthaiban AS tt ON dh.IdTrangThai = tt.ID
-        INNER JOIN nhanvien AS nv ON dh.IdNhanVienLap = nv.ID 
-        ORDER BY dh.ID ASC
-        LIMIT ".$item." OFFSET ".$offset;
+        INNER JOIN nhanvien AS nv ON dh.IdNhanVienLap = nv.ID
+        ORDER BY dh.ID ASC LIMIT ".$item." OFFSET ".$offset;
+
         $result = $this->db->select($sql);
         return $result;
     }
@@ -26,19 +26,15 @@ class DonHangBan{
     }
 
     public function DoanhThuDonHangBan() {
-        $sql = "SELECT SUM(TongTien) FROM donhangban";
-        $result = mysqli_query($this->db->conn, $sql);
+        $sql = "SELECT SUM(TongTien) FROM donhangban WHERE idTrangThai = 6";
+        $result = $this->db->select($sql);
         //$result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
+        return $result;
     }
 
     public function ChiTiet($id)
     {
-        $sql = "SELECT dh.ID,kh.TenKhachHang,NgayLap,nv.TenNhanVien,TongTien,TenTrangThai
+        $sql = "SELECT dh.ID,dh.idTrangThai,kh.TenKhachHang,NgayLap,nv.TenNhanVien,TongTien,TenTrangThai
         FROM donhangban as dh,khachhang as kh,trangthaiban as tt, nhanvien as nv
         WHERE dh.IdKhachHang = kh.ID
         AND dh.IdTrangThai = tt.ID
@@ -47,10 +43,11 @@ class DonHangBan{
         $result = $this->db->select($sql);
         return $result;
     }
+   
     public function ThemMoi($idnhanvienlap, $idkhachhang, $idtrangthai, $ngaylap, $tongtien)
     {
         $sql = "INSERT INTO donhangban (idNhanVienLap,idKhachHang,idTrangThai,NgayLap,TongTien)
-                VALUES ('$idnhanvienlap', '$idkhachhang', '$idtrangthai', '$ngaylap', '$tongtien')";
+                VALUES ('$idnhanvienlap', '$idkhachhang', 5, '$ngaylap', '$tongtien')";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -60,7 +57,7 @@ class DonHangBan{
     }
     public function ThongKeDonHangBan(){
         $sql = "SELECT TongTien,NgayLap
-        FROM donhangban";
+        FROM donhangban WHERE idTrangThai = 6";
         $result = $this->db->select($sql);
         return $result;
         if ($result) {
@@ -85,6 +82,87 @@ class DonHangBan{
             return false;
         }
     }
+
+    public function CapNhatTrangThaiHoanThanhDonHang($id) {
+        $sql = "UPDATE donhangban SET 
+        idtrangthai = 6
+        WHERE ID = '$id'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function CapNhatTrangThaiHuyDonHang($id) {
+        $sql = "UPDATE donhangban SET 
+        idtrangthai = 4
+        WHERE ID = '$id'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+   
+    public function CapNhatTrangThaiBanDauDonHang($id) {
+        $sql = "UPDATE donhangban SET 
+        idtrangthai = 5
+        WHERE ID = '$id'";
+        $result = $this->db->execute($sql);
+        return $result;
+    }
+
+    public function TongTienDonHang($id) {
+        $sql = "SELECT TongTien from donhangban WHERE ID = '$id'";
+        $result = $this->db->select($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function DanhSachTrangThai() {
+        $sql = "SELECT * from trangthaiban";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    public function tentrangthai($id){
+        $sql = "SELECT TenTrangThai from trangthaiban WHERE ID='$id'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    public function idtrangthai($id){
+        $sql = "SELECT idTrangThai from donhangban WHERE ID='$id'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    public function DanhSachID() {
+        $sql = "SELECT ID from donhangban";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    // public function DoanhThuDonHangBan() {
+    //     $sql = "SELECT SUM(TongTien) FROM donhangban";
+    //     $result = mysqli_query($this->db->conn, $sql);
+    //     //$result = $this->db->execute($sql);
+    //     if ($result) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    // public function ThongKeDonHangBan(){
+    //     $sql = "SELECT TongTien,NgayLap
+    //     FROM donhangban";
+    //     $result = $this->db->select($sql);
+    //     return $result;
+    // }
     public function Xoa($id)
     {
         $sql = "DELETE FROM donhangban WHERE id = '$id'";
@@ -95,4 +173,5 @@ class DonHangBan{
             return false;
         }
     }
+   
 }

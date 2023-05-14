@@ -29,6 +29,9 @@
         
         <label class="h6">Nội dung</label> <br>
         <textarea name="noidung" id="" cols="30" rows="10"></textarea>
+        
+        <label class="h6">Hình ảnh</label> <br>
+        <input type="file" id="file-upload" name="hinhanh"><br>
         <hr>
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">
     </form>

@@ -37,16 +37,27 @@ class LoaiQuyenController{
     }
 
     public function ThemMoi(){
+        $alert="";
         if (isset($_POST['submit'])) {
-            $create = $this->model->ThemMoi($_POST['tenquyen']);
-            if ($create) {
-                header('Location: ./DanhSach');
+            $tenquyen = $_POST['tenquyen'];
+
+            $existingQuyen = $this->model->TimKiemTheoTenLoaiQuyen($tenquyen);
+            if(empty($_POST['tenquyen'])){
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống tên quyền!</span>";
+            }else if($existingQuyen){
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Tên quyền này đã tồn tại!</span>";
+            }else{
+                $create = $this->model->ThemMoi($_POST['tenquyen']);
+                if ($create) {
+                    header('Location: ./DanhSach');
+                }
             }
         }
         include 'Views/LoaiQuyen/ThemMoi.php';
     }
 
     public function CapNhat(){
+        $alert="";
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $table = 'nhomquyen';
@@ -54,10 +65,19 @@ class LoaiQuyenController{
             $dataUpdate = $this->db->find($table,$id);
             
             if (isset($_POST['submit'])) {
+                $tenquyen = $_POST['tenquyen'];
+
+            $existingQuyen = $this->model->TimKiemTheoTenLoaiQuyen($tenquyen);
+            if(empty($_POST['tenquyen'])){
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống tên quyền!</span>";
+            }else if($existingQuyen){
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Tên quyền này đã tồn tại!</span>";
+            }else{
                 $update = $this->model->CapNhat($id,$_POST['tenquyen']);
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
+            }
             }
         }
         include 'Views/LoaiQuyen/CapNhat.php';

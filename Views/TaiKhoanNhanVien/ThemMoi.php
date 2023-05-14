@@ -39,7 +39,9 @@
 
         <label class="h6">Hình ảnh</label> <br>
         <input type="file" id="file-upload" name="anhdaidien"><br>
-        
+         <?php
+            echo $alert;
+         ?>
 
         <hr>
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">

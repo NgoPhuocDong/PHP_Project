@@ -5,8 +5,8 @@
     include "./Models/Database.php";
     $db =  new Database();
    
-    $nameController = ucfirst(($_REQUEST['url'] ?? 'Home').'Controller');
-    $action = $_REQUEST['action'] ?? header('Location: ./Home/TrangChu');
+    $nameController = ucfirst(($_REQUEST['url'] ?? 'TrangChu').'Controller');
+    $action = $_REQUEST['action'] ?? header('Location: ./TrangChu/Index');
 
     include "./Controllers/$nameController.php";
     $controller = new $nameController();

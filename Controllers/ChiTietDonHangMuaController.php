@@ -17,18 +17,11 @@ class ChiTietDonHangMuaController{
     }
 
     public function ThemMoi(){
-        $alert ="";
         $result = $this->sanpham->DanhSach($this->sanpham->TongSanPham(),0);
         if (isset($_POST['submit'])) {
-            if(empty($_POST['soluong'])){
-                $alert="<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống số lượng!</span>";
-            }else if(!is_numeric($_POST['soluong'])){
-                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Số lượng bắt buộc phải là số!</span>";
-            } else{
                 $create = $this->model->ThemMoi($_POST['iddonhangmua'],$_POST['idsanpham'],  $_POST['soluong'],$_POST['dongiaapdung']);
                 if ($create) {
                     header("Location: ./DanhSach&id=$_POST[iddonhangmua]");
-                }
         }
     }
     include 'Views/ChiTietDonHangMua/ThemMoi.php';
@@ -47,11 +40,30 @@ class ChiTietDonHangMuaController{
             //lấy dữ liệu từ ChiTietDonHangMua
             $result = $this->model->DanhSach($id,$item,$offset);
             $resultDonHang = $this->donhangmua->ChiTiet($id);
+            $result11 = $this->model->test($id);
+            if(isset($_POST['button1'])) {
+                $this->donhangmua->CapNhatTrangThaiXacNhan($id);
+                // $this->model->XoaHet($id);
+                // $this->model->CapNhatTongTien1($id);
+                for ($i = 0; $i < count($result11); $i++) {
+                    $arr = [
+                        [$result11[$i]['idSanPham'] => $result11[$i]['total_quantity']],
+                    ];
+                    foreach ($arr as $subarray) {
+                        foreach ($subarray as $key => $value) {
+                            $this->model->hihi1($key,$value);
+                        }
+                    }
+                }  
+            }
+            $result10 = $this->donhangmua->idtrangthai($id);
+
+
             //Truy vấn dữ liệu từ DonHangMua
             //$resultDonHang = $this->db->find($table,$id);
         }
         include 'Views/ChiTietDonHangMua/DanhSach.php';
-        return array($result, $resultDonHang);
+        return array($result, $resultDonHang, $result10);
     }
     public function CapNhat(){
         $alert = "";
@@ -61,11 +73,6 @@ class ChiTietDonHangMuaController{
             //lấy dữ liệu cần cập nhật
             $dataUpdate = $this->model->find($id);
             if (isset($_POST['submit'])) {
-                if(empty($_POST['soluong'])){
-                    $alert="<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống số lượng!</span>";
-                }else if(!is_numeric($_POST['soluong'])){
-                    $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Số lượng bắt buộc phải là số!</span>";
-                } else{
                 $update = $this->model->CapNhat($id,$_POST['iddonhangmua'],
                                                     $_POST['idsanpham'],
                                                     $_POST['soluong'],
@@ -74,7 +81,6 @@ class ChiTietDonHangMuaController{
                 if ($update) {
                     header("Location: ./DanhSach&id=$_POST[iddonhangmua]");
                 }
-            }
             }
         }
         include 'Views/ChiTietDonHangMua/CapNhat.php';

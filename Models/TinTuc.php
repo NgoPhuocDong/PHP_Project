@@ -7,10 +7,10 @@ class TinTuc{
     public function __construct(){
         $this->db = new Database();
     }
-    public function ThemMoi($id, $ten, $noidung)
+    public function ThemMoi($id, $ten, $noidung, $hinhanh)
     {
-        $sql = "INSERT INTO tintuc(IDLoaiTinTuc,TenTinTuc,NoiDung) 
-        VALUES ('$id','$ten','$noidung')";
+        $sql = "INSERT INTO tintuc(IDLoaiTinTuc,TenTinTuc,NoiDung,HinhAnh) 
+        VALUES ('$id','$ten','$noidung','$hinhanh')";
         $result = $this->db->execute($sql);
         if ($result) {  
             return true;
@@ -66,6 +66,18 @@ class TinTuc{
         TenTinTuc = '$tentintuc',
         NoiDung = '$noidung',
         NgayDang = '$ngaydang'
+        WHERE ID = '$id'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function CapNhatHinhAnh($id,$hinhanh)
+    {
+        $sql = "UPDATE tintuc SET
+        HinhAnh = '$hinhanh'
         WHERE ID = '$id'";
         $result = $this->db->execute($sql);
         if ($result) {
