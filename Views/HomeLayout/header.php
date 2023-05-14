@@ -131,7 +131,7 @@ img:hover {
               </li>
               <hr>
               <li><a class="dropdown-item" href="../TrangChu/DangXuat"  aria-hidden="true">
-                <i class="fa fa-sign-out me-2" aria-hidden="true"></i>
+                <i class="fa fa-sign-out me-2 " aria-hidden="true"></i>
                 Đăng xuất</a>
               </li>
               

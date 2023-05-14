@@ -13,7 +13,7 @@ include "./Views/HomeLayout/header.php";
 <body>
 <div class="container bg-light mt-4">
   <h1>Giỏ hàng</h1>
-  <table class="table">
+  <table class="table align-middle">
     <thead>
       <tr>
         <th scope="col">Xóa sản phẩm</th>
@@ -87,24 +87,34 @@ include "./Views/HomeLayout/header.php";
     priceCell.textContent = product.Price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' , minimumFractionDigits: 0});;
     row.appendChild(priceCell);
 
+    //---------------------------------------nút tăng giảm số lưọng-------------------------
     var quantityCell = document.createElement('td');
-    var decreaseButton = document.createElement('button');
-    decreaseButton.className = 'btn btn-secondary btn-decrease';
-    decreaseButton.textContent = '-';
-    quantityCell.appendChild(decreaseButton);
+      quantityCell.style.display = 'flex';
+      quantityCell.style.padding = '24px';
+      quantityCell.style.fontSize = '15px';
 
-    var quantityElement = document.createElement('span');
-    quantityElement.className = 'product-quantity';
-    quantityElement.textContent = product.Quantity;
-    quantityCell.appendChild(quantityElement);
+      var decreaseButton = document.createElement('button');
+      decreaseButton.className = 'rounded-start btn-outline-primary btn-decrease border-1';
+      decreaseButton.innerHTML = '<i class="fas fa-minus"></i>';
+      
+      quantityCell.appendChild(decreaseButton);
 
-    var increaseButton = document.createElement('button');
-    increaseButton.className = 'btn btn-secondary btn-increase';
-    increaseButton.textContent = '+';
-    quantityCell.appendChild(increaseButton);
+      var quantityElement = document.createElement('span');
+      quantityElement.className = 'product-quantity border border-1 border-primary p-1 px-3';
+      quantityElement.textContent = product.Quantity;
+      quantityCell.appendChild(quantityElement);
+
+      var increaseButton = document.createElement('button');
+      increaseButton.className = 'rounded-end btn-outline-primary btn-increase border-1';
+      increaseButton.innerHTML = '<i class="fas fa-plus"></i>';
+      quantityCell.appendChild(increaseButton);
 
     row.appendChild(quantityCell);
+//---------------------------------------nút tăng giảm số lưọng-------------------------
 
+
+
+    /////////////////////////////////
     var totalCell = document.createElement('td');
     totalCell.className = 'product-total' ;
     var total = product.Price * product.Quantity;
