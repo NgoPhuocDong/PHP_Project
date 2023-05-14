@@ -11,7 +11,11 @@ class ThanhToanController{
         $this->model = new ThanhToan();
         $this->khachhang = new KhachHang();
         $this->db = new Database();
+
+        // Bắt đầu session
+        session_start();
     }
+
     public function DanhSach()
     {
         $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 6;
@@ -36,6 +40,7 @@ class ThanhToanController{
         include 'Views/Home/ThanhToan.php';
         return $result;
     }
+
     public function ThemMoi()
     {
         if (isset($_POST['submit'])) {
@@ -44,8 +49,11 @@ class ThanhToanController{
             $email = $_POST['email'];
             $diachi = $_POST['diachi'];
             $create = $this->model->ThemMoi($tenkhachhang, $sodienthoai, $email, $diachi);
+
+            // Thiết lập thông báo vào session
+            $_SESSION['thongbao'] = $tenkhachhang . ' - ' . date('H:i:s d/m/Y');
         }
+
         include 'Views/Home/ThanhToan.php';
     }
-    
 }
