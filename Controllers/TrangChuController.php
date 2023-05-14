@@ -50,7 +50,7 @@ class TrangChuController{
             $result  = $this->model->DanhSach($item,$offset);
         }
         include("Views/Home/index.php");
-    return array($result/*,$sanphamnoibat*/);
+        return array($result,$loaisanpham);
     }
     public function ChiTietSanPham(){
         if (isset($_GET['id'])) {
