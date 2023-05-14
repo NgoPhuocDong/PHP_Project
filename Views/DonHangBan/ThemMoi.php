@@ -16,7 +16,7 @@
     <hr>
 
     <form method="post" class="form-group col-md-7" style="margin: auto;" enctype="multipart/form-data">
-    <label class="h6">Tên nhân viên lập</label>
+        <label class="h6">Tên nhân viên lập</label>
         <select name="idnhanvienlap" class="form-control">
                 <option value="<?= $row['idNhanVienLap']?>">
                 <?php if(!empty($ListNhanVien))
@@ -25,7 +25,7 @@
                             <?= $item['TenNhanVien']?>
                         </option>
                 <?php endforeach;?>    
-        </select><br>
+        </select><br> 
             <label class="h6">Tên khách hàng</label>
         <select name="idkhachhang" class="form-control">
                 <option value="<?= $row['idKhachHang']?>">

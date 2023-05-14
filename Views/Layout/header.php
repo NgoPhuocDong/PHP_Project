@@ -139,13 +139,15 @@ include("Controllers/KiemTraQuyen.php");
     color: #000000;
     box-shadow: 0 2px #000000;
 }
-}
+
 </style>
 
 <body class="bg-light col-md-12">
 	<nav class="navbar navbar-expand-sm bg-white col-md-12 fixed-top">
 		<div class="container-fluid">
-			<h4><a class="nav-link" href="#">Logo</a></h4>
+			<h4><a class="nav-link" href="../Home/TrangChu">
+				<img id="logo" src="https://shopfront-cdn.tekoapis.com/static/phongvu/logo-full.svg" loading="lazy" decoding="async" alt="phongvu" style="width: 100%; height: 35px;">
+			</a></h4>
 			<ul class="navbar-nav">
 				<li style="margin-left: 90px;" class="nav-item">
 					<a class="nav-link" href="../TrangChu/Index">Home</a>

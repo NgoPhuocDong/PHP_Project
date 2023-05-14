@@ -17,18 +17,11 @@ class ChiTietDonHangMuaController{
     }
 
     public function ThemMoi(){
-        $alert ="";
         $result = $this->sanpham->DanhSach($this->sanpham->TongSanPham(),0);
         if (isset($_POST['submit'])) {
-            if(empty($_POST['soluong'])){
-                $alert="<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống số lượng!</span>";
-            }else if(!is_numeric($_POST['soluong'])){
-                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Số lượng bắt buộc phải là số!</span>";
-            } else{
                 $create = $this->model->ThemMoi($_POST['iddonhangmua'],$_POST['idsanpham'],  $_POST['soluong'],$_POST['dongiaapdung']);
                 if ($create) {
                     header("Location: ./DanhSach&id=$_POST[iddonhangmua]");
-                }
         }
     }
     include 'Views/ChiTietDonHangMua/ThemMoi.php';
@@ -61,11 +54,6 @@ class ChiTietDonHangMuaController{
             //lấy dữ liệu cần cập nhật
             $dataUpdate = $this->model->find($id);
             if (isset($_POST['submit'])) {
-                if(empty($_POST['soluong'])){
-                    $alert="<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống số lượng!</span>";
-                }else if(!is_numeric($_POST['soluong'])){
-                    $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Số lượng bắt buộc phải là số!</span>";
-                } else{
                 $update = $this->model->CapNhat($id,$_POST['iddonhangmua'],
                                                     $_POST['idsanpham'],
                                                     $_POST['soluong'],
@@ -74,7 +62,6 @@ class ChiTietDonHangMuaController{
                 if ($update) {
                     header("Location: ./DanhSach&id=$_POST[iddonhangmua]");
                 }
-            }
             }
         }
         include 'Views/ChiTietDonHangMua/CapNhat.php';

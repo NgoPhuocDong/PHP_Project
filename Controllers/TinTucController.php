@@ -47,17 +47,20 @@ class TinTucController{
             $id = $_GET['id'];
             $detail = $this->model->ChiTiet($id);
         }
-        require_once('Views/SanPham/ChiTiet.php');
+        require_once('Views/TinTuc/ChiTiet.php');
         return $detail;
     }
     public function ThemMoi(){
         $limit = $this->loaitintuc->TongLoaiTinTuc();
         $result = $this->loaitintuc->DanhSach($limit,0);
         if (isset($_POST['submit'])) {
+            $file_name = $_FILES['hinhanh']['name'];
+            $file_tmp = $_FILES['hinhanh']['tmp_name'];
+            move_uploaded_file($file_tmp,"Assets/data/".$file_name);
             $create = $this->model->ThemMoi($_POST['idloaitintuc'],
                                             $_POST['tentintuc'],
                                             $_POST['noidung'],
-                                            $_POST['ngaydang']);
+                                            $_POST['ngaydang'],$file_name);
             if ($create) {
                 header('Location: ./DanhSach');
             }
@@ -98,6 +101,24 @@ class TinTucController{
                 header('Location: ./DanhSach');
             }
         }
+    }
+    public function CapNhatHinhAnh(){
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            //lấy dữ liệu cần cập nhật
+            $dataUpdate = $this->model->ChiTiet($id);
+            if (isset($_POST['submit'])) {
+                $file_name = $_FILES['hinhanh']['name'];
+                $file_tmp = $_FILES['hinhanh']['tmp_name'];
+                move_uploaded_file($file_tmp,"Assets/data/HinhAnhTintuc/".$file_name);
+                $update = $this->model->CapNhatHinhAnh($id,$_FILES['hinhanh']['name']);
+                if ($update) {
+                    header('Location: ./DanhSach');
+                }
+            }            
+        }
+        include 'Views/TinTuc/CapNhatTinTuc.php';
+        return array($dataUpdate);
     }
 
 }

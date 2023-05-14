@@ -22,7 +22,7 @@
 
     <!-- Optional Theme stylesheet -->
     <link rel="stylesheet" href="../Assets/css/glide.theme.min.css">
-    <title>Cửa hàng laptop</title>
+    
 </head>
 <style>
  .product-list {
@@ -67,7 +67,7 @@
           <a href="#" id="msbo"><i class="ic fa fa-bars"></i></a>
        </div> -->
 	   
-	<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none" style="margin-left: 8px; margin-right: 8px;">
+	<a href="../TrangChu/Index" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none" style="margin-left: 8px; margin-right: 8px;">
 	<img id="logo" src="https://shopfront-cdn.tekoapis.com/static/phongvu/logo-full.svg" loading="lazy" decoding="async" alt="phongvu" style="width: 100%; height: 35px;">
 	</a>
 	<div class="dropdown">
@@ -75,14 +75,12 @@
       Danh mục sản phẩm
     </button>
     <ul class="dropdown-menu">
-      <?php if(!empty($loaisanpham)):
-        foreach ($loaisanpham as $row) : extract($row)?>
+      
           <li><a class="dropdown-item" href="#">
             <div class="img">
-              <i class="fa fa-laptop" aria-hidden="true"> HP</i>
+              <i class="fa fa-laptop" aria-hidden="true"></i>
             </div>
           </a></li>
-      <?php endforeach; endif; ?>
     </ul>
 </div>
 		<div class="search-container" style="margin-left: 8px; margin-right: 20px;">
@@ -97,15 +95,39 @@
             </div>
           </form>
         </div>
+
+
+
 				<div style="margin-left: 8px; margin-right: 8px;">
-					<button class="btn btn-primary me-2">
-            <i class="fa fa-sign-in"></i> Đăng ký
-            <div>
-            Đăng nhập
-            </div>
-          </button>
-          
-          
+          <?php if (isset($_SESSION['user'])){?>
+            <button href="#" class="btn btn-primary me-2" data-bs-toggle="dropdown">
+              <i class="far fa-user-circle" aria-hidden="true"></i> 
+              <span style="margin-left: 3px; color: #fff;">
+                  <?= $_SESSION['user'];?>
+              </span>
+            </button>
+            <ul class="dropdown-menu fs-6">
+              <li><a class="dropdown-item " href="../TrangChu/ThongTinTaiKhoan">
+                <i class="fa fa-user-circle me-2" aria-hidden="true"></i>
+                Thông tin</a>
+              </li>
+              <hr>
+              <li><a class="dropdown-item" href="../TrangChu/DangXuat"  aria-hidden="true">
+                <i class="fa fa-sign-out me-2" aria-hidden="true"></i>
+                Đăng xuất</a>
+              </li>
+              
+            </ul>
+          <?php }else{?>
+            <a href="../TrangChu/DangNhap" class="btn btn-primary me-2">
+              <i class="far fa-user-circle" aria-hidden="true"></i> 
+              <span style="margin-left: 3px; color: #fff;">
+                Đăng nhập
+              </span>
+            </a>
+          <?php }?>
+
+ 
 			</div >
       <div class="cart ms-auto" style="margin-left: 8px;">
         <button class="btn btn-outline-secondary">

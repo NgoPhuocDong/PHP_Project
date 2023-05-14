@@ -15,7 +15,6 @@ class SanPham{
         $result = $this->db->select($sql);
         return $result;
     }
-
     
     public function TongSanPham() {
         $sql = "SELECT * FROM sanpham";

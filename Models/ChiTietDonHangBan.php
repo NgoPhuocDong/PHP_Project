@@ -58,6 +58,19 @@ class ChiTietDonHangBan{
         }
     }
 
+    public function getSoLuong($idsanpham)
+{
+    $sql = "SELECT sp.SoLuong FROM sanpham sp
+            JOIN chitietdonhangban ct ON sp.ID = ct.idsanpham
+            WHERE ct.idsanpham = '$idsanpham'";
+    $result = $this->db->select($sql);
+    
+    // Lấy giá trị số lượng từ kết quả $result
+    $soLuong = $result[0]['SoLuong'];
+    
+    return $soLuong;
+}
+
     public function CapNhatTongTien1($id)
     {
         $sql = "UPDATE donhangban set TongTien = 0 WHERE ID = '$id'";
