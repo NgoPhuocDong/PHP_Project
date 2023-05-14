@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="..\Assets\css\styleTrangChu.css"> 
 
@@ -58,6 +58,15 @@
   border-radius: 50%;
 }
 </style>
+<script>
+  function redirectToLoginPage() {
+    window.location.href = "../Views/Log/loginKH.php";
+}
+
+
+   
+  
+</script>
 
 <body>
   <header id="main-header" class="bg-white text-white" style="position: sticky;top: 0;z-index: 9999; box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1); ">
@@ -98,7 +107,7 @@
           </form>
         </div>
 				<div style="margin-left: 8px; margin-right: 8px;">
-					<button class="btn btn-primary me-2">
+					<button class="btn btn-primary me-2" onclick="redirectToLoginPage()">
             <i class="fa fa-sign-in"></i> Đăng ký
             <div>
             Đăng nhập
@@ -110,9 +119,43 @@
       <div class="cart ms-auto" style="margin-left: 8px;">
         <button class="btn btn-outline-secondary">
           <i class="fas fa-shopping-cart"></i> Giỏ hàng
-          <span class="badge bg-danger" id="cartItemCount">0</span>
+          <span class="badge bg-danger" id="cartItemCount"></span>
         </button>
       </div>
 
-		</div>
+      <script>
+  $(document).ready(function() {
+  $('.cart button').click(function() {
+    window.location.href = '../Views/GioHang/giohang.php';
+  });
+});
+
+function updateCartItemCount() {
+// Lấy dữ liệu giỏ hàng từ Local Storage
+var cartData = JSON.parse(localStorage.getItem('cart'));
+// Kiểm tra nếu cartData tồn tại và có các sản phẩm trong giỏ hàng
+if (cartData && cartData.length > 0) {
+  var cartItemCountElement = document.getElementById('cartItemCount');
+  // Lấy số lượng sản phẩm từ giỏ hàng
+  var cartItemCount = cartData.reduce(function(total, product) {
+    return total + product.Quantity;
+  }, 0);
+  
+  // Cập nhật số lượng vào thẻ span
+  cartItemCountElement.innerText = cartItemCount;
+} else {
+  // Nếu không có sản phẩm trong giỏ hàng, ẩn thẻ span
+  cartItemCountElement.innerText = 0;
+}
+}
+updateCartItemCount();
+var addToCartButton = document.getElementById("addcart");
+addToCartButton.addEventListener("click", function() {
+  updateCartItemCount();
+});
+</script> 
+  
+    </div>
+    </div>
 	</header>
+ 

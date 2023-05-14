@@ -43,6 +43,6 @@ class TrangChuController{
             $result  = $this->model->DanhSach($item,$offset);
         }
         include("Views/Home/index.php");
-        return array($result,$loaisanpham,$sanphamnoibat);
+        return array($result,$loaisanpham);
     }
 }
