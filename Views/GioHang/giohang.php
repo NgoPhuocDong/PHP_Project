@@ -34,7 +34,7 @@ include "./Views/HomeLayout/header.php";
       </tr>
       <tr>
         <td colspan="6" class="text-end">
-          <a class="btn btn-primary btn-checkout" href = '../ThanhToan/ThemMoi'>Tiến hành đặt hàng</a>
+          <a class="btn btn-primary" href="../TrangChu/ThanhToan">Tiến hành đặt hàng</a>
         </td>
       </tr>
     </tfoot>
@@ -190,7 +190,7 @@ include "./Views/HomeLayout/header.php";
     $('.table tbody tr').each(function() {
       var product = {};
       var productID= product.ID;
-      product.Name = $(this).find('.product-name').text();
+      product.Name = $(this).find('.lead').text();
       product.Image = $(this).find('img').attr('src');
       product.Price = parseFloat($(this).find('.product-price').text().replace(/\D/g, ''));
       product.Quantity = parseInt($(this).find('.product-quantity').text());
@@ -281,11 +281,4 @@ include "./Views/HomeLayout/header.php";
 //   });
 // });
 });
-
-
-
-  </script> 
-
-
-</body>
-</html>
+</script> 

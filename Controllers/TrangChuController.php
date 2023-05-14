@@ -4,6 +4,8 @@ include_once("Models/LoaiSanPham.php");//
 include_once("Models/TaiKhoanKhachHang.php");//
 include_once("Models/loginKhachHang.php");//
 include_once("Models/KhachHang.php");//
+include_once("Models/ThanhToan.php");
+include_once("Models/Tintuc.php");
 class TrangChuController{
     private $model;
     private $loaisanpham;
@@ -11,6 +13,9 @@ class TrangChuController{
     private $taikhoan;
     private $login;
     private $khachhang;
+    private $thanhtoan;
+    private $tintucs;
+    
     
     public function __construct(){
         $this->login = new loginKhachHang();
@@ -19,6 +24,7 @@ class TrangChuController{
         $this->loaisanpham = new LoaiSanPham();
         $this->db = new Database();
         $this->taikhoan = new TaiKhoanKhachHang();
+        $this->thanhtoan = new ThanhToan();
     }
     
     public function DanhMuc(){
@@ -37,9 +43,9 @@ class TrangChuController{
             //gọi method TimKiem bên Models
             $tongsp = $this->model->TongSanPhamTim($tensanpham);
             $totalPage = ceil($tongsp / $item);
-            $result  = $this->model->TimKiem($tensanpham);
-            
-            if($_GET['tensanpham']==null){
+            $result = $this->model->TimKiem($tensanpham);
+    
+            if($_GET['tensanpham'] == null){
                 header('Location: ./DanhSach');
             }
         }
@@ -47,11 +53,17 @@ class TrangChuController{
             $tongsp = $this->model->TongSanPham();
             $totalPage = ceil($tongsp / $item);
             //gọi method DanhSach bên Models
-            $result  = $this->model->DanhSach($item,$offset);
+            $result = $this->model->DanhSach($item, $offset);
         }
+    
+        // Lấy thông tin tin tức
+        $tinTucModel = new TinTuc();
+        $tintucs = $tinTucModel->DanhSach(3, 0);
+    
         include("Views/Home/index.php");
-        return array($result,$loaisanpham);
+        return array($result, $loaisanpham, $tintucs);
     }
+    
     public function ChiTietSanPham(){
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
@@ -150,5 +162,16 @@ class TrangChuController{
     }
     public function GioHang(){
         include('Views/GioHang/giohang.php');
+    }
+    public function ThanhToan()
+    {
+        if (isset($_POST['submit'])) {
+            $tenkhachhang = $_POST['tenkhachhang'];
+            $sodienthoai = $_POST['sodienthoai'];
+            $email = $_POST['email'];
+            $diachi = $_POST['diachi'];
+            $create = $this->thanhtoan->ThemMoi($tenkhachhang, $sodienthoai, $email, $diachi);
+        }
+        include 'Views/ThanhToan/ThanhToan.php';
     }
  }

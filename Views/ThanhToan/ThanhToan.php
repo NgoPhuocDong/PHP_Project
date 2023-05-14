@@ -1,9 +1,6 @@
 <?php
-include "../HomeLayout/header.php";
-
+include "./Views/HomeLayout/header.php";
 ?>
-<html>
-<body>
 <main class="container mt-5">
     <h1 class="mb-4">Thông tin đơn hàng</h1>
     <div class="order-details">
@@ -15,17 +12,17 @@ include "../HomeLayout/header.php";
       <form id="user-form">
         <div class="mb-3">
           <label for="name" class="form-label">Họ và tên:</label>
-          <input type="text" class="form-control" id="name" required>
+          <input type="text" class="form-control" id="name" name="tenkhachhang" required>
         </div>
         <div class="mb-3">
-          <label for="email" class="form-label">Số điện thoại:</label>
-          <input type="email" class="form-control" id="phone" required>
+          <label for="phone" class="form-label">Số điện thoại:</label>
+          <input type="text" class="form-control" id="phone" name="sodienthoai" required>
         </div>
         <div class="mb-3">
           <label for="address" class="form-label">Địa chỉ:</label>
-          <textarea class="form-control" id="address" rows="3" required></textarea>
+          <textarea class="form-control" id="address" name="diachi" rows="3" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary mt-3" onclick="exportToXLSX()">Xác nhận đơn hàng</button>
+        <button type="submit" class="btn btn-primary mt-3" name="submit" onclick="exportToXLSX()">Xác nhận đơn hàng</button>
       </form>
     </div>
     
@@ -299,7 +296,6 @@ function handleOrderConfirmation(event) {
   }
 
 </style>
-</html>
 
 
 
