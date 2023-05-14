@@ -68,8 +68,7 @@ class TrangChuController{
             $result = $this->model->TenSanPhamTheoLoai($tensanpham);
         }
         //gọi và show dữ liệu ra view
-        
-        include("Views/HomeLayout/header.php");
+        require_once('Views/Home/SanPhamTheoLoai.php');
         // return $result;
         return $result;
     }
