@@ -149,4 +149,7 @@ class TrangChuController{
         include('Views/Home/ThongTinTaiKhoan.php');
         return $thongtin;
     }
+    public function GioHang(){
+        include('Views/GioHang/giohang.php');
+    }
  }

@@ -1,5 +1,5 @@
 <?php
-include "../HomeLayout/header.php";
+include "./Views/HomeLayout/header.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,11 +8,10 @@ include "../HomeLayout/header.php";
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giỏ hàng</title>
-  <!-- Nạp các tệp CSS Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
+<div class="container bg-light mt-4">
   <h1>Giỏ hàng</h1>
   <table class="table">
     <thead>

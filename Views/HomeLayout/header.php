@@ -157,7 +157,7 @@ img:hover {
       <script>
   $(document).ready(function() {
   $('.cart button').click(function() {
-    window.location.href = '../Views/GioHang/giohang.php';
+    window.location.href = '../TrangChu/GioHang';
   });
 });
 
