@@ -7,7 +7,7 @@ class DonHangMua{
     }
     public function DanhSach($item,$offset)
     {
-        $sql = "SELECT dh.ID, kh.TenNguonHang, dh.NgayLap, nv.TenNhanVien, dh.TongTien, tt.TenTrangThai
+        $sql = "SELECT dh.ID, dh.idTrangThai, kh.TenNguonHang, dh.NgayLap, nv.TenNhanVien, dh.TongTien, tt.TenTrangThai
         FROM donhangmua AS dh
         INNER JOIN nguonhang AS kh ON dh.IdNguonHang = kh.ID
         INNER JOIN trangthaimua AS tt ON dh.IdTrangThai = tt.ID
@@ -71,5 +71,42 @@ class DonHangMua{
         } else {
             return false;
         }
+    }
+
+    public function DanhSachID() {
+        $sql = "SELECT ID from donhangmua";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    public function idtrangthai($id){
+        $sql = "SELECT idTrangThai from donhangmua WHERE ID='$id'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    public function tentrangthai($id){
+        $sql = "SELECT TenTrangThai from trangthaimua WHERE ID='$id'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    
+    public function CapNhatTrangThaiXacNhan($id) {
+        $sql = "UPDATE donhangmua SET 
+        idtrangthai = 2
+        WHERE ID = '$id'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function DoanhThuDonHangMua(){
+        $sql = "SELECT SUM(TongTien) from donhangmua WHERE idTrangThai = 2";
+        $result = $this->db->select($sql);
+        return $result;
     }
 }

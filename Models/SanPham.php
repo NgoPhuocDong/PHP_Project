@@ -112,6 +112,13 @@ class SanPham{
         }
     }
 
+    public function TenSanPhamTheoLoai($idloaisanpham) {
+        $sql = "SELECT * FROM sanpham as sp, loaisanpham as lsp where lsp.ID = sp.idLoaiSanPham and lsp.ID = '$idloaisanpham'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+
 }
    
    

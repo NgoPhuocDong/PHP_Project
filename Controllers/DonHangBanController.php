@@ -1,5 +1,6 @@
 <?php
 include_once("Models/DonHangBan.php");
+
 include_once("Models/SanPham.php");
 include_once("Models/ChiTietDonHangBan.php");
 include_once("Models/KhachHang.php");
@@ -23,9 +24,9 @@ class DonHangBanController{
     
     public function DanhSach()
     {
-        $ten2 = $this->model->tentrangthai(5);
-        $ten3 = $this->model->tentrangthai(3);
-        $ten1 = $this->model->tentrangthai(1);
+        // $ten2 = $this->model->tentrangthai(5);
+        // $ten3 = $this->model->tentrangthai(3);
+        // $ten1 = $this->model->tentrangthai(1);
         $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 10;
         $current = !empty($_GET['page']) ? $_GET['page'] : 1; // trang hien tai
         $offset = ($current - 1) * $item;
@@ -66,12 +67,24 @@ class DonHangBanController{
         $ListNhanVien = $this->nhanvienlap->DanhSach(100,0);
         if (isset($_POST['submit'])) {
             $create = $this->model->ThemMoi($_POST['idnhanvienlap'], $_POST['idkhachhang'], 5,$_POST['ngaylap'],$_POST['tongtien']);
+        $alert = "";
+        $ListNhanVien = $this->nhanvienlap->DanhSach(100,0);
+        $ListKhachHang = $this->khachhang->GetData(100,0);
+        if (isset($_POST['submit'])) {
+            if(empty($_POST['idkhachhang']) || empty($_POST['idnhanvienlap'])){
+                $alert="<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống id nhân viên lập và khách hàng!</span>";
+            }else if(!is_numeric($_POST['idkhachhang']) || !is_numeric($_POST['idnhanvienlap'])){
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>id nhân viên và khách hàng bắt buộc phải là số!</span>";
+            }else{
+                $create = $this->model->ThemMoi($_POST['idnhanvienlap'], $_POST['idkhachhang'],  $_POST['idtrangthai'],$_POST['ngaylap'],$_POST['tongtien']);
             if ($create) {
                 // $this->sanpham->DS();
                 header('Location: ./DanhSach');
             }
+            }
         }
         include 'Views/DonHangBan/ThemMoi.php';
+
         return Array($ListKhachHang,$ListNhanVien);
     }
 
@@ -85,7 +98,12 @@ class DonHangBanController{
             $dataUpdate = $this->db->find($table,$id);
             
             if (isset($_POST['submit'])) {
-                $update = $this->model->CapNhat($id,$_POST['idnhanvienlap'],
+                if(empty($_POST['idkhachhang']) || empty($_POST['idnhanvienlap'])){
+                    $alert="<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống id nhân viên lập và khách hàng!</span>";
+                }else if(!is_numeric($_POST['idkhachhang']) || !is_numeric($_POST['idnhanvienlap'])){
+                    $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>id nhân viên và khách hàng không phải là số!</span>";
+                }else{
+                    $update = $this->model->CapNhat($id,$_POST['idnhanvienlap'],
                                                     $_POST['idkhachhang'],
                                                     $_POST['idtrangthai'],
                                                     $_POST['ngaylap'],
@@ -93,9 +111,12 @@ class DonHangBanController{
                 if ($update) {
                     header('Location: ./DanhSach');
                 }
+                }
+                
             }
         }
         include 'Views/DonHangBan/CapNhat.php';
+
         return Array($dataUpdate,$ListKhachHang,$ListNhanVien);
     }
 
@@ -108,4 +129,5 @@ class DonHangBanController{
             }
         }
     }
+}
 }

@@ -61,7 +61,18 @@ class TrangChuController{
         return $detail;
     }
 
-
+    public function DanhSachSanPham() {
+        if(isset($_GET['loaisp'])) {
+            $tensanpham = $_GET['loaisp'];
+            //gọi method TimKiem bên Models
+            $result = $this->model->TenSanPhamTheoLoai($tensanpham);
+        }
+        //gọi và show dữ liệu ra view
+        
+        include("Views/HomeLayout/header.php");
+        // return $result;
+        return $result;
+    }
     public function DangNhap(){
         
         if(isset($_POST['submitValue'])) {
