@@ -25,7 +25,16 @@ class Quyen{
         $result = $result->num_rows;
         return $result;
     }
+ 
+    public function TimKiemTheoTenQuyen($ten)
+    {
+        // Thực hiện truy vấn SQL để tìm kiếm nhân viên dựa trên tên đăng nhập
+        $query = "SELECT * FROM quyen WHERE ten LIKE '%$ten%'";
 
+        // Tiếp tục xử lý truy vấn và trả về kết quả
+        $result = $this->db->select($query);
+        return $result;
+    }
     public function TongQuyenTim($tenquyen) {
         $sql = "SELECT * FROM quyen WHERE ten LIKE '%$tenquyen%'";
         $result = mysqli_query($this->db->conn, $sql);

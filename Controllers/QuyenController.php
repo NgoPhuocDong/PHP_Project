@@ -39,21 +39,33 @@ class QuyenController{
     }
     
     public function ThemMoi(){
+        $alert="";
         $limit = $this->loaiquyen->TongLoaiQuyen();
         $result = $this->loaiquyen->DanhSach($limit, 0);
         if (isset($_POST['submit'])) {
-            $create = $this->model->ThemMoi($_POST['idloaiquyen'],
-                                            $_POST['ten'],
-                                            $_POST['duongdan']);
-            if ($create) {
-                header('Location: ./DanhSach');
-            }   
+            $ten = $_POST['ten'];
+
+            $existingQuyen = $this->model->TimKiemTheoTenQuyen($ten);
+            if(empty($_POST['ten'])){
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống tên quyền!</span>";
+            }else if($existingQuyen){
+                $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Tên quyền này đã tồn tại!</span>";
+            }
+            else{
+                    $create = $this->model->ThemMoi($_POST['idloaiquyen'],
+                                                $_POST['ten'],
+                                                $_POST['duongdan']);
+                if ($create) {
+                    header('Location: ./DanhSach');
+                }   
+            }
         }
         require_once('Views/Quyen/ThemMoi.php');
         return $result;
     }
  
     public function CapNhat(){
+        $alert="";
         $limit = $this->loaiquyen->TongLoaiQuyen();
         $result = $this->loaiquyen->DanhSach($limit,0);
         if (isset($_GET['id'])) {
@@ -61,15 +73,23 @@ class QuyenController{
             //lấy dữ liệu cần cập nhật
             $dataUpdate = $this->model->ChiTiet($id);
             if (isset($_POST['submit'])) {
+                $ten = $_POST['ten'];
 
-                $update = $this->model->CapNhat($id,$_POST['idloaiquyen'],
-                                                    $_POST['ten'],
-                                                    $_POST['duongdan']);
+                $existingQuyen = $this->model->TimKiemTheoTenQuyen($ten);
+                if(empty($_POST['ten'])){
+                    $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống tên quyền!</span>";
+                }else if($existingQuyen){
+                    $alert = "<span style='color: red; padding-bottom: 10px; display: block;'>Tên quyền này đã tồn tại!</span>";
+                }else{
+                        $update = $this->model->CapNhat($id,$_POST['idloaiquyen'],
+                                                        $_POST['ten'],
+                                                        $_POST['duongdan']);
 
-                if ($update) {
-                    header('Location: ./DanhSach');
+                    if ($update) {
+                        header('Location: ./DanhSach');
+                    }
                 }
-            }            
+            }             
         }
         include 'Views/Quyen/CapNhat.php';
         return array($result,$dataUpdate);
