@@ -111,48 +111,11 @@
         <label for="phone">Số điện thoại:</label>
         <input type="tel" id="phone" name="sodienthoai" required>
       </div>
-      <!-- <div class="form-group">
-        <label for="province">Tỉnh thành:</label>
-        <input type="text" id="province" name="province" required>
-      </div>
-      <div class="form-group">
-        <label for="district">Quận huyện:</label>
-        <input type="text" id="district" name="district" required>
-      </div>
-      <div class="form-group">
-        <label for="ward">Phường xã:</label>
-        <input type="text" id="ward" name="ward" required>
-      </div> -->
       <div class="form-group">
         <label for="address">Địa chỉ:</label>
         <textarea id="address" name="diachi" required></textarea>
       </div>
-      <!-- <div class="form-group">
-        <label for="note">Ghi chú:</label>
-        <textarea id="note" name="note"></textarea>
-      </div> -->
     </div>
-
-    <!-- <div class="section">
-      <h3 class="section-title">Vận chuyển</h3>
-      <div class="form-group">
-        <label><input type="radio" name="shipping" value="fast"> Giao hàng nhanh</label>
-      </div>
-      <div class="form-group">
-        <label><input type="radio" name="shipping" value="standard"> Giao hàng thường</label>
-      </div>
-    </div> -->
-
-    <!-- <div class="section">
-      <h3 class="section-title">Thanh toán</h3>
-      <div class="form-group">
-        <label><input type="radio" name="payment" value="cod"> Thanh toán khi nhận hàng (COD)</label>
-      </div>
-      <div class="form-group">
-        <label><input type="radio" name="payment" value="card"> Visa/Master Card</label>
-      </div>
-    </div> -->
-
     <div class="">
     <input type="submit" value="Submit" name="submit" class="btn btn-primary">
     </div>
