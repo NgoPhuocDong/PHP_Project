@@ -167,6 +167,14 @@ include("Controllers/KiemTraQuyen.php");
 					<i class="fa fa-cog" aria-hidden="true"></i>
 					Settings</a>
 				</li>
+				<li>
+				<button id="notificationButton">
+				<a href ="/PHP_Project/Views/ThongBao/ThongBao.php">
+                <span id="notificationIcon"></span>
+                <span id="notificationCount">3</span>
+				</a>
+                </button>
+				</li>
 				<li class="nav-item logout" style="float: right; left: 20px;">
 					<a href="../Home/Logout" class="nav-link active">
 					<i class="fa fa-sign-in" aria-hidden="true"></i>
@@ -349,5 +357,48 @@ include("Controllers/KiemTraQuyen.php");
 					display: inline-block;
 					margin-left: 45px;
 				}
+			#notificationButton {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background-color: #f9f9f9;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+			font-weight: normal;
+        }
+        #notificationIcon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32px;
+            height: 32px;
+            background-color: #ccc;
+            background-image: url("/PHP_Project/Assets/data/Hinhanhthongbao/chuong.jpeg");
+            background-size: cover;
+        }
+        #notificationCount {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 50%;
+        }
 			</style>
+			<script>
+        var notificationButton = document.getElementById('notificationButton');
+        var notificationCount = document.getElementById('notificationCount');
+
+        notificationButton.addEventListener('click', function() {
+        notificationCount.innerHTML = "0";
+        });
+    </script>
 <!-- <i class="fa-sharp fa-solid fa-caret-down" style="color: #ffffff; width: 18px; display: inline-block;"></i> -->
