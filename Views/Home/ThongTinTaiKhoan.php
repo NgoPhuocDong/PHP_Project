@@ -8,7 +8,7 @@
             <div class="col-md-11 bg-light rounded">
                 <ul style="list-style: none;" class="lead col-md-12">
                     <br>
-                    <a href="#">
+                    <a href="../TrangChu/ThongTinTaiKhoan">
                         <li class="row">
                             <div class="col-md-2">
                                 <i class="fa fa-home" aria-hidden="true"></i>
@@ -52,7 +52,7 @@
                         </li>
                     </a><br>
                     
-                    <a href="#">
+                    <a href="../TrangChu/DangXuat">
                         <li class="row">
                             <div class="col-md-2">
                                 <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -108,7 +108,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label">Giới tính</label>
-                            <input type="text" class="form-control" name="gioitinh" value="<?= $row['GioiTinh']?>">
+                            <select class="form-control" name="gioitinh">
+                                <option value="<?= $row['GioiTinh']?>" class="text-white"><?= $row['GioiTinh']?></option>
+                                <hr>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Ngày sinh</label>

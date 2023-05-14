@@ -21,5 +21,6 @@ class ThongKeController{
         include 'Views/ThongKe/chitiet.php';
         return array($tongsanpham,$tongdonhangban,$tongtiendonhangban,$thongkedonhangban);
     }
+    
 
 }
