@@ -190,7 +190,7 @@ include "./Views/HomeLayout/header.php";
     $('.table tbody tr').each(function() {
       var product = {};
       var productID= product.ID;
-      product.Name = $(this).find('.product-name').text();
+      product.Name = $(this).find('.lead').text();
       product.Image = $(this).find('img').attr('src');
       product.Price = parseFloat($(this).find('.product-price').text().replace(/\D/g, ''));
       product.Quantity = parseInt($(this).find('.product-quantity').text());
