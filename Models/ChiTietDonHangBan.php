@@ -33,6 +33,7 @@ class ChiTietDonHangBan{
         return $result;
     }
 
+<<<<<<< HEAD
     public function SoLuongDanhSach($iddonhangban)
     {
         // $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
@@ -67,6 +68,9 @@ class ChiTietDonHangBan{
             return false;
         }
     }
+=======
+    
+>>>>>>> 73910613f1db44d6effafefedc8b575efcdbc43e
     public function CapNhatTongTien($iddonhangban)
     {
         $sql = "UPDATE donhangban
@@ -81,6 +85,7 @@ class ChiTietDonHangBan{
             return false;
         }
     }
+<<<<<<< HEAD
 
     // public function CapNhatSoLuong($iddonhangban,$id) {
     //     $sql = "UPDATE sanpham as sp
@@ -97,10 +102,59 @@ class ChiTietDonHangBan{
     //     }
     // }
 
+=======
+    public function CapNhatSoLuong($id,$idsanpham)
+    {
+        $sql = "UPDATE SanPham
+        SET SoLuong = SoLuong - (SELECT soluong 
+                         FROM ChiTietDonHangBan
+                         WHERE idSanPham = '$idsanpham'
+                         AND ID =  '$id') 
+        WHERE ID = '$idsanpham'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function SoLuongBanDau($id,$idsanpham)
+    {
+        $sql = "UPDATE SanPham
+        SET SoLuong = SoLuong + (SELECT soluong 
+                         FROM ChiTietDonHangBan
+                         WHERE idSanPham = '$idsanpham'
+                         AND ID =  '$id') 
+        WHERE ID = '$idsanpham'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function ThemMoi($iddonhangban,$idsanpham, $soluong, $dongiaapdung)
+    {
+        $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
+        $sql = "INSERT INTO chitietdonhangban (idDonHangBan,idSanPham,SoLuong,DonGiaApDung,ThanhTien)
+                VALUES ($iddonhangban,'$idsanpham', '$soluong', '$dongiaapdung', '$thanhtien')";
+        
+        $result = mysqli_query($this->db->conn, $sql);
+        $id = mysqli_insert_id($this->db->conn);
+        if ($result) {
+            $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
+            $capnhatsoluong = $this->CapNhatSoLuong($id,$idsanpham);
+            return true;
+        } else {
+            
+            return false;
+        }
+    }
+>>>>>>> 73910613f1db44d6effafefedc8b575efcdbc43e
     public function CapNhat($id,$iddonhangban,$idsanpham,$soluong,$dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
-        //$capnhattongtien = $this->CapNhatTongTien($iddonhangban);
+        $soluongbandau = $this->SoLuongBanDau($id,$idsanpham);
         $sql = "UPDATE chitietdonhangban SET
         idsanpham = '$idsanpham',
         soluong = '$soluong',
@@ -111,6 +165,7 @@ class ChiTietDonHangBan{
         $result = $this->db->execute($sql);
         if ($result) {
             $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
+            $capnhatsoluong = $this->CapNhatSoLuong($id,$idsanpham);
             return true;
         } else {
             return false;

@@ -11,8 +11,14 @@ class DonHangBan{
         FROM donhangban AS dh
         INNER JOIN khachhang AS kh ON dh.IdKhachHang = kh.ID
         INNER JOIN trangthaiban AS tt ON dh.IdTrangThai = tt.ID
+<<<<<<< HEAD
         INNER JOIN nhanvien AS nv ON dh.IdNhanVienLap = nv.ID
         ORDER BY dh.ID ASC LIMIT ".$item." OFFSET ".$offset;
+=======
+        INNER JOIN nhanvien AS nv ON dh.IdNhanVienLap = nv.ID 
+        ORDER BY dh.ID ASC
+        LIMIT ".$item." OFFSET ".$offset;
+>>>>>>> 73910613f1db44d6effafefedc8b575efcdbc43e
         $result = $this->db->select($sql);
         return $result;
     }
@@ -22,6 +28,17 @@ class DonHangBan{
         $result = mysqli_query($this->db->conn, $sql);
         $result = $result->num_rows;
         return $result;
+    }
+
+    public function DoanhThuDonHangBan() {
+        $sql = "SELECT SUM(TongTien) FROM donhangban";
+        $result = mysqli_query($this->db->conn, $sql);
+        //$result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function ChiTiet($id)
@@ -41,6 +58,17 @@ class DonHangBan{
         $sql = "INSERT INTO donhangban (idNhanVienLap,idKhachHang,idTrangThai,NgayLap,TongTien)
                 VALUES ('$idnhanvienlap', '$idkhachhang', 5, '$ngaylap', '$tongtien')";
         $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function ThongKeDonHangBan(){
+        $sql = "SELECT TongTien,NgayLap
+        FROM donhangban";
+        $result = $this->db->select($sql);
+        return $result;
         if ($result) {
             return true;
         } else {
