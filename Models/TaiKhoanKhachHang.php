@@ -102,19 +102,9 @@ class TaiKhoanKhachHang{
                 $message = "<span style='color: red;'>Đã xảy ra lỗi, tạo tài khoản thất bại.</span>". $this->db->conn->error;
                     return $message;
             }
-        }
-        
+        }   
     }
-    public function Xoa($idKhachHang)
-    {
-        $sql = "DELETE FROM taikhoankhachhang WHERE IDKhachHang = '$idKhachHang'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    
     public function DanhSach1()
     {
          $sql = "SELECT * FROM taikhoankhachhang as tkkh,KhachHang as kh

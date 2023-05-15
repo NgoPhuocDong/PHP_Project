@@ -6,7 +6,7 @@ class ThanhToan{
         $this->db = new Database();
 
         // Bắt đầu session
-        session_start();
+        //session_start();
     }
 
     public function ThanhToan(){
@@ -48,4 +48,5 @@ class ThanhToan{
         }
         return null;
     }
+    
 }
