@@ -315,55 +315,27 @@ var cartClass = {
 	<div class="container">
 		<h2 class="fw-light mb-3">Tin tức mới nhất</h2>
 		<div class="row row-cols-1 row-cols-md-3 g-3">
-      <div class="col">
-				<div class="card shadow-sm">
-					<img src="https://phongvu.vn/cong-nghe/wp-content/uploads/2023/04/game-sinh-ton-Badlanders-300x300.jpg" class="card-img-top" alt="news1">
-					<div class="card-body">
-						<h5 class="card-title">Phá đảo Badlanders: Game sinh tồn thế hệ mới do Viettel Media phát hành</h5>
-						<p class="card-text"><?php echo substr("Trong làn sóng thoái trào của những tựa game bắn súng sinh tồn tại Việt Nam thì Badlanders lại nổi lên như một tựa game sinh tồn mobile",0,90) . "..." ?></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button>
-							</div>
-							<small class="text-muted">Ngày đăng: 28/04/2023</small>
-						</div>
-					</div>
-				</div>
-			</div>
+      <?php foreach ($tintucs as $tintuc) { ?>
 			<div class="col">
 				<div class="card shadow-sm">
-					<img src="https://phongvu.vn/cong-nghe/wp-content/uploads/2023/04/apple-wwdc-2023-1-300x300.jpg" class="card-img-top" alt="news2">
+					<img src="<?php echo $tintuc['HinhAnh']; ?>" class="card-img-top" alt="news1">
 					<div class="card-body">
-						<h5 class="card-title">Dự đoán sự kiện WWDC 2023: Sẽ có MacBook và iMac mới?</h5>
-						<p class="card-text"><?php echo substr("Apple mới đây đã có thông cáo báo chí về thời gian chính thức mà hãng sẽ tổ chức hội nghị các nhà phát triển gọi tắt là WWDC 2023 vào tháng 6 tới đây",0,90). "..." ?></p>
+						<h5 class="card-title"><?php echo $tintuc['TenTinTuc']; ?></h5>
+						<p class="card-text"><?php echo substr($tintuc['NoiDung'], 0, 90) . "..."; ?></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
 								<button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button>
 							</div>
-							<small class="text-muted">Ngày đăng: 26/04/2023</small>
+							<small class="text-muted">Ngày đăng: <?php echo $tintuc['NgayDang']; ?></small>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col">
-				<div class="card shadow-sm">
-					<img src="https://phongvu.vn/cong-nghe/wp-content/uploads/2023/04/asus-rog-strix-g18-300x300.jpg" class="card-img-top" alt="news3">
-					<div class="card-body">
-						<h5 class="card-title">Đánh giá siêu phẩm ASUS ROG Strix G18: Đắt nhưng xắt ra miếng</h5>
-						<p class="card-text"> <?php echo substr("ASUS ROG Strix G18, chiếc laptop gaming đến từ nhà ASUS đã chiếm trọn mọi spotlight trong thời gian vừa qua của thế giới công nghệ hiện đã có mặt tại Phong Vũ với ưu đãi cực kỳ lớn.",0,90) . "..." ?></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button>
-							</div>
-							<small class="text-muted">Ngày đăng: 24/04/2023</small>
-						</div>
-					</div>
-				</div>
-			</div>
+      <?php } ?>
 		</div>
 	</div>
-</div>
 </section>
+
 			<!-- Footer -->
       <div style="margin-top: 30px;">
         <?php

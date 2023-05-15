@@ -5,8 +5,8 @@ class ThanhToan{
     public function __construct(){
         $this->db = new Database();
 
-        // Bắt đầu session
-       // session_start();
+        
+
     }
 
     public function ThanhToan(){
@@ -48,4 +48,5 @@ class ThanhToan{
         }
         return null;
     }
+    
 }

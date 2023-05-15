@@ -1,6 +1,8 @@
 <?php
 include "./Views/HomeLayout/header.php";
 ?>
+
+<form  method="post" id="user-form" enctype="multipart/form-data">
 <main class="container mt-5">
     <h1 class="mb-4">Thông tin đơn hàng</h1>
     <div class="order-details">
@@ -182,8 +184,13 @@ function handleOrderConfirmation(event) {
   }
 
   // Lắng nghe sự kiện submit của form
-  var orderForm = document.getElementById('user-form');
-  orderForm.addEventListener('submit', handleOrderConfirmation);
+  var userForm = document.getElementById('user-form');
+  userForm.addEventListener('submit', handleOrderConfirmation);
+
+  var orderForm = document.getElementById('order-form');
+var formData = new FormData(orderForm);
+
+  
 
 //   function exportToXLSX() {
 //   // Lấy thông tin giỏ hàng từ LocalStorage

@@ -5,6 +5,8 @@ include_once("Models/TaiKhoanKhachHang.php");//
 include_once("Models/loginKhachHang.php");//
 include_once("Models/KhachHang.php");//
 include_once("Models/ThanhToan.php");
+include_once("Models/ChiTietDonHangBan.php");
+include_once("Models/Tintuc.php");
 class TrangChuController{
     private $model;
     private $loaisanpham;
@@ -13,7 +15,9 @@ class TrangChuController{
     private $login;
     private $khachhang;
     private $thanhtoan;
-    
+    private $ctdh;
+    private $tintucs;
+        
     public function __construct(){
         $this->login = new loginKhachHang();
         $this->khachhang = new KhachHang();
@@ -22,6 +26,7 @@ class TrangChuController{
         $this->db = new Database();
         $this->taikhoan = new TaiKhoanKhachHang();
         $this->thanhtoan = new ThanhToan();
+        $this->ctdh = new ChiTietDonHangBan();
     }
     
     public function DanhMuc(){
@@ -40,9 +45,9 @@ class TrangChuController{
             //gọi method TimKiem bên Models
             $tongsp = $this->model->TongSanPhamTim($tensanpham);
             $totalPage = ceil($tongsp / $item);
-            $result  = $this->model->TimKiem($tensanpham);
-            
-            if($_GET['tensanpham']==null){
+            $result = $this->model->TimKiem($tensanpham);
+    
+            if($_GET['tensanpham'] == null){
                 header('Location: ./DanhSach');
             }
         }
@@ -50,11 +55,17 @@ class TrangChuController{
             $tongsp = $this->model->TongSanPham();
             $totalPage = ceil($tongsp / $item);
             //gọi method DanhSach bên Models
-            $result  = $this->model->DanhSach($item,$offset);
+            $result = $this->model->DanhSach($item, $offset);
         }
+    
+        // Lấy thông tin tin tức
+        $tinTucModel = new TinTuc();
+        $tintucs = $tinTucModel->DanhSach(3, 0);
+    
         include("Views/Home/index.php");
-        return array($result,$loaisanpham);
+        return array($result, $loaisanpham, $tintucs);
     }
+    
     public function ChiTietSanPham(){
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
@@ -71,8 +82,7 @@ class TrangChuController{
             $result = $this->model->TenSanPhamTheoLoai($tensanpham);
         }
         //gọi và show dữ liệu ra view
-        
-        include("Views/HomeLayout/header.php");
+        require_once('Views/Home/SanPhamTheoLoai.php');
         // return $result;
         return $result;
     }
@@ -161,7 +171,16 @@ class TrangChuController{
             $tenkhachhang = $_POST['tenkhachhang'];
             $sodienthoai = $_POST['sodienthoai'];
             $diachi = $_POST['diachi'];
-            $create = $this->thanhtoan->ThemMoi($tenkhachhang, $sodienthoai, $diachi);
+            $tongtien = $_POST['tongtien'];
+            $idsanpham = $_POST['idsanpham'];
+            $soluong = $_POST['soluong'];
+            $dongia = $_POST['dongia'];
+            $ngaylap = $_POST['ngaylap'];
+
+            //$create = $this->thanhtoan->ThemMoi($tenkhachhang, $sodienthoai, $email, $diachi);
+            $create = $this->ctdh->TaoDonHang($tenkhachhang,$sodienthoai,$diachi,$ngaylap,$tongtien,
+            $idsanpham,$soluong,$dongia);
+
         }
         include 'Views/ThanhToan/ThanhToan.php';
     }

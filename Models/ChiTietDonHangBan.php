@@ -106,6 +106,27 @@ class ChiTietDonHangBan{
         }
     }
 
+    public function TaoDonHang($tenkhachhang,$sodienthoai,$email,$diachi,$ngaylap,$tongtien,$idsanpham,$soluong,$dongia)
+    {
+        $thanhtien= $this->ThanhTien($soluong, $dongia);
+        
+        $sqlKhachHang = "INSERT INTO khachhang (TenKhachHang,SoDienThoai,Email,DiaChi) VALUES ('$tenkhachhang','$sodienthoai','$email','$diachi')";
+        $idkhachhang = $this->db->conn->insert_id;
+        $sqlDonHang = "INSERT INTO donhangban (idKhachHang, idTrangThai,NgayLap,TongTien) VALUES ('$idkhachhang',1,'$ngaylap','$tongtien')";
+        $iddonhangban = $this->db->conn->insert_id;
+        $sqlChiTiet = "INSERT INTO chitietdonhangban (idDonHangBan,idSanPham,SoLuong,DonGiaApDung,ThanhTien) VALUES ('$iddonhangban','$idsanpham','$soluong','$dongia','$thanhtien')";
+
+        if ($this->db->conn->query($sqlKhachHang) === TRUE &&
+            $this->db->conn->query($sqlDonHang) === TRUE &&
+            $this->db->conn->query($sqlChiTiet) === TRUE) {
+            $message = "<span style='color: red;'>Tạo tài khoản và đơn hàng thành công.</span>";
+            return $message;
+        } else {
+            $message = "<span style='color: red;'>Đã xảy ra lỗi, tạo tài khoản và đơn hàng thất bại.</span>" . $this->db->conn->error;
+            return $message;
+        }
+    }
+
     public function CapNhat($id,$iddonhangban,$idsanpham,$soluong,$dongiaapdung)
     {
         $thanhtien= $this->ThanhTien($soluong, $dongiaapdung);
@@ -130,6 +151,20 @@ class ChiTietDonHangBan{
     public function CapNhatTongTien1($id)
     {
         $sql = "UPDATE donhangban set TongTien = 0 WHERE ID = '$id'";
+        $result = $this->db->execute($sql);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function CapNhatTongTien($iddonhangban)
+    {
+        $sql = "UPDATE donhangban
+        SET TongTien = (SELECT SUM(soluong * dongiaapdung) 
+                         FROM ChiTietDonHangBan 
+                         WHERE idDonHangBan = '$iddonhangban') 
+        WHERE ID = '$iddonhangban'";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;
@@ -259,20 +294,7 @@ class ChiTietDonHangBan{
     return $soLuong;
 }
 
-    public function CapNhatTongTien($iddonhangban)
-    {
-        $sql = "UPDATE donhangban
-        SET TongTien = (SELECT SUM(soluong * dongiaapdung) 
-                         FROM ChiTietDonHangBan 
-                         WHERE idDonHangBan = '$iddonhangban') 
-        WHERE ID = '$iddonhangban'";
-        $result = $this->db->execute($sql);
-        if ($result) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    
 
     // public function CapNhatSoLuong($iddonhangban,$id) {
     //     $sql = "UPDATE sanpham as sp
