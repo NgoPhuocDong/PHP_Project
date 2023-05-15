@@ -97,7 +97,11 @@ class TinTuc{
             return false;
         }
     }
+    
 }
+// Gọi lớp TinTuc trong file TrangChuControllers.php
+$tinTucModel = new TinTuc();
+$tintucs = $tinTucModel->DanhSach(3, 0);
    
    
 

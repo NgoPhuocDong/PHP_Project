@@ -6,6 +6,7 @@ include_once("Models/loginKhachHang.php");//
 include_once("Models/KhachHang.php");//
 include_once("Models/ThanhToan.php");
 include_once("Models/ChiTietDonHangBan.php");
+include_once("Models/Tintuc.php");
 class TrangChuController{
     private $model;
     private $loaisanpham;
@@ -15,7 +16,8 @@ class TrangChuController{
     private $khachhang;
     private $thanhtoan;
     private $ctdh;
-    
+    private $tintucs;
+        
     public function __construct(){
         $this->login = new loginKhachHang();
         $this->khachhang = new KhachHang();
@@ -43,9 +45,9 @@ class TrangChuController{
             //gọi method TimKiem bên Models
             $tongsp = $this->model->TongSanPhamTim($tensanpham);
             $totalPage = ceil($tongsp / $item);
-            $result  = $this->model->TimKiem($tensanpham);
-            
-            if($_GET['tensanpham']==null){
+            $result = $this->model->TimKiem($tensanpham);
+    
+            if($_GET['tensanpham'] == null){
                 header('Location: ./DanhSach');
             }
         }
@@ -53,11 +55,17 @@ class TrangChuController{
             $tongsp = $this->model->TongSanPham();
             $totalPage = ceil($tongsp / $item);
             //gọi method DanhSach bên Models
-            $result  = $this->model->DanhSach($item,$offset);
+            $result = $this->model->DanhSach($item, $offset);
         }
+    
+        // Lấy thông tin tin tức
+        $tinTucModel = new TinTuc();
+        $tintucs = $tinTucModel->DanhSach(3, 0);
+    
         include("Views/Home/index.php");
-        return array($result,$loaisanpham);
+        return array($result, $loaisanpham, $tintucs);
     }
+    
     public function ChiTietSanPham(){
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
@@ -74,8 +82,7 @@ class TrangChuController{
             $result = $this->model->TenSanPhamTheoLoai($tensanpham);
         }
         //gọi và show dữ liệu ra view
-        
-        include("Views/HomeLayout/header.php");
+        require_once('Views/Home/SanPhamTheoLoai.php');
         // return $result;
         return $result;
     }
