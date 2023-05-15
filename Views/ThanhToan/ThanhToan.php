@@ -29,7 +29,7 @@ include "./Views/HomeLayout/header.php";
             </div>
             <button type="submit" class="btn btn-primary mt-3" name="submit" onclick="exportToXLSX()">Xác nhận đơn hàng</button>
         </div>
-
+        
         <div class="left-column">
           <h2>Hình thức vận chuyển</h2>
           <div id="shipping-method">
@@ -108,13 +108,21 @@ include "./Views/HomeLayout/header.php";
       cartData.forEach(function (product) {
         var row = document.createElement('tr');
         row.innerHTML = `
+        <input type='text' class = 'btn-check' name='id' value="${product.ID}">
         <td class="product-column">
         <img src="${product.Image}" alt="Hình ảnh sản phẩm" width="50">
         <span>${product.Name}</span>
         </td>
-          <td name="dongia">${product.Price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
-          <td name="soluong">${product.Quantity}</td>
-          <td name="thanhtien">${product.Total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+          <td name="dongia" value="${product.Price}">${product.Price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+          <td name="soluong" value="${product.Quantity}">${product.Quantity}</td>
+          <td name="thanhtien" value="${product.Quantity}">${product.Total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
+
+                <input type='text' class = 'btn-check' name='idsanpham' value="${product.ID}">
+                <input type='text' class = 'btn-check' name='dongia' value="${product.Price}">
+                <input type='text' class = 'btn-check' name='soluong' value="${product.Quantity}">
+                <input type="date" class = 'btn-check' name="ngaylap" value="<?php echo date('Y-m-d'); ?>">
+                <input type="date" class = 'btn-check' name="tongtien" value="${totalAmount}">
+          
         `;
         orderItemsContainer.appendChild(row);
       });
@@ -296,6 +304,7 @@ function handleOrderConfirmation(event) {
   }
 
 </style>
+
 
 
 

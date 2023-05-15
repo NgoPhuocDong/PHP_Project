@@ -61,7 +61,7 @@ include "./Views/HomeLayout/header.php";
     // Tạo các phần tử HTML cho sản phẩm
     var row = document.createElement('tr');
     cartItemsContainer.appendChild(row);
-
+    
     var removeCell = document.createElement('td');
     var removeButton = document.createElement('button');
     removeButton.className = 'btn btn-danger btn-remove';
@@ -86,6 +86,12 @@ include "./Views/HomeLayout/header.php";
     priceCell.className = 'product-price';
     priceCell.textContent = product.Price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' , minimumFractionDigits: 0});;
     row.appendChild(priceCell);
+
+    var hiddenCell = document.createElement('td');
+    hiddenCell.style.display = 'none';
+    hiddenCell.className = 'product-id';
+    hiddenCell.textContent = product.ID;
+    row.appendChild(hiddenCell);
 
     //---------------------------------------nút tăng giảm số lưọng-------------------------
     var quantityCell = document.createElement('td');
@@ -125,6 +131,7 @@ include "./Views/HomeLayout/header.php";
   }
   cartTotal = cartTotal.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' , minimumFractionDigits: 0});;
   cartTotalElement.textContent = cartTotal;
+
  
 </script>
 
@@ -139,6 +146,8 @@ include "./Views/HomeLayout/header.php";
     updateCartTotal();
     updateLocalStorage();
   });
+
+  
 
   // Tăng số lượng
   $('.btn-increase').click(function() {
@@ -189,7 +198,7 @@ include "./Views/HomeLayout/header.php";
 
     $('.table tbody tr').each(function() {
       var product = {};
-      var productID= product.ID;
+      product.ID = $(this).find('.product-id').text();
       product.Name = $(this).find('.lead').text();
       product.Image = $(this).find('img').attr('src');
       product.Price = parseFloat($(this).find('.product-price').text().replace(/\D/g, ''));
