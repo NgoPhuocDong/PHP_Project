@@ -9,7 +9,7 @@ include "./Views/HomeLayout/header.php";
       <h2>Thông tin nhận hàng</h2>
       <div id="customer-info"></div>
       
-      <form id="user-form">
+      <form id="user-form" method="post">
         <div class="mb-3">
           <label for="name" class="form-label">Họ và tên:</label>
           <input type="text" class="form-control" id="name" name="tenkhachhang" required>
@@ -22,7 +22,7 @@ include "./Views/HomeLayout/header.php";
           <label for="address" class="form-label">Địa chỉ:</label>
           <textarea class="form-control" id="address" name="diachi" rows="3" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary mt-3" name="submit" onclick="exportToXLSX()">Xác nhận đơn hàng</button>
+        <button type="submit" class="btn btn-primary mt-3" name="submit">Xác nhận đơn hàng</button>
       </form>
     </div>
     
@@ -159,17 +159,16 @@ include "./Views/HomeLayout/header.php";
 
 // Xử lý sự kiện khi người dùng nhấn nút Xác nhận đơn hàng
 function handleOrderConfirmation(event) {
-    event.preventDefault();
 
     // Lấy thông tin từ các trường nhập
     var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
+    var phone = document.getElementById('phone').value;
     var address = document.getElementById('address').value;
 
     // Tạo mã HTML để hiển thị thông tin khách hàng
     var customerInfoHTML = `
       <p><strong>Họ và tên:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Số điện thoại:</strong> ${phone}</p>
       <p><strong>Địa chỉ:</strong> ${address}</p>
     `;
 
@@ -178,30 +177,30 @@ function handleOrderConfirmation(event) {
     customerInfoContainer.innerHTML = customerInfoHTML;
 
     // Ẩn phần form
-    var orderForm = document.getElementById('order-form');
+    var orderForm = document.getElementById('user-form');
     orderForm.style.display = 'none';
   }
 
   // Lắng nghe sự kiện submit của form
-  var orderForm = document.getElementById('order-form');
+  var orderForm = document.getElementById('user-form');
   orderForm.addEventListener('submit', handleOrderConfirmation);
 
-  function exportToXLSX() {
-  // Lấy thông tin giỏ hàng từ LocalStorage
-  var cartData = JSON.parse(localStorage.getItem('cart'));
+//   function exportToXLSX() {
+//   // Lấy thông tin giỏ hàng từ LocalStorage
+//   var cartData = JSON.parse(localStorage.getItem('cart'));
 
-  // Tạo một workbook mới
-  var workbook = XLSX.utils.book_new();
+//   // Tạo một workbook mới
+//   var workbook = XLSX.utils.book_new();
 
-  // Tạo một worksheet mới
-  var worksheet = XLSX.utils.json_to_sheet(cartData);
+//   // Tạo một worksheet mới
+//   var worksheet = XLSX.utils.json_to_sheet(cartData);
 
-  // Thêm worksheet vào workbook
-  XLSX.utils.book_append_sheet(workbook, worksheet, 'Đơn hàng');
+//   // Thêm worksheet vào workbook
+//   XLSX.utils.book_append_sheet(workbook, worksheet, 'Đơn hàng');
 
-  // Xuất file XLSX
-  XLSX.writeFile(workbook, 'don_hang.xlsx');
-}
+//   // Xuất file XLSX
+//   XLSX.writeFile(workbook, 'don_hang.xlsx');
+// }
 
   </script>
 </body>

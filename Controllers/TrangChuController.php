@@ -160,9 +160,8 @@ class TrangChuController{
         if (isset($_POST['submit'])) {
             $tenkhachhang = $_POST['tenkhachhang'];
             $sodienthoai = $_POST['sodienthoai'];
-            $email = $_POST['email'];
             $diachi = $_POST['diachi'];
-            $create = $this->thanhtoan->ThemMoi($tenkhachhang, $sodienthoai, $email, $diachi);
+            $create = $this->thanhtoan->ThemMoi($tenkhachhang, $sodienthoai, $diachi);
         }
         include 'Views/ThanhToan/ThanhToan.php';
     }

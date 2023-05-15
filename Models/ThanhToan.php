@@ -6,7 +6,7 @@ class ThanhToan{
         $this->db = new Database();
 
         // Bắt đầu session
-        session_start();
+       // session_start();
     }
 
     public function ThanhToan(){
@@ -27,10 +27,10 @@ class ThanhToan{
         return $result;
     }
 
-    public function ThemMoi($tenkhachhang, $sodienthoai, $email, $diachi)
+    public function ThemMoi($tenkhachhang, $sodienthoai, $diachi)
     {
-        $sql = "INSERT INTO khachhang (TenKhachHang, SoDienThoai, Email, DiaChi)
-                VALUES ('$tenkhachhang', '$sodienthoai', '$email', '$diachi')";
+        $sql = "INSERT INTO khachhang (TenKhachHang, SoDienThoai, DiaChi)
+                VALUES ('$tenkhachhang', '$sodienthoai', '$diachi')";
         $result = $this->db->execute($sql);
         if ($result) {
             return true;

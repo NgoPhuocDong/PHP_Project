@@ -46,14 +46,13 @@ class ThanhToanController{
         if (isset($_POST['submit'])) {
             $tenkhachhang = $_POST['tenkhachhang'];
             $sodienthoai = $_POST['sodienthoai'];
-            $email = $_POST['email'];
             $diachi = $_POST['diachi'];
-            $create = $this->model->ThemMoi($tenkhachhang, $sodienthoai, $email, $diachi);
+            $create = $this->model->ThemMoi($tenkhachhang, $sodienthoai, $diachi);
 
             // Thiết lập thông báo vào session
             $_SESSION['thongbao'] = $tenkhachhang . ' - ' . date('H:i:s d/m/Y');
         }
 
-        include 'Views/Home/ThanhToan.php';
+        include 'Views/ThanhToan/ThanhToan.php';
     }
 }

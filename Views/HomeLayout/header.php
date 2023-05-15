@@ -176,7 +176,7 @@ if (cartData && cartData.length > 0) {
   cartItemCountElement.innerText = cartItemCount;
 } else {
   // Nếu không có sản phẩm trong giỏ hàng, ẩn thẻ span
-  cartItemCountElement.innerText = 0;
+  cartItemCountElement.textContent = 0;
 }
 }
 updateCartItemCount();
