@@ -106,25 +106,36 @@ class ChiTietDonHangBan{
         }
     }
 
-    public function TaoDonHang($tenkhachhang,$sodienthoai,$email,$diachi,$ngaylap,$tongtien,$idsanpham,$soluong,$dongia)
+    public function TaoDonHang($tenkhachhang,$sodienthoai,$email,$diachi,$ngaylap,$idsanpham,$soluong,$dongia)
     {
-        $thanhtien= $this->ThanhTien($soluong, $dongia);
-        
-        $sqlKhachHang = "INSERT INTO khachhang (TenKhachHang,SoDienThoai,Email,DiaChi) VALUES ('$tenkhachhang','$sodienthoai','$email','$diachi')";
-        $idkhachhang = $this->db->conn->insert_id;
-        $sqlDonHang = "INSERT INTO donhangban (idKhachHang, idTrangThai,NgayLap,TongTien) VALUES ('$idkhachhang',1,'$ngaylap','$tongtien')";
-        $iddonhangban = $this->db->conn->insert_id;
-        $sqlChiTiet = "INSERT INTO chitietdonhangban (idDonHangBan,idSanPham,SoLuong,DonGiaApDung,ThanhTien) VALUES ('$iddonhangban','$idsanpham','$soluong','$dongia','$thanhtien')";
+        $thanhtien = $this->ThanhTien($soluong, $dongia);
 
-        if ($this->db->conn->query($sqlKhachHang) === TRUE &&
-            $this->db->conn->query($sqlDonHang) === TRUE &&
-            $this->db->conn->query($sqlChiTiet) === TRUE) {
-            $message = "<span style='color: red;'>Tạo tài khoản và đơn hàng thành công.</span>";
-            return $message;
+        $sqlKhachHang = "INSERT INTO khachhang (TenKhachHang, SoDienThoai, Email, DiaChi) VALUES ('$tenkhachhang', '$sodienthoai', '$email', '$diachi')";
+        if ($this->db->conn->query($sqlKhachHang) === TRUE) {
+            $idkhachhang = $this->db->conn->insert_id;
+
+            $sqlDonHang = "INSERT INTO donhangban (IDKhachHang, idTrangThai, NgayLap) VALUES ($idkhachhang, 1, '$ngaylap')";
+            if ($this->db->conn->query($sqlDonHang) === TRUE) {
+                $iddonhangban = $this->db->conn->insert_id;
+
+                $sqlChiTiet = "INSERT INTO chitietdonhangban (idDonHangBan, idSanPham, SoLuong, DonGiaApDung, ThanhTien) VALUES ($iddonhangban, '$idsanpham', '$soluong', '$dongia', '$thanhtien')";
+                if ($this->db->conn->query($sqlChiTiet) === TRUE) {
+                    $message = "<span style='color: red;'>Tạo tài khoản và đơn hàng thành công.</span>";
+                    $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
+                    return $message;
+                } else {
+                    $message = "<span style='color: red;'>Đã xảy ra lỗi khi tạo chi tiết đơn hàng.</span>" . $this->db->conn->error;
+                    return $message;
+                }
+            } else {
+                $message = "<span style='color: red;'>Đã xảy ra lỗi khi tạo đơn hàng.</span>" . $this->db->conn->error;
+                return $message;
+            }
         } else {
-            $message = "<span style='color: red;'>Đã xảy ra lỗi, tạo tài khoản và đơn hàng thất bại.</span>" . $this->db->conn->error;
+            $message = "<span style='color: red;'>Đã xảy ra lỗi khi tạo tài khoản khách hàng.</span>" . $this->db->conn->error;
             return $message;
         }
+
     }
 
     public function CapNhat($id,$iddonhangban,$idsanpham,$soluong,$dongiaapdung)
