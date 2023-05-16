@@ -35,7 +35,7 @@ include "./Views/HomeLayout/header.php";
       </tr>
       <tr>
         <td colspan="6" class="text-end">
-          <a class="btn btn-primary" href="../TrangChu/ThanhToan">Tiến hành đặt hàng</a>
+          <a class="btn btn-dh btn-primary" href="../TrangChu/ThanhToan">Tiến hành đặt hàng</a>
         </td>
       </tr>
     </tfoot>
@@ -115,12 +115,6 @@ include "./Views/HomeLayout/header.php";
     priceCell.textContent = product.Price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' , minimumFractionDigits: 0});;
     row.appendChild(priceCell);
 
-    var hiddenCell = document.createElement('td');
-    hiddenCell.style.display = 'none';
-    hiddenCell.className = 'product-id';
-    hiddenCell.textContent = product.ID;
-    row.appendChild(hiddenCell);
-
     //---------------------------------------nút tăng giảm số lưọng-------------------------
     var quantityCell = document.createElement('td');
       quantityCell.style.display = 'flex';
@@ -188,6 +182,11 @@ include "./Views/HomeLayout/header.php";
     updateLocalStorage();
   });
 
+  $('.btn-dh').click(function() {
+    updateProductTotal($(this).closest('tr'));
+    updateCartTotal();
+    updateLocalStorage();
+  });
   
 
   // Tăng số lượng
