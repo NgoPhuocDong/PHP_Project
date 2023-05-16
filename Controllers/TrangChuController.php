@@ -171,15 +171,14 @@ class TrangChuController{
             $tenkhachhang = $_POST['tenkhachhang'];
             $sodienthoai = $_POST['sodienthoai'];
             $diachi = $_POST['diachi'];
-            $email = $_POST['email'];
-            //$tongtien = $_POST['tongtien'];
+            $tongtien = $_POST['tongtien'];
             $idsanpham = $_POST['idsanpham'];
             $soluong = $_POST['soluong'];
             $dongia = $_POST['dongia'];
             $ngaylap = $_POST['ngaylap'];
 
             //$create = $this->thanhtoan->ThemMoi($tenkhachhang, $sodienthoai, $email, $diachi);
-            $create = $this->ctdh->TaoDonHang($tenkhachhang,$sodienthoai,$email,$diachi,$ngaylap,
+            $create = $this->ctdh->TaoDonHang($tenkhachhang,$sodienthoai,$diachi,$ngaylap,$tongtien,
             $idsanpham,$soluong,$dongia);
 
         }

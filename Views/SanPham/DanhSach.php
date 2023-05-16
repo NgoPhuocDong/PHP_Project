@@ -82,11 +82,7 @@
                 </td>
                 
                 <td>
-                    <?php if($row['SoLuong'] == 0) { ?>
-                        <span style="color: red;">Hết hàng.</span>
-                        <?php } else { ?>
-                        <?=$row['SoLuong']?>
-                            <?php } ?>
+                    <?= $row['SoLuong'] ?>
                 </td>
                 
                 <td>
