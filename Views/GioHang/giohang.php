@@ -8,11 +8,12 @@ include "./Views/HomeLayout/header.php";
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Giỏ hàng</title>
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container bg-light mt-4">
-  <h1>Giỏ hàng</h1>
+<div class="container bg-white mt-4">
+  <h1 id="cart-title">Giỏ hàng</h1>
   <table class="table align-middle text-center">
     <thead>
       <tr>
@@ -32,7 +33,6 @@ include "./Views/HomeLayout/header.php";
         <th colspan="5" class="text-end">Tổng cộng:</th>
         <th id="cart-total">0 VNĐ</th>
       </tr>
-
       <tr>
         <td colspan="6" class="text-end">
           <a class="btn btn-dh btn-primary" href="../TrangChu/ThanhToan">Tiến hành đặt hàng</a>
@@ -40,6 +40,12 @@ include "./Views/HomeLayout/header.php";
       </tr>
     </tfoot>
   </table>
+  
+  <div id="bgcart" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+  <img src="https://hasaki.vn/images/graphics/img_lb_empty.gif" alt="" id="img-empty" style=" margin-bottom: 20px;">
+  <div id="empty-cart" style="text-align: center;"></div>
+  <a class="btn btn-primary" id="button-back" href="../TrangChu/Index">Tiếp tục mua sắm</a>
+  </div>
 </div>
 
 <script>
@@ -47,17 +53,30 @@ include "./Views/HomeLayout/header.php";
   var cartItems = localStorage.getItem("cart");
   cartItems = cartItems ? JSON.parse(cartItems) : [];
 
+  var cartTable = document.querySelector('.table');
   // Hiển thị thông tin giỏ hàng
   var cartItemsContainer = document.getElementById('cart-items');
   var cartTotalElement = document.getElementById('cart-total');
+  var emptyCartContainer = document.getElementById('empty-cart');
+  var imgEmptyContainer = document.getElementById('img-empty');
+  var cartTitleElement = document.getElementById("cart-title");
+  var buttonBackElement = document.getElementById("button-back");
+  var bgCartElement = document.getElementById("bgcart");
+  
   var cartTotal = 0;
 
+  if (cartItems && cartItems.length > 0) {
   for (var i = 0; i < cartItems.length; i++) {
     var productID = cartItems[i];
 
+    var cartItemCount = cartItems.reduce(function(total, product) {
+    return total + product.Quantity;
+  }, 0);
     // Lấy thông tin sản phẩm từ Local Storage hoặc cơ sở dữ liệu
     // Điều chỉnh code dưới đây để lấy thông tin sản phẩm từ nguồn dữ liệu của bạn
     var product = cartItems[i]; // Lấy thông tin sản phẩm từ Local Storage
+
+    cartTitleElement.textContent = "Giỏ hàng (" + cartItemCount + " sản phẩm)";
 
     // Tạo các phần tử HTML cho sản phẩm
     var row = document.createElement('tr');
@@ -137,9 +156,21 @@ include "./Views/HomeLayout/header.php";
     row.appendChild(totalCell);
     cartTotal += total;
   }
+
   cartTotal = cartTotal.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' , minimumFractionDigits: 0});;
   cartTotalElement.textContent = cartTotal;
-
+  imgEmptyContainer.style.visibility = "hidden";
+  cartTable.style.visibility = "visible";
+  buttonBackElement.style.visibility = "hidden";
+  bgCartElement.style.visibility = "hidden";
+} else {
+  // Không có sản phẩm trong giỏ hàng
+  emptyCartContainer.innerHTML = '<p>Không có sản phẩm nào trong giỏ hàng.</p>';
+  cartTable.style.display = 'none'; // Ẩn bảng
+  imgEmptyContainer.style.visibility = "visible";
+  buttonBackElement.style.visibility = "visible";
+  bgCartElement.style.visibility = "visible";
+}
  
 </script>
 
@@ -148,6 +179,7 @@ include "./Views/HomeLayout/header.php";
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
    <script>
     $(document).ready(function() {
+
   // Xóa sản phẩm
   $('.btn-remove').click(function() {
     $(this).closest('tr').remove();
@@ -173,8 +205,10 @@ include "./Views/HomeLayout/header.php";
     updateProductTotal($(this).closest('tr'));
     updateCartTotal();
     updateLocalStorage();
-    }
-  });
+  } else {
+    alert('Số lượng không đủ');
+  }
+});
 
   // Giảm số lượng
   $('.btn-decrease').click(function() {
@@ -215,8 +249,7 @@ include "./Views/HomeLayout/header.php";
 
     $('.table tbody tr').each(function() {
       var product = {};
-      product.ID = parseInt($(this).find('.product-id').text());
-      //product.ID = $(this).find('.product-id').text();
+      product.ID = $(this).find('.product-id').text();
       product.Name = $(this).find('.lead').text();
       product.Image = $(this).find('img').attr('src');
       product.QuantityLeft = $(this).find('.product-quantityleft').text();
@@ -228,85 +261,6 @@ include "./Views/HomeLayout/header.php";
     localStorage.setItem('cart', JSON.stringify(cart));
   }
  
-// // Khôi phục thông tin giỏ hàng từ localStorage
-// function restoreCartFromLocalStorage() {
-//   var cart = localStorage.getItem('cart');
-//   if (cart) {
-//     var products = JSON.parse(cart);
-//     for (var i = 0; i < products.length; i++) {
-//       var product = products[i];
-//       // Chuyển đổi giá sang định dạng VND
-//       var priceVND = product.Price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND', minimumFractionDigits: 0 });
-//       var priceTotal = product.Total.toLocaleString('vi-VN', { style: 'currency', currency: 'VND', minimumFractionDigits: 0 });
-      
-//       // Tạo hàng cho sản phẩm và thêm vào giỏ hàng
-//       var row = $('<tr></tr>');
-//       row.append('<td><button class="btn btn-danger btn-remove">Xóa</button></td>');
-//       row.append('<td class="product-id">' + product.ID + '</td>').css('display', 'none');
-//       row.append('<td class="product-name">' + product.Name + '</td>');
-//       row.append('<td><img src="' + product.Image + '" alt="Hình ảnh sản phẩm" width="50"></td>');
-//       row.append('<td class="product-price">' + priceVND + '</td>');
-//       row.append('<td><button class="btn btn-secondary btn-decrease">-</button><span class="product-quantity">' + product.Quantity + '</span><button class="btn btn-secondary btn-increase">+</button></td>');
-//       row.append('<td class="product-total">' + priceTotal + '</td>');
-//       $('.table tbody').append(row);
-//     }
-//     updateCartTotal();
-//   }
- 
-// }
 
-// // Gọi hàm khôi phục thông tin giỏ hàng khi load lại trang
-// $(document).ready(function() {
-//   restoreCartFromLocalStorage();
-// });
-
-//  // Khôi phục thông tin giỏ hàng từ localStorage (nếu có)
-//   function restoreCartFromLocalStorage() {
-//     var cart = localStorage.getItem('cart');
-//     if (cart) {
-//       cart = JSON.parse(cart);
-//       $.each(cart, function(index, product) {
-//         var row = $('<tr></tr>');
-//         row.append('<td><button class="btn btn-danger btn-remove">Xóa</button></td>');
-//         row.append('<td class="product-name">' + product.name + '</td>');
-//         row.append('<td><img src="' + product.image + '" alt="Hình ảnh sản phẩm" width="50"></td>');
-//         row.append('<td class="product-price">$' + product.price + '</td>');
-//         row.append('<td><button class="btn btn-secondary btn-decrease">-</button><span class="product-quantity">' + product.quantity + '</span><button class="btn btn-secondary btn-increase">+</button></td>');
-//         row.append('<td class="product-total">$' + product.total.toFixed(2) + '</td>');
-//         $('.table tbody').append(row);
-//   });
-
-//   updateCartTotal();
-// }
-// }
-
-// // Gọi hàm khôi phục thông tin giỏ hàng từ localStorage khi tải trang
-// restoreCartFromLocalStorage();
-
-
-
-// Xử lý sự kiện khi nhấp vào nút thanh toán
-// $('.btn-checkout').click(function() {
-// // Thực hiện xử lý thanh toán tại đây
-// window.location.href = '../ThanhToan/ThemMoi';
-
-// $('form').submit(function(event) {
-//     event.preventDefault();
-//     var row = $('<tr></tr>');
-//     var image = $(this).closest('.card').find('img').attr('src');
-//     var price = parseFloat($(this).closest('.card').find('.text-primary').text().replace(',', '').replace(' VNĐ', ''));
-//     var quantity = 1;
-//     var total = price * quantity;
-//     row.append('<td><button class="btn btn-danger btn-remove">Xóa</button></td>');
-//     row.append('<td><img src="' + image + '" alt="Hình ảnh sản phẩm" width="50"></td>');
-//     row.append('<td class="product-price">$' + price.toFixed(2) + '</td>');
-//     row.append('<td><button class="btn btn-secondary btn-decrease">-</button><span class="product-quantity">' + quantity + '</span><button class="btn btn-secondary btn-increase">+</button></td>');
-//     row.append('<td class="product-total">$' + total.toFixed(2) + '</td>');
-//     $('tbody').append(row);
-
-//     updateCartTotal();
-//     updateLocalStorage();
-//   });
-// });
 });
 </script> 

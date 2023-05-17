@@ -48,10 +48,14 @@ var cartClass = {
   AddItem: function(id, name, image, quantityleft, price, quantity, total) {
     var arr = cartClass.Get();
     
-    var objIncIndex = arr.findIndex(obj => obj.ID == id);
-    if (objIncIndex !== -1) {
-      alert('Sản phẩm đã có trong giỏ hàng!');
-      return;
+    var objIndex = arr.findIndex(obj => obj.ID == id);
+    if (objIndex !== -1) {
+      // Sản phẩm đã có trong giỏ hàng, tăng quantity lên 1
+       arr[objIndex].Quantity += 1;
+       
+       cartClass.Set(arr); // Lưu lại thông tin giỏ hàng
+       alert('Đã thêm tiếp sản phẩm vào giỏ hàng !');
+       return;
     }
     var newID = {
       ID: id,
