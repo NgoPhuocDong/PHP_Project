@@ -81,6 +81,12 @@ include "./Views/HomeLayout/header.php";
     hiddenCell.textContent = product.ID;
     row.appendChild(hiddenCell);
 
+    var hiddenCell = document.createElement('td');
+    hiddenCell.style.display = 'none';
+    hiddenCell.className = 'product-quantityleft';
+    hiddenCell.textContent = product.QuantityLeft;
+    row.appendChild(hiddenCell);
+
 
     var imageCell = document.createElement('td');
     var imageElement = document.createElement('img');
