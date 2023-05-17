@@ -10,18 +10,8 @@ class ChiTietDonHangBan{
     {
         $sql = "SELECT ct.ID, ct.idDonHangBan, sp.TenSanPham, ct.SoLuong, ct.DonGiaApDung, ct.ThanhTien
         FROM chitietdonhangban ct
-        JOIN sanpham sp ON ct.idSanPham = sp.ID
+        LEFT JOIN sanpham sp ON ct.idSanPham = sp.ID
         WHERE ct.idDonHangBan = '$id' LIMIT ".$item." OFFSET ".$offset;
-        $result = $this->db->select($sql);
-        return $result;
-    }
-
-    public function DanhSach1($id)
-    {
-        $sql = "SELECT ct.ID, ct.idDonHangBan, sp.ID, ct.idSanPham, sp.TenSanPham, ct.SoLuong, ct.DonGiaApDung, ct.ThanhTien
-        FROM chitietdonhangban ct
-        JOIN sanpham sp ON ct.idSanPham = sp.ID
-        WHERE ct.idDonHangBan = '$id'";
         $result = $this->db->select($sql);
         return $result;
     }
@@ -106,9 +96,8 @@ class ChiTietDonHangBan{
         }
     }
 
-    public function TaoDonHang($tenkhachhang,$sodienthoai,$email,$diachi,$ngaylap,$idsanpham,$soluong,$dongia)
+    public function TaoDonHang($tenkhachhang,$sodienthoai,$email,$diachi,$ngaylap,$dataList)
     {
-        $thanhtien = $this->ThanhTien($soluong, $dongia);
 
         $sqlKhachHang = "INSERT INTO khachhang (TenKhachHang, SoDienThoai, Email, DiaChi) VALUES ('$tenkhachhang', '$sodienthoai', '$email', '$diachi')";
         if ($this->db->conn->query($sqlKhachHang) === TRUE) {
@@ -117,23 +106,24 @@ class ChiTietDonHangBan{
             $sqlDonHang = "INSERT INTO donhangban (IDKhachHang, idTrangThai, NgayLap) VALUES ($idkhachhang, 1, '$ngaylap')";
             if ($this->db->conn->query($sqlDonHang) === TRUE) {
                 $iddonhangban = $this->db->conn->insert_id;
-
-                $sqlChiTiet = "INSERT INTO chitietdonhangban (idDonHangBan, idSanPham, SoLuong, DonGiaApDung, ThanhTien) VALUES ($iddonhangban, '$idsanpham', '$soluong', '$dongia', '$thanhtien')";
-                if ($this->db->conn->query($sqlChiTiet) === TRUE) {
-                    $message = "<span style='color: red;'>Tạo tài khoản và đơn hàng thành công.</span>";
-                    $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
-                    return $message;
-                } else {
-                    $message = "<span style='color: red;'>Đã xảy ra lỗi khi tạo chi tiết đơn hàng.</span>" . $this->db->conn->error;
-                    return $message;
-                }
-            } else {
-                $message = "<span style='color: red;'>Đã xảy ra lỗi khi tạo đơn hàng.</span>" . $this->db->conn->error;
-                return $message;
-            }
-        } else {
-            $message = "<span style='color: red;'>Đã xảy ra lỗi khi tạo tài khoản khách hàng.</span>" . $this->db->conn->error;
-            return $message;
+                
+                foreach ($dataList as $data) {
+                    $idSanPham = $data['idSanPham'];
+                    $donGia = $data['donGia'];
+                    $soLuong = $data['soLuong'];
+        
+                    // Thực hiện câu lệnh INSERT
+                        $thanhtien = $this->ThanhTien($soLuong, $donGia);
+                        $sqlChiTiet = "INSERT INTO chitietdonhangban (idDonHangBan, idSanPham, SoLuong, DonGiaApDung, ThanhTien) VALUES ($iddonhangban, '$idSanPham', '$soLuong', '$donGia', '$thanhtien')";
+                        if ($this->db->conn->query($sqlChiTiet) === TRUE) {
+                            $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
+                            
+                        } else {
+                            $message = "<span style='color: red;'>Đã xảy ra lỗi khi tạo chi tiết đơn hàng.</span>" . $this->db->conn->error;
+                            return $message;
+                        }
+                    }
+                }else{echo'lỗi foreach';};
         }
 
     }
