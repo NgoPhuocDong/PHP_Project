@@ -100,6 +100,11 @@ include "./Views/HomeLayout/header.php";
     hiddenCell.textContent = product.ID;
     row.appendChild(hiddenCell);
 
+    var hiddenCell = document.createElement('td');
+    hiddenCell.style.display = 'none';
+    hiddenCell.className = 'product-quantityleft';
+    hiddenCell.textContent = product.QuantityLeft;
+    row.appendChild(hiddenCell);
 
 
     var imageCell = document.createElement('td');
@@ -193,7 +198,7 @@ include "./Views/HomeLayout/header.php";
   $('.btn-increase').click(function() {
     var quantityElement = $(this).siblings('.product-quantity');
     var quantity = parseInt(quantityElement.text());
-    var maxQuantity = 10;
+    var maxQuantity = parseInt($(this).closest('tr').find('.product-quantityleft').text());  //lấy số lượng còn trong kho
 
     if (quantity < maxQuantity) {
     quantityElement.text(quantity + 1);
@@ -247,6 +252,7 @@ include "./Views/HomeLayout/header.php";
       product.ID = $(this).find('.product-id').text();
       product.Name = $(this).find('.lead').text();
       product.Image = $(this).find('img').attr('src');
+      product.QuantityLeft = $(this).find('.product-quantityleft').text();
       product.Price = parseFloat($(this).find('.product-price').text().replace(/\D/g, ''));
       product.Quantity = parseInt($(this).find('.product-quantity').text());
       product.Total = parseFloat($(this).find('.product-total').text().replace(/\D/g, ''));

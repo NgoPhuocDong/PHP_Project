@@ -45,7 +45,7 @@ var cartClass = {
     var jsonIDSP = JSON.stringify(arr);
     localStorage.setItem("cart",jsonIDSP);
   },
-  AddItem: function(id, name, image, price, quantity, total) {
+  AddItem: function(id, name, image, quantityleft, price, quantity, total) {
     var arr = cartClass.Get();
     
     var objIncIndex = arr.findIndex(obj => obj.ID == id);
@@ -57,6 +57,7 @@ var cartClass = {
       ID: id,
       Name: name,
       Image: image,
+      QuantityLeft: quantityleft,   //số lượng sản phẩm còn lại trong kho
       Price: price,
       Quantity: quantity,
       Total: total
@@ -151,9 +152,8 @@ var cartClass = {
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
               
-              <button type="submit" name="add-to-cart" id="addcart"
-                class="btn btn-sm btn-outline-secondary add-to-cart" 
-                  onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','../Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['Gia'] ?>,1,' VNĐ')">Thêm vào giỏ hàng</button>
+              <button type="submit" name="add-to-cart" id="addcart" class="btn btn-sm btn-outline-secondary add-to-cart" 
+                  onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','../Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['SoLuong'] ?>,<?= $row['Gia'] ?>,1,' VNĐ')">Thêm vào giỏ hàng</button>
             
                   <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button>
                 </div>
@@ -297,7 +297,8 @@ var cartClass = {
               <b><small class="text-primary" style="font-weight: bold; font-size: 15px;" > <?= number_format($row['Gia'], 0, ',', '.') ?> VNĐ</small></b>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                <button type="submit" name="add-to-cart" id="addcart" class="btn btn-sm btn-outline-secondary add-to-cart" onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','../Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['Gia'] ?>,1,' VNĐ')">Thêm vào giỏ hàng</button>                  
+                <button type="submit" name="add-to-cart" id="addcart" class="btn btn-sm btn-outline-secondary add-to-cart" onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','../Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['SoLuong'] ?>,<?= $row['Gia'] ?>,1,' VNĐ')">Thêm vào giỏ hàng</button>
+                  
                 <a href="../TrangChu/ChiTietSanPham&id=<?=$row['ID']?>" class="btn btn-sm btn-outline-secondary">Xem chi tiết</a>
                   <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button> -->
                 </div>
