@@ -11,7 +11,7 @@ class DonHangBan{
         FROM donhangban AS dh
         INNER JOIN khachhang AS kh ON dh.IdKhachHang = kh.ID
         INNER JOIN trangthaiban AS tt ON dh.IdTrangThai = tt.ID
-        INNER JOIN nhanvien AS nv ON dh.IdNhanVienLap = nv.ID
+        LEFT JOIN nhanvien AS nv ON dh.IdNhanVienLap = nv.ID
         ORDER BY dh.ID ASC LIMIT ".$item." OFFSET ".$offset;
 
         $result = $this->db->select($sql);
@@ -32,14 +32,27 @@ class DonHangBan{
         return $result;
     }
 
+    // public function ChiTiet($id)
+    // {
+    //     $sql = "SELECT dh.ID,dh.idTrangThai,kh.TenKhachHang,NgayLap,nv.TenNhanVien,TongTien,TenTrangThai
+    //     FROM donhangban as dh,khachhang as kh,trangthaiban as tt, nhanvien as nv
+    //     WHERE dh.IdKhachHang = kh.ID
+    //     AND dh.IdTrangThai = tt.ID
+    //     AND dh.IdNhanVienLap = nv.ID
+    //     AND dh.ID = '$id' ";
+    //     $result = $this->db->select($sql);
+    //     return $result;
+    // }
+
     public function ChiTiet($id)
     {
-        $sql = "SELECT dh.ID,dh.idTrangThai,kh.TenKhachHang,NgayLap,nv.TenNhanVien,TongTien,TenTrangThai
-        FROM donhangban as dh,khachhang as kh,trangthaiban as tt, nhanvien as nv
-        WHERE dh.IdKhachHang = kh.ID
-        AND dh.IdTrangThai = tt.ID
-        AND dh.IdNhanVienLap = nv.ID
-        AND dh.ID = '$id' ";
+        $sql = "SELECT dh.ID, dh.idTrangThai, kh.TenKhachHang, dh.NgayLap, nv.TenNhanVien, dh.TongTien, tt.TenTrangThai
+                FROM donhangban AS dh
+                INNER JOIN khachhang AS kh ON dh.IdKhachHang = kh.ID
+                INNER JOIN trangthaiban AS tt ON dh.IdTrangThai = tt.ID
+                LEFT JOIN nhanvien AS nv ON dh.IdNhanVienLap = nv.ID
+                WHERE dh.ID = '$id'";
+
         $result = $this->db->select($sql);
         return $result;
     }
