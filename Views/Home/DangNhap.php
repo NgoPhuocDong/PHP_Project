@@ -123,7 +123,7 @@ input[type="text"], input[type="password"] {
     border-radius: 5px;
     box-shadow: 0 0 5px #ccc;
     transition: transform 0.3s ease-in-out;
-    color: #fff;
+    color: gray;
 }
 
 .labelCheck {

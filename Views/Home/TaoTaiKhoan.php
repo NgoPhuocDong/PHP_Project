@@ -106,18 +106,26 @@
           <label for="email">Tên khách hàng</label>
           <input type="text" id="text" name="tenkhachhang" required>
         </div>
+        <br>
         <div class="form-group">
-          <label for="email">Tên đăng nhập:</label>
+          <label for="email">Tên đăng nhập</label>
           <input type="text" id="email" name="tendangnhap" required>
         </div>
-        <div class="input-field">
+        <br>
+        <div class="form-group">
           <label for="phone">Mật khẩu</label>
-          <input type="password" id="password" name="matkhau" placeholder="Password...">
+          <div class="input-group">
+            <input type="password" id="password" name="matkhau" placeholder="Password..." class="input-group form-control">
+            <i class="fa fa-eye show_hide input-group-text" onclick="togglePassword()"></i>
+          </div>
         </div>
-        
+        <br>
         <div class="form-group">
           <label for="phone">Nhập lại mật khẩu</label>
-          <input type="password" id="password2" name="matkhau2" placeholder="Password...">
+          <div class="input-group">
+            <input type="password" id="password2" name="matkhau2" placeholder="Password..." class="input-group form-control">
+            <i class="fa fa-eye show_hide input-group-text" onclick="togglePassword2()"></i>
+          </div>
         </div>
 
       </div>
@@ -126,3 +134,33 @@
       </div>
     </form>
   </div>
+  <script>
+		function togglePassword() {
+      var iElement = document.querySelector('i');
+			var passwordInput = document.getElementById('password');
+			if (passwordInput.type === 'password') {
+        iElement.classList.remove('fa-eye');
+        iElement.classList.add('fa-eye-slash');
+				passwordInput.type = 'text';
+			}
+      else {
+        iElement.classList.remove('fa-eye-slash');
+        iElement.classList.add('fa-eye');
+				passwordInput.type = 'password';
+			}
+		}
+    function togglePassword2() {
+            var iElement = document.querySelector('i');
+      var passwordInput = document.getElementById('password2');
+			if (passwordInput.type === 'password') {
+        iElement.classList.remove('fa-eye');
+        iElement.classList.add('fa-eye-slash');
+				passwordInput.type = 'text';
+			}
+      else {
+        iElement.classList.remove('fa-eye-slash');
+        iElement.classList.add('fa-eye');
+				passwordInput.type = 'password';
+			}
+		}
+</script>

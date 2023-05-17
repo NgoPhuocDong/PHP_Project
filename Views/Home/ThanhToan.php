@@ -84,7 +84,7 @@ include "./Views/HomeLayout/header.php";
         
         <div id="formDetail"></div>
         <input type="date" class = 'btn-check' name="ngaylap" value="<?php echo date('Y-m-d'); ?>">
-        <input type="submit" class="btn btn-primary mt-3 submitcart" name="submit" value="ĐẶT HÀNG" onclick="alert()">
+        <input type="submit" class="btn btn-primary mt-3 submitcart" name="submit" value="ĐẶT HÀNG" onclick="return confirm('Xác nhận đặt hàng');">
 
         
         <!-- <script>

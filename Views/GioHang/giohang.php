@@ -120,6 +120,12 @@ include "./Views/HomeLayout/header.php";
     priceCell.textContent = product.Price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' , minimumFractionDigits: 0});;
     row.appendChild(priceCell);
 
+    var hiddenCell = document.createElement('td');
+    hiddenCell.style.display = 'none';
+    hiddenCell.className = 'product-id';
+    hiddenCell.textContent = product.ID;
+    row.appendChild(hiddenCell);
+
     //---------------------------------------nút tăng giảm số lưọng-------------------------
     var quantityCell = document.createElement('td');
       quantityCell.style.display = 'flex';
@@ -192,6 +198,7 @@ include "./Views/HomeLayout/header.php";
     updateCartTotal();
     updateLocalStorage();
   });
+
   
 
   // Tăng số lượng
@@ -205,10 +212,10 @@ include "./Views/HomeLayout/header.php";
     updateProductTotal($(this).closest('tr'));
     updateCartTotal();
     updateLocalStorage();
-  } else {
-    alert('Số lượng không đủ');
-  }
-});
+    }else{
+      alert("Số lượng trong kho chỉ còn lại "+maxQuantity+" sản phẩm \n Xin lỗi quý khách vì sự số bất tiện này!");
+    }
+  });
 
   // Giảm số lượng
   $('.btn-decrease').click(function() {
