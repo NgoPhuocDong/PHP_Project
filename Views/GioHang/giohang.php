@@ -180,6 +180,8 @@ include "./Views/HomeLayout/header.php";
     updateProductTotal($(this).closest('tr'));
     updateCartTotal();
     updateLocalStorage();
+    }else{
+      alert("Số lượng trong kho chỉ còn lại "+maxQuantity+" sản phẩm \n Xin lỗi quý khách vì sự số bất tiện này!");
     }
   });
 
