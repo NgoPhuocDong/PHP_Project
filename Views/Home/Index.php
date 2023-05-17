@@ -52,7 +52,6 @@ var cartClass = {
     if (objIndex !== -1) {
       // Sản phẩm đã có trong giỏ hàng, tăng quantity lên 1
        arr[objIndex].Quantity += 1;
-       
        cartClass.Set(arr); // Lưu lại thông tin giỏ hàng
        alert('Đã thêm tiếp sản phẩm vào giỏ hàng !');
        return;
@@ -155,16 +154,19 @@ var cartClass = {
               <b><small class="text-primary" style="font-weight: bold; font-size: 15px;" > <?= number_format($row['Gia'], 0, ',', '.') ?> VNĐ</small></b>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-              
+                <?php if ($row['SoLuong'] > 0): ?>
               <button type="submit" name="add-to-cart" id="addcart" class="btn btn-sm btn-outline-secondary add-to-cart" 
                   onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','../Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['SoLuong'] ?>,<?= $row['Gia'] ?>,1,' VNĐ')">Thêm vào giỏ hàng</button>
-            
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button>
+                  <?php else: ?>
+                  <p class="sold-out-msg" style="color:red; margin-right: 30px;">Hết hàng</p>
+                  <?php endif; ?>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" style="height: 31.67px">Xem chi tiết</button>
                 </div>
               </div>
             </div>
           </div>
         </li>
+
       <?php endforeach; endif; ?>
 
 	</ul>
@@ -383,5 +385,6 @@ new Glide('.product', {
 
 
 </script>
+
 </body>
 </html>
