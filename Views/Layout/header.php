@@ -150,8 +150,7 @@ include("Views/Home/TrangChu.php");
 	<nav class="navbar navbar-expand-sm bg-white col-md-12 fixed-top">
 		<div class="container-fluid">
 			<h4><a class="nav-link" href="../Home/TrangChu">
-					<img id="logo" src="https://shopfront-cdn.tekoapis.com/static/phongvu/logo-full.svg" loading="lazy"
-						decoding="async" alt="phongvu" style="width: 100%; height: 35px;">
+					<img id="logo" src="https://shopfront-cdn.tekoapis.com/static/phongvu/logo-full.svg" loading="lazy" decoding="async" alt="phongvu" style="width: 100%; height: 35px;">
 				</a></h4>
 			<ul class="navbar-nav">
 				<li style="margin-left: 90px;" class="nav-item">
@@ -168,21 +167,23 @@ include("Views/Home/TrangChu.php");
 				</li>
 			</ul>
 
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a class="nav-link" href="#" style="margin-left: 68px;">
-						<i class="fa fa-cog" aria-hidden="true"></i>
-						Settings</a>
-				</li>
-				<li>
+			<ul class="navbar-nav ">
+				<li class="m-auto">
 					<button id="notificationButton">
 						<a href="/PHP_Project/Views/ThongBao/ThongBao.php">
-							<span id="notificationIcon"></span>
+							<!-- <span id="notificationIcon"></span> -->
+							<i class="fa fa-bell text-warning" aria-hidden="true"></i>
 							<span id="notificationCount">0</span>
 						</a>
 					</button>
 				</li>
-				<li class="nav-item logout" style="float: right; left: 20px;">
+				<li class="nav-item m-auto">
+					<a class="nav-link" href="#">
+						<i class="fa fa-cog" aria-hidden="true"></i> Settings
+					</a>
+				</li>
+
+				<li class="nav-item logout m-auto" style="float: right; left: 20px;">
 					<a href="../Home/Logout" class="nav-link active">
 						<i class="fa fa-sign-in" aria-hidden="true"></i>
 						Logout</a>
@@ -193,12 +194,10 @@ include("Views/Home/TrangChu.php");
 	<div class="container-fluid" style="padding-top: 56px;">
 		<div class="row">
 			<div class="col-md-2"></div>
-			<div class="col-md-2 bg-dark navbar-nav position-fixed" id="accordion" data-bs-spy="scroll"
-				style="height: 1550px; width: 260px;">
+			<div class="col-md-2 bg-dark navbar-nav position-fixed" id="accordion" data-bs-spy="scroll" style="height: 1550px; width: 260px;">
 				<div class="navbar border-bottom text-white-50">
 					<span class="">
-						<img src="../Assets/AvatarNhanVien/<?= $_SESSION['avatar'] ?>" class="rounded-circle" alt=""
-							width="50" height="50">
+						<img src="../Assets/AvatarNhanVien/<?= $_SESSION['avatar'] ?>" class="rounded-circle" alt="" width="50" height="50">
 						<span style="font-size: 14px; font-weight: 400;">Welcome, </span>
 						<span style="margin-left: 3px; color: #fff;">
 							<?php
@@ -223,8 +222,7 @@ include("Views/Home/TrangChu.php");
 					<li data-bs-toggle="collapse" data-bs-target="#collapse1">
 						<?php if (check('../SanPham/DanhSach') || check('../LoaiSanPham/DanhSach')) { ?>
 							<a href="#" class="btn btn-dark dropdown-toggle">
-								<span class="aaa"><i class="fa fa-th-large" aria-hidden="true"
-										style="color:white;"></i></span>
+								<span class="aaa"><i class="fa fa-th-large" aria-hidden="true" style="color:white;"></i></span>
 								<span class="bbb">Sản phẩm</span></a>
 
 						<?php } ?>
@@ -247,8 +245,7 @@ include("Views/Home/TrangChu.php");
 					<li data-bs-toggle="collapse" data-bs-target="#collapse2">
 						<?php if (check('../DonHangMua/DanhSach') || check('../NguonHang/DanhSach')) { ?>
 							<a href="#" class="btn btn-dark dropdown-toggle">
-								<span class="aaa"><i class="fa fa-cart-plus" aria-hidden="true"
-										style="color:white;"></i></span>
+								<span class="aaa"><i class="fa fa-cart-plus" aria-hidden="true" style="color:white;"></i></span>
 								<span class="bbb">Nhập Hàng<span class="ppp1">
 										<?php if (isset($_SESSION['tongdonhangmua']))
 											echo $_SESSION['tongdonhangmua']; ?>
@@ -272,8 +269,7 @@ include("Views/Home/TrangChu.php");
 					<li data-bs-toggle="collapse" data-bs-target="#collapse3">
 						<?php if (check('../DonHangBan/DanhSach') || check('../KhachHang/DanhSach') || check('../NhanVien/DanhSach')) { ?>
 							<a href="#" class="btn btn-dark dropdown-toggle">
-								<span class="aaa"><i class="fa fa-shopping-bag" aria-hidden="true"
-										style="color: white;"></i></span>
+								<span class="aaa"><i class="fa fa-shopping-bag" aria-hidden="true" style="color: white;"></i></span>
 								<span class="bbb">Bán Hàng<span class="ppp">
 										<?php if (isset($_SESSION['tongdonhangban']))
 											echo $_SESSION['tongdonhangban']; ?>
@@ -302,8 +298,7 @@ include("Views/Home/TrangChu.php");
 						<!-- <div class="hihi"> -->
 						<?php if (check('../TaiKhoanNhanVien/DanhSach')) { ?>
 							<a href="#" class="btn btn-dark dropdown-toggle ">
-								<span class="aaa"><i class="fa fa-address-card" aria-hidden="true"
-										style="color: white;"></i></span>
+								<span class="aaa"><i class="fa fa-address-card" aria-hidden="true" style="color: white;"></i></span>
 								<span class="bbb">Quản lý tài khoản</span></a>
 						<?php } ?>
 						<!-- </div> -->
@@ -321,8 +316,7 @@ include("Views/Home/TrangChu.php");
 						<!-- <div class="hihi"> -->
 						<?php if (check('../Quyen/DanhSach') || check('../LoaiQuyen/DanhSach')) { ?>
 							<a href="#" class="btn btn-dark dropdown-toggle ">
-								<span class="aaa"><i class="fa-regular fa-people-group" aria-hidden="true"
-										style="color: white;"></i></span>
+								<span class="aaa"><i class="fa-regular fa-people-group" aria-hidden="true" style="color: white;"></i></span>
 								<span class="bbb">Quản lý quyền</span></a>
 						<?php } ?>
 						<!-- </div> -->
@@ -343,8 +337,7 @@ include("Views/Home/TrangChu.php");
 					<li data-bs-toggle="collapse" data-bs-target="#collapse6">
 						<?php if (check('../TinTuc/DanhSach') || check('../LoaiTinTuc/DanhSach')) { ?>
 							<a href="#" class="btn btn-dark dropdown-toggle">
-								<span class="aaa"><i class="fa fa-regular fa-newspaper" aria-hidden="true"
-										style="color: white;"></i></span>
+								<span class="aaa"><i class="fa fa-regular fa-newspaper" aria-hidden="true" style="color: white;"></i></span>
 								<span class="bbb">Quản lý tin tức</span></a>
 						<?php } ?>
 						<ul id="collapse6" class="collapse text-white-50" data-bs-parent="#accordion">
@@ -365,8 +358,7 @@ include("Views/Home/TrangChu.php");
 					<li data-bs-toggle="">
 						<?php if (check('../ThongKe/ChiTiet')) { ?>
 							<a href="../ThongKe/ChiTiet" class="btn btn-dark dropdown-toggle">
-								<span class="aaa"><i class="fa fa-bar-chart" aria-hidden="true"
-										style="color: white;"></i></span>
+								<span class="aaa"><i class="fa fa-bar-chart" aria-hidden="true" style="color: white;"></i></span>
 								<span class="bbb">Thống kê</span></a>
 						<?php } ?>
 					</li>
@@ -455,7 +447,7 @@ include("Views/Home/TrangChu.php");
 					// Lấy số lượng thông báo ban đầu từ HTML
 					var count = parseInt(notificationCount.innerHTML);
 
-					notificationButton.addEventListener('click', function () {
+					notificationButton.addEventListener('click', function() {
 						// Đặt lại số lượng thông báo về 0
 						notificationCount.innerHTML = "0";
 					});
@@ -471,7 +463,7 @@ include("Views/Home/TrangChu.php");
 					}
 
 					// Gọi hàm showNotification khi biểu mẫu được gửi
-					document.getElementById('paymentForm').addEventListener('submit', function (event) {
+					document.getElementById('paymentForm').addEventListener('submit', function(event) {
 						event.preventDefault(); // Ngăn form được gửi đi
 						showNotification(); // Gọi hàm showNotification
 						this.submit(); // Gửi biểu mẫu

@@ -57,7 +57,7 @@ class TrangChuController
             $result = $this->model->TimKiem($tensanpham);
 
             if ($_GET['tensanpham'] == null) {
-                header('Location: ./DanhSach');
+                header('Location: ./Index');
             }
         } else {
             $tongsp = $this->model->TongSanPham();
@@ -224,7 +224,10 @@ class TrangChuController
                         'soLuong' => $soLuong
                     );
                 }
-                $this->ctdh->TaoDonHangSS($idkhachhang,$ngaylap,$dataList);
+                $create = $this->ctdh->TaoDonHangSS($idkhachhang,$ngaylap,$dataList);
+                if($create){
+                    header('Location: ./Index');
+                }
             }
         }
         elseif(isset($_POST['submit'])) {
@@ -251,6 +254,9 @@ class TrangChuController
                     );
                 }
                 $create = $this->ctdh->TaoDonHang($tenkhachhang,$sodienthoai,$email,$diachi,$ngaylap,$dataList);
+                if($create){
+                    header('Location: ./Index');
+                }
             } else {
                 echo "Không có dữ liệu từ form";
             }
