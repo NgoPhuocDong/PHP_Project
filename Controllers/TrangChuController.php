@@ -46,7 +46,7 @@ class TrangChuController
         $loaisanpham = $this->loaisanpham->DanhSach(100,0);
 
         //$sanphamnoibat = $this->model->SanPhamNoiBat();
-        $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 6;
+        $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 8;
         $current = !empty($_GET['page']) ? $_GET['page'] : 1; // trang hien tai
         $offset = ($current - 1) * $item;
         if (isset($_GET['tensanpham'])) {
@@ -94,6 +94,19 @@ class TrangChuController
         }
         require_once('Views/Home/ChiTietSanPham.php');
         return $detail;
+    }
+
+    public function AllSanPhamNoiBat()
+    {
+        $result = $this->model->DanhSachSanPhamNoiBat();
+        require_once('Views/Home/AllSanPhamNoiBat.php');
+        return $result;
+    }
+    public function AllSanPham()
+    {
+        $result = $this->model->TatCaSanPham();
+        require_once('Views/Home/AllSanPham.php');
+        return $result;
     }
 
     public function DanhSachSanPham()

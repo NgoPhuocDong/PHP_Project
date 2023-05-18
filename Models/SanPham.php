@@ -65,6 +65,7 @@ class SanPham{
     
     return $det;
 }
+
     public function TimKiem($tensanpham)
     {
         $sql = "SELECT sp.ID,sp.idLoaiSanPham,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
@@ -154,6 +155,11 @@ class SanPham{
         return $result;
     }
 
+    public function TatCaSanPham() {
+        $sql = "SELECT * FROM sanpham";
+        $result = $this->db->select($sql);
+        return $result;
+    }
 }
    
    
