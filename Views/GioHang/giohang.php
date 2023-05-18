@@ -44,7 +44,7 @@ include "./Views/HomeLayout/header.php";
   <div id="bgcart" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
   <img src="https://hasaki.vn/images/graphics/img_lb_empty.gif" alt="" id="img-empty" style=" margin-bottom: 20px;">
   <div id="empty-cart" style="text-align: center;"></div>
-  <a class="btn btn-primary" id="button-back" href="../TrangChu/Index">Tiép tục mua sắm</a>
+  <a class="btn btn-primary" id="button-back" href="../TrangChu/Index">Tiếp tục mua sắm</a>
   </div>
 </div>
 
@@ -100,6 +100,11 @@ include "./Views/HomeLayout/header.php";
     hiddenCell.textContent = product.ID;
     row.appendChild(hiddenCell);
 
+    var hiddenCell = document.createElement('td');
+    hiddenCell.style.display = 'none';
+    hiddenCell.className = 'product-quantityleft';
+    hiddenCell.textContent = product.QuantityLeft;
+    row.appendChild(hiddenCell);
 
 
     var imageCell = document.createElement('td');
@@ -114,6 +119,12 @@ include "./Views/HomeLayout/header.php";
     priceCell.className = 'product-price';
     priceCell.textContent = product.Price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' , minimumFractionDigits: 0});;
     row.appendChild(priceCell);
+
+    var hiddenCell = document.createElement('td');
+    hiddenCell.style.display = 'none';
+    hiddenCell.className = 'product-id';
+    hiddenCell.textContent = product.ID;
+    row.appendChild(hiddenCell);
 
     //---------------------------------------nút tăng giảm số lưọng-------------------------
     var quantityCell = document.createElement('td');
@@ -187,23 +198,24 @@ include "./Views/HomeLayout/header.php";
     updateCartTotal();
     updateLocalStorage();
   });
+
   
 
   // Tăng số lượng
   $('.btn-increase').click(function() {
     var quantityElement = $(this).siblings('.product-quantity');
     var quantity = parseInt(quantityElement.text());
-    var maxQuantity = 10;
+    var maxQuantity = parseInt($(this).closest('tr').find('.product-quantityleft').text());  //lấy số lượng còn trong kho
 
     if (quantity < maxQuantity) {
     quantityElement.text(quantity + 1);
     updateProductTotal($(this).closest('tr'));
     updateCartTotal();
     updateLocalStorage();
-  } else {
-    alert('Số lượng không đủ');
-  }
-});
+    }else{
+      alert("Số lượng trong kho chỉ còn lại "+maxQuantity+" sản phẩm \n Xin lỗi quý khách vì sự số bất tiện này!");
+    }
+  });
 
   // Giảm số lượng
   $('.btn-decrease').click(function() {
@@ -247,6 +259,7 @@ include "./Views/HomeLayout/header.php";
       product.ID = $(this).find('.product-id').text();
       product.Name = $(this).find('.lead').text();
       product.Image = $(this).find('img').attr('src');
+      product.QuantityLeft = $(this).find('.product-quantityleft').text();
       product.Price = parseFloat($(this).find('.product-price').text().replace(/\D/g, ''));
       product.Quantity = parseInt($(this).find('.product-quantity').text());
       product.Total = parseFloat($(this).find('.product-total').text().replace(/\D/g, ''));
