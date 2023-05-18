@@ -109,31 +109,13 @@ include "./Views/HomeLayout/header.php";
       <input type="submit" class="btn btn-primary mt-3 submitcart" name="submit" value="ĐẶT HÀNG" onclick="return confirm('Xác nhận đặt hàng');">
 
 
-      <!-- <script>
-          // function ChiTietJSON(){
-              var CartData = JSON.parse(localStorage.getItem('cart'));
-              document.getElementById('cartDataInput').value = JSON.stringify(CartData);
 
-          //     // $.ajax({
-          //     // url: "../Controllers/TrangChuController.php",
-          //     // type: "POST",
-          //     // data: {CartData: JSON.stringify(CartData)},
-          //     // success: function(response) {
-          //     //     console.log(response);
-          //     // }
-          //     // });
-          // }
-          
-      </script> -->
 
     </div>
     </div>
   </main>
 </form>
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
-<!-- <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script> -->
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
 <script>
   // Lấy thông tin giỏ hàng từ LocalStorage
   var cartData = JSON.parse(localStorage.getItem('cart'));
@@ -349,18 +331,3 @@ include "./Views/HomeLayout/header.php";
     margin-top: 160px;
   }
 </style>
-<!-- <script>
-  if (cartData && cartData.length > 0) {
-      var orderDetail = document.getElementById('formDetail');
-
-      // Tạo các hàng cho từng sản phẩm trong giỏ hàng
-      cartData.forEach(function (product) {
-        var row = document.createElement('br');
-        row.innerHTML = `
-          <input type='text' class = 'btn-check' name='idsanpham[]' value="${product.ID}">
-          <input type='number' class = 'btn-check' name='dongia[]' value="${product.Price}">
-          <input type='number' class = 'btn-check' name='soluong[]' value="${product.Quantity}">
-        `;
-        orderDetail.appendChild(row);
-      });}
-</script> -->

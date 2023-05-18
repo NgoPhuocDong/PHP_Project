@@ -187,5 +187,86 @@ class DonHangBan{
             return false;
         }
     }
+
+    public function TongDonHangBanHuy() {
+        $sql = "SELECT NgayLap AS ngay, COUNT(idTrangThai) AS tongdonhuy
+        FROM donhangban WHERE idTrangThai = 4
+        GROUP BY ngay
+        ORDER BY ngay";
+        // $sql = "SELECT NgayLap as ngay, count(idTrangThai) FROM donhangban WHERE idTrangThai = 4 GROUP BY ngay";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    public function TongDonHangBanThanhCong() {
+        $sql = "SELECT NgayLap AS ngay, COUNT(idTrangThai) AS tongdontc
+        FROM donhangban WHERE idTrangThai = 6
+        GROUP BY ngay
+        ORDER BY ngay";
+        // $sql = "SELECT NgayLap as ngay, count(idTrangThai) FROM donhangban WHERE idTrangThai = 6 GROUP BY ngay";
+
+        $result = $this->db->select($sql);
+        return $result;
+      
+    }
+
+    public function DonHangTheoNgay() {
+        $sql = "SELECT NgayLap, COUNT(TongTien) FROM donhangban GROUP BY NgayLap";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+   
+    public function TongDonHangBanHuyTheoThang($nam) {
+        $sql = "SELECT MONTH(NgayLap) AS thang, COUNT(idTrangThai) AS tongdonhuy
+        FROM donhangban WHERE idTrangThai = 4 and YEAR(NgayLap) = '$nam'
+        GROUP BY MONTH(NgayLap)
+        ORDER BY MONTH(NgayLap)";
+        // $sql = "SELECT NgayLap as ngay, count(idTrangThai) FROM donhangban WHERE idTrangThai = 4 GROUP BY ngay";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    public function TongDonHangBanThanhCongTheoThang($nam) {
+        $sql = "SELECT MONTH(NgayLap) AS thang, COUNT(idTrangThai) AS tongdontc
+        FROM donhangban WHERE idTrangThai = 6 and YEAR(NgayLap) = '$nam'
+        GROUP BY MONTH(NgayLap)
+        ORDER BY MONTH(NgayLap)";
+        // $sql = "SELECT NgayLap as ngay, count(idTrangThai) FROM donhangban WHERE idTrangThai = 6 GROUP BY ngay";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    public function TongDonHangBanHuyTheoNgay($month, $year) {
+        $sql = "SELECT DAY(NgayLap) AS ngay, COUNT(idTrangThai) AS tongdonhuy
+        FROM donhangban
+        WHERE YEAR(NgayLap) = '$year' AND MONTH(NgayLap) = '$month' and idTrangThai = 4
+        GROUP BY ngay ORDER BY ngay";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    public function TongDonHangBanThanhCongTheoNgay($month, $year) {
+        $sql = "SELECT DAY(NgayLap) AS ngay, COUNT(idTrangThai) AS tongdontc
+        FROM donhangban
+        WHERE YEAR(NgayLap) = '$year' AND MONTH(NgayLap) = '$month' and idTrangThai = 6
+        GROUP BY ngay ORDER BY ngay";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    public function TongDonHangBanHuyCacNam(){
+        $sql = "SELECT YEAR(NgayLap) AS nam,COUNT(*) AS tongdonhuy
+        FROM donhangban WHERE idTrangThai = 4
+        GROUP BY nam";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    public function TongDonHangBanThanhCongCacNam(){
+        $sql = "SELECT YEAR(NgayLap) AS nam,COUNT(*) AS tongdontc
+        FROM donhangban WHERE idTrangThai = 6
+        GROUP BY nam";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
    
 }

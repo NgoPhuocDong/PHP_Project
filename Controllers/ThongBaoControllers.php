@@ -2,7 +2,7 @@
 include_once("Models/ThanhToan.php");
 include_once("Models/KhachHang.php");
 
-class ThanhToanController{
+class ThanhToanControllers{
     private $model;
     private $db;
     private $khachhang;
