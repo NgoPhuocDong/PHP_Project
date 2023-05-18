@@ -168,15 +168,14 @@ include("Views/Home/TrangChu.php");
 			</ul>
 
 			<ul class="navbar-nav ">
-				<li class="m-auto">
-					<button id="notificationButton">
-						<a href="/PHP_Project/Views/ThongBao/ThongBao.php">
-							<!-- <span id="notificationIcon"></span> -->
-							<i class="fa fa-bell text-warning" aria-hidden="true"></i>
-							<span id="notificationCount">0</span>
-						</a>
-					</button>
-				</li>
+			<li class="m-auto">
+  <button id="notificationButton">
+    <a href="/PHP_Project/Views/ThongBao/ThongBao.php">
+      <i class="fa fa-bell text-warning" aria-hidden="true"></i>
+      <span id="notificationCount">0</span>
+    </a>
+  </button>
+</li>
 				<li class="nav-item m-auto">
 					<a class="nav-link" href="#">
 						<i class="fa fa-cog" aria-hidden="true"></i> Settings
@@ -440,34 +439,37 @@ include("Views/Home/TrangChu.php");
 						border-radius: 50%;
 					}
 				</style>
-				<script>
-					var notificationButton = document.getElementById('notificationButton');
-					var notificationCount = document.getElementById('notificationCount');
+<li class="m-auto">
+  <button id="notificationButton">
+    <a href="/PHP_Project/Views/ThongBao/ThongBao.php">
+      <i class="fa fa-bell text-warning" aria-hidden="true"></i>
+      <span id="notificationCount">0</span>
+    </a>
+  </button>
+</li>
+<script>
+  var notificationButton = document.getElementById('notificationButton');
+  var notificationCount = document.getElementById('notificationCount');
 
-					// Lấy số lượng thông báo ban đầu từ HTML
-					var count = parseInt(notificationCount.innerHTML);
+  var count = parseInt(notificationCount.innerHTML);
 
-					notificationButton.addEventListener('click', function() {
-						// Đặt lại số lượng thông báo về 0
-						notificationCount.innerHTML = "0";
-					});
+  notificationButton.addEventListener('click', function() {
+    notificationCount.innerHTML = "0";
+  });
 
-					// Hàm hiển thị cửa sổ thông báo
-					function showNotification() {
-						// Tăng số lượng thông báo
-						count++;
-						// Cập nhật số lượng thông báo trong HTML
-						notificationCount.innerHTML = count.toString();
-						// Hiển thị cửa sổ thông báo
-						alert("Có đơn hàng vừa đặt");
-					}
+  function showNotification() {
+    count++;
+    notificationCount.innerHTML = count.toString();
+    alert("Có 1 thông báo mới");
+  }
 
-					// Gọi hàm showNotification khi biểu mẫu được gửi
-					document.getElementById('paymentForm').addEventListener('submit', function(event) {
-						event.preventDefault(); // Ngăn form được gửi đi
-						showNotification(); // Gọi hàm showNotification
-						this.submit(); // Gửi biểu mẫu
-					});
-				</script>
+  // Sửa xử lý sự kiện gửi biểu mẫu
+  document.getElementById('user-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    showNotification();
+    this.submit();
+  });
+</script>
+
 
 				<!-- <i class="fa-sharp fa-solid fa-caret-down" style="color: #ffffff; width: 18px; display: inline-block;"></i> -->
