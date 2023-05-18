@@ -63,6 +63,7 @@ class DonHangBanController{
     }
 
     public function ThemMoi(){
+        $alert="";
         $ListKhachHang = $this->khachhang->GetData(100,0);
         $ListNhanVien = $this->nhanvienlap->DanhSach(100,0);
         if (isset($_POST['submit'])) {
@@ -88,6 +89,7 @@ class DonHangBanController{
     }
 
     public function CapNhat(){
+        $alert="";
         $ListKhachHang = $this->khachhang->GetData(100,0);
         $ListNhanVien = $this->nhanvienlap->DanhSach(100,0);
         if (isset($_GET['id'])) {
