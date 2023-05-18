@@ -99,7 +99,7 @@
       row.cells[3].innerHTML = '<span class="status read">Đã đọc</span>';
     }
   </script>
-  <?php
+    <?php
   //Nhận dữ liệu từ ThanhToan
 if (isset($tenkhachhang) && isset($thoigian) && isset($ngay)) {
   echo '

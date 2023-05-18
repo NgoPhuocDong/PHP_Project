@@ -37,7 +37,7 @@ class SanPhamController{
         }
         //gọi và show dữ liệu ra view
         include("Views/SanPham/DanhSach.php");
-        return $result;
+        return $result; 
     }
 
     public function ChiTiet(){

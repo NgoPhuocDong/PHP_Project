@@ -164,10 +164,10 @@ var cartClass = {
     <ul class="glide__slides">
     
     <?php
-      if(!empty($result)):
+      if(!empty($result2)):
         if (isset($_GET['page']) && $_GET['page'] == $current || isset($_GET['tensanpham'])) {
-     } 
-      foreach ($result as $row) : extract($row)?> 
+     } $i=0;
+      foreach ($result2 as $row) : extract($row); $i++?> 
         <li class="glide__slide">
           <div class="card" style="height: 450px; ">
             <div style="height:270px; width: auto; padding: 1rem;">
@@ -180,11 +180,11 @@ var cartClass = {
                 <div class="btn-group">
                 <?php if ($row['SoLuong'] > 0): ?>
               <button type="submit" name="add-to-cart" id="addcart" class="btn btn-sm btn-outline-secondary add-to-cart" 
-                  onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','../Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['SoLuong'] ?>,<?= $row['Gia'] ?>,1,' VNĐ')">Thêm vào giỏ hàng</button>
+              onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','../Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['SoLuong'] ?>,<?= $row['Gia'] ?>,1,' VNĐ')">Thêm vào giỏ hàng</button>
                   <?php else: ?>
                   <p class="sold-out-msg" style="color:red; margin-right: 30px;">Hết hàng</p>
                   <?php endif; ?>
-                  <button type="button" class="btn btn-sm btn-outline-secondary" style="height: 31.67px">Xem chi tiết</button>
+                  <a href="../TrangChu/ChiTietSanPhamTheoTrangThai?id=<?=$row['ID']?>&index=<?=$i-1?>" class="btn btn-sm btn-outline-secondary">Xem chi tiết</a>
                 </div>
               </div>
             </div>
@@ -205,7 +205,7 @@ var cartClass = {
       </div>
 </div>
 <div class="glide__view-all">
-  <a href="google.vn"><button class="glide__view-all-btn">Xem tất cả sản phẩm</button></a>
+  <a href="../TrangChu/AllSanPhamNoiBat"><button class="glide__view-all-btn">Xem tất cả sản phẩm</button></a>
 </div>
 	
 	
@@ -215,7 +215,7 @@ var cartClass = {
 
 <!-- Sanphamnoibat -->
 
-<section class="py-5" >
+<!-- <section class="py-5" >
   <div class="container bgproduct" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
 		<div style=" height:3.5rem; width:auto; border-bottom: 1px solid rgba(255, 255, 255, 0.5); align-items:center;padding:0;">
 		<b style="font-size: 20px; color:white;">Sản Phẩm Nổi Bật</b>
@@ -237,7 +237,6 @@ var cartClass = {
                 <div class="btn-group">
                 <button type="submit" name="add-to-cart" id="addcart" class="btn btn-sm btn-outline-secondary add-to-cart" onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','../Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['SoLuong'] ?>,<?= $row['Gia'] ?>,1,' VNĐ')">Thêm vào giỏ hàng</button>                  
                 <a href="../TrangChu/ChiTietSanPhamTheoTrangThai?id=<?=$row['ID']?>&index=<?=$i-1?>" class="btn btn-sm btn-outline-secondary">Xem chi tiết</a>
-                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button> -->
                 </div>
               </div>
             </div>
@@ -246,7 +245,7 @@ var cartClass = {
     <?php endforeach;?>
     </div>
   </ul>
-</section>
+</section> -->
 
 <!-- Sản phẩm mới nhất -->
 <section class="py-5" >
@@ -310,7 +309,7 @@ var cartClass = {
                     <img width="271px" src="<?= $imageURL ?>">
                     <div class="product-title"><b><?= $product['TenLoaiSanPham'] ?></b></div>
                   </div>
-                </a>
+                </a> 
               </li>
               <?php } ?>
           </ul>
@@ -349,7 +348,7 @@ var cartClass = {
 	</div>
 </section>
 <!-- Danh mục sản phẩm -->
-<section class="py-5 ">
+<!-- <section class="py-5 ">
 	<div class="container">
 		<h2 class="fw-light mb-3">Danh mục sản phẩm</h2>
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -385,7 +384,7 @@ var cartClass = {
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 <!-- Sản Phẩm -->
 <section class="py-5" >
@@ -415,6 +414,9 @@ var cartClass = {
     <?php endforeach;?>
     </div>
   </ul>
+  <div class="glide__view-all">
+  <a href="../TrangChu/AllSanPham"><button class="glide__view-all-btn">Xem tất cả sản phẩm</button></a>
+</div>
 </section>
 
 <!-- Tin tức mới nhất -->

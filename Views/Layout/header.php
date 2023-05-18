@@ -439,7 +439,6 @@ include("Views/Home/TrangChu.php");
 						border-radius: 50%;
 					}
 				</style>
-
 <script>
   var notificationButton = document.getElementById('notificationButton');
   var notificationCount = document.getElementById('notificationCount');
