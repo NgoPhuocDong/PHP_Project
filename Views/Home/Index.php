@@ -48,10 +48,13 @@ var cartClass = {
   AddItem: function(id, name, image, quantityleft, price, quantity, total) {
     var arr = cartClass.Get();
     
-    var objIncIndex = arr.findIndex(obj => obj.ID == id);
-    if (objIncIndex !== -1) {
-      alert('Sản phẩm đã có trong giỏ hàng!');
-      return;
+    var objIndex = arr.findIndex(obj => obj.ID == id);
+    if (objIndex !== -1) {
+      // Sản phẩm đã có trong giỏ hàng, tăng quantity lên 1
+       arr[objIndex].Quantity += 1;
+       cartClass.Set(arr); // Lưu lại thông tin giỏ hàng
+       alert('Đã thêm tiếp sản phẩm vào giỏ hàng !');
+       return;
     }
     var newID = {
       ID: id,
@@ -68,7 +71,33 @@ var cartClass = {
     cartClass.Set(arr);
 
     alert('Đã thêm sản phẩm vào giỏ hàng !');
+  },
+
+  AddItemnb: function(id, name, image, price, quantity, total) {
+    var arr = cartClass.Get();
+    
+    var objIncIndex = arr.findIndex(obj => obj.ID == id);
+    if (objIncIndex !== -1) {
+      alert('Sản phẩm đã có trong giỏ hàng!');
+      return;
+    }
+    var newID = {
+      ID: id,
+      Name: name,
+      Image: image,
+      Price: price,
+      Quantity: quantity,
+      Total: total
+    }
+    
+    arr.push(newID);
+    //set lại
+    cartClass.Set(arr);
+
+    alert('Đã thêm sản phẩm vào giỏ hàng !');
   }
+
+  
 }
 
 
@@ -129,8 +158,6 @@ var cartClass = {
 		<b style="font-size: 20px; color:white;">Laptop</b>
 	</div>
 
-
-
 	
 	<div class="glide product" style="padding-top:8px">
     <div class="glide__track" data-glide-el="track">
@@ -151,16 +178,19 @@ var cartClass = {
               <b><small class="text-primary" style="font-weight: bold; font-size: 15px;" > <?= number_format($row['Gia'], 0, ',', '.') ?> VNĐ</small></b>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-              
+                <?php if ($row['SoLuong'] > 0): ?>
               <button type="submit" name="add-to-cart" id="addcart" class="btn btn-sm btn-outline-secondary add-to-cart" 
                   onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','../Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['SoLuong'] ?>,<?= $row['Gia'] ?>,1,' VNĐ')">Thêm vào giỏ hàng</button>
-            
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button>
+                  <?php else: ?>
+                  <p class="sold-out-msg" style="color:red; margin-right: 30px;">Hết hàng</p>
+                  <?php endif; ?>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" style="height: 31.67px">Xem chi tiết</button>
                 </div>
               </div>
             </div>
           </div>
         </li>
+
       <?php endforeach; endif; ?>
 
 	</ul>
@@ -183,47 +213,122 @@ var cartClass = {
 	</div>
 </section>
 
+<!-- Sanphamnoibat -->
 
+<section class="py-5" >
+  <div class="container bgproduct" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+		<div style=" height:3.5rem; width:auto; border-bottom: 1px solid rgba(255, 255, 255, 0.5); align-items:center;padding:0;">
+		<b style="font-size: 20px; color:white;">Sản Phẩm Nổi Bật</b>
+	</div>
+  <ul class="container">
+    <div class="row">
+    <?php
+    $i=0;
+      foreach ($result2 as $row) : extract($row); $i++?> 
+        <li class="col-md-3 list-unstyled" style="height: 450px;">
+          <div class="card">
+            <div class="" style="height:270px; width: auto; padding: 1rem;">
+              <img src="../Assets/data/HinhAnhSanPham/<?= $row['HinhAnh'] ?>"  style="width:90%; height:90%;" alt="<?= $row['TenSanPham'] ?>">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: 18px; font-weight: normal; height: 54px;" ><?= $row['TenSanPham'] ?></h5>
+              <b><small class="text-primary" style="font-weight: bold; font-size: 15px;" > <?= number_format($row['Gia'], 0, ',', '.') ?> VNĐ</small></b>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                <button type="submit" name="add-to-cart" id="addcart" class="btn btn-sm btn-outline-secondary add-to-cart" onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','../Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['Gia'] ?>,1,' VNĐ', <?= $i-1 ?>)">Thêm vào giỏ hàng</button>                  
+                <a href="../TrangChu/ChiTietSanPhamTheoTrangThai?id=<?=$row['ID']?>&index=<?=$i-1?>" class="btn btn-sm btn-outline-secondary">Xem chi tiết</a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+    <?php endforeach;?>
+    </div>
+  </ul>
+</section>
 
-
+<!-- Sản phẩm mới nhất -->
+<section class="py-5" >
+  <div class="container bgproduct" style="border-bottom: 1px solid rgba(255, 255, 255, 0.5);">
+		<div style=" height:3.5rem; width:auto; border-bottom: 1px solid rgba(255, 255, 255, 0.5); align-items:center;padding:0;">
+		<b style="font-size: 20px; color:white;">Sản Phẩm Mới Nhất</b>
+	</div>
+  <ul class="container">
+    <div class="row">
+    <?php
+    $i=0;
+      foreach ($result3 as $row) : extract($row); $i++?> 
+        <li class="col-md-3 list-unstyled" style="height: 450px;">
+          <div class="card">
+            <div class="" style="height:270px; width: auto; padding: 1rem;">
+              <img src="../Assets/data/HinhAnhSanPham/<?= $row['HinhAnh'] ?>"  style="width:90%; height:90%;" alt="<?= $row['TenSanPham'] ?>">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: 18px; font-weight: normal; height: 54px;" ><?= $row['TenSanPham'] ?></h5>
+              <b><small class="text-primary" style="font-weight: bold; font-size: 15px;" > <?= number_format($row['Gia'], 0, ',', '.') ?> VNĐ</small></b>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                <button type="submit" name="add-to-cart" id="addcart" class="btn btn-sm btn-outline-secondary add-to-cart" onclick="cartClass.AddItem(<?= $row['ID'] ?>,'<?= $row['TenSanPham'] ?>','../Assets/data/Hinhanhsanpham/<?= $row['HinhAnh'] ?>',<?= $row['Gia'] ?>,1,' VNĐ')">Thêm vào giỏ hàng</button>                  
+                <a href="../TrangChu/ChiTietSanPhamTheoTrangThai?id=<?=$row['ID']?>&index=<?=$i-1?>" class="btn btn-sm btn-outline-secondary">Xem chi tiết</a>
+                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Xem chi tiết</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+    <?php endforeach;?>
+    </div>
+  </ul>
+</section>
 
 <!-- Thương hiệu nổi bật -->
-<section class="py-5 ">
-		<div class="container bgbrand" >
-		<div style=" height:3rem; align-items:center;padding:0;">
-		<b style="font-size: 20px; color:black;">Thương hiệu nổi bật</b>
-	</div>
-	<div class="brand" >
-	<div class="glide brands" style="overflow:hidden; ">
-  <div class="glide__track" data-glide-el="track">
-    <ul class="glide__slides" style="border-radius:5px;position: relative;">
-      <li class="glide__slide"><img width="271px" src="https://lh3.googleusercontent.com/IqFtu_Hq7dQkOuTjKwVTjKV5Z1qK3FsuX3yX6Ab30i_yXZ2B1dFs8uQwQ9zgTt3UZts3RnuYx-ujvQW0i5Ox2UDhrqxeehI=w400-rw">
-	<strong><div class="brandtitle">Asus</div></strong>
-	</li>
-      <li class="glide__slide"><img width="271px" src="https://lh3.googleusercontent.com/s2A1-31VtturT9H1hX0UccGw7yGufXD2NZFJkiNt-tTCx2xZO80lCt21b8oY3AYWmi3aUuMQIIySp623gbQoN22Wm_YvKvnB=w400-rw">
-	  <b><div class="brandtitle">Lenovo</div></b>
-	</li>
-      <li class="glide__slide"><img width="271px" src="https://lh3.googleusercontent.com/4YXRxEqxqmoY8EPliJtNkbcqQCUe4TPTJyAZ_MIsb8JStdwwf3PInwC0SABKuoZiHJC7dJY6Ex1JqS4bpKo=w400-rw">
-	  <b><div class="brandtitle">HP</div></b>
-	</li>
-	  <li class="glide__slide"><img width="271px" src="https://lh3.googleusercontent.com/Y8Y_q1dMIBq4VaovFtS-eJvQ8oqyVUjIcdxZDKQBKHMBjEP7E2iU6GE10Sjq0AdLPlmTw0NGTBpnq34SlUnkFxCS3X3Nag4=w400-rw">
-	  <b><div class="brandtitle">Microsoft</div></b>
-	</li>
-    </ul>
+<style>
+    .product-item {
+        position: relative;
+        display: inline-block;
+    }
+</style>
+<!-- Thương hiệu nổi bật -->
+<section class="py-5">
+  <div class="container bgbrand">
+    <div style="height: 3rem; align-items:center;padding:0;">
+      <b style="font-size: 20px; color:black;">Thương hiệu nổi bật</b>
+    </div>
+    <div class="brand">
+      <div class="glide brands" style="overflow:hidden;">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides" style="border-radius:5px;position: relative;">
+            <?php
+            $products = $this->loaisanpham->DanhSach1();
+            foreach ($products as $product) {
+              $imageURL = $product['DuongDanAnh']; // Đường dẫn tới ảnh của loại sản phẩm
+            ?>
+              <li class="glide__slide">
+                <a class="dropdown-item" href="./DanhSachSanPhamm&loaisp=<?= $product['ID'] ?>">
+                  <div class="product-item">
+                    <img width="271px" src="<?= $imageURL ?>">
+                    <div class="product-title"><b><?= $product['TenLoaiSanPham'] ?></b></div>
+                  </div>
+                </a>
+              </li>
+              <?php } ?>
+          </ul>
+        </div>
+        <div class="glide__controls" data-glide-el="controls">
+          <div class="glide__control glide__control--left" data-glide-dir="<">
+            <i class="fa fa-angle-left"></i>
+          </div>
+          <div class="glide__control glide__control--right" data-glide-dir=">">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="glide__controls" data-glide-el="controls">
-      <div class="glide__control glide__control--left" data-glide-dir="<">
-        <i class="fa fa-angle-left"></i>
-      </div>
-      <div class="glide__control glide__control--right" data-glide-dir=">">
-        <i class="fa fa-angle-right"></i>
-      </div>
-</div>
-  
-</div>
-	</div>
-		</div>
 </section>
+
+
 
 <div class="page-content" style="padding-top: 70px;" id="content">
 
@@ -282,6 +387,7 @@ var cartClass = {
 	</div>
 </section>
 
+<!-- Sản Phẩm -->
 <section class="py-5" >
   <ul class="container">
     <div class="row">
@@ -379,5 +485,6 @@ new Glide('.product', {
 
 
 </script>
+
 </body>
 </html>

@@ -49,6 +49,22 @@ class SanPham{
         $result = $this->db->select($sql);
         return $result;
     }
+
+    public function ChiTietSPNB($idTrangThaiSanPham, $index)
+{
+    $sql = "SELECT sp.ID, sp.idLoaiSanPham, lsp.TenLoaiSanPham, sp.TenSanPham, sp.Gia, sp.MoTa, sp.SoLuong, sp.NgaySanXuat, sp.HinhAnh 
+            FROM sanpham AS sp
+            JOIN loaisanpham AS lsp ON sp.idLoaiSanPham = lsp.ID
+            WHERE sp.idTrangThaiSanPham = '$idTrangThaiSanPham'";
+    $result = $this->db->select($sql);
+    
+    $det = array();
+    if ($index >= 0 && $index < count($result)) {
+        $det[] = $result[$index];
+    }
+    
+    return $det;
+}
     public function TimKiem($tensanpham)
     {
         $sql = "SELECT sp.ID,sp.idLoaiSanPham,TenLoaiSanPham,TenSanPham, Gia, MoTa, SoLuong, NgaySanXuat, HinhAnh 
@@ -112,12 +128,29 @@ class SanPham{
         }
     }
 
+    public function DanhSachSanPhamNoiBat() {
+        $sql = "SELECT * from sanpham as sp, trangthaisanpham as tt WHERE sp.idTrangThaiSanPham = tt.ID AND sp.idTrangThaiSanPham = 2";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+    
+    public function DanhSachSanPhamMoiNhat() {
+        $sql = "SELECT * from sanpham as sp, trangthaisanpham as tt WHERE sp.idTrangThaiSanPham = tt.ID AND sp.idTrangThaiSanPham  = 1";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
     public function TenSanPhamTheoLoai($idloaisanpham) {
         $sql = "SELECT * FROM sanpham as sp, loaisanpham as lsp where lsp.ID = sp.idLoaiSanPham and lsp.ID = '$idloaisanpham'";
         $result = $this->db->select($sql);
         return $result;
     }
 
+    public function LaySanPham($idloaisanpham) {
+        $sql = "SELECT * FROM sanpham as sp, loaisanpham as lsp WHERE lsp.ID = sp.idLoaiSanPham AND lsp.ID = '$idloaisanpham'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
 
 }
    

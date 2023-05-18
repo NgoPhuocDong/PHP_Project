@@ -42,9 +42,9 @@
         <input type="date" value=""name="ngaylap" class="form-control"><br>
         <!-- <label class="h6">Tổng tiền</label> -->
         <input disabled type="hidden" value="0"name="tongtien" class="form-control"><br>
-    <!-- <?php
+    <?php
         echo $alert ;
-    ?> -->
+    ?>
         <hr>
         <input type="submit" value="Submit" name="submit" class="btn btn-primary">
     </form>

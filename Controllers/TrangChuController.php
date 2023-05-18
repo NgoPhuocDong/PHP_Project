@@ -41,7 +41,11 @@ class TrangChuController
     }
     public function Index()
     {
-        $loaisanpham = $this->loaisanpham->DanhSach(100, 0);
+
+        $result2 = $this->model->DanhSachSanPhamNoiBat();
+        $result3 = $this->model->DanhSachSanPhamMoiNhat();
+        $loaisanpham = $this->loaisanpham->DanhSach(100,0);
+
         //$sanphamnoibat = $this->model->SanPhamNoiBat();
         $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 6;
         $current = !empty($_GET['page']) ? $_GET['page'] : 1; // trang hien tai
@@ -68,8 +72,20 @@ class TrangChuController
         $tintucs = $tinTucModel->DanhSach(3, 0);
 
         include("Views/Home/index.php");
-        return array($result, $loaisanpham, $tintucs);
+        return array($result, $loaisanpham, $tintucs,$result2,$result3);
     }
+    
+    public function ChiTietSanPhamTheoTrangThai()
+    {
+        if (isset($_GET['id']) && isset($_GET['index'])) {
+            $id = $_GET['id'];
+            $index = $_GET['index'];
+            $det = $this->model->ChiTietSPNB($id, $index);
+        }
+        require_once('Views/Home/ChiTietSanPhamTheoTrangThai.php');
+        return $det;
+    }
+
 
     public function ChiTietSanPham()
     {
@@ -93,10 +109,19 @@ class TrangChuController
         // return $result;
         return $result;
     }
-    public function DangNhap()
-    {
-
-        if (isset($_POST['submitValue'])) {
+    public function DanhSachSanPhamm() {
+        if (isset($_GET['loaisp'])) {
+          $idloaisanpham = $_GET['loaisp'];
+          $result = $this->model->LaySanPham($idloaisanpham);
+        } else {
+          $result = array(); // Mặc định là một mảng rỗng nếu không có tham số loaisp
+        }
+        require_once('Views/Home/SanPhamTheoThuongHieu.php');
+        return $result;
+      }
+    public function DangNhap(){
+        
+        if(isset($_POST['submitValue'])) {
             $khachhangUsername = $_POST['username'];
             $khachhangPassword = $_POST['password'];
             $mahoaUser = base64_encode($khachhangUsername);
