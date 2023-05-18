@@ -41,7 +41,6 @@ class TrangChuController
     }
     public function Index()
     {
-
         $result2 = $this->model->DanhSachSanPhamNoiBat();
         $result3 = $this->model->DanhSachSanPhamMoiNhat();
         $loaisanpham = $this->loaisanpham->DanhSach(100,0);
@@ -261,10 +260,10 @@ class TrangChuController
     public function LichSuMuaHang(){
         if (isset($_SESSION['user'])) {
             $idkhachhang = $_GET['id'];
-            //$duyetdon = $this->ctdh->DuyetDonDatHang($idkhachhang);
-            $result = $this->ctdh->DanhSachDonHangVaChiTiet($idkhachhang);
+            $list = $this->ctdh->DanhSachDonMua($idkhachhang);
+            $result = $this->ctdh->DanhSachChiTietDonMua($idkhachhang);
         }
         include 'Views/Home/LichSuMuaHang.php';
-        return array($result);
+        return array($result,$list);
     }
 }

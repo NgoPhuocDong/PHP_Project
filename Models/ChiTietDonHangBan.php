@@ -26,48 +26,27 @@ class ChiTietDonHangBan{
         return $result;
     }
 
-    // public function DanhSachChiTietDonMua()
-    // {
-    //     $sql = "SELECT ctdh.idDonHangBan, sp.TenSanPham, sp.HinhAnh, ctdh.SoLuong, ctdh.DonGiaApDung, ctdh.ThanhTien
-    //     FROM chitietdonhangban AS ctdh
-    //     INNER JOIN donhangban AS dh ON ctdh.idDonHangBan = dh.ID
-    //     INNER JOIN sanpham sp ON ctdh.idSanPham = sp.ID
-    //     WHERE ctdh.idDonHangBan = '$idDonHangBan'";
+    public function DanhSachChiTietDonMua($idkhachhang)
+    {
+        $sql = "SELECT ctdh.idDonHangBan, sp.TenSanPham, sp.HinhAnh, ctdh.SoLuong, ctdh.DonGiaApDung, ctdh.ThanhTien
+        FROM chitietdonhangban AS ctdh
+        INNER JOIN donhangban AS dh ON ctdh.idDonHangBan = dh.ID
+        INNER JOIN sanpham sp ON ctdh.idSanPham = sp.ID
+        WHERE dh.idKhachHang = '$idkhachhang'";
 
-    //     $result = $this->db->select($sql);
-    //     return $result;
-    // }
+        $result = $this->db->select($sql);
+        return $result;
+    }
 
-    // public function DanhSachDonHangVaChiTiet($idkhachhang)
-    // {
-    //     $sql = "SELECT dh.ID, dh.NgayLap, dh.TongTien
-    //             FROM DonHangBan AS dh
-    //             WHERE dh.IdKhachHang = '$idkhachhang'
-    //             ORDER BY dh.ID DESC";
+    public function DanhSachDonMua($idkhachhang)
+    {
+        $sql = "SELECT *
+        FROM donhangban AS dh
+        WHERE dh.idKhachHang = '$idkhachhang'";
 
-    //     $result_dh = $this->db->selects($sql);
-    //     $data = [];
-
-    //     while ($row_dh = mysqli_fetch_assoc($result_dh)) {
-    //         $iddonhang = $row_dh['ID'];
-    //         $sql_ct = "SELECT ctdh.idDonHangBan, sp.TenSanPham, sp.HinhAnh, ctdh.SoLuong, ctdh.DonGiaApDung, ctdh.ThanhTien
-    //                     FROM chitietdonhangban AS ctdh
-    //                     INNER JOIN donhangban AS dh ON ctdh.idDonHangBan = dh.ID
-    //                     INNER JOIN sanpham sp ON ctdh.idSanPham = sp.ID
-    //                     WHERE ctdh.idDonHangBan = '$iddonhang'";
-
-    //         $result_ct = $this->db->selects($sql_ct);
-    //         $chiTietDonHang = [];
-    //         while ($row_ct = mysqli_fetch_assoc($result_ct)) {
-    //             $chiTietDonHang[] = $row_ct;
-    //         }
-
-    //         $row_dh['ChiTietDonHang'] = $chiTietDonHang;
-    //         $data[] = $row_dh;
-    //     }
-
-    //     return $data;
-    // }
+        $result = $this->db->select($sql);
+        return $result;
+    }
 
 
     public function TongChiTietDHB() {

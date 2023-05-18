@@ -147,7 +147,9 @@ class SanPham{
     }
 
     public function LaySanPham($idloaisanpham) {
-        $sql = "SELECT * FROM sanpham as sp, loaisanpham as lsp WHERE lsp.ID = sp.idLoaiSanPham AND lsp.ID = '$idloaisanpham'";
+        $sql = "SELECT sp.ID, lsp.TenLoaiSanPham,sp.HinhAnh,sp.Gia,sp.TenSanPham,sp.idLoaiSanPham
+        FROM sanpham as sp, loaisanpham as lsp 
+        WHERE lsp.ID = sp.idLoaiSanPham AND lsp.ID = '$idloaisanpham'";
         $result = $this->db->select($sql);
         return $result;
     }

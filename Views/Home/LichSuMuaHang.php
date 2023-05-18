@@ -77,49 +77,58 @@ echo "<title>Thông tin tài khoản</title>";
                     <button type="button" class="btn btn-outline-primary col-md-2">Đã hủy</button>
                     <button type="button" class="btn btn-outline-primary col-md-2">Hoàn trả</button>
                 </div>
-                <hr>
                 <div class="mt-4">
-                    <?php if (!empty($result)) :
-                        foreach ($result as $item) : extract($item); ?>
-                            <hr>
-                            <div class="rounded bg-gradient-99CCFF-CCFFFF row">
-                                <table class="table">
-                                    <tr>
-                                        <th class="text-bg-danger"><?= date('d-m-Y', strtotime($item['NgayLap'])) ?></th>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <th>Sản phẩm</th>
-                                        <th>Giá</th>
-                                        <th>Số lượng</th>
-                                        <th>Thành tiền</th>
-                                    </tr>
+                <?php
+if (!empty($list)) {
+    foreach ($list as $item) {
+        extract($item);
+        ?>
+        <hr>
+        <div class="rounded bg-gradient-99CCFF-CCFFFF row">
+            <table class="table">
+                <tr>
+                    <th class="text-bg-danger"><?= date('d-m-Y', strtotime($item['NgayLap'])) ?></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <th>Sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+                <?php
+                foreach ($result as $row) {
+                    extract($row);
+                    if ($item['ID'] == $row['idDonHangBan']) {
+                        ?>
+                        <tr>
+                            <td>
+                                <img src="../Assets/data/HinhAnhSanPham/<?= $row['HinhAnh'] ?>" alt="Hình ảnh sản phẩm" height="70px" width="70px">
+                            </td>
+                            <td><?= $row['TenSanPham'] ?></td>
+                            <td>
+                                <?= number_format($row['DonGiaApDung'], 0, '.', '.') ?>
+                            </td>
+                            <td><?= $row['SoLuong'] ?></td>
+                            <td>
+                                <?= number_format($row['ThanhTien'], 0, '.', '.') ?>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+                <tr>
+                    <th colspan="4">Tổng tiền:</th>
+                    <th><?= number_format($item['TongTien'], 0, '.', '.') ?> đ</th>
+                </tr>
+            </table>
+        </div>
+        <?php
+    }
+}
+?>
 
-                                    <?php
-                                        foreach ($donhang['ChiTietDonHang'] as $row) : ?>
-                                            <tr>
-                                                <td>
-                                                    <img src="../Assets/data/HinhAnhSanPham/<?= $row['HinhAnh'] ?>" alt="Hình ảnh sản phẩm" height="70px" width="70px">
-                                                </td>
-                                                <td><?= $row['TenSanPham'] ?></td>
-                                                <td>
-                                                    <?= number_format($row['DonGiaApDung'], 0, '.', '.') ?>
-                                                </td>
-                                                <td><?= $row['SoLuong'] ?></td>
-                                                <td>
-                                                    <?= number_format($row['ThanhTien'], 0, '.', '.') ?>
-                                                </td>
-
-                                            </tr>
-                                    <?php endforeach;?>
-                                    <tr>
-                                        <th colspan="4">Tổng tiền:</th>
-                                        <th><?= number_format($item['TongTien'], 0, '.', '.') ?> đ</th>
-                                    </tr>
-                                </table>
-                            </div>
-                    <?php endforeach;
-                    endif; ?>
                     <br>
                 </div>
             </div>
