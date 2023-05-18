@@ -220,7 +220,7 @@ new Chart("myChart7", {
   }
 });
 
-<!-- Thống kê đơn hàng -->
+// <!-- Thống kê đơn hàng -->
 
 </script>
 <div class="col-md-12 mt-2 row">
@@ -550,7 +550,6 @@ $(document).ready(function() {
     });
 });
 </script>
-
 
 
 

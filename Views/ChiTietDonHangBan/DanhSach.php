@@ -101,6 +101,9 @@
                 } 
         ?>
         <?php } ?>
+        <?php if(isset($_SESSION['non'])) {
+            echo $_SESSION['non'];
+        } ?>
     </form>
     <br>
     <?php endforeach;?>

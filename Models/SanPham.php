@@ -154,6 +154,12 @@ class SanPham{
         return $result;
     }
 
+    public function TongTienMuaConLai() {
+        $sql = "SELECT SUM(SoLuong * Gia) as SL FROM sanpham";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
 }
    
    

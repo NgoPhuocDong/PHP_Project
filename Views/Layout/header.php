@@ -169,13 +169,13 @@ include("Views/Home/TrangChu.php");
 
 			<ul class="navbar-nav ">
 			<li class="m-auto">
-  <button id="notificationButton">
-    <a href="/PHP_Project/Views/ThongBao/ThongBao.php">
-      <i class="fa fa-bell text-warning" aria-hidden="true"></i>
-      <span id="notificationCount">0</span>
-    </a>
-  </button>
-</li>
+				<button id="notificationButton">
+					<a href="/PHP_Project/Views/ThongBao/ThongBao.php">
+					<i class="fa fa-bell text-warning" aria-hidden="true"></i>
+					<span id="notificationCount">0</span>
+					</a>
+				</button>
+				</li>
 				<li class="nav-item m-auto">
 					<a class="nav-link" href="#">
 						<i class="fa fa-cog" aria-hidden="true"></i> Settings
@@ -439,14 +439,7 @@ include("Views/Home/TrangChu.php");
 						border-radius: 50%;
 					}
 				</style>
-<li class="m-auto">
-  <button id="notificationButton">
-    <a href="/PHP_Project/Views/ThongBao/ThongBao.php">
-      <i class="fa fa-bell text-warning" aria-hidden="true"></i>
-      <span id="notificationCount">0</span>
-    </a>
-  </button>
-</li>
+
 <script>
   var notificationButton = document.getElementById('notificationButton');
   var notificationCount = document.getElementById('notificationCount');
