@@ -17,6 +17,62 @@
             return $result;
         }
 
+        // Thống kê truy cập
+        public function tongluottruycap() {
+            $sql = "SELECT SUM(luottruycap) as tong from thongketruycap"; 
+            $result = $this->db->select($sql);
+            return $result;
+        }
+
+        public function tongnguoitruycap() {
+            $sql = "SELECT * FROM thongketruycap";
+            $result = mysqli_query($this->db->conn, $sql);
+            $result = $result->num_rows;
+            return $result;
+        }
+
+        public function luotruycap() {
+            $sql = "SELECT * FROM thongketruycap";
+            $result = $this->db->select($sql);
+            return $result;
+        }
+
+        public function TongTruyCap() {
+            $sql = "SELECT ngaytruycap AS ngay, SUM(luottruycap) AS tongphien,COUNT(*) AS tongnguoi
+            FROM thongketruycap
+            GROUP BY ngay
+            ORDER BY ngay;";
+            $result = $this->db->select($sql);
+            return $result;
+        }
+
+        public function TongTruyCapTheoThang($nam) {
+            $sql = "SELECT MONTH(ngaytruycap) AS Thang,COUNT(*) as tongnguoi, SUM(luottruycap) AS tongphien
+            FROM thongketruycap
+            WHERE YEAR(ngaytruycap) = '$nam'
+            GROUP BY MONTH(ngaytruycap)
+            ORDER BY MONTH(ngaytruycap);";
+            $result = $this->db->select($sql);
+            return $result;
+        }
+
+        public function TongTruyCapTheoNgay($month, $year) {
+            $sql = "SELECT DAY(ngaytruycap) AS ngay, SUM(luottruycap) AS tongphien,COUNT(*) as tongnguoi
+            FROM thongketruycap
+            WHERE YEAR(ngaytruycap) = '$year' AND MONTH(ngaytruycap) = '$month'
+            GROUP BY ngay ORDER BY ngay";
+             $result = $this->db->select($sql);
+             return $result;
+        }
+
+        public function TongTruyCapCacNam(){
+            $sql = "SELECT YEAR(ngaytruycap) AS nam, SUM(luottruycap) AS tongphien,COUNT(*) AS tongnguoi
+            FROM thongketruycap
+            GROUP BY nam";
+            $result = $this->db->select($sql);
+            return $result;
+        }
+
         public function TaiKhoanNonActive($username,$password) {
             $query = "SELECT * FROM taikhoankhachhang as tk,khachhang as kh
             WHERE tk.IDKhachHang=kh.ID  AND

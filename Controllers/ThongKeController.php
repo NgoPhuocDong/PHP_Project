@@ -1,15 +1,22 @@
 <?php
+
 include_once("Models/SanPham.php");
 include_once("Models/DonHangBan.php");
+include_once("Models/DonHangMua.php");
+include_once("Models/loginKhachHang.php");
 
 class ThongKeController{
     private $sanpham;
     private $donhangban;
+    private $donhangmua;
+    private $login;
     private $db;
 
     public function __construct(){
         $this->sanpham = new SanPham();
         $this->donhangban = new DonHangBan();
+        $this->donhangmua = new DonHangMua();
+        $this->login = new loginKhachHang();
         $this->db = new Database();
     }
     
