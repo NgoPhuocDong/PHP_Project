@@ -340,10 +340,8 @@ if (isset($_POST['submit'])) {
   $tenkhachhang = $_POST['tenkhachhang'];
   $thoigian = date('H:i');
   $ngay = date('Y-m-d');
+  //Truyền dữ liệu qua Thông báo
 
-  // Lưu dữ liệu vào mảng hoặc cơ sở dữ liệu
-  // ...
-
-  include '/Views/ThongBao/ThongBao.php';
+  include "/Views/ThongBao/ThongBao.php";
 }
 ?>

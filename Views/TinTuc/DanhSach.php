@@ -1,6 +1,7 @@
 <?php
     include "./Views/Layout/header.php";
     include("Controllers/KiemTraQuyen.php");
+    include_once("/Models/TinTuc.php");
     echo "<title>Danh sách sản phẩm</title>";
 ?>
 <style>
