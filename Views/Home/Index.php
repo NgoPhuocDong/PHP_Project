@@ -213,6 +213,45 @@ var cartClass = {
 	</div>
 </section>
 
+<!-- Thương hiệu nổi bật -->
+<section class="py-5">
+  <div class="container bgbrand">
+    <div style="height: 3rem; align-items:center;padding:0;">
+      <b style="font-size: 20px; color:black;">Thương hiệu nổi bật</b>
+    </div>
+    <div class="brand">
+      <div class="glide brands" style="overflow:hidden;">
+        <div class="glide__track" data-glide-el="track">
+          <ul class="glide__slides" style="border-radius:5px;position: relative;">
+            <?php
+            $products = $this->loaisanpham->DanhSach1();
+            foreach ($products as $product) {
+              $imageURL = $product['DuongDanAnh']; // Đường dẫn tới ảnh của loại sản phẩm
+            ?>
+              <li class="glide__slide">
+                <a class="dropdown-item" href="./DanhSachSanPhamm&loaisp=<?= $product['ID'] ?>">
+                  <div class="product-item">
+                    <img width="271px" src="<?= $imageURL ?>">
+                    <div class="product-title"><b><?= $product['TenLoaiSanPham'] ?></b></div>
+                  </div>
+                </a>
+              </li>
+              <?php } ?>
+          </ul>
+        </div>
+        <div class="glide__controls" data-glide-el="controls">
+          <div class="glide__control glide__control--left" data-glide-dir="<">
+            <i class="fa fa-angle-left"></i>
+          </div>
+          <div class="glide__control glide__control--right" data-glide-dir=">">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Sanphamnoibat -->
 
 <section class="py-5" >
@@ -289,45 +328,6 @@ var cartClass = {
         display: inline-block;
     }
 </style>
-<!-- Thương hiệu nổi bật -->
-<section class="py-5">
-  <div class="container bgbrand">
-    <div style="height: 3rem; align-items:center;padding:0;">
-      <b style="font-size: 20px; color:black;">Thương hiệu nổi bật</b>
-    </div>
-    <div class="brand">
-      <div class="glide brands" style="overflow:hidden;">
-        <div class="glide__track" data-glide-el="track">
-          <ul class="glide__slides" style="border-radius:5px;position: relative;">
-            <?php
-            $products = $this->loaisanpham->DanhSach1();
-            foreach ($products as $product) {
-              $imageURL = $product['DuongDanAnh']; // Đường dẫn tới ảnh của loại sản phẩm
-            ?>
-              <li class="glide__slide">
-                <a class="dropdown-item" href="./DanhSachSanPhamm&loaisp=<?= $product['ID'] ?>">
-                  <div class="product-item">
-                    <img width="271px" src="<?= $imageURL ?>">
-                    <div class="product-title"><b><?= $product['TenLoaiSanPham'] ?></b></div>
-                  </div>
-                </a>
-              </li>
-              <?php } ?>
-          </ul>
-        </div>
-        <div class="glide__controls" data-glide-el="controls">
-          <div class="glide__control glide__control--left" data-glide-dir="<">
-            <i class="fa fa-angle-left"></i>
-          </div>
-          <div class="glide__control glide__control--right" data-glide-dir=">">
-            <i class="fa fa-angle-right"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 
 <div class="page-content" style="padding-top: 70px;" id="content">
@@ -348,7 +348,7 @@ var cartClass = {
 		</div>
 	</div>
 </section>
-<!-- Danh mục sản phẩm -->
+<!-- Danh mục sản phẩm
 <section class="py-5 ">
 	<div class="container">
 		<h2 class="fw-light mb-3">Danh mục sản phẩm</h2>
@@ -385,11 +385,12 @@ var cartClass = {
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 <!-- Sản Phẩm -->
 <section class="py-5" >
   <ul class="container">
+    <h2 class="fw-light mb-3">Sản phẩm</h2>
     <div class="row">
     <?php
       foreach ($result as $row) : extract($row)?> 
