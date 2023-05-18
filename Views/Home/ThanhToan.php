@@ -331,3 +331,19 @@ include "./Views/HomeLayout/header.php";
     margin-top: 160px;
   }
 </style>
+<?php
+session_start();
+
+// Kiểm tra nếu người dùng đã nhấn nút "Đặt hàng"
+if (isset($_POST['submit'])) {
+  // Lấy dữ liệu từ biểu mẫu
+  $tenkhachhang = $_POST['tenkhachhang'];
+  $thoigian = date('H:i');
+  $ngay = date('Y-m-d');
+
+  // Lưu dữ liệu vào mảng hoặc cơ sở dữ liệu
+  // ...
+
+  include '/Views/ThongBao/ThongBao.php';
+}
+?>
