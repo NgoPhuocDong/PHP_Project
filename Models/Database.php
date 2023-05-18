@@ -29,6 +29,20 @@ class Database{
             return $data;
         }
     }
+    //
+    public function selects($sql)
+    {
+        $result = $this->conn->query($sql);
+        if ($result && $result->num_rows > 0) {
+            $data = [];
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return [];
+    }
+   
 
     // hàm truy vấn: thêm sửa xóa
     public function execute($sql)

@@ -36,7 +36,7 @@ class ChiTietDonHangBanController{
             $test = $this->model->LaySoLuong($_GET['id']) ;
             $test1 = $this->model->SoLuongSanPham($_POST['idsanpham']);
             $tong = 0;
-            $thu;
+            $thu = 0;
             if(empty($_POST['soluong'])){
                 $alert="<span style='color: red; padding-bottom: 10px; display: block;'>Không được bỏ trống số lượng!</span>";
             } else if(!is_numeric($_POST['soluong'])){

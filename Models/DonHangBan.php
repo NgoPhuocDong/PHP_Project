@@ -17,6 +17,7 @@ class DonHangBan{
         $result = $this->db->select($sql);
         return $result;
     }
+
     
     public function TongDonHangBan() {
         $sql = "SELECT * FROM donhangban";

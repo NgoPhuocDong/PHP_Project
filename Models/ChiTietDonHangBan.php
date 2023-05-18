@@ -16,6 +16,60 @@ class ChiTietDonHangBan{
         return $result;
     }
 
+    public function DanhSach1($id)
+    {
+        $sql = "SELECT ct.ID, ct.idDonHangBan, sp.ID, ct.idSanPham, sp.TenSanPham, ct.SoLuong, ct.DonGiaApDung, ct.ThanhTien
+        FROM chitietdonhangban ct
+        JOIN sanpham sp ON ct.idSanPham = sp.ID
+        WHERE ct.idDonHangBan = '$id'";
+        $result = $this->db->select($sql);
+        return $result;
+    }
+
+    // public function DanhSachChiTietDonMua()
+    // {
+    //     $sql = "SELECT ctdh.idDonHangBan, sp.TenSanPham, sp.HinhAnh, ctdh.SoLuong, ctdh.DonGiaApDung, ctdh.ThanhTien
+    //     FROM chitietdonhangban AS ctdh
+    //     INNER JOIN donhangban AS dh ON ctdh.idDonHangBan = dh.ID
+    //     INNER JOIN sanpham sp ON ctdh.idSanPham = sp.ID
+    //     WHERE ctdh.idDonHangBan = '$idDonHangBan'";
+
+    //     $result = $this->db->select($sql);
+    //     return $result;
+    // }
+
+    // public function DanhSachDonHangVaChiTiet($idkhachhang)
+    // {
+    //     $sql = "SELECT dh.ID, dh.NgayLap, dh.TongTien
+    //             FROM DonHangBan AS dh
+    //             WHERE dh.IdKhachHang = '$idkhachhang'
+    //             ORDER BY dh.ID DESC";
+
+    //     $result_dh = $this->db->selects($sql);
+    //     $data = [];
+
+    //     while ($row_dh = mysqli_fetch_assoc($result_dh)) {
+    //         $iddonhang = $row_dh['ID'];
+    //         $sql_ct = "SELECT ctdh.idDonHangBan, sp.TenSanPham, sp.HinhAnh, ctdh.SoLuong, ctdh.DonGiaApDung, ctdh.ThanhTien
+    //                     FROM chitietdonhangban AS ctdh
+    //                     INNER JOIN donhangban AS dh ON ctdh.idDonHangBan = dh.ID
+    //                     INNER JOIN sanpham sp ON ctdh.idSanPham = sp.ID
+    //                     WHERE ctdh.idDonHangBan = '$iddonhang'";
+
+    //         $result_ct = $this->db->selects($sql_ct);
+    //         $chiTietDonHang = [];
+    //         while ($row_ct = mysqli_fetch_assoc($result_ct)) {
+    //             $chiTietDonHang[] = $row_ct;
+    //         }
+
+    //         $row_dh['ChiTietDonHang'] = $chiTietDonHang;
+    //         $data[] = $row_dh;
+    //     }
+
+    //     return $data;
+    // }
+
+
     public function TongChiTietDHB() {
         $sql = "SELECT * FROM chitietdonhangban";
         $result = mysqli_query($this->db->conn, $sql);
@@ -96,6 +150,29 @@ class ChiTietDonHangBan{
         }
     }
 
+    public  function TaoDonHangSS($idkhachhang,$ngaylap,$dataList){
+        $sqlDonHang = "INSERT INTO donhangban (IDKhachHang, idTrangThai, NgayLap) VALUES ($idkhachhang, 1, '$ngaylap')";
+            if ($this->db->conn->query($sqlDonHang) === TRUE) {
+                $iddonhangban = $this->db->conn->insert_id;
+                
+                foreach ($dataList as $data) {
+                    $idSanPham = $data['idSanPham'];
+                    $donGia = $data['donGia'];
+                    $soLuong = $data['soLuong'];
+        
+                    // Thực hiện câu lệnh INSERT
+                        $thanhtien = $this->ThanhTien($soLuong, $donGia);
+                        $sqlChiTiet = "INSERT INTO chitietdonhangban (idDonHangBan, idSanPham, SoLuong, DonGiaApDung, ThanhTien) VALUES ($iddonhangban, '$idSanPham', '$soLuong', '$donGia', '$thanhtien')";
+                        if ($this->db->conn->query($sqlChiTiet) === TRUE) {
+                            $capnhattongtien = $this->CapNhatTongTien($iddonhangban);
+                            
+                        } else {
+                            $message = "<span style='color: red;'>Đã xảy ra lỗi khi tạo chi tiết đơn hàng.</span>" . $this->db->conn->error;
+                            return $message;
+                        }
+                }
+            }else{echo'lỗi foreach';};
+    }
     public function TaoDonHang($tenkhachhang,$sodienthoai,$email,$diachi,$ngaylap,$dataList)
     {
 
@@ -122,8 +199,8 @@ class ChiTietDonHangBan{
                             $message = "<span style='color: red;'>Đã xảy ra lỗi khi tạo chi tiết đơn hàng.</span>" . $this->db->conn->error;
                             return $message;
                         }
-                    }
-                }else{echo'lỗi foreach';};
+                }
+            }else{echo'lỗi foreach';};
         }
 
     }

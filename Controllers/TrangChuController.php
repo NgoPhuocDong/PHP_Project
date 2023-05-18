@@ -6,6 +6,7 @@ include_once("Models/loginKhachHang.php"); //
 include_once("Models/KhachHang.php"); //
 include_once("Models/ThanhToan.php");
 include_once("Models/ChiTietDonHangBan.php");
+include_once("Models/DonHangBan.php");
 include_once("Models/Tintuc.php");
 class TrangChuController
 {
@@ -17,6 +18,7 @@ class TrangChuController
     private $khachhang;
     private $thanhtoan;
     private $ctdh;
+    private $donhangban;
     private $tintucs;
 
     public function __construct()
@@ -29,6 +31,7 @@ class TrangChuController
         $this->taikhoan = new TaiKhoanKhachHang();
         $this->thanhtoan = new ThanhToan();
         $this->ctdh = new ChiTietDonHangBan();
+        $this->donhangban = new DonHangBan();
     }
 
     public function DanhMuc()
@@ -141,7 +144,6 @@ class TrangChuController
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
             $thongtin = $this->taikhoan->ThongTinTaiKhoan($user);
-
             if (isset($_POST['update'])) {
                 $update = $this->khachhang->CapNhat(
                     $_POST['id'],
@@ -177,7 +179,31 @@ class TrangChuController
     }
     public function ThanhToan()
     {
-        if (isset($_POST['submit'])) {
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+            $thongtin = $this->taikhoan->ThongTinTaiKhoan($user);
+            if(isset($_POST['submit'])){
+                $idkhachhang = $_POST['idkhachhang'];
+                $ngaylap = $_POST['ngaylap'];
+
+                $idSanPhamArray = $_POST['idsanpham'];
+                $donGiaArray = $_POST['dongia'];
+                $soLuongArray = $_POST['soluong'];
+
+                $dataList = array();
+                foreach ((array)$idSanPhamArray as $key => $idSanPham) {
+                    $donGia = $donGiaArray[$key];
+                    $soLuong = $soLuongArray[$key];
+                    $dataList[] = array(
+                        'idSanPham' => $idSanPham,
+                        'donGia' => $donGia,
+                        'soLuong' => $soLuong
+                    );
+                }
+                $this->ctdh->TaoDonHangSS($idkhachhang,$ngaylap,$dataList);
+            }
+        }
+        elseif(isset($_POST['submit'])) {
             $tenkhachhang = $_POST['tenkhachhang'];
             $sodienthoai = $_POST['sodienthoai'];
             $email = $_POST['email'];
@@ -185,14 +211,6 @@ class TrangChuController
             $ngaylap = $_POST['ngaylap'];
             //lấy dữ liệu từ LocalStogare
             if (isset($_POST['idsanpham'], $_POST['dongia'], $_POST['soluong'])) {
-                // echo "Không có dl";
-                // $idSanPhamArray = $_POST['idsanpham'];
-                // $donGiaArray = $_POST['dongia'];
-                // $soLuongArray = $_POST['soluong'];
-
-                // $create = $this->ctdh->TaoDonHang($tenkhachhang,$sodienthoai,$email,$diachi,$ngaylap,
-                // $idSanPhamArray,$donGiaArray,$soLuongArray);
-
                 $idSanPhamArray = $_POST['idsanpham'];
                 $donGiaArray = $_POST['dongia'];
                 $soLuongArray = $_POST['soluong'];
@@ -202,7 +220,6 @@ class TrangChuController
                 foreach ((array)$idSanPhamArray as $key => $idSanPham) {
                     $donGia = $donGiaArray[$key];
                     $soLuong = $soLuongArray[$key];
-
                     $dataList[] = array(
                         'idSanPham' => $idSanPham,
                         'donGia' => $donGia,
@@ -215,5 +232,14 @@ class TrangChuController
             }
         }
         include 'Views/Home/ThanhToan.php';
+    }
+    public function LichSuMuaHang(){
+        if (isset($_SESSION['user'])) {
+            $idkhachhang = $_GET['id'];
+            //$duyetdon = $this->ctdh->DuyetDonDatHang($idkhachhang);
+            $result = $this->ctdh->DanhSachDonHangVaChiTiet($idkhachhang);
+        }
+        include 'Views/Home/LichSuMuaHang.php';
+        return array($result);
     }
 }

@@ -19,7 +19,8 @@
                         </li>
                     </a><br>
                     
-                    <a href="#">
+                    <?php foreach ($thongtin as $item) { ?>
+                    <a href="../TrangChu/LichSuMuaHang&id=<?=$item['IDKhachHang']?>"><?php }?>
                         <li class="row">
                             <div class="col-md-2">
                                 <i class="fa fa-history" aria-hidden="true"></i>
