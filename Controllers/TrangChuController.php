@@ -46,7 +46,7 @@ class TrangChuController
         $loaisanpham = $this->loaisanpham->DanhSach(100,0);
 
         //$sanphamnoibat = $this->model->SanPhamNoiBat();
-        $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 8;
+        $item = !empty($_GET['per_page']) ? $_GET['per_page'] : 6;
         $current = !empty($_GET['page']) ? $_GET['page'] : 1; // trang hien tai
         $offset = ($current - 1) * $item;
         if (isset($_GET['tensanpham'])) {
