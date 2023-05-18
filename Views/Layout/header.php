@@ -439,14 +439,6 @@ include("Views/Home/TrangChu.php");
 						border-radius: 50%;
 					}
 				</style>
-<li class="m-auto">
-  <button id="notificationButton">
-    <a href="/PHP_Project/Views/ThongBao/ThongBao.php">
-      <i class="fa fa-bell text-warning" aria-hidden="true"></i>
-      <span id="notificationCount">0</span>
-    </a>
-  </button>
-</li>
 <script>
   var notificationButton = document.getElementById('notificationButton');
   var notificationCount = document.getElementById('notificationCount');
