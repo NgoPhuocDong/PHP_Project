@@ -130,7 +130,7 @@ class ChiTietDonHangBan{
     }
 
     public  function TaoDonHangSS($idkhachhang,$ngaylap,$dataList){
-        $sqlDonHang = "INSERT INTO donhangban (IDKhachHang, idTrangThai, NgayLap) VALUES ($idkhachhang, 1, '$ngaylap')";
+        $sqlDonHang = "INSERT INTO donhangban (IDKhachHang, idTrangThai, NgayLap) VALUES ($idkhachhang, 5, '$ngaylap')";
             if ($this->db->conn->query($sqlDonHang) === TRUE) {
                 $iddonhangban = $this->db->conn->insert_id;
                 
@@ -159,7 +159,7 @@ class ChiTietDonHangBan{
         if ($this->db->conn->query($sqlKhachHang) === TRUE) {
             $idkhachhang = $this->db->conn->insert_id;
 
-            $sqlDonHang = "INSERT INTO donhangban (IDKhachHang, idTrangThai, NgayLap) VALUES ($idkhachhang, 1, '$ngaylap')";
+            $sqlDonHang = "INSERT INTO donhangban (IDKhachHang, idTrangThai, NgayLap) VALUES ($idkhachhang, 5, '$ngaylap')";
             if ($this->db->conn->query($sqlDonHang) === TRUE) {
                 $iddonhangban = $this->db->conn->insert_id;
                 
